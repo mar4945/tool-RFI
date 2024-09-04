@@ -48,23 +48,23 @@ const DO_PRECONDITIONING: bool = false;
 // ---Public Constants-----------------------------------------------------------------------------------
 
 /// Number of decision variables
-pub const CONTROLLER_TAU_2_NEW_NUM_DECISION_VARIABLES: usize = 34;
+pub const CONTROLLER_TAU_2_NEW_NUM_DECISION_VARIABLES: usize = 17;
 
 /// Number of parameters
-pub const CONTROLLER_TAU_2_NEW_NUM_PARAMETERS: usize = 38;
+pub const CONTROLLER_TAU_2_NEW_NUM_PARAMETERS: usize = 21;
 
 /// Number of parameters associated with augmented Lagrangian
 pub const CONTROLLER_TAU_2_NEW_N1: usize = 0;
 
 /// Number of penalty constraints
-pub const CONTROLLER_TAU_2_NEW_N2: usize = 33;
+pub const CONTROLLER_TAU_2_NEW_N2: usize = 16;
 
 
 
 // ---Parameters of the constraints----------------------------------------------------------------------
 
-const CONSTRAINTS_XMIN :Option<&[f64]> = Some(&[-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,]);
-const CONSTRAINTS_XMAX :Option<&[f64]> = Some(&[37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,]);
+const CONSTRAINTS_XMIN :Option<&[f64]> = Some(&[-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,-37.0,]);
+const CONSTRAINTS_XMAX :Option<&[f64]> = Some(&[37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,37.0,]);
 
 
 

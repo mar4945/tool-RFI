@@ -18,7 +18,7 @@ from CommNetwork import CommNetwork
 # TODO create json file to configure parameters
 
 # ATO parameters
-(nu, nx, N_f, N_l, ts, ato_leader_ts) = (1, 2, 34, 200, 0.06, 0.06)
+(nu, nx, N_f, N_l, ts, ato_leader_ts) = (1, 2, 17, 50, 0.12, 0.24)
 # Communication channel parameters
 (lambda_exp, min_delay_time, p_channel) = (0.1, 0.8, 0.8)
 
@@ -34,7 +34,7 @@ emergency_braking = -370000
 d_vc = 1000
 
 # tempo di simulazione
-time_simulation = 600
+time_simulation = 1500
 
 
 # list used to store simulation data
@@ -98,7 +98,8 @@ start_time = time.time()
 
 for t in range(0, int(time_simulation/ts), 1):
     timestamp = round(t*ts,2)
-    print("time: "+str(round(timestamp,2)))
+    #print("time: "+str(round(timestamp,2)))
+
 
     # Step for railway system
     s_l, v_l, a_l, u_l_control, result_l, message_l = leader.step_leader(timestamp, v_l_target)
@@ -141,8 +142,9 @@ for t in range(0, int(time_simulation/ts), 1):
     error_f_list.append(s_l-s_f)
     cost_f_list.append(result_f.cost)
     
-    if t*ts>2000:
-        v_l_target = 0
+    if t*ts>500:
+        v_l_target = 60
+    
         #commNetwork.set_param_channel(2)
     
 print('\a')

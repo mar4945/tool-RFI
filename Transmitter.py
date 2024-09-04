@@ -25,7 +25,9 @@ class Transmitter:
         if is_triggered:
             
             s_prediction, v_prediction, t_prediction = self.train.rlp_prediction(self.train.ato.u_guess, timestamp)
-        
+
+            
+            
             message = Message(None, timestamp, np.array(t_prediction), 
                               np.array(s_prediction), np.array(v_prediction))
             

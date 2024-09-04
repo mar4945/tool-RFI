@@ -18,10 +18,10 @@
  *   + version: 0.0.0
  *   + licence: MIT
  * + Problem
- *   + vars: 34
- *   + parameters: 38
+ *   + vars: 17
+ *   + parameters: 21
  *   + n1: 0
- *   + n2: 33
+ *   + n2: 16
  *
  */
 #include <stdlib.h>
@@ -37,16 +37,16 @@
 #include "casadi_memory.h"
 
 /* Number of input variables */
-#define NU_CONTROLLER_TAU_2_NEW 34
+#define NU_CONTROLLER_TAU_2_NEW 17
 
 /* Number of static parameters */
-#define NP_CONTROLLER_TAU_2_NEW 38
+#define NP_CONTROLLER_TAU_2_NEW 21
 
 /* Dimension of F1 (number of ALM constraints) */
 #define N1_CONTROLLER_TAU_2_NEW 0
 
 /* Dimension of F2 (number of PM constraints) */
-#define N2_CONTROLLER_TAU_2_NEW 33
+#define N2_CONTROLLER_TAU_2_NEW 16
 
 /* Dimension of xi = (c, y) */
 #define NXI_CONTROLLER_TAU_2_NEW 1

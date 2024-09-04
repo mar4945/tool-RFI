@@ -254,12 +254,28 @@ class Train:
         v_prediction.append(round(v,2))
         t_prediction.append(round(timestamp,2))
         
+        sampling = int(round((self.ato.ts)/self.ts,0))
+        
         # compute the prediction for the Robust Lower proxy 
         for u_t,i_time in zip(u_mpc,range(1,len(u_mpc))):
             s,v = self.rlp(s, v, u_t)
             s_prediction.append(round(s,2))
             v_prediction.append(round(v,2))
-            t_prediction.append(round(timestamp+i_time*self.ts,2))
+            t_prediction.append(round(timestamp+sampling*i_time*self.ts,2))
+            for i in range(1,sampling):
+                s,v = self.rlp(s, v, u_t)
+                s_prediction.append(round(s,2))
+                v_prediction.append(round(v,2))
+                t_prediction.append(round(timestamp+((sampling*i_time+i))*self.ts,2))
+            # s,v = self.rlp(s, v, u_t)
+            # s_prediction.append(round(s,2))
+            # v_prediction.append(round(v,2))
+            # t_prediction.append(round(timestamp+(4*i_time+2)*self.ts,2))
+            # s,v = self.rlp(s, v, u_t)
+            # s_prediction.append(round(s,2))
+            # v_prediction.append(round(v,2))
+            # t_prediction.append(round(timestamp+(4*i_time+3)*self.ts,2))
+
             
         return s_prediction, v_prediction, t_prediction
     
@@ -278,7 +294,7 @@ class Train:
         
         # TODO import as parameters
         a_b_l = 0.7
-        a_b_f = 0.65
+        a_b_f = 0.7
         max_time_delay = 5
         
         # condition on time

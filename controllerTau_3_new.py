@@ -5,9 +5,9 @@ import numpy as np
 
 # Build parametric optimizer
 # ------------------------------------
-(nu, nx, N, ts) = (1, 4, 34, 0.06)
+(nu, nx, N, ts) = (1, 4, 17, 0.12)
 
-(qv, qs, r, r_past) = (1, 1.2, 0.1, 10)
+(qv, qs, r, r_past) = (1, 1, 0.1, 10)
 (M,A,B,C,Tf) = (490000, 26.152, 8.365, 1.914, 0.5)
 
 u = cs.SX.sym('u', nu*N)
@@ -39,11 +39,11 @@ for t in range(0, nu*N-1, nu):
     cost += (qs*(s-z0[t+4]))**2 + (r*u_t)**2 + (qv*(v-v_target))**2 + r_past*cs.dot((u_t-u_t_past), (u_t-u_t_past))
     
     if t>0:
-        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u[t-1]) - 0.001))
+        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u[t-1]) - 0.0001))
         fu_P =cs.vertcat(fu_P, u[t] - u[t-1])
         a=1
     else:
-        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u_t_past) - 0.001))
+        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u_t_past) - 0.0001))
         fu_P =cs.vertcat(fu_P, u[t] - u_t_past)
     
     u_t_past = u_t

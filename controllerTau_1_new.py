@@ -5,9 +5,9 @@ import numpy as np
 
 # Build parametric optimizer
 # ------------------------------------
-(nu, nx, N, ts) = (1, 4, 34, 0.06)
+(nu, nx, N, ts) = (1, 4, 17, 0.12)
 
-(qv, qs, r, r_past) = (0.5, 0.1, 0.19, 1)
+(qv, qs, r, r_past) = (0.5, 0.15, 0.26, 10)
 (M,A,B,C,Tf) = (490000, 26.152, 8.365, 1.914, 0.5)
 
 u = cs.SX.sym('u', nu*N)

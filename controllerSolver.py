@@ -5,9 +5,9 @@ import numpy as np
 
 # Build parametric optimizer
 # ------------------------------------
-(nu, nx, np, N, ts) = (1, 3, 200, 200, 0.06)
+(nu, nx, np, N, ts) = (1, 3, 200, 50, 0.24)
 
-(qv, qs, r, r_past,qN) = (0.5, 0.1, 0.01, 5, 50)
+(qv, qs, r, r_past,qN) = (0.5, 0.1, 0.015, 0.1, 1)
 (M,A,B,C,Tf) = (490000, 26.152, 8.365, 1.914, 1)
 
 u = cs.SX.sym('u', nu*N)
@@ -25,12 +25,12 @@ u_t_past= uPast
 for t in range(0, nu*(N-3), nu):
     
     u_t = u[t]
-    cost += (qv*(v-z0[t+3]))**2 #+ (r*u_t)**2
+    cost += (qv*(v-z0[t+3]))**2 + (r*u_t)**2
     #cost += r * cs.dot(u_t, u_t) + r_past*cs.dot((u_t-u_t_past), (u_t-u_t_past))
     if t>0:
-        cost += (r *u[t])**2 + (r_past*(u[t]-u[t-1]))**2
+        cost +=  (r_past*(u[t]-u[t-1]))**2
     else:
-        cost += (r *u[t])**2 + (r_past*(u[t]-u_t_past))**2
+        cost +=  (r_past*(u[t]-u_t_past))**2
     
     s += ts*v 
     v += ts*((1/M)*(-A-B*v-Tf*C*v**2)+u_t*1000/M)
@@ -40,16 +40,16 @@ for t in range(0, nu*(N-3), nu):
     #    fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u[t-1]) - 10))
     
     if t>0:
-        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u[t-1]) - 10))
+        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u[t-1]) - 1))
         
     else:
-        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u_t_past) - 10))
+        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u_t_past) - 1))
         
         
         #fu_J =cs.vertcat(fu_J, ((u[t] - u[t-1])))
     u_t_past = u_t
 
-cost += ((qv*(v-z0[t+2]))**2) 
+cost += (qv*(v-z0[t+3]))**2 + (r*u_t)**2 + (r_past*(u[t]-u[t-1]))**2
 
 umin = [-270.0] * (nu*N)
 umax = [370.0] * (nu*N)

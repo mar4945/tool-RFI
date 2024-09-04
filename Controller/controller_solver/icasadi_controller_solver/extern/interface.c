@@ -18,10 +18,10 @@
  *   + version: 0.0.0
  *   + licence: MIT
  * + Problem
- *   + vars: 200
- *   + parameters: 203
+ *   + vars: 50
+ *   + parameters: 53
  *   + n1: 0
- *   + n2: 197
+ *   + n2: 47
  *
  */
 #include <stdlib.h>
@@ -37,16 +37,16 @@
 #include "casadi_memory.h"
 
 /* Number of input variables */
-#define NU_CONTROLLER_SOLVER 200
+#define NU_CONTROLLER_SOLVER 50
 
 /* Number of static parameters */
-#define NP_CONTROLLER_SOLVER 203
+#define NP_CONTROLLER_SOLVER 53
 
 /* Dimension of F1 (number of ALM constraints) */
 #define N1_CONTROLLER_SOLVER 0
 
 /* Dimension of F2 (number of PM constraints) */
-#define N2_CONTROLLER_SOLVER 197
+#define N2_CONTROLLER_SOLVER 47
 
 /* Dimension of xi = (c, y) */
 #define NXI_CONTROLLER_SOLVER 1
