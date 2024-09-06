@@ -24,7 +24,7 @@ const NUM_DECISION_VARIABLES: usize = 50;
 const NUM_CONSTRAINTS_TYPE_ALM: usize = 0;
 
 /// Number of penalty constraints (dimension of F2, i.e., n2)
-const NUM_CONSTRAINTS_TYPE_PENALTY: usize = 47;
+const NUM_CONSTRAINTS_TYPE_PENALTY: usize = 0;
 
 use libc::{c_double, c_int};  // might need to include: c_longlong, c_void
 

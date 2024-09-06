@@ -57,7 +57,7 @@ pub const CONTROLLER_TAU_3_NEW_NUM_PARAMETERS: usize = 21;
 pub const CONTROLLER_TAU_3_NEW_N1: usize = 32;
 
 /// Number of penalty constraints
-pub const CONTROLLER_TAU_3_NEW_N2: usize = 16;
+pub const CONTROLLER_TAU_3_NEW_N2: usize = 1;
 
 
 

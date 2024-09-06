@@ -21,7 +21,7 @@
  *   + vars: 50
  *   + parameters: 53
  *   + n1: 0
- *   + n2: 47
+ *   + n2: 0
  *
  */
 #include <stdlib.h>
@@ -46,10 +46,10 @@
 #define N1_CONTROLLER_SOLVER 0
 
 /* Dimension of F2 (number of PM constraints) */
-#define N2_CONTROLLER_SOLVER 47
+#define N2_CONTROLLER_SOLVER 0
 
 /* Dimension of xi = (c, y) */
-#define NXI_CONTROLLER_SOLVER 1
+#define NXI_CONTROLLER_SOLVER 0
 
 /* Preconditioning Flag */
 

@@ -21,7 +21,7 @@
  *   + vars: 17
  *   + parameters: 21
  *   + n1: 32
- *   + n2: 16
+ *   + n2: 1
  *
  */
 #include <stdlib.h>
@@ -46,7 +46,7 @@
 #define N1_CONTROLLER_TAU_1_NEW 32
 
 /* Dimension of F2 (number of PM constraints) */
-#define N2_CONTROLLER_TAU_1_NEW 16
+#define N2_CONTROLLER_TAU_1_NEW 1
 
 /* Dimension of xi = (c, y) */
 #define NXI_CONTROLLER_TAU_1_NEW 33

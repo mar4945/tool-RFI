@@ -50,10 +50,10 @@ extern "C" {
 #endif
 
 static const casadi_int casadi_s0[21] = {17, 1, 0, 17, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};
-static const casadi_int casadi_s1[42] = {38, 1, 0, 38, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37};
+static const casadi_int casadi_s1[27] = {23, 1, 0, 23, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22};
 static const casadi_int casadi_s2[5] = {1, 1, 0, 1, 0};
 
-/* open_mapping_f1_controller_tau_2_new:(i0[17],i1[38])->(o0) */
+/* open_mapping_f1_controller_tau_2_new:(i0[17],i1[23])->(o0) */
 static int casadi_f0(const casadi_real** arg, casadi_real** res, casadi_int* iw, casadi_real* w, int mem) {
   casadi_real a0;
   a0=0.;

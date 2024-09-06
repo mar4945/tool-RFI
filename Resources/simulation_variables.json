@@ -1,0 +1,39 @@
+{
+    "ATO_parameters": {
+        "nu": 1,
+        "nx": 2,
+        "N_f": 17,
+        "N_l": 50,
+        "ts": 0.12,
+        "ato_leader_ts": 0.24
+    },
+    "Communication_channel_parameters": {
+        "lambda_exp": 0.1,
+        "min_delay_time": 0.8,
+        "p_channel": 0.8
+    },
+    "train_parameters": {
+        "M": 490000,
+        "A": 26.152,
+        "B": 8.365,
+        "C": 1.914,
+        "Tf": 1,
+        "delta_param": 0.1,
+        "pos_leader": 6000,
+        "vel_leader": 50,
+        "acc_leader": 0,
+        "pos_follower": 0,
+        "vel_follower": 50,
+        "acc_follower": 0
+    },
+    "velocity_target": {
+        "v_l_target": 50,
+        "packet48": 1.02
+    },
+    "emergency_braking": -370000,
+    "d_vc": 1000,
+    "time_simulation": 3000,
+    "ref_tau_1": 4800,
+    "ref_tau_2": 4750,
+    "ref_tau_3": 4700
+}
