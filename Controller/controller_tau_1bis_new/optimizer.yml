@@ -1,0 +1,22 @@
+_comment: auto-generated file; do not modify
+build:
+  build_dir: Controller
+  build_mode: release
+  open_version: 0.8.1
+  opengen_version: 0.8.0
+  target_system: null
+meta:
+  authors:
+  - John Smith
+  licence: MIT
+  optimizer_name: controller_tau_1bis_new
+  version: 0.0.0
+solver:
+  constraints_tolerance: 0.1
+  lbfgs_memory: 20
+  max_duration_micros: 5000000
+  max_inner_iterations: 500
+  max_outer_iterations: 10
+  penalty_weight_update_factor: 8.0
+  tolerance: 1.0e-05
+tcp: null

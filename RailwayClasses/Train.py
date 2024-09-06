@@ -112,8 +112,9 @@ class Train:
         self.jerk = round((self.acceleration-past_acceleration)/self.ts,3)
         
         if self.velocity<=0:
-            control = 0
-            self.acceleration = 0
+            if control < 0:
+                control = 0
+            self.velocity = 0
 
         # Aggiorna la velocità in base all'accelerazione
         self.velocity += self.acceleration * self.ts
@@ -167,10 +168,11 @@ class Train:
             self.ato.set_u_past(u_0/self.ato.U_FACTOR_VC)
             z_region = 4
             
-        # if self.velocity <= 1.5:
+        # if self.velocity <= 0.5:
         #     u_0 = 0
         #     self.velocity = 0
         #     self.acceleration = 0
+        #     z_region = 4
         
         
         

@@ -24,6 +24,9 @@ import controller_tau_3_new # type: ignore
 sys.path.insert(1, parent_directory+"/Controller/controller_solver")
 import controller_solver # type: ignore
 
+sys.path.insert(1, parent_directory+"/Controller/controller_tau_1bis_new")
+import controller_tau_1bis_new # type: ignore
+
 
 class ATO:
     
@@ -62,6 +65,16 @@ class ATO:
     def k_tau_3(self, P ):
         
         solver = controller_tau_1_new.solver()
+        result = solver.run(p=P,
+                            initial_guess=self.u_guess)
+        
+        u_star = result.solution
+        return u_star[0:self.nu*self.N:self.nu], result
+    
+    # Transition controller from L3 -> VC, it is ised to reach the ref z_tau2
+    def k_tau_3bis(self, P ):
+        
+        solver = controller_tau_1bis_new.solver()
         result = solver.run(p=P,
                             initial_guess=self.u_guess)
         
@@ -119,8 +132,14 @@ class ATO:
             P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref.tolist()
             ref_tau = ref[0]
             
-            [uMPC,result] = self.k_tau_3(P)
-            z_region = 1
+            if  timestamp< 1500:
+                [uMPC,result] = self.k_tau_3(P)
+                z_region = 1
+            else:
+                [uMPC,result] = self.k_tau_3bis(P)
+                z_region = 1
+            
+           
         elif s_f > self.z_tau_1[idx_ref]:
             ref = self.z_tau_2[i:(i+N)]
         
@@ -151,7 +170,7 @@ class ATO:
     
     def emergency_controller(self):
         # TODO modificare costante
-        u_e = self.emergency_braking - 7500
+        u_e = self.emergency_braking - 500
         #u_e = -370000
         
         if u_e < -370000:

@@ -32,7 +32,7 @@
     },
     "emergency_braking": -370000,
     "d_vc": 1000,
-    "time_simulation": 3000,
+    "time_simulation": 4000,
     "ref_tau_1": 4800,
     "ref_tau_2": 4750,
     "ref_tau_3": 4700

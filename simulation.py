@@ -242,9 +242,11 @@ def run_simulation():
         if t*ts>1000:
             v_l_target = 70
         if t*ts>2000:
-            v_l_target = 30
+            v_l_target = 45
         if t*ts>2500:
             v_l_target = 0
+        if t*ts>5000:
+            v_l_target = 40
         
             #commNetwork.set_param_channel(2)
 
