@@ -174,7 +174,7 @@ def plot_simulation():
     axs[0, 3].set_title('b')
     axs[0, 3].grid()
 
-    axs[1, 3].stem(time_delay_list, delay_channel_list, 'tab:red')
+    axs[1, 3].plot(time_delay_list, delay_channel_list, 'tab:red')
     axs[1, 3].set_title('delay communication channel')
     axs[1, 3].grid()
 
@@ -240,15 +240,17 @@ def run_simulation():
         if t*ts>500:
             v_l_target = 60
         if t*ts>1000:
-            v_l_target = 70
+            
+            v_l_target = 60
         if t*ts>2000:
-            v_l_target = 45
+            v_l_target = 60
         if t*ts>2500:
-            v_l_target = 0
+            commNetwork.set_param_channel(1.5)
+            v_l_target = 60
         if t*ts>5000:
-            v_l_target = 40
+            v_l_target = 60
         
-            #commNetwork.set_param_channel(2)
+            
 
     # used to clean the terminal
     os.system('cls' if os.name == 'nt' else 'clear')

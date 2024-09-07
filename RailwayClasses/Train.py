@@ -129,6 +129,9 @@ class Train:
         # update the leader message stored in the receiver
         delay_channel = self.receiver.step(message_l_channel)
         tau_estimated = None
+        
+        if timestamp> 2600:
+            a=1
         if delay_channel is not None:
             tau_bar = self.mle_estimator(delay_channel)
             self.tau_bar = tau_bar
@@ -203,7 +206,7 @@ class Train:
     # Pop operation (removing the top element from the stack)
     def pop(self):
         if not self.is_empty():
-            item = self.stack_window_channel.pop()  # pop removes the last element
+            item = self.stack_window_channel.pop(0)  # pop removes the last element
             #print(f"Popped {item} from the stack. Current stack: {self.stack_window_channel}")
             return item
         else:
@@ -226,7 +229,7 @@ class Train:
         
         lambda_estimated = 1/average_delay
         
-        tau_bar = self.min_T - (math.log(1-self.p_channel)/lambda_estimated)
+        tau_bar = 0.8 - (math.log(1-self.p_channel)/lambda_estimated)
             
         return tau_bar
         

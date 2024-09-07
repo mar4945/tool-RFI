@@ -18,8 +18,8 @@
  *   + version: 0.0.0
  *   + licence: MIT
  * + Problem
- *   + vars: 50
- *   + parameters: 53
+ *   + vars: 65
+ *   + parameters: 68
  *   + n1: 0
  *   + n2: 0
  *
@@ -37,10 +37,10 @@
 #include "casadi_memory.h"
 
 /* Number of input variables */
-#define NU_CONTROLLER_SOLVER 50
+#define NU_CONTROLLER_SOLVER 65
 
 /* Number of static parameters */
-#define NP_CONTROLLER_SOLVER 53
+#define NP_CONTROLLER_SOLVER 68
 
 /* Dimension of F1 (number of ALM constraints) */
 #define N1_CONTROLLER_SOLVER 0

@@ -5,7 +5,7 @@ import numpy as np
 
 # Build parametric optimizer
 # ------------------------------------
-(nu, nx, np, N, ts) = (1, 3, 200, 50, 0.24)
+(nu, nx, np, N, ts) = (1, 3, 200, 65, 0.24)
 
 (qv, qs, r, r_past,qN) = (0.5, 0.1, 0.03, 1, 1)
 (M,A,B,C,Tf) = (490000, 26.152, 8.365, 1.914, 1)
