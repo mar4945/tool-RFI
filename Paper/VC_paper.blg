@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: VC_paper.aux
+Reallocating 'name_of_file' (item size: 1) to 4 items.
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: ieeetr.bst
+Database file #1: bib.bib
+You're missing a field name---line 43 of file bib.bib
+ :  year = {2024},  
+ :                  % Inserisci l'anno corretto del video
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "videoYoutube"
+You've used 23 entries,
+            1876 wiz_defined-function locations,
+            609 strings with 7816 characters,
+and the built_in function-call counts, 6562 in all, are:
+= -- 638
+> -- 289
+< -- 0
++ -- 106
+- -- 83
+* -- 488
+:= -- 955
+add.period$ -- 25
+call.type$ -- 23
+change.case$ -- 25
+chr.to.int$ -- 0
+cite$ -- 23
+duplicate$ -- 326
+empty$ -- 589
+format.name$ -- 83
+if$ -- 1589
+int.to.chr$ -- 0
+int.to.str$ -- 23
+missing$ -- 21
+newline$ -- 74
+num.names$ -- 23
+pop$ -- 60
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 220
+stack$ -- 0
+substring$ -- 443
+swap$ -- 139
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 59
+width$ -- 25
+write$ -- 232
+(There was 1 error message)

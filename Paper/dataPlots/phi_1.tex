@@ -1,0 +1,22 @@
+\pgfplotsset{width=10cm,compat=1.18}
+\begin{figure}[!h]
+%velocity
+\centering
+ \begin{tikzpicture}
+\begin{axis}[
+title = {$\phi_1 Robustness$},
+legend pos=south east,
+xlabel={Time $[s]$},
+ylabel={$v [\frac{m}{s}]$},
+]
+\addplot [orange] table {dataPlots/phi_1.dat};
+\addlegendentry{$\phi_1$}
+\addplot [mark=none]  coordinates {
+(0, 0)
+(100, 0)
+};
+\end{axis}
+\end{tikzpicture}
+\caption{Monitoring system.}
+\label{fig:phi1Plot}
+\end{figure}

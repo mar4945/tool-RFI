@@ -27,6 +27,7 @@ def load_data():
     global p_channel, M, A, B, C, Tf, delta_param, pos_leader, vel_leader, acc_leader
     global pos_follower, vel_follower, acc_follower, v_l_target, packet48
     global emergency_braking, d_vc, time_simulation, ref_tau_1, ref_tau_2, ref_tau_3
+    global os1, os2
 
     # Assign variables
     # ATO parameters
@@ -67,6 +68,9 @@ def load_data():
     ref_tau_1 = data['ref_tau_1']
     ref_tau_2 = data['ref_tau_2']
     ref_tau_3 = data['ref_tau_3']
+    
+    os1 = data['os1']
+    os2 = data['os2']
 # create the list where to store all the variables
 def create_list():
     global s_f_list, s_l_list, v_f_list, v_l_list, a_f_list, a_l_list, u_f_list, u_l_list
@@ -136,7 +140,7 @@ def init_simulation():
 def plot_simulation():
     fig, axs = plt.subplots(2, 4)
     axs[0, 0].plot(time_list, error_f_list)
-    axs[0, 0].plot(time_list, err_z_tau)
+    #axs[0, 0].plot(time_list, err_z_tau)
     axs[0, 0].set_title('error follower')
     axs[0, 0].grid()
 
@@ -237,18 +241,21 @@ def run_simulation():
         error_f_list.append(s_l-s_f)
         cost_f_list.append(result_f.cost)
         
-        if t*ts>500:
-            v_l_target = 60
-        if t*ts>1000:
-            
-            v_l_target = 60
-        if t*ts>2000:
-            v_l_target = 60
-        if t*ts>2500:
+        if os1:
+            if t*ts>700:
+                v_l_target = 70
+            if t*ts>1300:
+                
+                v_l_target = 60
+            if t*ts>2000:
+                v_l_target = 50
+            if t*ts>2500:
+                
+                v_l_target = 30
+            if t*ts>3000:
+                v_l_target = 0
+        if os2 and  t*ts>1300:
             commNetwork.set_param_channel(1.5)
-            v_l_target = 60
-        if t*ts>5000:
-            v_l_target = 60
         
             
 

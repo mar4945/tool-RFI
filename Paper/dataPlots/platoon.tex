@@ -1,0 +1,36 @@
+\pgfplotsset{width=8cm,compat=1.18}
+\begin{figure}[!h]
+\begin{center}
+\begin{tabular}{rl}
+%position
+ \begin{tikzpicture}
+\begin{axis}[
+legend pos=north east,
+xlabel={Time [$s$]},
+ylabel={$v$[$\frac{m}{s}$]},
+]
+\addplot [blue] table {dataPlots/interDistance.dat};
+\addlegendentry{${i_s}$}
+\addplot [orange,const plot] table {dataPlots/interDistanceRBC.dat};
+\addlegendentry{$\bar{i_s}$}
+\end{axis}
+\end{tikzpicture}
+
+%velocity
+ \begin{tikzpicture}
+\begin{axis}[
+legend pos=south east,
+xlabel={Time [$s$]},
+ylabel={$s$[$m$]},
+]
+\addplot [blue] table {dataPlots/interVelocity.dat};
+\addlegendentry{${i_v}$}
+\addplot [orange,const plot] table {dataPlots/interVelocityRBC.dat};
+\addlegendentry{$\bar{i_v}$}
+\end{axis}
+\end{tikzpicture}
+\end{tabular}
+\end{center}
+\caption{Platoon intervelocity and interdistance.}
+\label{fig:platoonPlot}
+\end{figure}
