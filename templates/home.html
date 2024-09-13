@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Variables - Train GUI</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+            background-color: #e0f7fa;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .header {
+            width: 100%;
+            padding: 10px 0;
+            background-color: #0277bd;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .tab-buttons button {
+            padding: 15px 30px;
+            background-color: #ddd;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab-buttons button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .tab-buttons button:hover {
+            background-color: #81c784;
+        }
+
+        .tab-content {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .input-field {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .save-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .save-button:hover {
+            background-color: #388e3c;
+        }
+
+        .train-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #616161;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        Train Simulation - Simulation Variables
+    </div>
+
+    <div class="tab-buttons">
+        <button class="tablink active" onclick="openTab(event, 'tab1')">Simulation Variables</button>
+        <button class="tablink" onclick="openTab(event, 'tab2')">Tab 2</button>
+    </div>
+
+    <div id="tab1" class="tab-content active">
+        <h2>Simulation Variables</h2>
+
+        <!-- Dynamic form elements will be inserted here -->
+        <div id="simulationVariablesForm"></div>
+
+        <!-- Save Button -->
+        <button class="save-button" onclick="saveVariables()">Save Variables</button>
+
+        <!-- Train Image -->
+        <img src="https://example.com/train_image.jpg" alt="Train Image" class="train-image">
+    </div>
+
+    <div id="tab2" class="tab-content">
+        <h2>Tab 2 Content</h2>
+        <p>This is the content for Tab 2. Customize it as needed.</p>
+
+        <!-- Another train image -->
+        <img src="https://example.com/train_image_2.jpg" alt="Train Image 2" class="train-image">
+    </div>
+
+    <div class="footer">
+        © 2024 Train Simulation - R&D Engineering
+    </div>
+</div>
+
+<script>
+    // JSON object with simulation variables
+    const simulationVariables = {
+        {
+            "nu": 1,
+            "nx": 2,
+            "N_f": 17,
+            "N_l": 65,
+            "ts": 0.12,
+            "ato_leader_ts": 0.24
+            "lambda_exp": 0.01,
+            "min_delay_time": 0.8,
+            "p_channel": 0.8,
+            "M": 490000,
+            "A": 26.152,
+            "B": 8.365,
+            "C": 1.914,
+            "Tf": 1,
+            "delta_param": 0.1,
+            "pos_leader": 6000,
+            "vel_leader": 50,
+            "acc_leader": 0,
+            "pos_follower": 0,
+            "vel_follower": 50,
+            "acc_follower": 0,
+
+            "v_l_target": 50,
+            "packet48": 1.02,
+            
+            "emergency_braking": -370000,
+            "d_vc": 1000,
+            "time_simulation": 4000,
+            "ref_tau_1": 4800,
+            "ref_tau_2": 4750,
+            "ref_tau_3": 4700,
+            "os1": true,
+            "os2":false
+        }
+    };
+
+    // Function to dynamically create form fields based on the JSON object
+    function createFormFields() {
+        const formContainer = document.getElementById('simulationVariablesForm');
+        
+        for (const key in simulationVariables) {
+            if (simulationVariables.hasOwnProperty(key)) {
+                const variable = simulationVariables[key];
+
+                // Create a div container for each field
+                const fieldDiv = document.createElement('div');
+                fieldDiv.classList.add('input-field');
+                
+                // Create label for the field
+                const label = document.createElement('label');
+                label.setAttribute('for', key);
+                label.textContent = variable.label;
+                fieldDiv.appendChild(label);
+                
+                // Create input for the field
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = key;
+                input.value = variable.value;
+                input.setAttribute('step', 'any'); // Allow decimal inputs
+                fieldDiv.appendChild(input);
+                
+                // Append the field to the form
+                formContainer.appendChild(fieldDiv);
+            }
+        }
+    }
+
+    // Call the function to generate the form fields
+    createFormFields();
+
+    // Function to save the form data to a JSON file
+    function saveVariables() {
+        const updatedVariables = {};
+
+        // Get updated values from the form inputs
+        for (const key in simulationVariables) {
+            if (simulationVariables.hasOwnProperty(key)) {
+                const input = document.getElementById(key);
+                updatedVariables[key] = {
+                    label: simulationVariables[key].label,
+                    value: parseFloat(input.value) || 0
+                };
+            }
+        }
+
+        // Convert the updated variables to JSON format
+        const jsonString = JSON.stringify(updatedVariables, null, 2);
+
+        // Create a blob for the JSON file
+        const blob = new Blob([jsonString], { type: "application/json" });
+
+        // Create a temporary download link
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "variables.json";
+
+        // Append the link, trigger the download, and remove the link
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Function to switch between tabs
+    function openTab(event, tabName) {
+        var i, tabcontent, tablinks;
+
+        // Hide all tab contents
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+
+        // Remove the 'active' class from all tab buttons
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+
+        // Show the selected tab content and highlight the active tab button
+        document.getElementById(tabName).classList.add("active");
+        event.currentTarget.classList.add("active");
+    }
+</script>
+
+</body>
+</html>

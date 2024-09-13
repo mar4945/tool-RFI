@@ -124,14 +124,12 @@ class Train:
         
         return self.position, self.velocity, self.acceleration, self.jerk
     
-    def step_follower(self,  v_l, timestamp, message_l_channel):
+    def step_follower(self, timestamp, message_l_channel):
         
         # update the leader message stored in the receiver
         delay_channel = self.receiver.step(message_l_channel)
         tau_estimated = None
         
-        if timestamp> 2600:
-            a=1
         if delay_channel is not None:
             tau_bar = self.mle_estimator(delay_channel)
             self.tau_bar = tau_bar
@@ -153,10 +151,15 @@ class Train:
         
         u_emergency = self.ato.emergency_controller()
         
+        if last_message_leader:
+            v_l_mean = np.mean(last_message_leader.v_prediction)
+        else:
+            v_l_mean = self.velocity
+        
                        
         # calculate the control input using the NMPC
         u_f_control, result_f, z_tau_3, z_tau_2, z_tau_1, z_region, ref_tau  = self.ato.cruise_virtual_coupling(self.position, 
-                                                                 self.velocity, v_l, timestamp, last_message_leader)
+                                                                 self.velocity, v_l_mean, timestamp, last_message_leader)
         
         
         if not flag_emergency:

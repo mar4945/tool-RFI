@@ -19,7 +19,7 @@
         "C": 1.914,
         "Tf": 1,
         "delta_param": 0.1,
-        "pos_leader": 1400,
+        "pos_leader": 6000,
         "vel_leader": 50,
         "acc_leader": 0,
         "pos_follower": 0,
@@ -30,12 +30,16 @@
         "v_l_target": 50,
         "packet48": 1.02
     },
+    "simulation_parameters": {
+        "save_txt": false,
+        "plot": true
+    },
     "emergency_braking": -370000,
     "d_vc": 1000,
     "time_simulation": 4000,
     "ref_tau_1": 4800,
     "ref_tau_2": 4750,
     "ref_tau_3": 4700,
-    "os1": false,
-    "os2":true
+    "os1": true,
+    "os2":false
 }

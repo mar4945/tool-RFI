@@ -80,7 +80,7 @@ static const casadi_int casadi_s2[27] = {23, 1, 0, 23, 0, 1, 2, 3, 4, 5, 6, 7, 8
 static int casadi_f0(const casadi_real** arg, casadi_real** res, casadi_int* iw, casadi_real* w, int mem) {
   casadi_real a0, a1, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a2, a20, a3, a4, a5, a6, a7, a8, a9;
   a0=arg[2]? arg[2][21] : 0;
-  a1=2.5000000000000000e-01;
+  a1=2.9999999999999999e-01;
   a2=arg[2]? arg[2][0] : 0;
   a3=1.2000000000000000e-01;
   a4=arg[2]? arg[2][1] : 0;
