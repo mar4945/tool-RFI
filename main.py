@@ -226,7 +226,7 @@ def run_simulation():
 
     for t in range(0, int(time_simulation/ts), 1):
         timestamp = round(t*ts,2)
-        print("time: "+str(round(timestamp,2)))
+        #print("time: "+str(round(timestamp,2)))
         
         # Step for railway system
         s_l, v_l, a_l, u_l_control, result_l, message_l = leader.step_leader(timestamp, v_l_target)
@@ -275,11 +275,9 @@ def run_simulation():
         cost_f_list.append(result_f.cost)
         
         if os1:
-            if t*ts>700:
+            if t*ts>1000:
                 v_l_target = 70
-            if t*ts>1300:
-                
-                v_l_target = 60
+
             if t*ts>2000:
                 v_l_target = 50
             if t*ts>2500:
