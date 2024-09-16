@@ -10,7 +10,10 @@
     "Communication_channel_parameters": {
         "lambda_exp": 0.01,
         "min_delay_time": 0.8,
-        "p_channel": 0.8
+        "p_channel": 0.8,
+        "time_loss": 3000,
+        "duration_loss":7,
+        "flag_loss": true
     },
     "train_parameters": {
         "M": 490000,
@@ -40,6 +43,6 @@
     "ref_tau_1": 4800,
     "ref_tau_2": 4750,
     "ref_tau_3": 4700,
-    "os1": true,
-    "os2":false
+    "os1": false,
+    "os2": true
 }

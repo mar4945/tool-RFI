@@ -50,6 +50,7 @@ class ATO:
         self.time_ref_3 = np.round(np.arange(0, self.N*20*self.ts, self.ts), 2) 
         
         self.emergency_braking = 0
+        self.past_ref = -1
         
     def set_z_tau_ref(self,z1,t1,z2,t2,z3,t3):
         
@@ -116,21 +117,36 @@ class ATO:
         N = self.N
         
         i = int(idx_ref)
-        
-        h = (i+N)-i
-        
-        
+                   
         
         # used to check in whic region z we are
         z_region = None
+        
+        # case when the message doesn't arrive so the stack will overflow
+        if idx_ref >= len(self.z_tau_3):
+            z_tau_3_ref =  self.z_tau_3[-1]
+        else:
+            z_tau_3_ref =  self.z_tau_3[idx_ref]
+            
+        if idx_ref >= len(self.z_tau_2):
+            z_tau_2_ref =  self.z_tau_2[-1]
+        else:
+            z_tau_2_ref =  self.z_tau_2[idx_ref]
+            
+        if idx_ref >= len(self.z_tau_1):
+            z_tau_1_ref =  self.z_tau_1[-1]
+        else:
+            z_tau_1_ref =  self.z_tau_1[idx_ref]
         # switched controllers based on z_taus references
-        if s_f < self.z_tau_3[idx_ref]:
+        if s_f < z_tau_3_ref:
             
             ref = self.z_tau_2[i:(i+N)]
+            ref = self.add_ref(ref.tolist())
         
             # create the parametrized vector for NMPC
-            P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref.tolist()
+            P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref
             ref_tau = ref[0]
+            
             
             if  timestamp< 1500:
                 [uMPC,result] = self.k_tau_3(P)
@@ -140,30 +156,34 @@ class ATO:
                 z_region = 1
             
            
-        elif s_f > self.z_tau_1[idx_ref]:
+        elif s_f > z_tau_2_ref:
             ref = self.z_tau_2[i:(i+N)]
+            ref = self.add_ref(ref.tolist())
         
             # create the parametrized vector for NMPC
-            P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref.tolist()
+            P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref
+            
             ref_tau = ref[0]
             z_region = 3
             [uMPC,result] = self.k_tau_1(P)
         else:
             ref = self.z_tau_1[i:(i+N)]
-        
+            ref = self.add_ref(ref.tolist())
+            
             # create the parametrized vector for NMPC
-            P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref.tolist()
+            P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref
             ref_tau = ref[0]
             z_region = 2
             [uMPC,result] = self.k_tau_2(P)
         
         # collect the past solution used as guess for the next optimization problem and store the last input computed
         
-        
         self.u_past = uMPC[0]
         self.u_guess = [u*self.U_FACTOR_VC for u in uMPC]
         
-        return self.u_guess, result, self.z_tau_3[idx_ref], self.z_tau_2[idx_ref], self.z_tau_1[idx_ref], z_region, ref_tau
+        self.past_ref = ref_tau
+        
+        return self.u_guess, result, z_tau_3_ref, z_tau_2_ref, z_tau_1_ref, z_region, ref_tau
     
     def set_emergency_braking(self, brake):
         self.emergency_braking = brake
@@ -180,6 +200,17 @@ class ATO:
     
     def set_u_past(self, u):
         self.u_past = u
+        
+    # this function allocate element to the ref to not have problem on the controller
+    def add_ref(self, lista):
+
+        if len(lista) == 0:
+            lista = [self.past_ref] * self.N
+        elif len(lista) < self.N:
+            ultimo_elemento = lista[-1]
+            elementi_da_aggiungere = [ultimo_elemento] * (self.N - len(lista))
+            lista.extend(elementi_da_aggiungere)
+        return lista
     
     # NMPC controller used to follow the desired velocitu
     def velocity_controller(self, s_f, v_f, v_l_target):

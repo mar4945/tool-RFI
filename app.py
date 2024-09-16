@@ -22,7 +22,7 @@ def home():
         return redirect(url_for('result', param1=param1, param2=param2, param3=param3))
 
     # Render the HTML page with the form
-    return render_template(path_file+"\_templates\home.html")
+    return render_template("home.html")
 
 # Define a result route to display the results of the simulation (optional)
 @app.route("/result")

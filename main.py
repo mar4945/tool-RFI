@@ -42,6 +42,7 @@ def load_data():
     global pos_follower, vel_follower, acc_follower, v_l_target, packet48
     global emergency_braking, d_vc, time_simulation, ref_tau_1, ref_tau_2, ref_tau_3
     global os1, os2, save_txt, plot
+    global time_loss, duration_loss, flag_loss
 
     # Assign variables
     # ATO parameters
@@ -56,6 +57,11 @@ def load_data():
     lambda_exp = data['Communication_channel_parameters']['lambda_exp']
     min_delay_time = data['Communication_channel_parameters']['min_delay_time']
     p_channel = data['Communication_channel_parameters']['p_channel']
+    
+    time_loss = data['Communication_channel_parameters']['time_loss']
+    duration_loss = data['Communication_channel_parameters']['duration_loss']
+    flag_loss = data['Communication_channel_parameters']['flag_loss']
+  
 
     # Train parameters
     M = data['train_parameters']['M']
@@ -94,6 +100,7 @@ def create_list():
     global j_f_list, cost_f_list, cost_l_list, ref_f_list, ref_l_list, exeTime_f_list, exeTime_l_list
     global error_f_list, time_list, rlp_s_list, rlp_v_list, b_list, c_list, flag_eme_list, d_list,b_0_list
     global time_delay_list, delay_channel_list, z_tau_1_list, z_tau_2_list, z_tau_3_list, z_region_list, err_z_tau
+    global event_b
     
     # Inizializzo tutte le liste come vuote
     s_f_list = list()
@@ -128,6 +135,7 @@ def create_list():
     d_list = list()
     b_0_list = list()
     interdistance = list()
+    event_b = list()
 
 def init_simulation():
     
@@ -143,7 +151,7 @@ def init_simulation():
     # Setto condiizoni iniziali e parametri ai due treni
     leader = Train(pos_leader, vel_leader, acc_leader, ts, packet48, ato_leader, tx_leader, None)
     follower = Train(pos_follower, vel_follower, acc_follower, ts, None, ato_follower, None, rx_follower)
-    commNetwork = CommNetwork(lambda_exp,min_delay_time)
+    commNetwork = CommNetwork(lambda_exp,min_delay_time, time_loss, duration_loss, flag_loss)
     follower.set_parameters(M, A, B, C, delta_param, emergency_braking, 
                             d_vc, leader.position,leader.velocity, min_delay_time, p_channel)
     leader.set_parameters(M, A, B, C, delta_param, None, None,None, None, min_delay=None, p_channel=None)
@@ -195,6 +203,7 @@ def plot_simulation():
     axs[0, 2].grid()
 
     axs[0, 3].plot(time_list, b_list, 'tab:red')
+    axs[0, 3].plot(time_delay_list, event_b, 'tab:green', marker='x',  linestyle='')
     axs[0, 3].set_title('b')
     axs[0, 3].grid()
 
@@ -217,7 +226,7 @@ def run_simulation():
 
     for t in range(0, int(time_simulation/ts), 1):
         timestamp = round(t*ts,2)
-        #print("time: "+str(round(timestamp,2)))
+        print("time: "+str(round(timestamp,2)))
         
         # Step for railway system
         s_l, v_l, a_l, u_l_control, result_l, message_l = leader.step_leader(timestamp, v_l_target)
@@ -235,6 +244,7 @@ def run_simulation():
         interdistance.append(s_l-s_f)
         
         if delay_channel is not None:
+            event_b.append(b)
             delay_channel_list.append(delay_channel)
             time_delay_list.append(timestamp)
         
