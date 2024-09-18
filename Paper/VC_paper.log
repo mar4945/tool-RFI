@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.7)  10 SEP 2024 23:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.7)  17 SEP 2024 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2357,9 +2357,6 @@ Underfull \hbox (badness 1831) in paragraph at lines 1762--1763
  []
 
 
-LaTeX Warning: Reference `fig:os2' on page 14 undefined on input line 1813.
-
-
 LaTeX Warning: Reference `fig:os3' on page 14 undefined on input line 1816.
 
 
@@ -2482,6 +2479,7 @@ OT1/ptm/m/n/8 ,'' aug
 
 ) [17]
 PGFPlots: reading {dataMatlab/OS1/B.txt}
+PGFPlots: reading {dataMatlab/OS1/event_B.txt}
 PGFPlots: reading {dataMatlab/OS1/b_0.txt}
 PGFPlots: reading {dataMatlab/OS1/interDistance.txt}
 PGFPlots: reading {dataMatlab/OS1/d.txt}
@@ -2490,14 +2488,33 @@ PGFPlots: reading {dataMatlab/OS1/velocityFollower.txt}
 PGFPlots: reading {dataMatlab/OS1/forceLeader.txt}
 PGFPlots: reading {dataMatlab/OS1/forceFollower.txt}
 PGFPlots: reading {dataMatlab/OS1/Z_tau.txt}
+PGFPlots: reading {dataMatlab/OS1/event_z_region.txt}
 PGFPlots: reading {dataMatlab/OS1/z_tau_1.txt}
 PGFPlots: reading {dataMatlab/OS1/z_tau_2.txt}
 PGFPlots: reading {dataMatlab/OS1/z_tau_3.txt}
 PGFPlots: reading {dataMatlab/OS1/distanceFollower.txt}
 
-Overfull \hbox (65.67195pt too wide) in paragraph at lines 2282--2283
+Overfull \hbox (5.68864pt too wide) in paragraph at lines 2284--2285
  [][] 
  []
+
+
+LaTeX Warning: Float too large for page by 49.39853pt on input line 2288.
+
+PGFPlots: reading {dataMatlab/OS2/B.txt}
+PGFPlots: reading {dataMatlab/OS2/event_B.txt}
+PGFPlots: reading {dataMatlab/OS2/b_0.txt}
+PGFPlots: reading {dataMatlab/OS2/interDistance.txt}
+PGFPlots: reading {dataMatlab/OS2/d.txt}
+PGFPlots: reading {dataMatlab/OS2/velocityLeader.txt}
+PGFPlots: reading {dataMatlab/OS2/velocityFollower.txt}
+PGFPlots: reading {dataMatlab/OS2/forceLeader.txt}
+PGFPlots: reading {dataMatlab/OS2/forceFollower.txt}
+PGFPlots: reading {dataMatlab/OS2/Z_tau.txt}
+PGFPlots: reading {dataMatlab/OS2/event_z_region.txt}
+PGFPlots: reading {dataMatlab/OS2/tauEstimated.txt}
+
+LaTeX Warning: Float too large for page by 51.18352pt on input line 2450.
 
 
 ** Conference Paper **
@@ -2514,7 +2531,7 @@ Before submitting the final camera ready copy, remember to:
 Package caption Warning: Unused \captionsetup[sub] on input line 54.
 See the caption package documentation for explanation.
 
-[18] (VC_paper.aux)
+[18] [19] (VC_paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -2527,13 +2544,13 @@ Package rerunfilecheck Info: File `VC_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 72A753A5C5EDDF28618F29676D881A15;4091.
  ) 
 Here is how much of TeX's memory you used:
- 57149 strings out of 474542
- 1328922 string characters out of 5744919
- 4645274 words of memory out of 12000000
- 78188 multiletter control sequences out of 15000+600000
+ 57191 strings out of 474542
+ 1329765 string characters out of 5744919
+ 4835844 words of memory out of 12000000
+ 78224 multiletter control sequences out of 15000+600000
  633694 words of font info for 189 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 109i,21n,107p,2390b,2684s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,21n,107p,2390b,2683s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mex10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/cm/cmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -2548,9 +2565,9 @@ ms/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/user/AppData/Local/Program
 s/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/user/AppData/Local/Program
 s/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/user/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on VC_paper.pdf (18 pages, 884560 bytes).
+Output written on VC_paper.pdf (19 pages, 1149991 bytes).
 PDF statistics:
- 634 PDF objects out of 1000 (max. 8388607)
- 185 named destinations out of 1000 (max. 500000)
+ 642 PDF objects out of 1000 (max. 8388607)
+ 187 named destinations out of 1000 (max. 500000)
  322 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -138,7 +138,7 @@ class ATO:
         else:
             z_tau_1_ref =  self.z_tau_1[idx_ref]
         # switched controllers based on z_taus references
-        if s_f < z_tau_3_ref:
+        if s_f <= z_tau_3_ref:
             
             ref = self.z_tau_2[i:(i+N)]
             ref = self.add_ref(ref.tolist())
@@ -156,7 +156,7 @@ class ATO:
                 z_region = 1
             
            
-        elif s_f > z_tau_2_ref:
+        elif s_f > z_tau_1_ref:
             ref = self.z_tau_2[i:(i+N)]
             ref = self.add_ref(ref.tolist())
         

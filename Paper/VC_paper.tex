@@ -2124,35 +2124,40 @@ The data used during the simulation for the train models, the controller paramet
 		\begin{tikzpicture}
 			\begin{groupplot}[
 				group style={
-					group size=3 by 2,
+					group size=1 by 6,
 					horizontal sep=1.6cm,
-					vertical sep=1.4cm,
+					vertical sep=1.05cm,
 				},
-				width=6.5cm,
-				height=6cm,
+				width=17cm,
+				height=4.5cm,
 				axis on top,
 				enlargelimits=false,
 				 every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
 				]
 				
-				\hspace*{-1.5cm}
+				
 				% First plot
 				\nextgroupplot[
 				title={\textbf{Safety barrier}},
 				%xlabel={$t(\unit{\second})$},
 				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
 				%yticklabel style = {font=\footnotesize},
-				y tick label style={scaled ticks=base 10:-3},
-				ymin = -5000,
 				ymax = 200,
 				legend pos=south east,
 				yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
 				%                            ymin=0, ymax=40, % Custom y-axis limits
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
 				grid = both
 				]
 				
 				\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
 				file{dataMatlab/OS1/B.txt};
+				
+				\addplot+[
+				mark=+,
+				only marks,
+				mark size=0.5pt
+				]file{dataMatlab/OS1/event_B.txt};
 				
 				% Adding a line from (0,0) to (0,800)
 				\addplot [name path=b0, color=red, solid, line width=1pt] 
@@ -2165,13 +2170,12 @@ The data used during the simulation for the train models, the controller paramet
 				% Second plot
 				\nextgroupplot[
 				title={\textbf{Interdistance}},
-				height= 6 cm,
 				%xlabel={$t(\unit{\second})$},
 				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
 				legend pos=north east,
 				ymin=0, ymax=6200, % Custom y-axis limits
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
 				grid = both,
-				y tick label style={scaled ticks=base 10:-3}
 				]
 				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
 				file{dataMatlab/OS1/interDistance.txt};
@@ -2187,12 +2191,11 @@ The data used during the simulation for the train models, the controller paramet
 				% Third plot
 				\nextgroupplot[
 				title={\textbf{Velocities}},
-				height= 6 cm,
 				%xlabel={$t(\unit{\second})$},
 				ylabel={$\mathrm{speed}(\frac{\unit{\meter}}{\unit{\second}})$}, 
-				ymin=45, ymax=85, % Custom y-axis limits
 				legend pos=north east,
 				%                    ymin=0, ymax=6200, % Custom y-axis limits
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
 				grid = both
 				]
 				
@@ -2207,15 +2210,12 @@ The data used during the simulation for the train models, the controller paramet
 				% Fourth plot
 				\nextgroupplot[
 				title={\textbf{Control inputs}},
-				height= 6 cm,
-				xlabel={$t(\unit{\second})$},
 				ylabel={control force$(\unit{\newton})$}, 
 				ymin=-380000, ymax=380000, % Custom y-axis limits
 				legend pos=south east,
 				 every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
-				%                            ymin=0, ymax=40, % Custom y-axis limits
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
 				grid = both,
-				y tick label style={scaled ticks=base 10:-3},
 				]
 				
 				\addplot [name path=leader, color=orange, solid, line width=1pt] 
@@ -2229,16 +2229,13 @@ The data used during the simulation for the train models, the controller paramet
 				% Fifth plot
 				\nextgroupplot[
 				title={\textbf{Follower controller}},
-				height= 6 cm,
-				xlabel={$t(\unit{\second})$},
 				ylabel={controllers}, 
 				ymin=0.75,
 				ymax=4.25,
 				%ymin=-380000, ymax=380000, % Custom y-axis limits
 				legend pos=south east,
-				%                            ymin=0, ymax=40, % Custom y-axis limits
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
 				grid = both,
-				%y tick label style={scaled ticks=base 10:-3},
 				ytick={-1, 1, 2, 3, 4},
 				yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$},
 				]
@@ -2246,18 +2243,23 @@ The data used during the simulation for the train models, the controller paramet
 				\addplot [name path=leader, color=orange, solid, line width=1pt] 
 				file{dataMatlab/OS1/Z_tau.txt};
 				
+				\addplot+[
+				mark=+,
+				only marks,
+				mark size=0.5pt
+				]file{dataMatlab/OS1/event_z_region.txt};
+				
 				
 				% Sixth plot
 				\nextgroupplot[
 				title={\textbf{Reference trajectories}},
-				height= 6 cm,
 				 legend style={font=\small},
-				xlabel={$t(\unit{\second})$},
+				 xlabel={$t(\unit{\second})$},
 				ylabel={distance$(\unit{\meter})$}, 
 				%ymin=-380000, ymax=380000, % Custom y-axis limits
 				legend pos=south east,
-				%                            ymin=0, ymax=40, % Custom y-axis limits
 				grid = both,
+				x tick label style={scaled ticks=base 10:-3}
 				%y tick label style={scaled ticks=base 10:-3},
 				]
 				
@@ -2284,332 +2286,168 @@ The data used during the simulation for the train models, the controller paramet
 		\label{fig:os1}
 	\end{minipage}
 \end{figure*}
-%	
-%	\vspace{1cm}
-%	
-%	\begin{minipage}[b]{\textwidth}
-%		\centering
-%		\begin{tikzpicture}
-%			\begin{groupplot}[
-%				group style={
-%					group size=3 by 2,
-%					horizontal sep=1.4cm,
-%					vertical sep=1.4cm,
-%				},
-%				width=6.75cm,
-%				height=6cm,
-%				axis on top,
-%				enlargelimits=false,
-%				 every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
-%				]
-%				
-%				\hspace*{-1.5cm}
-%				% First plot
-%				\nextgroupplot[
-%				title={\textbf{Safety barrier}},
-%				%xlabel={$t(\unit{\second})$},
-%				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
-%				%yticklabel style = {font=\footnotesize},
-%				y tick label style={scaled ticks=base 10:-2},
-%				ymin = -400,
-%				ymax = 100,
-%				legend pos=south east,
-%				yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
-%				%                            ymin=0, ymax=40, % Custom y-axis limits
-%				grid = both
-%				]
-%				
-%				\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
-%				file{dataMatlab/OS2/B.txt};
-%				
-%				% Adding a line from (0,0) to (0,800)
-%				\draw[red, solid, line width=2pt] (axis cs:0,0) -- (axis cs:1000,0);
-%				
-%				\legend{$b(x)$}
-%				
-%				% Second plot
-%				\nextgroupplot[
-%				title={\textbf{Interdistance}},
-%				height= 6 cm,
-%				%xlabel={$t(\unit{\second})$},
-%				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
-%				legend pos=south east,
-%				ymin=500, ymax=2000, % Custom y-axis limits
-%				grid = both,
-%				y tick label style={scaled ticks=base 10:-3}
-%				]
-%				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
-%				file{dataMatlab/OS2/interDistance.txt};
-%				\addlegendentry{$x_1^{\mathrm{L}}(t)-x_1^{\mathrm{F}}(t)$}
-%				
-%				\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
-%				file{dataMatlab/d2.txt};
-%				
-%				\addlegendentry{$d$}
-%				
-%				% Third plot
-%				\nextgroupplot[
-%				title={\textbf{Velocities}},
-%				height= 6 cm,
-%			%	xlabel={$t(\unit{\second})$},
-%				ylabel={$\mathrm{speed}(\frac{\unit{\meter}}{\unit{\second}})$}, 
-%				ymin=-10, ymax=85, % Custom y-axis limits
-%				legend pos=north east,
-%				%                        ymin=0, ymax=6200, % Custom y-axis limits
-%				grid = both
-%				]
-%				
-%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-%				file{dataMatlab/OS2/velocityLeader.txt};
-%				\addlegendentry{$x_2^{\mathrm{L}}(t)$}
-%				
-%				\addplot [name path=leader, color=brown, solid, line width=1pt] 
-%				file{dataMatlab/OS2/velocityFollower.txt};
-%				\addlegendentry{$x_2^{\mathrm{F}}(t)$}
-%				
-%				% Fourth plot
-%				\nextgroupplot[
-%				title={\textbf{Control inputs}},
-%				height= 6 cm,
-%				xlabel={$t(\unit{\second})$},
-%				ylabel={control force$(\unit{\newton})$}, 
-%				ymin=-380000, ymax=380000, % Custom y-axis limits
-%				legend pos=south west,
-%				%                            ymin=0, ymax=40, % Custom y-axis limits
-%				grid = both,
-%				y tick label style={scaled ticks=base 10:-3},
-%				]
-%				
-%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-%				file{dataMatlab/OS2/forceLeader.txt};
-%				\addlegendentry{$u^{\mathrm{L}}(t)$}
-%				
-%				\addplot [name path=leader, color=brown, solid, line width=1pt] 
-%				file{dataMatlab/OS2/forceFollower.txt};
-%				\addlegendentry{$u^{\mathrm{F}}(t)$}
-%				
-%				% Fifth plot
-%				\nextgroupplot[
-%				title={\textbf{Follower controller}},
-%				height= 6 cm,
-%				ymin=0.75,
-%				ymax=4.25,
-%				xlabel={$t(\unit{\second})$},
-%				ylabel={controllers}, 
-%				ytick={-1, 1, 2, 3, 4},
-%				yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$},
-%				%ymin=-380000, ymax=380000, % Custom y-axis limits
-%				legend pos=south east,
-%				%                            ymin=0, ymax=40, % Custom y-axis limits
-%				grid = both,
-%				%y tick label style={scaled ticks=base 10:-3},
-%				]
-%				
-%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-%				file{dataMatlab/OS2/Ztau_1.txt};
-%				
-%				
-%				% Sixth plot
-%				\nextgroupplot[
-%				title={\textbf{Reference trajectories}},
-%				height= 6 cm,
-%				xlabel={$t(\unit{\second})$},
-%				ylabel={reference trajectories$(\unit{\meter})$}, 
-%				%ymin=-380000, ymax=380000, % Custom y-axis limits
-%				legend pos=south east,
-%				%                            ymin=0, ymax=40, % Custom y-axis limits
-%				grid = both,
-%				%y tick label style={scaled ticks=base 10:-3},
-%				]
-%				
-%				\addplot [name path=leader, color=green, solid, line width=1pt] 
-%				file{dataMatlab/OS2/tau1_1.txt};
-%				\addlegendentry{$ \mathbf{z}_{\tau_3}^\mathrm{F}(t)$}
-%				
-%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-%				file{dataMatlab/OS2/tau2_1.txt};
-%				\addlegendentry{$ \mathbf{z}_{\tau_2}^\mathrm{F}(t)$}
-%				
-%				\addplot [name path=leader, color=red, solid, line width=1pt] 
-%				file{dataMatlab/OS2/tau3_1.txt};
-%				\addlegendentry{$ \mathbf{z}_{\tau_1}^\mathrm{F}(t)$}
-%				
-%				\addplot [name path=leader, color=black, solid, line width=1pt] 
-%				file{dataMatlab/OS2/distanceFollower_1.txt};
-%				\addlegendentry{$x_1^{\mathrm{F}}(t)$}
-%				
-%				%\addlegendentry{$u^{\mathrm{L}}(t)$}
-%			\end{groupplot}
-%		\end{tikzpicture}
-%		\caption{Simulation results for \gls{os}2.}
-%		\label{fig:os2}
-%	\end{minipage}
-%\end{figure*}
-%
-%
-%\begin{figure*}[t]
-%	\begin{tikzpicture}
-%		\begin{groupplot}[
-%			group style={
-%				group size=3 by 2,
-%				horizontal sep=1.4cm,
-%				vertical sep=1.4cm,
-%			},
-%			width=6.75cm,
-%			height=6cm,
-%			axis on top,
-%			enlargelimits=false,
-%			 every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
-%			]
-%			
-%			\hspace*{-1.5cm}
-%			% First plot
-%			\nextgroupplot[
-%			title={\textbf{Safety barrier}},
-%			%xlabel={$t(\unit{\second})$},
-%			ylabel={$\mathrm{distance}(\unit{\meter})$}, 
-%			%yticklabel style = {font=\footnotesize},
-%			%y tick label style={scaled ticks=base 10:-3},
-%			ymin = -500,
-%			ymax = 200,
-%			legend pos=south east,
-%			yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
-%			%							ymin=0, ymax=40, % Custom y-axis limits
-%			grid = both
-%			]
-%			
-%			
-%			\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
-%			file{dataMatlab/OS3/B.txt};
-%			
-%			% Adding a line from (0,0) to (0,800)
-%			\draw[red, solid, line width=2pt] (axis cs:0,0) -- (axis cs:1000,0);
-%			
-%			\legend{$b(x)$}
-%			
-%			
-%			
-%			% Second plot
-%			\nextgroupplot[
-%			title={\textbf{Interdistance}},
-%			height= 6 cm,
-%			%xlabel={$t(\unit{\second})$},
-%			ylabel={$\mathrm{distance}(\unit{\meter})$}, 
-%			legend pos=north west,
-%			ymin=0, ymax=4200, % Custom y-axis limits
-%			grid = both,
-%			y tick label style={scaled ticks=base 10:-3}
-%			]
-%			\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
-%			file{dataMatlab/OS3/interDistance.txt};
-%			\addlegendentry{$x_1^{\mathrm{L}}(t)-x_1^{\mathrm{F}}(t)$}
-%			
-%			\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
-%			file{dataMatlab/d3.txt};
-%			
-%			\addlegendentry{$d$}
-%			
-%			% Third plot
-%			\nextgroupplot[
-%			title={\textbf{Velocities}},
-%			height= 6 cm,
-%			%xlabel={$t(\unit{\second})$},
-%			ylabel={$\mathrm{speed}(\frac{\unit{\meter}}{\unit{\second}})$}, 
-%			ymin=30, ymax=80, % Custom y-axis limits
-%			legend pos=south west,
-%			%						ymin=0, ymax=6200, % Custom y-axis limits
-%			grid = both
-%			]
-%			
-%			
-%			\addplot [name path=leader, color=orange, solid, line width=1pt] 
-%			file{dataMatlab/OS3/velocityLeader.txt};
-%			\addlegendentry{$x_2^{\mathrm{L}}(t)$}
-%			
-%			\addplot [name path=leader, color=brown, solid, line width=1pt] 
-%			file{dataMatlab/OS3/velocityFollower.txt};
-%			\addlegendentry{$x_2^{\mathrm{F}}(t)$}
-%			
-%			% Fourth plot
-%			\nextgroupplot[
-%			title={\textbf{Estimated delay}},
-%			height= 6 cm,
-%			xlabel={$t(\unit{\second})$},
-%			ylabel={delay$(\unit{\second})$}, 
-%			%ymin=-380000, ymax=380000, % Custom y-axis limits
-%			legend pos= south east,
-%			%							ymin=0, ymax=40, % Custom y-axis limits
-%			grid = both,
-%			%y tick label style={scaled ticks=base 10:-3},
-%			]
-%			
-%			
-%			\addplot [name path=leader, color=orange, solid, line width=1pt] 
-%			file{dataMatlab/OS3/tauEstimated_1.txt};
-%			\addlegendentry{$\hat{\tau}(t)$}
-%			
-%			
-%			% Fifth plot
-%			\nextgroupplot[
-%			title={\textbf{Follower controller}},
-%			height= 6 cm,
-%			ymin=0.75,
-%			ymax=4.25,
-%			xlabel={$t(\unit{\second})$},
-%			ylabel={control force$(\unit{\newton})$}, 
-%			%ymin=-380000, ymax=380000, % Custom y-axis limits
-%			legend pos=south east,
-%			%							ymin=0, ymax=40, % Custom y-axis limits
-%			grid = both,
-%			%y tick label style={scaled ticks=base 10:-3},
-%			ytick={-1, 1, 2, 3, 4},
-%			yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$},
-%			]
-%			
-%			
-%			\addplot [name path=leader, color=orange, solid, line width=1pt] 
-%			file{dataMatlab/OS3/Ztau_1.txt};
-%			
-%			
-%			% Sixth plot
-%			\nextgroupplot[
-%			title={\textbf{Reference trajectories}},
-%			height= 6 cm,
-%			xlabel={$t(\unit{\second})$},
-%			ylabel={reference trajectories$(\unit{\meter})$},  
-%			%ymin=-380000, ymax=380000, % Custom y-axis limits
-%			legend pos=north west,
-%			%							ymin=0, ymax=40, % Custom y-axis limits
-%			grid = both,
-%			%y tick label style={scaled ticks=base 10:-3},
-%			]
-%			
-%			
-%			\addplot [name path=leader, color=green, solid, line width=1pt] 
-%			file{dataMatlab/OS3/tau1_1.txt};
-%			\addlegendentry{$ \mathbf{z}_{\tau_3}^\mathrm{F}(t)$}
-%			
-%			\addplot [name path=leader, color=orange, solid, line width=1pt] 
-%			file{dataMatlab/OS3/tau2_1.txt};
-%			\addlegendentry{$ \mathbf{z}_{\tau_2}^\mathrm{F}(t)$}
-%			
-%			\addplot [name path=leader, color=red, solid, line width=1pt] 
-%			file{dataMatlab/OS3/tau3_1.txt};
-%			\addlegendentry{$ \mathbf{z}_{\tau_1}^\mathrm{F}(t)$}
-%			
-%			\addplot [name path=leader, color=black, solid, line width=1pt] 
-%			file{dataMatlab/OS3/distanceFollower_1.txt};
-%			\addlegendentry{$x_1^{\mathrm{F}}(t)$}
-%			
-%			
-%			
-%			\addlegendentry{$u^{\mathrm{L}}(t)$}
-%		\end{groupplot}
-%	\end{tikzpicture}
-%	\caption{Simulation results for \gls{os}3.}
-%	\label{fig:os3}
-%\end{figure*}
 
+\newpage
+
+\begin{figure*}[htbp]
+	\centering
+	\begin{minipage}[b]{\textwidth}
+		\centering
+		\begin{tikzpicture}
+			\begin{groupplot}[
+				group style={
+					group size=1 by 6,
+					horizontal sep=1.6cm,
+					vertical sep=1.05cm,
+				},
+				width=17cm,
+				height=4.5cm,
+				axis on top,
+				enlargelimits=false,
+				every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
+				]
+				
+				
+				% First plot
+				\nextgroupplot[
+				title={\textbf{Safety barrier}},
+				%xlabel={$t(\unit{\second})$},
+				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
+				%yticklabel style = {font=\footnotesize},
+				ymax = 200,
+				legend pos=south east,
+				yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
+				%                            ymin=0, ymax=40, % Custom y-axis limits
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+				grid = both
+				]
+				
+				\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
+				file{dataMatlab/OS2/B.txt};
+				
+				\addplot+[
+				mark=+,
+				only marks,
+				mark size=0.5pt
+				]file{dataMatlab/OS2/event_B.txt};
+				
+				% Adding a line from (0,0) to (0,800)
+				\addplot [name path=b0, color=red, solid, line width=1pt] 
+				file{dataMatlab/OS2/b_0.txt};
+				
+				\legend{$b(x)$}
+				
+				
+				
+				% Second plot
+				\nextgroupplot[
+				title={\textbf{Interdistance}},
+				%xlabel={$t(\unit{\second})$},
+				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
+				legend pos=north east,
+				ymin=900,  % Custom y-axis limits
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+				grid = both,
+				]
+				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
+				file{dataMatlab/OS2/interDistance.txt};
+				\addlegendentry{$x_1^{\mathrm{L}}(t)-x_1^{\mathrm{F}}(t)$}
+				
+				\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
+				file{dataMatlab/OS2/d.txt};
+				
+				\addlegendentry{$d$}
+				
+				
+				
+				% Third plot
+				\nextgroupplot[
+				title={\textbf{Velocities}},
+				%xlabel={$t(\unit{\second})$},
+				ylabel={$\mathrm{speed}(\frac{\unit{\meter}}{\unit{\second}})$}, 
+				legend pos=north east,
+				%                    ymin=0, ymax=6200, % Custom y-axis limits
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+				grid = both
+				]
+				
+				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+				file{dataMatlab/OS2/velocityLeader.txt};
+				\addlegendentry{$x_2^{\mathrm{L}}(t)$}
+				
+				\addplot [name path=leader, color=brown, solid, line width=1pt] 
+				file{dataMatlab/OS2/velocityFollower.txt};
+				\addlegendentry{$x_2^{\mathrm{F}}(t)$}
+				
+				% Fourth plot
+				\nextgroupplot[
+				title={\textbf{Control inputs}},
+				ylabel={control force$(\unit{\newton})$}, 
+				ymin=-380000, ymax=380000, % Custom y-axis limits
+				legend pos=south east,
+				every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+				grid = both,
+				]
+				
+				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+				file{dataMatlab/OS2/forceLeader.txt};
+				\addlegendentry{$u^{\mathrm{L}}(t)$}
+				
+				\addplot [name path=leader, color=brown, solid, line width=1pt] 
+				file{dataMatlab/OS2/forceFollower.txt};
+				\addlegendentry{$u^{\mathrm{F}}(t)$}
+				
+				% Fifth plot
+				\nextgroupplot[
+				title={\textbf{Follower controller}},
+				ylabel={controllers}, 
+				ymin=0.75,
+				ymax=4.25,
+				%ymin=-380000, ymax=380000, % Custom y-axis limits
+				legend pos=south east,
+				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+				grid = both,
+				ytick={-1, 1, 2, 3, 4},
+				yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$},
+				]
+				
+				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+				file{dataMatlab/OS2/Z_tau.txt};
+				
+				\addplot+[
+				mark=+,
+				only marks,
+				mark size=0.5pt
+				]file{dataMatlab/OS2/event_z_region.txt};
+				
+				
+				% Sixth plot
+				\nextgroupplot[
+				title={\textbf{Delay communication channel}},
+				legend style={font=\small},
+				xlabel={$t(\unit{\second})$},
+				ylabel={time$(\unit{\second})$}, 
+				%ymin=-380000, ymax=380000, % Custom y-axis limits
+				legend pos=south east,
+				grid = both
+				%y tick label style={scaled ticks=base 10:-3},
+				]
+				
+				\addplot [name path=leader, color=green, solid, line width=1pt] 
+				file{dataMatlab/OS2/tauEstimated.txt};
+				\addlegendentry{$\bar{\tau}(t)$}
+
+				
+
+				
+				
+			\end{groupplot}
+		\end{tikzpicture}
+		\caption{Simulation results for \gls{os}2.}
+		\label{fig:os2}
+	\end{minipage}
+\end{figure*}
 
 
 

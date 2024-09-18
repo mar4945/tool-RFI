@@ -31,11 +31,15 @@ def init_config():
     path_txt = config['path_files']['path_txt']
 
 # Load json file and its simulation variables
-def load_data():
-        
-    # Load JSON file
-    with open(path_variables, 'r') as file:
-        data = json.load(file)
+def load_data(json_config):
+    
+    # check if json is present
+    if json_config:
+        data = json_config
+    else:
+        # Load JSON file
+        with open(path_variables, 'r') as file:
+            data = json.load(file)
         
     global nu, nx, N_f, N_l, ts, ato_leader_ts, lambda_exp, min_delay_time
     global p_channel, M, A, B, C, Tf, delta_param, pos_leader, vel_leader, acc_leader
@@ -100,7 +104,7 @@ def create_list():
     global j_f_list, cost_f_list, cost_l_list, ref_f_list, ref_l_list, exeTime_f_list, exeTime_l_list
     global error_f_list, time_list, rlp_s_list, rlp_v_list, b_list, c_list, flag_eme_list, d_list,b_0_list
     global time_delay_list, delay_channel_list, z_tau_1_list, z_tau_2_list, z_tau_3_list, z_region_list, err_z_tau
-    global event_b
+    global event_b, event_z_region
     
     # Inizializzo tutte le liste come vuote
     s_f_list = list()
@@ -136,6 +140,7 @@ def create_list():
     b_0_list = list()
     interdistance = list()
     event_b = list()
+    event_z_region = list()
 
 def init_simulation():
     
@@ -188,7 +193,7 @@ def plot_simulation():
 
     axs[1, 1].plot(time_list, a_f_list, 'tab:red')
     axs[1, 1].plot(time_list, a_l_list, 'tab:green')
-    axs[1, 1].plot(time_list, j_f_list, 'tab:cyan')
+    #axs[1, 1].plot(time_list, j_f_list, 'tab:cyan')
     axs[1, 1].set_title('Accelerations')
     axs[1, 1].grid()
 
@@ -198,6 +203,7 @@ def plot_simulation():
     axs[1, 2].grid()
 
     axs[0, 2].plot(time_list, z_region_list, 'tab:red')
+    axs[0, 2].plot(time_delay_list, event_z_region, 'tab:green', marker='x',  linestyle='')
     #axs[0, 2].plot(time_list, exeTime_l_list, 'tab:green')
     axs[0, 2].set_title('Z tau regions')
     axs[0, 2].grid()
@@ -244,6 +250,7 @@ def run_simulation():
         interdistance.append(s_l-s_f)
         
         if delay_channel is not None:
+            event_z_region.append(z_region)
             event_b.append(b)
             delay_channel_list.append(delay_channel)
             time_delay_list.append(timestamp)
@@ -285,7 +292,7 @@ def run_simulation():
                 v_l_target = 30
             if t*ts>3000:
                 v_l_target = 0
-        if os2 and  t*ts>2000:
+        if os2 and  t*ts>1000:
             commNetwork.set_param_channel(1.5)
         
             
@@ -300,7 +307,6 @@ def run_simulation():
     print("LEADER - mean: "+ str(statistics.mean(exeTime_l_list))+ "var: "+ str(statistics.variance(exeTime_l_list))  + "  maxTime: " + str(max(exeTime_l_list)))
     print("###################################")
     print("Execution time: %s seconds " % (time.time() - start_time))
-    
     
 def create_txt_from_lists(list1, list2, N, filename):
     # Ensure both lists have the same length
@@ -325,12 +331,10 @@ def create_txt_from_lists(list1, list2, N, filename):
         for x, y in zip(list1, list2):
             file.write(f"{x} {y}\n")
     
-    
-
 def save_txt_files():
     
     #subsampling the vector
-    N = 10
+    N = 1
     
     create_txt_from_lists(time_list,a_f_list,N,"accelerationFollower.txt")
     create_txt_from_lists(time_list,a_l_list,N,"accelerationLeader.txt")
@@ -350,19 +354,82 @@ def save_txt_files():
     create_txt_from_lists(time_delay_list,delay_channel_list,N,"tauEstimated.txt")
     create_txt_from_lists(time_list,d_list,N,"d.txt")
     create_txt_from_lists(time_list,b_0_list,N,"b_0.txt")
+    create_txt_from_lists(time_delay_list,event_b,1,"event_B.txt")
+    create_txt_from_lists(time_delay_list,event_z_region,1,"event_z_region.txt")
     
-init_config()
-load_data()
-create_list()
-init_simulation()
-run_simulation()
-if save_txt:
-    save_txt_files()
-if plot:
-    plot_simulation()
+    
+def save_lists_to_json(x_values, y_values, N, output_filename):
+    # Ensure the two lists have the same length
+    if len(x_values) != len(y_values):
+        raise ValueError("The length of x_values and y_values must be the same.")
+    
+    # subsampling the lists
+    x_values = [round(val, 2) for val in x_values[::N]]
+    y_values = [round(val, 2) for val in y_values[::N]]
+    
+    # Create a dictionary with the two vector elements
+    data = {
+        "x": x_values,
+        "y": y_values
+    }
+    
+    folder_path = path_txt
+    
+    # Ensure the folder exists; create it if not
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+    
+    # Join folder path and filename to get the full path
+    file_path = os.path.join(folder_path, output_filename)
 
+    
+    # Write the dictionary to a JSON file
+    with open(file_path, "w") as json_file:
+        json.dump(data, json_file, indent=4)
 
+    #print(f"Data has been written to {output_filename}")
+    
+def save_json_files():
+    
+    N = 1
+    
+    save_lists_to_json(time_list,a_f_list,N,"accelerationFollower.json")
+    save_lists_to_json(time_list,a_l_list,N,"accelerationLeader.json")
+    save_lists_to_json(time_list,b_list,N,"B.json")
+    save_lists_to_json(time_list,s_f_list,N,"distanceFollower.json")
+    save_lists_to_json(time_list,s_l_list,N,"distanceLeader.json")
+    save_lists_to_json(time_list,v_f_list,N,"velocityFollower.json")
+    save_lists_to_json(time_list,v_l_list,N,"velocityLeader.json")
+    save_lists_to_json(time_list,exeTime_f_list,N,"exeController.json")
+    save_lists_to_json(time_list,u_f_list,N,"forceFollower.json")
+    save_lists_to_json(time_list,u_l_list,N,"forceLeader.json")
+    save_lists_to_json(time_list,z_tau_1_list,N,"z_tau_1.json")
+    save_lists_to_json(time_list,z_tau_2_list,N,"z_tau_2.json")
+    save_lists_to_json(time_list,z_tau_3_list,N,"z_tau_3.json")
+    save_lists_to_json(time_list,z_region_list,N,"Z_tau.json")
+    save_lists_to_json(time_list,interdistance,N,"interDistance.json")
+    save_lists_to_json(time_delay_list,delay_channel_list,N,"tauEstimated.json")
+    save_lists_to_json(time_list,d_list,N,"d.json")
+    save_lists_to_json(time_list,b_0_list,N,"b_0.json")
+    save_lists_to_json(time_delay_list,event_b,1,"event_B.json")
+    save_lists_to_json(time_delay_list,event_z_region,1,"event_z_region.json")
+
+def simulation_app(json_config=None):
+    
+    init_config()
+    load_data(json_config)
+    create_list()
+    init_simulation()
+    run_simulation()
+    if save_txt:
+        save_txt_files()
+        save_json_files()
+    if plot:
+        plot_simulation()
+        
+    
 
 
 
     
+simulation_app()

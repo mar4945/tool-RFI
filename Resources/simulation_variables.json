@@ -8,10 +8,10 @@
         "ato_leader_ts": 0.24
     },
     "Communication_channel_parameters": {
-        "lambda_exp": 0.01,
+        "lambda_exp": 0.1,
         "min_delay_time": 0.8,
         "p_channel": 0.8,
-        "time_loss": 3000,
+        "time_loss": 1700,
         "duration_loss":7,
         "flag_loss": true
     },
@@ -22,7 +22,7 @@
         "C": 1.914,
         "Tf": 1,
         "delta_param": 0.1,
-        "pos_leader": 6000,
+        "pos_leader": 1400,
         "vel_leader": 50,
         "acc_leader": 0,
         "pos_follower": 0,
@@ -34,15 +34,15 @@
         "packet48": 1.02
     },
     "simulation_parameters": {
-        "save_txt": false,
+        "save_txt": true,
         "plot": true
     },
     "emergency_braking": -370000,
     "d_vc": 1000,
-    "time_simulation": 4000,
-    "ref_tau_1": 4800,
-    "ref_tau_2": 4750,
-    "ref_tau_3": 4700,
+    "time_simulation": 2000,
+    "ref_tau_1": 4800.0,
+    "ref_tau_2": 4750.0,
+    "ref_tau_3": 4700.0,
     "os1": false,
     "os2": true
 }
