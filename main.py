@@ -19,7 +19,7 @@ from RailwayClasses.CommNetwork import CommNetwork
 
 def init_config():
     
-    global path_variables, path_txt
+    global path_variables, path_data
     # Create a ConfigParser object
     config = configparser.ConfigParser()
 
@@ -28,7 +28,7 @@ def init_config():
     
     # Accessing sections and values
     path_variables = config['path_files']['path_variables']
-    path_txt = config['path_files']['path_txt']
+    path_data = config['path_files']['path_data']
 
 # Load json file and its simulation variables
 def load_data(json_config):
@@ -156,7 +156,7 @@ def init_simulation():
     # Setto condiizoni iniziali e parametri ai due treni
     leader = Train(pos_leader, vel_leader, acc_leader, ts, packet48, ato_leader, tx_leader, None)
     follower = Train(pos_follower, vel_follower, acc_follower, ts, None, ato_follower, None, rx_follower)
-    commNetwork = CommNetwork(lambda_exp,min_delay_time, time_loss, duration_loss, flag_loss)
+    commNetwork = CommNetwork(lambda_exp,min_delay_time, time_loss, duration_loss, flag_loss and not os1)
     follower.set_parameters(M, A, B, C, delta_param, emergency_braking, 
                             d_vc, leader.position,leader.velocity, min_delay_time, p_channel)
     leader.set_parameters(M, A, B, C, delta_param, None, None,None, None, min_delay=None, p_channel=None)
@@ -282,17 +282,14 @@ def run_simulation():
         cost_f_list.append(result_f.cost)
         
         if os1:
-            if t*ts>1000:
-                v_l_target = 70
+            if t*ts>800:
+                v_l_target = 60
 
-            if t*ts>2000:
-                v_l_target = 50
-            if t*ts>2500:
-                
-                v_l_target = 30
-            if t*ts>3000:
+            if t*ts>1600:
+                v_l_target = 40
+            if t*ts>2300:
                 v_l_target = 0
-        if os2 and  t*ts>1000:
+        if os2 and  t*ts>1000 :
             commNetwork.set_param_channel(1.5)
         
             
@@ -308,16 +305,18 @@ def run_simulation():
     print("###################################")
     print("Execution time: %s seconds " % (time.time() - start_time))
     
-def create_txt_from_lists(list1, list2, N, filename):
+def create_txt_from_lists(list1, list2, N, filename, range_min=None, range_max=None):
     # Ensure both lists have the same length
     if len(list1) != len(list2):
         raise ValueError("Both lists must have the same length.")
     
     # subsampling the lists
-    list1 = [round(val, 2) for val in list1[::N]]
-    list2 = [round(val, 2) for val in list2[::N]]
+    list1_sub = [round(val, 2) for val in list1[::N]]
+    list2_sub = [round(val, 2) for val in list2[::N]]
     
-    folder_path = path_txt
+    # create also vector for zoom in a particular range
+    
+    folder_path = path_data+"/txt/"
     
     # Ensure the folder exists; create it if not
     if not os.path.exists(folder_path):
@@ -325,37 +324,54 @@ def create_txt_from_lists(list1, list2, N, filename):
     
     # Join folder path and filename to get the full path
     file_path = os.path.join(folder_path, filename)
-    
     # Open a file to write in text format
     with open(file_path, 'w') as file:
-        for x, y in zip(list1, list2):
+        for x, y in zip(list1_sub, list2_sub):
             file.write(f"{x} {y}\n")
+            
+    # here save the data for zoom parts without subsampling
+    if  range_min and  range_max:
+        
+        # Get the indexes of the elements within the range
+        indexes_in_range = [i for i, x in enumerate(list1) if range_min <= x <= range_max]
+        
+        # Use the indexes to extract the elements
+        time = [round(list1[i], 2) for i in indexes_in_range]
+        list_ele = [round(list2[i], 2) for i in indexes_in_range]
+       
+        # Join folder path and filename to get the full path
+        file_path = os.path.join(folder_path, "zoom_"+filename)
+        # Open a file to write in text format
+        with open(file_path, 'w') as file:
+            for x, y in zip(time, list_ele):
+                file.write(f"{x} {y}\n")
     
 def save_txt_files():
     
     #subsampling the vector
-    N = 1
+    N = 10
+    N_event = 3
     
     create_txt_from_lists(time_list,a_f_list,N,"accelerationFollower.txt")
     create_txt_from_lists(time_list,a_l_list,N,"accelerationLeader.txt")
-    create_txt_from_lists(time_list,b_list,N,"B.txt")
-    create_txt_from_lists(time_list,s_f_list,N,"distanceFollower.txt")
+    create_txt_from_lists(time_list,b_list,N_event,"B.txt", range_min=2340, range_max=2365)
+    create_txt_from_lists(time_list,s_f_list,N,"distanceFollower.txt", range_min=110, range_max=205)
     create_txt_from_lists(time_list,s_l_list,N,"distanceLeader.txt")
     create_txt_from_lists(time_list,v_f_list,N,"velocityFollower.txt")
     create_txt_from_lists(time_list,v_l_list,N,"velocityLeader.txt")
     create_txt_from_lists(time_list,exeTime_f_list,N,"exeController.txt")
     create_txt_from_lists(time_list,u_f_list,N,"forceFollower.txt")
     create_txt_from_lists(time_list,u_l_list,N,"forceLeader.txt")
-    create_txt_from_lists(time_list,z_tau_1_list,N,"z_tau_1.txt")
-    create_txt_from_lists(time_list,z_tau_2_list,N,"z_tau_2.txt")
-    create_txt_from_lists(time_list,z_tau_3_list,N,"z_tau_3.txt")
-    create_txt_from_lists(time_list,z_region_list,N,"Z_tau.txt")
+    create_txt_from_lists(time_list,z_tau_1_list,N,"z_tau_1.txt", range_min=110, range_max=205)
+    create_txt_from_lists(time_list,z_tau_2_list,N,"z_tau_2.txt", range_min=110, range_max=205)
+    create_txt_from_lists(time_list,z_tau_3_list,N,"z_tau_3.txt", range_min=110, range_max=205)
+    create_txt_from_lists(time_list,z_region_list,N,"Z_tau.txt", range_min=2340, range_max=2365)
     create_txt_from_lists(time_list,interdistance,N,"interDistance.txt")
     create_txt_from_lists(time_delay_list,delay_channel_list,N,"tauEstimated.txt")
     create_txt_from_lists(time_list,d_list,N,"d.txt")
-    create_txt_from_lists(time_list,b_0_list,N,"b_0.txt")
-    create_txt_from_lists(time_delay_list,event_b,1,"event_B.txt")
-    create_txt_from_lists(time_delay_list,event_z_region,1,"event_z_region.txt")
+    create_txt_from_lists(time_list,b_0_list,N,"b_0.txt", range_min=2340, range_max=2365)
+    create_txt_from_lists(time_delay_list,event_b,N_event,"event_B.txt", range_min=2340, range_max=2365)
+    create_txt_from_lists(time_delay_list,event_z_region,N_event,"event_z_region.txt", range_min=2340, range_max=2365)
     
     
 def save_lists_to_json(x_values, y_values, N, output_filename):
@@ -373,7 +389,7 @@ def save_lists_to_json(x_values, y_values, N, output_filename):
         "y": y_values
     }
     
-    folder_path = path_txt
+    folder_path = path_data+"/json/"
     
     # Ensure the folder exists; create it if not
     if not os.path.exists(folder_path):

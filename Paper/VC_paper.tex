@@ -319,6 +319,8 @@ postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
 
 
 
+
+
 % === Title of the paper ==============
 \title{\LARGE \bf \centering
 A Safe and Robust Control System Architecture for Virtual Coupling 
@@ -401,11 +403,10 @@ Nowadays, the technology for \gls{vc} is still in the conception stage, and rese
 
  A fair amount of work exists on the topic of \gls{vc} and in particular regarding the control techniques developed~\cite{wu2023railway}. The main technologies mentioned include: consensus-based control~\cite{wu2023dynamics}, constraint following control~\cite{zhang2023optimal,wang2022constraint}, sliding mode control~\cite{park2022,liu2023method}, \gls{mpc}, and \gls{ml}-based control. Emphasis will be given to the last two types, as they prove to be the most promising in this field; specifically, the latter is the type upon which the control system presented in this paper is based.
 
-The integration of \gls{ml} into control algorithms has gained significant attention in the context of railway systems, particularly concerning virtual coupling~\cite{basile2022roadmap}. In~\cite{wang2021}, the use of \gls{rl} is proposed to obtain an optimal policy for IoT-based \gls{vcts}. The proposed approach combines \gls{rl} and artificial potential field to achieve global optimal policy and increase efficiency. Simulation results demonstrate the effectiveness of the proposed \gls{rl}-based cooperative control approach for IoT-based \gls{vcts}. In \cite{basile2022}, a \gls{ddpg} controller is proposed for \gls{vc} control in uncertain autonomous trains convoys. The proposed controller tracks the reference behavior imposed by the \gls{rbc} and maintains the desired inter-train distance with respect to the preceding train. 
+The integration of \gls{ml} into control algorithms has gained significant attention in the context of railway systems, particularly concerning virtual coupling~\cite{basile2022roadmap}. In~\cite{wang2021}, the use of \gls{rl} is proposed to obtain an optimal policy for IoT-based \gls{vcts}. The proposed approach combines \gls{rl} and artificial potential field to achieve global optimal policy and increase efficiency. Simulation results demonstrate the effectiveness of the proposed \gls{rl}-based cooperative control approach for IoT-based \gls{vcts}. The control strategy presented in~\cite{BASILE2024108120} shows a decentralized \gls{vc} using a \gls{rl} approach based on the \gls{ddpg} algorithm, with a focus on robustness and safety. The robustness is evaluated solely through Monte Carlo simulations, considering parameter uncertainties of the dynamical system. However, the approach does not provide formal analytical guarantees of robustness or safety. Additionally, the strategy does not account for communication impairments from communication channel, including time-varying delays in \gls{v2v} communication, packet losses, or switching topologies. While Monte Carlo simulations provide empirical insights, formal guarantees remain absent for these challenging scenarios.
 %
 The bottleneck of this innovative \gls{ml}-based control type lies in the foundations of its theory. Currently, in the railway domain, it is not yet possible to certify an \gls{ml}-based controller according to railway safety standards.
 
-\red{ADD ROBUSTEZZA AND COMUNICAZIONE ENFATIZZAZ RISPETTO AI PAPER CITATI}
 The approaches most closely related to our solution are the works in~\cite{felez2019model} and~\cite{wu2021virtually}. In~\cite{felez2019model}, a novel train control system utilizing virtual coupling is introduced. This system employs a decentralized model predictive control framework to optimize the control of both leading and following trains in a convoy. Comparative analyses, particularly against the moving block system, reveal improved performance, demonstrating the virtual coupling's efficacy in reducing headway and ensuring safe train separation. A linear \gls{mpc} optimizing goals like track spacing, velocity, and comfort is implemented in~\cite{wu2021virtually}. Constraints, including line speed, collision avoidance, and traction/braking, are considered. In this work, although  safety constraints are considered inside the controller, no certification of safety is demonstrated. Compared with these two contributions, our control scheme takes into account the intrinsic characteristics of the communication channel and assumes a heterogeneous platoon with parameters uncertainty. In both~\cite{felez2019model} and~\cite{wu2021virtually}, the authors propose decentralized linear \glspl{mpc} to realize the \gls{vc} and assume the two trains can communicate in a reliable sampled framework.
 In our framework we also consider (nonlinear) \glspl{mpc} but we do not focus on this aspect in details. 
 Rather, in this paper we propose a hybrid/switching control architecture able to robustly satisfy safety constraints and reducing unnecessary follower train brakings, also considering not reliable communication between trains. Our framework is able to cope with diverse (\gls{mpc} based) controller choices, both for the leader and the follower. 
@@ -1699,50 +1700,52 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
   
   For the sake of readability, all parameters used in the simulations are listed in Appendix \tildeAdd\ref{appendix:parameters}.   The controllers\tildeAdd\eqref{eq:K_1_controller}-\eqref{eq:K_3_controller} presented in \ref{subsec:switchedvitrualcouplingblock} have been implemented as \glspl{nmpc} using the OpEn framework and the PANOC solver\tildeAdd\cite{open2020} with $\Delta T^{\mathrm{mpc}}$ as discretization time. 
   
-  The dynamic parameters of the trains were modeled after those of two Frecciarossa ETR1000 trains\tildeAdd\cite{frecciarossa}. For the simulations, it was specifically assumed that the follower train is fully loaded, while the leader train is not. Figure\tildeAdd\ref{fig:trackProfile} reports the data profile of the railway line used to conduct the simulation is the Italian Firenze-Bologna railway line. The maximum velocity of the railway line is assumed to be constant and is set to $83\unit{\frac{\unit{\meter}}{\unit{\second}}}$ which is the maximum permitted by the infrastructure along the entire route.
+  The dynamic parameters of the trains were modeled after those of two Frecciarossa ETR1000 trains\tildeAdd\cite{frecciarossa}. For the simulations, it was specifically assumed that the follower train is fully loaded, while the leader train is not. Figure\tildeAdd\ref{fig:trackProfile} reports the data profile of the railway line used to conduct the simulation is the Italian Firenze-Bologna railway line. The maximum velocity of the railway line is assumed to be constant and is set to $V^{\mathrm{line}}(s) = 83\unit{\frac{\unit{\meter}}{\unit{\second}}}$ which is the maximum permitted by the infrastructure along the entire route.
   
-  	\begin{figure}[h]
+  	\begin{figure}[ht]
   			\begin{tikzpicture}
   				\begin{axis}[
-  					width=7.3cm,
 %  					height=3cm,
   					xlabel={distance (\unit{\kilo\meter})},
-  					ylabel={\blue{slope ($\frac{\unit{\milli\meter}}{\unit{\meter}}$)}},
-  					yticklabel style={/pgf/number format/fixed},
-  					yticklabel style={color=blue},
-  					title={Railway line profile},
-  					axis y line*=left,
-  					axis x line*=bottom,
-  					ymin=-19, ymax=19, % Custom y-axis limits
+  					ylabel={Curvature(${\unit{\meter}}$)},
+  					title={\textbf{Railway line curvature profile}},
   					grid=both
   					]
   					\addplot [const plot, name path=greenCurve, color=blue, solid, line width=1pt] 
   					file{dataMatlab/trackProfile/curvature.txt};
   					
   				\end{axis}
+  				
+  				
  
   						
-  				\begin{axis}[
-  					title={Railway line profile},
-					width=7.3cm,
-%  					height=3cm,
-  					xlabel={s (m)},
-  					ylabel={\red{curvature (\unit{\meter})}},
-  					yticklabel style={color=red},
-  					axis y line*=right,
-  					axis x line=none,
-  					yticklabel pos=right,
-  					ymin=-19, ymax=19, % Custom y-axis limits
-  					grid=both,
-  					]
-  					\addplot [const plot, name path=greenCurve, color=red, dashed, line width=1pt] 
-  					file{dataMatlab/trackProfile/grad.txt};
-  					
-  				\end{axis}
+
+  				
   					
   				\end{tikzpicture}
-  			\caption{Curvature(dashed line) and slope(continuos line) of Firenze-Bologna railway line.}
-  			 \label{fig:trackProfile}	
+  			\caption{Curvature profile of the Firenze-Bologna railway line, showing the variation of curvature over the track distance.}
+  			 \label{fig:trackcurvature}	
+  		\end{figure}
+  		
+  		  	\begin{figure}[ht]
+  			\begin{tikzpicture}
+  				\begin{axis}[
+  					%  					height=3cm,
+  					xlabel={Distance (\unit{\kilo\meter})},
+  					ylabel={Slope ($\frac{\unit{\milli\meter}}{\unit{\meter}}$)},
+  					title={\textbf{Railway line gradient profile}},
+  					grid=both
+  					]
+  					\addplot [const plot, name path=greenCurve, color=blue, solid, line width=1pt] 
+  					file{dataMatlab/trackProfile/grad.txt};
+  								
+  								
+  					\end{axis}
+
+  				
+  			\end{tikzpicture}
+  			\caption{Gradient profile of the Firenze-Bologna railway line, illustrating the slope changes along the track distance.}
+  			\label{fig:trackgrad}	
   		\end{figure}
   		
   		
@@ -1757,58 +1760,16 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
   
   Two different \gls{os} have been considered to demonstrate the safety and advantages of the control system presented in this work. 
   
-  In the first scenario, called \gls{os}1, we examine the situation where the leader and follower initiate a \gls{vc} operation starting from \gls{l3} at $6000\unit{\meter}$ distance between them. Throughout the trajectory, the leader modifies its velocity to demonstrate the responsiveness and effectiveness of the proposed control architecture. At a designated point along the route, the leader stabilizes and maintains it constant. For the whole testing scenario the follower is able to safely approach the leader (despite its varying velocity) and successfully reach and establish the virtual coupling. This scenario emphasizes the capabilities of the control system in managing variable speeds and achieving precise coordination. At a certain point in the journey, the leader suddenly initiates braking, gradually reducing its speed until it comes to a complete stop. This situation tests the responsiveness and safety of the follower's control system, assessing its ability to efficiently respond to the sudden braking of the leader.
+  In the first scenario, referred to as \gls{os}1, we examine a situation where the leader and follower initiate a \gls{vc} operation, starting from \gls{l3}, with a separation distance of $6000\unit{\meter}$. As they proceed, the leader dynamically adjusts its velocity, introducing variability along the route. At a specific point, the leader stabilizes its speed and maintains a constant velocity. Despite these changes, the follower is able to safely close the gap and establish virtual coupling. As the scenario progresses, the leader unexpectedly initiates a braking maneuver, gradually slowing down until it comes to a complete stop. This scenario is designed to test the control system’s ability to manage dynamic speed variations, while ensuring precise coordination between the leader and follower. It specifically assesses the follower’s ability to respond effectively and safely to sudden changes in the leader’s behavior, such as abrupt braking.
   
-  The third case presents a scenario similar to \gls{os}2, where the leader and the follower are traveling in \gls{vc} operation. Initially, the leader maintains a steady and constant speed, and the follower keeps a safety distance. This case explores a situation where communication between the leader and the follower becomes degraded, increasing the delay in channel communication. Following this initial degradation, the communication eventually fails to arrive on time. This communication delay introduces significant challenges, testing the robustness and resilience of the follower's control system. The follower must rely on its last received data and onboard sensors to ensure safety and maintain proper operation despite the lack of timely updates from the leader. This scenario underscores the importance of having robust fallback mechanisms and adaptive control strategies to handle unexpected communication failures.
-  
-
-%	\begin{figure}[h]
-%			\centering
-%			\begin{tikzpicture}[spy using outlines=
-%					{circle, magnification=6, connect spies}]
-%					\begin{axis}[
-%							title={OS1},
-%							xlabel={$\mathrm{Time}[s]$},
-%							ylabel={$\mathrm{Seconds}[s]$},
-%							ymin=0, ymax=40, % Custom y-axis limits
-%							grid = both
-%							]
-%							
-%							\addplot [name path=greenCurve, color=green, solid, line width=0.5pt] 
-%							file{dataMatlab/OS1/tau1.txt};
-%							\addlegendentry{$\tau_1$}
-%							
-%							\addplot [name path=yellowCurve,color=orange, solid, line width=0.5pt] 
-%							file{dataMatlab/OS1/tau2.txt};
-%							\addlegendentry{$\tau_2$}
-%							
-%							\addplot [name path=redCurve,color=red, solid, line width=0.5pt] 
-%							file{dataMatlab/OS1/tau3.txt};
-%							\addlegendentry{$\tau_3$}
-%							
-%							\addplot [color=blue, solid, line width=0.15pt] 
-%							file{dataMatlab/OS1/tp.txt};%
-%							\addlegendentry{$t_p$}
-%							
-%							
-%							
-%							\coordinate (spypoint) at (axis cs:500,2);
-%							\coordinate (magnifyglass) at (axis cs:500,20);
-%							
-%							
-%						\end{axis}
-%					
-%					\spy [black, size=2.5cm] on (spypoint)
-%					in node[fill=white] at (magnifyglass);
-%				\end{tikzpicture}
-%			\caption{Subtemporal divisions $\tau_1, \tau_2, \tau_3$ and time passed from the last received data packet $t_p$.}
-%			\label{fig:os1Tau}
-%		\end{figure}
-		
+ The final operational scenario, designated as \gls{os}2, begins with the leader and follower engaged in a \gls{vc} operation, where the leader initially maintains a steady, constant speed while the follower keeps a safe distance. In this scenario, the focus shifts to a situation where the communication between the leader and follower begins to degrade, causing increased delays in the transmission of control data. As the scenario unfolds, the communication further deteriorates until updates from the leader fail to arrive on time. This delay presents a critical challenge, testing the robustness and resilience of the follower’s control system. With real-time data no longer available, the follower must rely on the last received information to ensure safety, maintain proper spacing, and continue operations despite the communication breakdown. This scenario highlights the crucial role of fallback mechanisms and adaptive control strategies in ensuring operational stability when faced with unexpected communication failures, emphasizing the system’s ability to handle disruptions without compromising safety.
+ 
+ The two operational scenarios, \gls{os}1 and \gls{os}2, represent the core situations encountered in railway operations, highlighting the control system's critical role in ensuring safety and efficiency. These scenarios underscore the system’s ability to manage the most fundamental and challenging aspects of railway operations, ensuring reliability in both routine and disrupted conditions.
+  		
 		 \subsection{Results}
 		\label{sec:results}
 		
-		In scenario \gls{os}1, the simulations results reported in Figure\tildeAdd\ref{fig:os1}, the leader and follower start with an initial separation of $6000\tildeAdd\unit{\meter}$ when the virtual coupling operation begins. Throughout the route, the leader performs braking and acceleration maneuvers to demonstrate the follower's switched controller's capability to effectively manage and respond to these variations using controllers \( K_1^{\mathrm{F}} \), \( K_2^{\mathrm{F}} \) and \( K_3^{\mathrm{F}} \). To note that at $310\tildeAdd\unit{\second}$, the follower switches to the \( K_3^F \) controller, which is the most restrictive.By the end of the simulation, the interdistance between the leader and follower reduces to approximately $1750\tildeAdd\unit{\meter}$, with both maintaining nearly the same velocity of $60\tildeAdd\frac{\unit{\meter}}{\unit{\second}}$. Importantly, safety is ensured throughout the scenario, as the safety barrier remains non-negative at all times.Furthermore, reference trajectories within a specific time window illustrate how the follower's position affects the switching of the virtual cruise controller. This detailed observation highlights the system's capability to manage dynamic interactions and maintain safety during virtual coupling operations.
+		In scenario \gls{os}1, the simulations results reported in Figure\tildeAdd\ref{fig:os1}, the leader and follower start with an initial separation of $6000\unit{\meter}$ when the virtual coupling operation begins. Throughout the route, the leader performs braking and acceleration maneuvers to demonstrate the follower's switched controller's capability to effectively manage and respond to these variations using controllers \( K_1^{\mathrm{F}} \), \( K_2^{\mathrm{F}} \) and \( K_3^{\mathrm{F}} \). To note that at $310\tildeAdd\unit{\second}$, the follower switches to the \( K_3^F \) controller, which is the most restrictive.By the end of the simulation, the interdistance between the leader and follower reduces to approximately $1750\tildeAdd\unit{\meter}$, with both maintaining nearly the same velocity of $60\tildeAdd\frac{\unit{\meter}}{\unit{\second}}$. Importantly, safety is ensured throughout the scenario, as the safety barrier remains non-negative at all times.Furthermore, reference trajectories within a specific time window illustrate how the follower's position affects the switching of the virtual cruise controller. This detailed observation highlights the system's capability to manage dynamic interactions and maintain safety during virtual coupling operations.
 		
 		Figure\tildeAdd\ref{fig:os2} depicts the simulations results for scenario \gls{os}2, it is essential for showcasing the effectiveness of our control system architecture, especially under extreme conditions where the leader suddenly brakes to a complete stop. Initially, both the safety distance and inter-vehicle distance remain stable at $1750\unit{\meter}$, reflecting the leader's constant speed. However, at $150\unit{\second}$, the leader begins to brake, resulting in a significant decrease in the safety distance. By $150\unit{\second}$, the emergency controller $K_{\mathrm{E}}^{\mathrm{F}}$ is activated due to the condition $b(x) \geq 0$. Once activated, the follower re-enters the safe region and for the remainder of the train's movement, the virtual cruise control system engages the three controllers \( K_1^{\mathrm{F}} \), \( K_2^{\mathrm{F}} \) and \( K_3^{\mathrm{F}} \), ensuring the train stops at a distance greater than $d$.
 		
@@ -1820,29 +1781,36 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
 				
 		
 		
-		To demonstrate the real-time capabilities of the control system architecture described in our work, Table~\ref{tab:computationController} presents the statistical computational times of the controller. The values obtained indicate that the system can be effectively utilized in railway applications, where the controller's frequency rate is typically around $100\unit{\milli\second}$.
-		%
+		To demonstrate the real-time capabilities of the control system architecture described in our work, Table~\ref{tab:computationController} presents the statistical computational times of the follower control system architecture proposed in this paper. The values obtained indicate that the system can be effectively utilized in railway applications, where the controller's frequency rate is typically around $100\unit{\milli\second}$.
+		
+		% 0.070886296var: 0.0020092823346937717  maxTime: 5.5372
+		%0.16483215432154322var: 0.07427916154857188  maxTime: 6.8833
+		
 		\begin{table}[!h]
 			\begin{center}
-				\caption{Computation time controller.}
+				\caption{Computation time for the follower control system.}
 				\label{tab:computationController}
-				\begin{tabular}{ |c|c| } 
+				\begin{tabular}{ |c|c|c|c| } 
 					\hline
-					\textbf{Parameter} & \textbf{Value} \\
+					\textbf{Op. scenario} & \textbf{Mean ($\mathbf{\unit{\milli\second}}$)} & \textbf{Variance ($\mathbf{\unit{\milli\second}^2}$)} & \textbf{Max. time ($\mathbf{\unit{\milli\second}}$)} \\
 					\hline
-					mean	& 0.70$\unit{\milli\second}$ \\
-					standard deviation	& 1.01$\unit{\milli\second}$ \\
-					max time	& 20.18$\unit{\milli\second}$ \\
+					\gls{os}1	& 0.16 	& 0.002
+					& 5.53 \\  
+					\gls{os}2	& 0.07	& 0.07
+					& 6.88 \\ 
 					\hline
 				\end{tabular}
 			\end{center}
 		\end{table}
+		
+		In \gls{os}2, despite degraded communication, the follower's control system processes data faster than in \gls{os}1, demonstrating efficiency with a lower mean computation time and highlighting robustness under challenging conditions.
+		
 %%% END SECTION ============================================================
 %%% START SECTION ==========================================================
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
 
-In this study, we have presented a comprehensive control system architecture to facilitate the transition from ETCS Level 3 to Virtual Coupling operations in railway systems. Our proposed system effectively manages the dynamic interaction between trains, ensuring safety and enhancing operational efficiency. Through different operational scenarios considered into the simulations, we have demonstrated that the control architecture can maintain a safe distance between trains, even under conditions of communication delay and packet loss. 
+In this study, we have presented a comprehensive control system architecture to facilitate the transition from ETCS Level 3 to Virtual Coupling operations in railway systems. Our proposed system effectively manages the dynamic interaction between trains, ensuring safety and enhancing operational efficiency. Through different operational scenarios considered into the simulations, we have demonstrated that the control architecture can maintain a safe distance between trains, even under conditions of communication delay and packet loss.
 
 The key contributions of our work include the development of a robust control framework that accommodates variabilities in train system parameters and communication throughput. By incorporating a safety control barrier function, we ensure operational safety while minimizing unnecessary emergency braking. Our simulations, conducted using a specialized railway simulation tool, validate the efficacy of our control system and underscore its foundational role in advancing railway safety.
 
@@ -2109,346 +2077,815 @@ The data used during the simulation for the train models, the controller paramet
 
 %\begin{thebibliography}{99}
 
+
+
 \newpage
 
 
 
 
+%\begin{figure*}[htbp]
+%	\centering
+%	\begin{minipage}[b]{\textwidth}
+%		\centering
+%		\begin{tikzpicture}
+%			\begin{groupplot}[
+%				group style={
+%					group size=1 by 6,
+%					horizontal sep=1.6cm,
+%					vertical sep=1.05cm,
+%				},
+%				width=17cm,
+%				height=4.5cm,
+%				axis on top,
+%				enlargelimits=false,
+%				 every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
+%				]
+%				
+%				
+%				 First plot
+%				\nextgroupplot[
+%				title={\textbf{Safety barrier}},
+%				xlabel={$t(\unit{\second})$},
+%				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
+%				yticklabel style = {font=\footnotesize},
+%				ymax = 200,
+%				legend pos=south east,
+%				yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
+%				                            ymin=0, ymax=40, % Custom y-axis limits
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both, 				
+%				]
+%				
+%				\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
+%				file{dataMatlab/OS1/B.txt};
+%				
+%				\addplot+[
+%				mark=+,
+%				only marks,
+%				mark size=0.5pt
+%				]file{dataMatlab/OS1/event_B.txt};
+%				
+%				 Adding a line from (0,0) to (0,800)
+%				\addplot [name path=b0, color=red, solid, line width=1pt] 
+%				file{dataMatlab/OS1/b_0.txt};
+%				
+%
+%				
+%				\legend{$b(x)$}
+%				
+%				
+%				
+%				 Second plot
+%				\nextgroupplot[
+%				title={\textbf{Interdistance}},
+%				xlabel={$t(\unit{\second})$},
+%				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
+%				legend pos=north east,
+%				ymin=0, ymax=6200, % Custom y-axis limits
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both,
+%				]
+%				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
+%				file{dataMatlab/OS1/interDistance.txt};
+%					\addlegendentry{$x_1^{\mathrm{L}}(t)-x_1^{\mathrm{F}}(t)$}
+%				
+%				\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
+%				file{dataMatlab/OS1/d.txt};
+%				
+%				
+%				\addlegendentry{$d$}
+%				
+%
+%			
+%				
+%				 Third plot
+%				\nextgroupplot[
+%				title={\textbf{Velocities}},
+%				xlabel={$t(\unit{\second})$},
+%				ylabel={$\mathrm{speed}(\frac{\unit{\meter}}{\unit{\second}})$}, 
+%				xlabel={(4) },
+%				legend pos=north east,
+%				                    ymin=0, ymax=6200, % Custom y-axis limits
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both
+%				]
+%				
+%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%				file{dataMatlab/OS1/velocityLeader.txt};
+%				\addlegendentry{$x_2^{\mathrm{L}}(t)$}
+%				
+%				\addplot [name path=leader, color=brown, solid, line width=1pt] 
+%				file{dataMatlab/OS1/velocityFollower.txt};
+%				\addlegendentry{$x_2^{\mathrm{F}}(t)$}
+%				
+%				 Fourth plot
+%				\nextgroupplot[
+%				title={\textbf{Control inputs}},
+%				ylabel={control force$(\unit{\newton})$}, 
+%				ymin=-380000, ymax=380000, % Custom y-axis limits
+%				legend pos=south east,
+%				 every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both,
+%				]
+%				
+%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%				file{dataMatlab/OS1/forceLeader.txt};
+%				\addlegendentry{$u^{\mathrm{L}}(t)$}
+%				
+%				\addplot [name path=leader, color=brown, solid, line width=1pt] 
+%				file{dataMatlab/OS1/forceFollower.txt};
+%				\addlegendentry{$u^{\mathrm{F}}(t)$}
+%				
+%				 Fifth plot
+%				\nextgroupplot[
+%				title={\textbf{Follower controller}},
+%				ylabel={controllers}, 
+%				ymin=0.75,
+%				ymax=4.25,
+%				ymin=-380000, ymax=380000, % Custom y-axis limits
+%				legend pos=south east,
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both,
+%				ytick={-1, 1, 2, 3, 4},
+%				yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$},
+%				]
+%				
+%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%				file{dataMatlab/OS1/Z_tau.txt};
+%				
+%				\addplot+[
+%				mark=+,
+%				only marks,
+%				mark size=0.5pt
+%				]file{dataMatlab/OS1/event_z_region.txt};
+%				
+%				
+%				 Sixth plot
+%				\nextgroupplot[
+%				title={\textbf{Reference trajectories}},
+%				 legend style={font=\small},
+%				 xlabel={$t(\unit{\second})$},
+%				ylabel={distance$(\unit{\meter})$}, 
+%				ymin=-380000, ymax=380000, % Custom y-axis limits
+%				legend pos=south east,
+%				grid = both,
+%				x tick label style={scaled ticks=base 10:-3}
+%				y tick label style={scaled ticks=base 10:-3},
+%				]
+%				
+%				\addplot [name path=leader, color=green, solid, line width=1pt] 
+%				file{dataMatlab/OS1/z_tau_1.txt};
+%				\addlegendentry{$ \mathbf{z}_{\tau_3}^\mathrm{F}(t)$}
+%				
+%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%				file{dataMatlab/OS1/z_tau_2.txt};
+%				\addlegendentry{$ \mathbf{z}_{\tau_2}^\mathrm{F}(t)$}
+%				
+%				\addplot [name path=leader, color=red, solid, line width=1pt] 
+%				file{dataMatlab/OS1/z_tau_3.txt};
+%				\addlegendentry{$ \mathbf{z}_{\tau_1}^\mathrm{F}(t)$}
+%				
+%				\addplot [name path=leader, color=black, solid, line width=1pt] 
+%				file{dataMatlab/OS1/distanceFollower.txt};
+%				\addlegendentry{$x_1^{\mathrm{F}}(t)$}
+%				
+%				
+%			\end{groupplot}
+%		\end{tikzpicture}
+%		\caption{Simulation results for \gls{os}1.}
+%		\label{fig:os1}
+%	\end{minipage}
+%\end{figure*}
+
+\twocolumn
+\vspace{-2cm}
 
 
-
-\begin{figure*}[htbp]
-	\centering
-	\begin{minipage}[b]{\textwidth}
+\begin{figure*}[t!]
+\captionsetup[figure]{font=small,skip=0pt}
+	% First subfigure
+	\begin{subfigure}{\linewidth}
 		\centering
-		\begin{tikzpicture}
-			\begin{groupplot}[
-				group style={
-					group size=1 by 6,
-					horizontal sep=1.6cm,
-					vertical sep=1.05cm,
-				},
+		\begin{tikzpicture}[trim axis left]
+			\begin{axis}[
 				width=17cm,
-				height=4.5cm,
-				axis on top,
+				height=3.8cm,
 				enlargelimits=false,
-				 every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
+				ymax=200,
+				legend pos=south west,
+				grid = both,
+				ylabel={Distance($\unit{\meter})$},
+				%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600}
+				xticklabel=\empty
+				%xlabel={Time($\unit{\second})$},
 				]
-				
-				
-				% First plot
-				\nextgroupplot[
-				title={\textbf{Safety barrier}},
-				%xlabel={$t(\unit{\second})$},
-				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
-				%yticklabel style = {font=\footnotesize},
-				ymax = 200,
-				legend pos=south east,
-				yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
-				%                            ymin=0, ymax=40, % Custom y-axis limits
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
-				grid = both
-				]
-				
 				\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
 				file{dataMatlab/OS1/B.txt};
 				
 				\addplot+[
 				mark=+,
-				only marks,
+				only marks, color=blue,
 				mark size=0.5pt
 				]file{dataMatlab/OS1/event_B.txt};
 				
 				% Adding a line from (0,0) to (0,800)
 				\addplot [name path=b0, color=red, solid, line width=1pt] 
 				file{dataMatlab/OS1/b_0.txt};
-				
-				\legend{$b(x)$}
-				
-				
-				
-				% Second plot
-				\nextgroupplot[
-				title={\textbf{Interdistance}},
-				%xlabel={$t(\unit{\second})$},
-				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
+				\addlegendentry{$b(x)$}
+
+			
+			
+			\end{axis}
+			
+
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:os1_a}
+	\end{subfigure}%
+	
+	% Second subfigure
+	\begin{subfigure}{\linewidth}
+		\centering
+		\begin{tikzpicture}[trim axis left]
+			\begin{axis}[
+				width=17cm,
+				height=4cm,
+				enlargelimits=false,
+				ymin=700,
+				%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
+				xticklabel=\empty,
 				legend pos=north east,
-				ymin=0, ymax=6200, % Custom y-axis limits
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
 				grid = both,
+				ylabel={Distance($\unit{\meter})$},
+				legend columns=2
 				]
 				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
 				file{dataMatlab/OS1/interDistance.txt};
-					\addlegendentry{$x_1^{\mathrm{L}}(t)-x_1^{\mathrm{F}}(t)$}
+				\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$}
 				
 				\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
 				file{dataMatlab/OS1/d.txt};
 				
+				
 				\addlegendentry{$d$}
-				
-			
-				
-				% Third plot
-				\nextgroupplot[
-				title={\textbf{Velocities}},
-				%xlabel={$t(\unit{\second})$},
-				ylabel={$\mathrm{speed}(\frac{\unit{\meter}}{\unit{\second}})$}, 
-				legend pos=north east,
-				%                    ymin=0, ymax=6200, % Custom y-axis limits
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
-				grid = both
+			\end{axis}
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:os1_b}
+	\end{subfigure}%
+	
+	
+	% Third subfigure
+	\begin{subfigure}{\linewidth}
+		\centering
+		\begin{tikzpicture}[trim axis left]
+			\begin{axis}[
+				width=17cm,
+				height=4cm,
+				enlargelimits=false,
+				legend pos=south west,
+				grid = both,
+				xticklabel=\empty,
+				ymin=-2,
+				ymax=80,
+				legend columns=2,
+				ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
 				]
-				
 				\addplot [name path=leader, color=orange, solid, line width=1pt] 
 				file{dataMatlab/OS1/velocityLeader.txt};
-				\addlegendentry{$x_2^{\mathrm{L}}(t)$}
+				\addlegendentry{$x_2^{\mathrm{L}}$}
 				
 				\addplot [name path=leader, color=brown, solid, line width=1pt] 
 				file{dataMatlab/OS1/velocityFollower.txt};
-				\addlegendentry{$x_2^{\mathrm{F}}(t)$}
-				
-				% Fourth plot
-				\nextgroupplot[
-				title={\textbf{Control inputs}},
-				ylabel={control force$(\unit{\newton})$}, 
-				ymin=-380000, ymax=380000, % Custom y-axis limits
-				legend pos=south east,
-				 every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+				\addlegendentry{$x_2^{\mathrm{F}}$}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{}
+		\label{fig:os1_c}
+	\end{subfigure}%
+	
+	% Fifth subfigure
+	\begin{subfigure}{\linewidth}
+		\centering
+		\begin{tikzpicture}[trim axis left]
+			\begin{axis}[
+				width=17cm,
+				height=4cm,
+				enlargelimits=false,
+				xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
+				legend pos=south west,
 				grid = both,
-				]
-				
-				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-				file{dataMatlab/OS1/forceLeader.txt};
-				\addlegendentry{$u^{\mathrm{L}}(t)$}
-				
-				\addplot [name path=leader, color=brown, solid, line width=1pt] 
-				file{dataMatlab/OS1/forceFollower.txt};
-				\addlegendentry{$u^{\mathrm{F}}(t)$}
-				
-				% Fifth plot
-				\nextgroupplot[
-				title={\textbf{Follower controller}},
-				ylabel={controllers}, 
-				ymin=0.75,
-				ymax=4.25,
-				%ymin=-380000, ymax=380000, % Custom y-axis limits
-				legend pos=south east,
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
-				grid = both,
+				ymin=0,
+				ylabel={Controllers},
 				ytick={-1, 1, 2, 3, 4},
-				yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$},
+				yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$}
 				]
-				
 				\addplot [name path=leader, color=orange, solid, line width=1pt] 
 				file{dataMatlab/OS1/Z_tau.txt};
 				
 				\addplot+[
 				mark=+,
-				only marks,
+				only marks, color=blue,
 				mark size=0.5pt
 				]file{dataMatlab/OS1/event_z_region.txt};
-				
-				
-				% Sixth plot
-				\nextgroupplot[
-				title={\textbf{Reference trajectories}},
-				 legend style={font=\small},
-				 xlabel={$t(\unit{\second})$},
-				ylabel={distance$(\unit{\meter})$}, 
-				%ymin=-380000, ymax=380000, % Custom y-axis limits
-				legend pos=south east,
-				grid = both,
-				x tick label style={scaled ticks=base 10:-3}
-				%y tick label style={scaled ticks=base 10:-3},
-				]
-				
-				\addplot [name path=leader, color=green, solid, line width=1pt] 
-				file{dataMatlab/OS1/z_tau_1.txt};
-				\addlegendentry{$ \mathbf{z}_{\tau_3}^\mathrm{F}(t)$}
-				
-				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-				file{dataMatlab/OS1/z_tau_2.txt};
-				\addlegendentry{$ \mathbf{z}_{\tau_2}^\mathrm{F}(t)$}
-				
-				\addplot [name path=leader, color=red, solid, line width=1pt] 
-				file{dataMatlab/OS1/z_tau_3.txt};
-				\addlegendentry{$ \mathbf{z}_{\tau_1}^\mathrm{F}(t)$}
-				
-				\addplot [name path=leader, color=black, solid, line width=1pt] 
-				file{dataMatlab/OS1/distanceFollower.txt};
-				\addlegendentry{$x_1^{\mathrm{F}}(t)$}
-				
-				
-			\end{groupplot}
+			\end{axis}
 		\end{tikzpicture}
-		\caption{Simulation results for \gls{os}1.}
-		\label{fig:os1}
-	\end{minipage}
-\end{figure*}
-
-\newpage
-
-\begin{figure*}[htbp]
-	\centering
-	\begin{minipage}[b]{\textwidth}
+		\caption{}
+		\label{fig:os1_e}
+	\end{subfigure}%
+	
+	
+	% Sixth subfigure
+	\begin{subfigure}{0.5\linewidth}
 		\centering
-		\begin{tikzpicture}
-			\begin{groupplot}[
-				group style={
-					group size=1 by 6,
-					horizontal sep=1.6cm,
-					vertical sep=1.05cm,
-				},
-				width=17cm,
-				height=4.5cm,
-				axis on top,
-				enlargelimits=false,
-				every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
-				]
-				
-				
-				% First plot
-				\nextgroupplot[
-				title={\textbf{Safety barrier}},
-				%xlabel={$t(\unit{\second})$},
-				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
-				%yticklabel style = {font=\footnotesize},
-				ymax = 200,
-				legend pos=south east,
-				yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
-				%                            ymin=0, ymax=40, % Custom y-axis limits
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
-				grid = both
-				]
-				
-				\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
-				file{dataMatlab/OS2/B.txt};
-				
-				\addplot+[
-				mark=+,
-				only marks,
-				mark size=0.5pt
-				]file{dataMatlab/OS2/event_B.txt};
-				
-				% Adding a line from (0,0) to (0,800)
-				\addplot [name path=b0, color=red, solid, line width=1pt] 
-				file{dataMatlab/OS2/b_0.txt};
-				
-				\legend{$b(x)$}
-				
-				
-				
-				% Second plot
-				\nextgroupplot[
-				title={\textbf{Interdistance}},
-				%xlabel={$t(\unit{\second})$},
-				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
-				legend pos=north east,
-				ymin=900,  % Custom y-axis limits
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
-				grid = both,
-				]
-				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
-				file{dataMatlab/OS2/interDistance.txt};
-				\addlegendentry{$x_1^{\mathrm{L}}(t)-x_1^{\mathrm{F}}(t)$}
-				
-				\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
-				file{dataMatlab/OS2/d.txt};
-				
-				\addlegendentry{$d$}
-				
-				
-				
-				% Third plot
-				\nextgroupplot[
-				title={\textbf{Velocities}},
-				%xlabel={$t(\unit{\second})$},
-				ylabel={$\mathrm{speed}(\frac{\unit{\meter}}{\unit{\second}})$}, 
-				legend pos=north east,
-				%                    ymin=0, ymax=6200, % Custom y-axis limits
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
-				grid = both
-				]
-				
-				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-				file{dataMatlab/OS2/velocityLeader.txt};
-				\addlegendentry{$x_2^{\mathrm{L}}(t)$}
-				
-				\addplot [name path=leader, color=brown, solid, line width=1pt] 
-				file{dataMatlab/OS2/velocityFollower.txt};
-				\addlegendentry{$x_2^{\mathrm{F}}(t)$}
-				
-				% Fourth plot
-				\nextgroupplot[
-				title={\textbf{Control inputs}},
-				ylabel={control force$(\unit{\newton})$}, 
-				ymin=-380000, ymax=380000, % Custom y-axis limits
-				legend pos=south east,
-				every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
-				grid = both,
-				]
-				
-				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-				file{dataMatlab/OS2/forceLeader.txt};
-				\addlegendentry{$u^{\mathrm{L}}(t)$}
-				
-				\addplot [name path=leader, color=brown, solid, line width=1pt] 
-				file{dataMatlab/OS2/forceFollower.txt};
-				\addlegendentry{$u^{\mathrm{F}}(t)$}
-				
-				% Fifth plot
-				\nextgroupplot[
-				title={\textbf{Follower controller}},
-				ylabel={controllers}, 
-				ymin=0.75,
-				ymax=4.25,
-				%ymin=-380000, ymax=380000, % Custom y-axis limits
-				legend pos=south east,
-				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
-				grid = both,
-				ytick={-1, 1, 2, 3, 4},
-				yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$},
-				]
-				
-				\addplot [name path=leader, color=orange, solid, line width=1pt] 
-				file{dataMatlab/OS2/Z_tau.txt};
-				
-				\addplot+[
-				mark=+,
-				only marks,
-				mark size=0.5pt
-				]file{dataMatlab/OS2/event_z_region.txt};
-				
-				
-				% Sixth plot
-				\nextgroupplot[
-				title={\textbf{Delay communication channel}},
-				legend style={font=\small},
-				xlabel={$t(\unit{\second})$},
-				ylabel={time$(\unit{\second})$}, 
-				%ymin=-380000, ymax=380000, % Custom y-axis limits
-				legend pos=south east,
-				grid = both
-				%y tick label style={scaled ticks=base 10:-3},
-				]
-				
-				\addplot [name path=leader, color=green, solid, line width=1pt] 
-				file{dataMatlab/OS2/tauEstimated.txt};
-				\addlegendentry{$\bar{\tau}(t)$}
-
-				
-
-				
-				
-			\end{groupplot}
+		\begin{tikzpicture}[trim axis left]
+		\begin{axis}[
+					width=8cm,
+					height=4cm,
+					enlargelimits=false,
+					ymax=50,
+					legend pos=north east,
+					grid = both,
+					ylabel={Distance($\unit{\meter})$}
+					]
+					\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
+					file{dataMatlab/OS1/zoom_B.txt};
+					
+					\addplot+[
+					mark=+,color=blue,
+					only marks,
+					mark size=4pt
+					]file{dataMatlab/OS1/zoom_event_B.txt};
+					
+					% Adding a line from (0,0) to (0,800)
+					\addplot [name path=b0, color=red, solid, line width=1pt] 
+					file{dataMatlab/OS1/zoom_b_0.txt};
+					%\addlegendentry{$b(x)$}
+					
+					
+					
+				\end{axis}
 		\end{tikzpicture}
-		\caption{Simulation results for \gls{os}2.}
-		\label{fig:os2}
-	\end{minipage}
+		
+		\caption{}
+		\label{fig:os1_f}
+	\end{subfigure}\hfil%
+	\medskip
+		% Seventh subfigure
+	\begin{subfigure}{0.5\linewidth}
+	\centering
+	\begin{tikzpicture}[trim axis left]
+		\begin{axis}[
+			width=8cm,
+			height=4cm,
+			ymax=250000,
+			enlargelimits=false,
+			legend pos=north east,
+			grid = both,
+			ylabel={Force($\unit{\newton})$},
+			legend columns=2
+			]
+			\addplot [name path=leader, color=orange, solid, line width=1pt] 
+			file{dataMatlab/OS1/forceLeader.txt};
+			\addlegendentry{$u^{\mathrm{L}}$}
+			
+			\addplot [name path=leader, color=brown, solid, line width=1pt] 
+			file{dataMatlab/OS1/forceFollower.txt};
+			\addlegendentry{$u^{\mathrm{F}}$}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{fig:os1_d}
+\end{subfigure}
+	
+
+	% Sixth subfigure
+\begin{subfigure}{0.5\linewidth}
+	\centering
+	\begin{tikzpicture}[trim axis left]
+			\begin{axis}[
+					width=8cm,
+					height=4cm,
+					enlargelimits=false,
+					legend pos=south west,
+					grid = both,
+					ymin=2.5,
+					ymax=4.5,
+					ylabel={Controllers},
+					ytick={  3, 4},
+					yticklabels={$K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$}
+					]
+					\addplot [name path=leader, color=orange, solid, line width=1pt] 
+					file{dataMatlab/OS1/zoom_Z_tau.txt};
+					
+					\addplot+[
+					mark=+,
+					only marks, color=blue,
+					mark size=4pt
+					]file{dataMatlab/OS1/zoom_event_z_region.txt};
+				\end{axis}
+	\end{tikzpicture}
+	
+	\caption{}
+	\label{fig:os1_f}
+\end{subfigure}\hfil%
+\medskip
+% Seventh subfigure
+\begin{subfigure}{0.5\linewidth}
+	\centering
+	\begin{tikzpicture}[trim axis left]
+\begin{axis}[
+	width=8cm,
+	height=4cm,
+	enlargelimits=false,
+	legend pos=north west,
+	grid = both,
+	ylabel={Distance($\unit{\meter})$},
+	legend columns=2
+	]
+	\addplot [name path=leader, color=green, solid, line width=1pt] 
+	file{dataMatlab/OS1/zoom_z_tau_1.txt};
+	\addlegendentry{$ \mathbf{z}_{\tau_3}^\mathrm{F}$}
+	
+	\addplot [name path=leader, color=orange, solid, line width=1pt] 
+	file{dataMatlab/OS1/zoom_z_tau_2.txt};
+	\addlegendentry{$ \mathbf{z}_{\tau_2}^\mathrm{F}$}
+	
+	\addplot [name path=leader, color=red, solid, line width=1pt] 
+	file{dataMatlab/OS1/zoom_z_tau_3.txt};
+	\addlegendentry{$ \mathbf{z}_{\tau_1}^\mathrm{F}$}
+	
+	\addplot [name path=leader, color=black, solid, line width=1pt] 
+	file{dataMatlab/OS1/zoom_distanceFollower.txt};
+	\addlegendentry{$x_1^{\mathrm{F}}$}
+\end{axis}
+	\end{tikzpicture}
+	\caption{}
+	\label{fig:os1_d}
+\end{subfigure}
+
+	\caption{Plots for operational scenario OS1. Nel cuore della città, tra strade affollate e suoni incessanti, un piccolo caffè si nascondeva tra edifici imponenti. Ogni mattina, l'aroma del caffè appena macinato si diffondeva nell'aria, attirando passanti stanchi e sognatori. Marta, seduta al solito tavolo accanto alla finestra, osservava la vita scorrere veloce fuori. Sognava di viaggi lontani, di cieli infiniti e avventure ancora da vivere. Il tempo sembrava fermarsi in quel luogo, mentre il mondo continuava a girare. Ogni tazza di caffè era un nuovo inizio, un momento di riflessione silenziosa. imponenti. Ogni mattina, l'aroma del caffè appena macinato si diffondeva nell'aria, attirando passanti stanchi e sognatori. Marta, seduta al solito tavolo accanto alla finestra, osservava la vita scorrere veloce fuori. Sognava di viaggi lontani, di cieli infiniti e avventure ancora da vivere. Il tempo sembrava fermarsi in quel luogo, mentre il mondo continuava a girare. Ogni tazza di caffè era un nuovo inizio, un momento di riflessione silenziosa.}
+	
 \end{figure*}
 
+%\newpage
+%
+%
+%\begin{figure*}[htbp]
+%
+%		% First subfigure
+%		\begin{subfigure}{\textwidth}
+%			\centering
+%			\begin{tikzpicture}[trim axis left]
+%				\begin{axis}[
+%					width=17cm,
+%					height=4cm,
+%					enlargelimits=false,
+%					ymax=100,
+%					xticklabels=\empty,
+%					legend pos=south west,
+%					grid = both,
+%					ylabel={Distance($\unit{\meter})$}
+%					]
+%					\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
+%					file{dataMatlab/OS2/B.txt};
+%					
+%					\addplot+[
+%					mark=+,
+%					only marks,
+%					mark size=0.5pt
+%					]file{dataMatlab/OS2/event_B.txt};
+%					
+%					% Adding a line from (0,0) to (0,800)
+%					\addplot [name path=b0, color=red, solid, line width=1pt] 
+%					file{dataMatlab/OS2/b_0.txt};
+%					\addlegendentry{$b(x)$}
+%				\end{axis}
+%			\end{tikzpicture}
+%			\caption{}
+%			\label{fig:os2_a}
+%		\end{subfigure}%
+%		
+%		% Second subfigure
+%		\begin{subfigure}{\textwidth}
+%			\centering
+%			\begin{tikzpicture}[trim axis left]
+%				\begin{axis}[
+%					width=17cm,
+%					height=4cm,
+%					enlargelimits=false,
+%					ymin=900,
+%					ymax=1900,
+%					xticklabels=\empty,
+%					legend pos=north east,
+%					grid = both,
+%					ylabel={Distance($\unit{\meter})$}
+%					]
+%					\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
+%					file{dataMatlab/OS2/interDistance.txt};
+%					\addlegendentry{$x_1^{\mathrm{L}}(t)-x_1^{\mathrm{F}}(t)$}
+%					
+%					\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
+%					file{dataMatlab/OS2/d.txt};
+%					
+%					
+%					\addlegendentry{$d$}
+%				\end{axis}
+%			\end{tikzpicture}
+%			\caption{}
+%			\label{fig:os2_b}
+%		\end{subfigure}%
+%		
+%		
+%		% Third subfigure
+%		\begin{subfigure}{\textwidth}
+%			\centering
+%			\begin{tikzpicture}[trim axis left]
+%				\begin{axis}[
+%					width=17cm,
+%					height=4cm,
+%					enlargelimits=false,
+%					xticklabels=\empty,
+%					legend pos=north east,
+%					grid = both,
+%					ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
+%					]
+%					\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%					file{dataMatlab/OS2/velocityLeader.txt};
+%					\addlegendentry{$x_2^{\mathrm{L}}(t)$}
+%					
+%					\addplot [name path=leader, color=brown, solid, line width=1pt] 
+%					file{dataMatlab/OS2/velocityFollower.txt};
+%					\addlegendentry{$x_2^{\mathrm{F}}(t)$}
+%				\end{axis}
+%			\end{tikzpicture}
+%			\caption{}
+%			\label{fig:os2_c}
+%		\end{subfigure}%
+%		
+%		% Fourth subfigure
+%		\begin{subfigure}{\textwidth}
+%			\centering
+%			\begin{tikzpicture}[trim axis left]
+%				\begin{axis}[
+%					width=17cm,
+%					height=4cm,
+%					enlargelimits=false,
+%					xticklabels=\empty,
+%					legend pos=north east,
+%					grid = both,
+%					ylabel={Force($\unit{\newton})$}
+%					]
+%					\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%					file{dataMatlab/OS2/forceLeader.txt};
+%					\addlegendentry{$u^{\mathrm{L}}(t)$}
+%					
+%					\addplot [name path=leader, color=brown, solid, line width=1pt] 
+%					file{dataMatlab/OS2/forceFollower.txt};
+%					\addlegendentry{$u^{\mathrm{F}}(t)$}
+%				\end{axis}
+%			\end{tikzpicture}
+%			\caption{}
+%			\label{fig:os2_d}
+%		\end{subfigure}%
+%		
+%		% Fifth subfigure
+%		\begin{subfigure}{\textwidth}
+%			\centering
+%			\begin{tikzpicture}[trim axis left]
+%				\begin{axis}[
+%					width=17cm,
+%					height=4cm,
+%					enlargelimits=false,
+%					xticklabels=\empty,
+%					legend pos=south west,
+%					grid = both,
+%					ymin=0,
+%					ylabel={Controllers},
+%					ytick={-1, 1, 2, 3, 4},
+%					yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$}
+%					]
+%					\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%					file{dataMatlab/OS2/Z_tau.txt};
+%					
+%					\addplot+[
+%					mark=+,
+%					only marks,
+%					mark size=0.5pt
+%					]file{dataMatlab/OS2/event_z_region.txt};
+%				\end{axis}
+%			\end{tikzpicture}
+%			\caption{}
+%			\label{fig:os2_e}
+%		\end{subfigure}%
+%		
+%		
+%		% Sixth subfigure
+%		\begin{subfigure}{\textwidth}
+%			\centering
+%			\begin{tikzpicture}[trim axis left]
+%				\begin{axis}[
+%					width=17cm,
+%					height=4cm,
+%					enlargelimits=false,
+%					legend pos=north west,
+%					grid = both,
+%					ylabel={Distance($\unit{\meter})$},
+%					x tick label style={scaled ticks=base 10:-3}
+%					]
+%					\addplot [name path=leader, color=green, solid, line width=1pt] 
+%					file{dataMatlab/OS2/z_tau_1.txt};
+%					\addlegendentry{$ \mathbf{z}_{\tau_3}^\mathrm{F}(t)$}
+%					
+%					\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%					file{dataMatlab/OS2/z_tau_2.txt};
+%					\addlegendentry{$ \mathbf{z}_{\tau_2}^\mathrm{F}(t)$}
+%					
+%					\addplot [name path=leader, color=red, solid, line width=1pt] 
+%					file{dataMatlab/OS2/z_tau_3.txt};
+%					\addlegendentry{$ \mathbf{z}_{\tau_1}^\mathrm{F}(t)$}
+%					
+%					\addplot [name path=leader, color=black, solid, line width=1pt] 
+%					file{dataMatlab/OS2/distanceFollower.txt};
+%					\addlegendentry{$x_1^{\mathrm{F}}(t)$}
+%				\end{axis}
+%			\end{tikzpicture}
+%			\caption{}
+%			\label{fig:os2_f}
+%		\end{subfigure}%
+%		
+%		\caption{Plots for operational scenario OS1.}
+%
+%\end{figure*}
+
+
+
+
+
+
+
+%\begin{figure*}[htbp]
+%	\centering
+%	\begin{minipage}[b]{\textwidth}
+%		\centering
+%		\begin{tikzpicture}
+%			\begin{groupplot}[
+%				group style={
+%					group size=1 by 6,
+%					horizontal sep=1.6cm,
+%					vertical sep=1.05cm,
+%				},
+%				width=17cm,
+%				height=4.5cm,
+%				axis on top,
+%				enlargelimits=false,
+%				every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
+%				]
+%				
+%				
+%				% First plot
+%				\nextgroupplot[
+%				title={\textbf{Safety barrier}},
+%				%xlabel={$t(\unit{\second})$},
+%				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
+%				%yticklabel style = {font=\footnotesize},
+%				ymax = 200,
+%				legend pos=south east,
+%				yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=0, /tikz/.cd},
+%				%                            ymin=0, ymax=40, % Custom y-axis limits
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both
+%				]
+%				
+%				\addplot [name path=greenCurve, color=green, solid, line width=1pt] 
+%				file{dataMatlab/OS2/B.txt};
+%				
+%				\addplot+[
+%				mark=+,
+%				only marks,
+%				mark size=0.5pt
+%				]file{dataMatlab/OS2/event_B.txt};
+%				
+%				% Adding a line from (0,0) to (0,800)
+%				\addplot [name path=b0, color=red, solid, line width=1pt] 
+%				file{dataMatlab/OS2/b_0.txt};
+%				
+%				\legend{$b(x)$}
+%				
+%				
+%				
+%				% Second plot
+%				\nextgroupplot[
+%				title={\textbf{Interdistance}},
+%				%xlabel={$t(\unit{\second})$},
+%				ylabel={$\mathrm{distance}(\unit{\meter})$}, 
+%				legend pos=north east,
+%				ymin=900,  % Custom y-axis limits
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both,
+%				]
+%				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
+%				file{dataMatlab/OS2/interDistance.txt};
+%				\addlegendentry{$x_1^{\mathrm{L}}(t)-x_1^{\mathrm{F}}(t)$}
+%				
+%				\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
+%				file{dataMatlab/OS2/d.txt};
+%				
+%				\addlegendentry{$d$}
+%				
+%				
+%				
+%				% Third plot
+%				\nextgroupplot[
+%				title={\textbf{Velocities}},
+%				%xlabel={$t(\unit{\second})$},
+%				ylabel={$\mathrm{speed}(\frac{\unit{\meter}}{\unit{\second}})$}, 
+%				legend pos=north east,
+%				%                    ymin=0, ymax=6200, % Custom y-axis limits
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both
+%				]
+%				
+%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%				file{dataMatlab/OS2/velocityLeader.txt};
+%				\addlegendentry{$x_2^{\mathrm{L}}(t)$}
+%				
+%				\addplot [name path=leader, color=brown, solid, line width=1pt] 
+%				file{dataMatlab/OS2/velocityFollower.txt};
+%				\addlegendentry{$x_2^{\mathrm{F}}(t)$}
+%				
+%				% Fourth plot
+%				\nextgroupplot[
+%				title={\textbf{Control inputs}},
+%				ylabel={control force$(\unit{\newton})$}, 
+%				ymin=-380000, ymax=380000, % Custom y-axis limits
+%				legend pos=south east,
+%				every x tick scale label/.style={at={(rel axis cs:1,0)},anchor=south west,inner sep=1pt},
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both,
+%				]
+%				
+%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%				file{dataMatlab/OS2/forceLeader.txt};
+%				\addlegendentry{$u^{\mathrm{L}}(t)$}
+%				
+%				\addplot [name path=leader, color=brown, solid, line width=1pt] 
+%				file{dataMatlab/OS2/forceFollower.txt};
+%				\addlegendentry{$u^{\mathrm{F}}(t)$}
+%				
+%				% Fifth plot
+%				\nextgroupplot[
+%				title={\textbf{Follower controller}},
+%				ylabel={controllers}, 
+%				ymin=0.75,
+%				ymax=4.25,
+%				%ymin=-380000, ymax=380000, % Custom y-axis limits
+%				legend pos=south east,
+%				xticklabels=\empty,  % This removes only the x-axis labels but keeps the ticks
+%				grid = both,
+%				ytick={-1, 1, 2, 3, 4},
+%				yticklabels={$K^{\mathrm{F}}_{\mathrm{L3}}$, $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$, $K^{\mathrm{F}}_{\mathrm{E}}$},
+%				]
+%				
+%				\addplot [name path=leader, color=orange, solid, line width=1pt] 
+%				file{dataMatlab/OS2/Z_tau.txt};
+%				
+%				\addplot+[
+%				mark=+,
+%				only marks,
+%				mark size=0.5pt
+%				]file{dataMatlab/OS2/event_z_region.txt};
+%				
+%				
+%				% Sixth plot
+%				\nextgroupplot[
+%				title={\textbf{Delay communication channel}},
+%				legend style={font=\small},
+%				xlabel={$t(\unit{\second})$},
+%				ylabel={time$(\unit{\second})$}, 
+%				%ymin=-380000, ymax=380000, % Custom y-axis limits
+%				legend pos=south east,
+%				grid = both
+%				%y tick label style={scaled ticks=base 10:-3},
+%				]
+%				
+%				\addplot [name path=leader, color=green, solid, line width=1pt] 
+%				file{dataMatlab/OS2/tauEstimated.txt};
+%				\addlegendentry{$\bar{\tau}(t)$}
+%
+%				
+%
+%				
+%				
+%			\end{groupplot}
+%		\end{tikzpicture}
+%		\caption{Simulation results for \gls{os}2.}
+%		\label{fig:os2}
+%	\end{minipage}
+%\end{figure*}
+%
 
 
 

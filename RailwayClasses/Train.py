@@ -174,11 +174,11 @@ class Train:
             self.ato.set_u_past(u_0/self.ato.U_FACTOR_VC)
             z_region = 4
             
-        # if self.velocity <= 0.5:
-        #     u_0 = 0
-        #     self.velocity = 0
-        #     self.acceleration = 0
-        #     z_region = 4
+        if self.velocity <= 0.1:
+            u_0 = 0
+            self.velocity = 0
+            self.acceleration = 0
+            z_region = 1
         
         
         
@@ -486,6 +486,10 @@ class Train:
             # # Calculate elapsed time
             # elapsed_time = end_time - start_time
             # print("Elapsed time compute_Z_F: ", elapsed_time) 
+            
+            # this is added because whrn the velocity is zero, the refernce tends to go to 0, and the follower try to reach the leader
+            if self.velocity < 1:
+                z_F = z_F - 5
             
             
             return z_F, time_ref_tau

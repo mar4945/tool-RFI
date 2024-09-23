@@ -147,7 +147,7 @@ class ATO:
             P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref
             ref_tau = ref[0]
             
-            
+            # controller added to improve the performance of the control system
             if  timestamp< 1500:
                 [uMPC,result] = self.k_tau_3(P)
                 z_region = 1
@@ -190,7 +190,7 @@ class ATO:
     
     def emergency_controller(self):
         # TODO modificare costante
-        u_e = self.emergency_braking - 250
+        u_e = self.emergency_braking - 5000
         #u_e = -370000
         
         if u_e < -370000:

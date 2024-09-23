@@ -77,11 +77,11 @@ H.~Wang, Q.~Zhao, S.~Lin, D.~Cui, C.~Luo, L.~Zhu, X.~Wang, and T.~Tang, ``A
   virtually coupled train sets,'' {\em IEEE Transactions on Industrial
   Informatics}, vol.~17, no.~7, pp.~4935--4945, 2021.
 
-\bibitem{basile2022}
+\bibitem{BASILE2024108120}
 G.~Basile, D.~G. Lui, A.~Petrillo, and S.~Santini, ``Deep deterministic policy
-  gradient-based virtual coupling control for high-speed train convoys,'' in
-  {\em 2022 IEEE International Conference on Networking, Sensing and Control
-  (ICNSC)}, pp.~1--6, 2022.
+  gradient virtual coupling control for the coordination and manoeuvring of
+  heterogeneous uncertain nonlinear high-speed trains,'' {\em Engineering
+  Applications of Artificial Intelligence}, vol.~133, p.~108120, 2024.
 
 \bibitem{felez2019model}
 J.~Felez, Y.~Kim, and F.~Borrelli, ``A model predictive control approach for
