@@ -134,9 +134,12 @@ class Train:
             tau_bar = self.mle_estimator(delay_channel)
             self.tau_bar = tau_bar
             tau_estimated = self.tau_bar
-            z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*self.tau_bar)
-            z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*self.tau_bar)
-            z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*self.tau_bar)
+            # z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*self.tau_bar)
+            # z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*self.tau_bar)
+            # z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*self.tau_bar)
+            z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*2.5)
+            z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*2.5)
+            z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*2.5)
             
             self.ato.set_z_tau_ref(z_F_1, time_ref_1, z_F_2, time_ref_2, z_F_3, time_ref_3 )
             
@@ -172,13 +175,13 @@ class Train:
             #print(u_0)
             self.ato.set_emergency_braking(u_0)
             self.ato.set_u_past(u_0/self.ato.U_FACTOR_VC)
-            z_region = 4
+            z_region = 0
             
         if self.velocity <= 0.1:
             u_0 = 0
             self.velocity = 0
             self.acceleration = 0
-            z_region = 1
+            z_region = 3
         
         
         
@@ -360,6 +363,7 @@ class Train:
     def vFollower_tau(self, delta):
         
         return self.velocity+delta
+ 
         
     def sLeader_tau(self, sl, timestamp, vl, tkBL, tau):
         

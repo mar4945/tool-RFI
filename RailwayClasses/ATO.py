@@ -150,10 +150,10 @@ class ATO:
             # controller added to improve the performance of the control system
             if  timestamp< 1500:
                 [uMPC,result] = self.k_tau_3(P)
-                z_region = 1
+                z_region = 3
             else:
                 [uMPC,result] = self.k_tau_3bis(P)
-                z_region = 1
+                z_region = 3
             
            
         elif s_f > z_tau_1_ref:
@@ -164,7 +164,7 @@ class ATO:
             P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref
             
             ref_tau = ref[0]
-            z_region = 3
+            z_region = 1
             [uMPC,result] = self.k_tau_1(P)
         else:
             ref = self.z_tau_1[i:(i+N)]

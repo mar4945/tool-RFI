@@ -22,7 +22,7 @@
         "C": 1.914,
         "Tf": 1,
         "delta_param": 0.1,
-        "pos_leader": 6000,
+        "pos_leader": 1400,
         "vel_leader": 50,
         "acc_leader": 0,
         "pos_follower": 0,
