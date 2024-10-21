@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.22)  25 SEP 2024 00:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.22)  21 OCT 2024 12:49
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1711,24 +1711,24 @@ LaTeX Info: Redefining \_ on input line 43.
 (VC_paper.aux)
 \openout1 = `VC_paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 339.
-LaTeX Font Info:    ... okay on input line 339.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 340.
+LaTeX Font Info:    ... okay on input line 340.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1799,7 +1799,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 g
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 339.
+Package hyperref Info: Link coloring OFF on input line 340.
  (VC_paper.out) (VC_paper.out)
 \@outlinefile=\write5
 \openout5 = `VC_paper.out'.
@@ -1819,13 +1819,13 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 339.
+or `english'. on input line 340.
 
 
 Package todonotes Warning: The length marginparwidth is less than 2cm and will 
 most likely cause issues with the appearance of inserted todonotes. The issue c
 an be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to 
-loading the todonotes package. on input line 339.
+loading the todonotes package. on input line 340.
 
 
 Package trackchanges Warning: TrackChanges is not compatable with the 
@@ -1833,69 +1833,69 @@ Package trackchanges Warning: TrackChanges is not compatable with the
 (trackchanges)                Use the 'soul' package instead.
 
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
- 341.
+ 342.
 (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line
- 341.
+ 342.
 
 (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line
- 341.
+ 342.
 
 (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line
- 341.
+ 342.
 
 (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+rsfs on input line 
-341.
+342.
 
 (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/calrsfs\omsrsfs.fd)
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 341.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 342.
 
-Underfull \hbox (badness 4543) in paragraph at lines 341--341
+Underfull \hbox (badness 4543) in paragraph at lines 342--342
 \OT1/ptm/m/n/8 e Tec-nolo-gie dell'Informazione, Uni-ver-sity of Naples Fed-eri
 co II,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--341
+Underfull \hbox (badness 10000) in paragraph at lines 342--342
 \OT1/ptm/m/n/8 Naples, Italy. \OT1/ptm/m/it/8 E-mail\OT1/ptm/m/n/8 : m.terlizzi
 @rfi.it, da-vide.liuzza@unisannio.it,
  []
 
 
-Underfull \hbox (badness 2744) in paragraph at lines 376--377
+Underfull \hbox (badness 2744) in paragraph at lines 377--378
 \OT1/ptm/m/n/10 rail-way in-fras-truc-ture is Vehicle-to-Infrastructure (V2I),
  []
 
 
-Underfull \hbox (badness 1502) in paragraph at lines 376--377
+Underfull \hbox (badness 1502) in paragraph at lines 377--378
 \OT1/ptm/m/n/10 ca-pa-bil-i-ties in data trans-fer, re-li-a-bil-ity and low-lat
 ency
  []
 
 
-Underfull \hbox (badness 5050) in paragraph at lines 379--380
+Underfull \hbox (badness 5050) in paragraph at lines 380--381
 []\OT1/ptm/m/n/10 The grow-ing pop-u-lar-ity of trains as a mode of
  []
 
 
-Underfull \hbox (badness 7238) in paragraph at lines 379--380
+Underfull \hbox (badness 7238) in paragraph at lines 380--381
 \OT1/ptm/m/n/10 trans-porta-tion presents a chal-lenge of over-bur-den-ing
  []
 
 
-Underfull \hbox (badness 1997) in paragraph at lines 379--380
+Underfull \hbox (badness 1997) in paragraph at lines 380--381
 \OT1/ptm/m/n/10 the rail-way sys-tem's ca-pac-ity. As a re-sult, en-hanc-ing
  []
 
@@ -1908,7 +1908,7 @@ Package pdftex.def Info: ./figure/levels.png  used on input line 10.
 
 Missing character: There is no , in font nullfont!
 )
-Underfull \hbox (badness 4429) in paragraph at lines 383--390
+Underfull \hbox (badness 4429) in paragraph at lines 384--391
 []\OT1/ptm/m/n/10 In the fol-low-ing, we will in-tro-duce two ERTMS
  []
 
@@ -1916,22 +1916,22 @@ Underfull \hbox (badness 4429) in paragraph at lines 383--390
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 391--392
+Underfull \hbox (badness 1448) in paragraph at lines 392--393
 \OT1/ptm/m/n/10 but also re-duces op-er-a-tional costs by op-ti-miz-ing train
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 391--392
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
 \OT1/ptm/m/n/10 head-ways and min-i-miz-ing the need for track-side
  []
 
 
-Underfull \hbox (badness 7558) in paragraph at lines 391--392
+Underfull \hbox (badness 7558) in paragraph at lines 392--393
 \OT1/ptm/m/n/10 main-te-nance; fur-ther-more, it al-lows trains to move
  []
 
 
-Underfull \hbox (badness 2435) in paragraph at lines 396--397
+Underfull \hbox (badness 2435) in paragraph at lines 397--398
 \OT1/ptm/m/n/10 the best way to im-ple-ment VC from an op-er-a-tional
  []
 
@@ -1940,198 +1940,193 @@ r/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 2042) in paragraph at lines 399--401
+Underfull \hbox (badness 2042) in paragraph at lines 400--402
 []\OT1/ptm/m/n/10 In con-clu-sion, VC presents a no-table ad-van-tage in
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 399--401
+Underfull \hbox (badness 2142) in paragraph at lines 400--402
 \OT1/ptm/m/n/10 de-par-ture de-lays by op-ti-miz-ing train co-or-di-na-tion and
 
  []
 
 
-Underfull \hbox (badness 1997) in paragraph at lines 399--401
+Underfull \hbox (badness 1997) in paragraph at lines 400--402
 \OT1/ptm/m/n/10 spac-ing. Pro-mot-ing a more syn-chro-nized and ef-fi-cient
  []
 
 
-Underfull \hbox (badness 3189) in paragraph at lines 406--409
+Underfull \hbox (badness 3189) in paragraph at lines 407--410
 \OT1/ptm/m/n/10 is eval-u-ated solely through Monte Carlo sim-u-la-tions,
  []
 
 
-Underfull \hbox (badness 1748) in paragraph at lines 406--409
+Underfull \hbox (badness 1748) in paragraph at lines 407--410
 \OT1/ptm/m/n/10 for-mal guar-an-tees re-main ab-sent for these chal-leng-ing
  []
 
 
-Underfull \hbox (badness 1616) in paragraph at lines 406--409
-\OT1/ptm/m/n/10 sce-nar-ios. The bot-tle-neck of this in-no-va-tive ML-based
- []
-
-
-Underfull \hbox (badness 2134) in paragraph at lines 410--413
+Underfull \hbox (badness 2134) in paragraph at lines 411--414
 \OT1/ptm/m/n/10 head-way and en-sur-ing safe train sep-a-ra-tion. A lin-ear
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 410--413
+Underfull \hbox (badness 1394) in paragraph at lines 411--414
 \OT1/ptm/m/n/10 com-fort is im-ple-mented in [18]. Con-straints, in-clud-ing
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 410--413
+Underfull \hbox (badness 1394) in paragraph at lines 411--414
 \OT1/ptm/m/n/10 and re-duc-ing un-nec-es-sary fol-lower train brak-ings, also
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 425.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 426.
 [2 <./figure/levels.png>]
-Underfull \hbox (badness 1533) in paragraph at lines 434--435
+Underfull \hbox (badness 1533) in paragraph at lines 435--436
 \OT1/ptm/m/n/10 pa-ram-e-ter un-cer-tainty within train sys-tem mod-els
  []
 
 
-Underfull \hbox (badness 8019) in paragraph at lines 434--435
+Underfull \hbox (badness 8019) in paragraph at lines 435--436
 \OT1/ptm/m/n/10 and the through-put vari-abil-ity in data packet
  []
 
 
-Underfull \hbox (badness 3168) in paragraph at lines 441--442
+Underfull \hbox (badness 3168) in paragraph at lines 442--443
 []\OT1/ptm/m/n/10 To val-i-date the ap-pli-ca-bil-ity and safety of our
  []
 
 
-Underfull \hbox (badness 1515) in paragraph at lines 441--442
+Underfull \hbox (badness 1515) in paragraph at lines 442--443
 \OT1/ptm/m/n/10 con-trol sys-tem, we have de-vel-oped a spe-cial-ized
  []
 
 
-Underfull \hbox (badness 3138) in paragraph at lines 441--442
+Underfull \hbox (badness 3138) in paragraph at lines 442--443
 \OT1/ptm/m/n/10 ef-fec-tive-ness in these tests not only proves its
  []
 
 
-Underfull \hbox (badness 1783) in paragraph at lines 444--448
+Underfull \hbox (badness 1783) in paragraph at lines 445--449
 \OT1/ptm/m/n/10 an ini-tial overview of the prob-lem and the pro-posed
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 444--448
+Underfull \hbox (badness 1436) in paragraph at lines 445--449
 \OT1/ptm/m/n/10 within safe op-er-a-tional con-di-tions de-spite un-cer-tain-ti
 es.
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 469--471
+Underfull \hbox (badness 1442) in paragraph at lines 470--472
 \OT1/ptm/m/n/10 con-trol the inter-train dis-tance guar-an-tee-ing safety and
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 477--479
+Underfull \hbox (badness 1365) in paragraph at lines 478--480
 \OT1/ptm/m/n/10 if no up-dates are re-ceived, the fol-lower can still
  []
 
 [3]
-Underfull \hbox (badness 2626) in paragraph at lines 480--481
+Underfull \hbox (badness 2626) in paragraph at lines 481--482
 \OT1/ptm/m/n/10 by an-a-lyz-ing packet ar-rival times. This real-time
  []
 
 
 Package amsfonts Warning: Obsolete command \Bbb; \mathbb should be used instead
- on input line 516.
+ on input line 517.
 
 [4]
-Underfull \hbox (badness 6300) in paragraph at lines 656--657
+Underfull \hbox (badness 6300) in paragraph at lines 657--658
 [][]\OT1/ptm/b/n/10 Definition 7 []\OT1/ptm/m/n/10 Let us con-sider a (pos-si-b
 ly pa-ram-e-ter
  []
 
 
-Underfull \hbox (badness 1983) in paragraph at lines 676--677
+Underfull \hbox (badness 1983) in paragraph at lines 677--678
 []\OT1/ptm/m/n/10 In this pa-per, sim-i-larly to what done in [17], we
  []
 
 
-Underfull \hbox (badness 1675) in paragraph at lines 704--706
+Underfull \hbox (badness 1675) in paragraph at lines 705--707
 []\OT1/ptm/m/n/10 In this study, we con-sider the train com-mu-ni-ca-tion
  []
 
 
-Underfull \hbox (badness 4913) in paragraph at lines 704--706
+Underfull \hbox (badness 4913) in paragraph at lines 705--707
 \OT1/ptm/m/n/10 the V2V con-text. In this re-gard, here we ab-stract
  []
 
 
-Underfull \hbox (badness 2564) in paragraph at lines 708--711
+Underfull \hbox (badness 2564) in paragraph at lines 709--712
 \OT1/ptm/m/n/10 the cur-rent value up to a hori-zon $\OML/ztmcm/m/it/10 H$\OT1/
 ptm/m/n/10 . Trans-mis-sions
  []
 
 
-Underfull \hbox (badness 4967) in paragraph at lines 708--711
+Underfull \hbox (badness 4967) in paragraph at lines 709--712
 \OT1/ptm/m/n/10 hap-pen at in-stants $\OMS/ztmcm/m/n/10 f\OML/ztmcm/m/it/10 t[]
 \OMS/ztmcm/m/n/10 g[]$ \OT1/ptm/m/n/10 via send-ing the tu-ple
  []
 
 
-Underfull \hbox (badness 1867) in paragraph at lines 708--711
+Underfull \hbox (badness 1867) in paragraph at lines 709--712
 []$\OT1/ptm/m/n/10 , where $\OML/ztmcm/m/it/10 t[]$ \OT1/ptm/m/n/10 is the trig
 -ger in-stant,
  []
 
 [5]
-Underfull \hbox (badness 3179) in paragraph at lines 747--749
+Underfull \hbox (badness 3179) in paragraph at lines 748--750
 []\OT1/ptm/m/n/10 The model em-ployed in this manuscript re-lies on
  []
 
 
-Underfull \hbox (badness 1558) in paragraph at lines 747--749
+Underfull \hbox (badness 1558) in paragraph at lines 748--750
 \OT1/ptm/m/n/10 the prin-ci-ples of lon-gi-tu-di-nal train dy-nam-ics. It treat
 s
  []
 
 
-Underfull \hbox (badness 4328) in paragraph at lines 758--763
+Underfull \hbox (badness 4328) in paragraph at lines 759--764
 []\OT1/ptm/m/n/10 The state vec-tor is com-pactly writ-ten as $\OML/ztmcm/m/it/
 10 x[]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 ) =
  []
 
 
-Underfull \hbox (badness 2799) in paragraph at lines 781--782
+Underfull \hbox (badness 2799) in paragraph at lines 782--783
 []\OT1/ptm/m/n/10 All the above pa-ram-e-ters are non-neg-a-tive and are
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 804--805
+Underfull \hbox (badness 1852) in paragraph at lines 805--806
 \OT1/ptm/m/n/10 above in-ter-vals. With such a choice, and tak-ing into
  []
 
 [6]
-Overfull \hbox (16.29955pt too wide) detected at line 865
+Overfull \hbox (16.29955pt too wide) detected at line 866
 [][][][]
  []
 
 
-Overfull \hbox (16.29955pt too wide) detected at line 882
+Overfull \hbox (16.29955pt too wide) detected at line 883
 [][][][]
  []
 
 [7]
-Overfull \hbox (0.8137pt too wide) detected at line 991
+Overfull \hbox (0.8137pt too wide) detected at line 992
 [][][]\OMS/rsfs/m/n/10 U[]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 x[]\OT1/ztmcm/m
 /n/10 ) = [] \OML/ztmcm/m/it/10 :
  []
 
 
-Underfull \hbox (badness 2050) in paragraph at lines 1013--1015
+Underfull \hbox (badness 2050) in paragraph at lines 1014--1016
 [][]\OT1/ptm/b/n/10 Definition 11 (Emer-gency Con-troller) []\OT1/ptm/m/n/10 We
  de-fine |   []
  []
 
 
-Underfull \hbox (badness 1460) in paragraph at lines 1024--1027
+Underfull \hbox (badness 1460) in paragraph at lines 1025--1028
 \OT1/ptm/m/n/10 con-straints) leader con-troller $\OML/ztmcm/m/it/10 K[]$\OT1/p
 tm/m/n/10 . Let us con-sider that
  []
@@ -2143,72 +2138,67 @@ id you specify a point identical to the center of node ``midpointInput''? on in
 put line 61.
 
 )
-Underfull \hbox (badness 3189) in paragraph at lines 1230--1230
+Underfull \hbox (badness 3189) in paragraph at lines 1231--1231
 []\OT1/ptm/m/n/10 Fig. 2: |Fol-lower con-trol sys-tem ar-chi-tec-ture for VC
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 1234--1235
+Underfull \hbox (badness 1603) in paragraph at lines 1235--1236
 []\OT1/ptm/m/n/10 The Leader RLP pre-dic-tor block is cru-cial for the
  []
 
 
-Underfull \hbox (badness 1831) in paragraph at lines 1234--1235
-\OT1/ptm/m/n/10 the last re-ceived packet and pro-ject-ing for-ward us-ing
+Underfull \hbox (badness 1360) in paragraph at lines 1235--1236
+\OT1/ptm/m/n/10 which con-tin-u-ously mon-i-tors the state of the fol-lower
  []
 
 
-Underfull \hbox (badness 2111) in paragraph at lines 1234--1235
-\OT1/ptm/m/n/10 fu-ture con-trol in-puts) the ac-ti-va-tion of an emer-gency
+Underfull \hbox (badness 2591) in paragraph at lines 1235--1236
+\OT1/ptm/m/n/10 and the pre-dicted leader RLP state. The block uses
  []
 
 
-Underfull \hbox (badness 3078) in paragraph at lines 1234--1235
-\OT1/ptm/m/n/10 brake. The over-all safety is man-aged by the safety
- []
-
-
-Underfull \hbox (badness 1565) in paragraph at lines 1234--1235
+Underfull \hbox (badness 1565) in paragraph at lines 1235--1236
 \OT1/ptm/m/n/10 the emer-gency con-troller on the fol-lower train. When
  []
 
 
-Underfull \hbox (badness 1874) in paragraph at lines 1234--1235
+Underfull \hbox (badness 1874) in paragraph at lines 1235--1236
 \OT1/ptm/m/n/10 dis-tance from the leader. The Cruise vir-tual cou-pling
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 1234--1235
+Underfull \hbox (badness 1577) in paragraph at lines 1235--1236
 \OT1/ptm/m/n/10 block syn-chro-nizes the fol-lower train with the leader,
  []
 
 
-Underfull \hbox (badness 1360) in paragraph at lines 1234--1235
+Underfull \hbox (badness 1360) in paragraph at lines 1235--1236
 \OT1/ptm/m/n/10 is re-spon-si-ble for es-ti-mat-ing the com-mu-ni-ca-tion de-la
 y,
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 1234--1235
+Underfull \hbox (badness 1371) in paragraph at lines 1235--1236
 \OT1/ptm/m/n/10 con-tin-u-ously mon-i-tors and an-a-lyzes the com-mu-ni-ca-tion
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 1236--1237
+Underfull \hbox (badness 10000) in paragraph at lines 1237--1238
 []\OT1/ptm/m/n/10 The fol-low-ing sub-sec-tions will in-tro-duce the
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 1257.
+put line 1258.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1272--1274
+Underfull \hbox (badness 10000) in paragraph at lines 1273--1275
 [] \OT1/ptm/m/n/10 In-te-grate the dy-nam-i-cal model $[][]\OT1/ztmcm/m/n/10 (\
 OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 ) =
  []
 
 
-Underfull \hbox (badness 1924) in paragraph at lines 1272--1274
+Underfull \hbox (badness 1924) in paragraph at lines 1273--1275
 [][]\OT1/ztmcm/m/n/10 ([][](\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 )\OML/ztmcm/m
 /it/10 ; K[]\OT1/ztmcm/m/n/10 ([][](\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 )))$ 
 \OT1/ptm/m/n/10 from the ini-tial time $\OML/ztmcm/m/it/10 t[]$ \OT1/ptm/m/n/10
@@ -2216,20 +2206,20 @@ Underfull \hbox (badness 1924) in paragraph at lines 1272--1274
  []
 
 
-Underfull \hbox (badness 3209) in paragraph at lines 1272--1274
+Underfull \hbox (badness 3209) in paragraph at lines 1273--1275
 \OT1/ptm/m/n/10 ini-tial con-di-tion $[][]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10
  t[]\OT1/ztmcm/m/n/10 )$ \OT1/ptm/m/n/10 up to cur-rent time (the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1304--1305
+Underfull \hbox (badness 10000) in paragraph at lines 1305--1306
 [] \OT1/ptm/m/n/10 Con-tin-u-ously mon-i-tor $\OML/ztmcm/m/it/10 b\OT1/ztmcm/m/
 n/10 ([](\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 )\OML/ztmcm/m/it/10 ; []\OT1/ztm
 cm/m/n/10 (\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 ))$ \OT1/ptm/m/n/10 and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1306--1307
+Underfull \hbox (badness 10000) in paragraph at lines 1307--1308
 [] \OT1/ptm/b/n/10 if  $\OML/ztmcm/m/it/10 b\OT1/ztmcm/m/n/10 ([](\OML/ztmcm/m/
 it/10 t\OT1/ztmcm/m/n/10 )\OML/ztmcm/m/it/10 ; []\OT1/ztmcm/m/n/10 (\OML/ztmcm/
 m/it/10 t\OT1/ztmcm/m/n/10 )) \OMS/ztmcm/m/n/10 ^^U \OT1/ztmcm/m/n/10 0$ \OT1/p
@@ -2237,73 +2227,79 @@ tm/b/n/10 or
  []
 
 
-Underfull \hbox (badness 7273) in paragraph at lines 1308--1309
+Underfull \hbox (badness 7273) in paragraph at lines 1309--1310
 [] \OT1/ptm/m/n/10 En-force the emer-gency con-troller for the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1312--1313
+Underfull \hbox (badness 10000) in paragraph at lines 1313--1314
 []\OT1/ptm/m/n/10 Do not en-force/stop en-forc-ing the fol-lower
  []
 
 
-Underfull \hbox (badness 2027) in paragraph at lines 1332--1333
-\OT1/ptm/m/n/10 Be-ing $[][]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 t\OT1/ztmcm/m
-/n/10 )$ \OT1/ptm/m/n/10 and $[]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 t\OT1/ztm
-cm/m/n/10 )$ \OT1/ptm/m/n/10 con-tin-u-ous time curves, safety
+Underfull \hbox (badness 4673) in paragraph at lines 1333--1334
+\OT1/ptm/m/n/10 into ac-count that $\OML/ztmcm/m/it/10 x[]\OT1/ztmcm/m/n/10 (\O
+ML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 ) \OMS/ztmcm/m/n/10 ^^U [][]\OT1/ztmcm/m/n/
+10 (\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 )$\OT1/ptm/m/n/10 , safety is pre-ser
+ved
  []
 
 [9]
-Underfull \hbox (badness 1436) in paragraph at lines 1337--1342
+Underfull \hbox (badness 1436) in paragraph at lines 1338--1343
 []\OT1/ptm/b/n/10 Remark []\OT1/ptm/m/n/10 As it is pos-si-ble to no-tice, the 
 ac-ti-va-tion of
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 1337--1342
+Underfull \hbox (badness 1418) in paragraph at lines 1338--1343
 \OML/ztmcm/m/it/10 K[]$ \OT1/ptm/m/n/10 due to the trig-gers gen-er-ated by the
  vi-o-la-tion of
  []
 
 
-Underfull \hbox (badness 1817) in paragraph at lines 1337--1342
+Underfull \hbox (badness 1817) in paragraph at lines 1338--1343
 \OT1/ptm/m/n/10 role in the proof of The-o-rem []VI.1[]. For this rea-son,
  []
 
 
-Underfull \hbox (badness 2865) in paragraph at lines 1363--1365
+Underfull \hbox (badness 2865) in paragraph at lines 1364--1366
 \OT1/ptm/m/n/10 in-ter-val of $\OT1/ztmcm/m/n/10 ^^A\OML/ztmcm/m/it/10 T[]$ \OT
 1/ptm/m/n/10 but, due to the un-re-li-able net-work
  []
 
 [10]
-Underfull \hbox (badness 1867) in paragraph at lines 1418--1421
+Underfull \hbox (badness 1867) in paragraph at lines 1419--1422
 \OT1/ptm/m/n/10 able to guar-an-tee the be-haviour de-scribed be-fore and
  []
 
 
-Overfull \hbox (17.3415pt too wide) detected at line 1468
-[][][]
+Overfull \hbox (1.73311pt too wide) detected at line 1451
+[][][]\OML/ztmcm/m/it/10 v[] [] \OT1/ztmcm/m/n/10 = [] [] \OML/ztmcm/m/it/10 ;
  []
 
 
-Overfull \hbox (3.22475pt too wide) detected at line 1473
+Overfull \hbox (16.3129pt too wide) detected at line 1469
 [][][]
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 1554--1555
+Underfull \hbox (badness 10000) in paragraph at lines 1552--1553
 \OT1/ptm/m/n/10 is the fol-lower po-si-tion such that $\OML/ztmcm/m/it/10 b[]\O
 T1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 s[]; v[]; [] \OT1/ztmcm/m/n/10 +
  []
 
 
-Underfull \hbox (badness 1509) in paragraph at lines 1590--1591
+Underfull \hbox (badness 1509) in paragraph at lines 1588--1589
 []\OT1/ptm/m/n/10 The switched con-troller is there-fore im-ple-mented in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1624--1625
+Underfull \hbox (badness 3657) in paragraph at lines 1588--1589
+\OT1/ptm/m/n/10 tra-jec-to-ries []{[] are used to switch among the
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 1622--1623
 [] \OT1/ptm/b/n/10 else if  $\OML/ztmcm/m/it/10 z[]\OT1/ztmcm/m/n/10 (\OML/ztmc
 m/m/it/10 t; [][]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 )\OML
 /ztmcm/m/it/10 ; x[]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 )\
@@ -2311,123 +2307,154 @@ OML/ztmcm/m/it/10 ; t[]\OT1/ztmcm/m/n/10 ) \OML/ztmcm/m/it/10 < x[]\OT1/ztmcm/m
 /n/10 (\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 ) \OMS/ztmcm/m/n/10 ^^T
  []
 
-[12]
-Underfull \hbox (badness 2626) in paragraph at lines 1679--1681
+
+Overfull \hbox (1.18451pt too wide) detected at line 1662
+[][][][][]
+ []
+
+
+Overfull \hbox (6.97044pt too wide) detected at line 1674
+[][][][][]
+ []
+
+
+Underfull \vbox (badness 3907) has occurred while \output is active []
+
+
+Underfull \hbox (badness 2626) in paragraph at lines 1677--1679
 []\OT1/ptm/m/n/10 The con-troller $\OML/ztmcm/m/it/10 K[]\OT1/ztmcm/m/n/10 (\OM
 L/ztmcm/m/it/10 x[]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 t\OT1/ztmcm/m/n/10 ))$
 \OT1/ptm/m/n/10 , des-ig-nated as the L3-VC
  []
 
 
-Underfull \hbox (badness 6725) in paragraph at lines 1703--1704
+Underfull \hbox (badness 6725) in paragraph at lines 1701--1702
 []\OT1/ptm/m/n/10 For the sake of read-abil-ity, all pa-ram-e-ters used
  []
 
 
-Underfull \hbox (badness 3128) in paragraph at lines 1703--1704
+Underfull \hbox (badness 3128) in paragraph at lines 1701--1702
 \OT1/ptm/m/n/10 in the sim-u-la-tions are listed in Ap-pendix  []B[]. The
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1703--1704
-\OT1/ptm/m/n/10 con-trollers []-[] pre-sented in []VI-E[] have been
+Underfull \hbox (badness 10000) in paragraph at lines 1701--1702
+\OT1/ptm/m/n/10 con-trollers []{[] pre-sented in []VI-E[] have been
  []
 
 
-Underfull \hbox (badness 4792) in paragraph at lines 1703--1704
+Underfull \hbox (badness 4792) in paragraph at lines 1701--1702
 \OT1/ptm/m/n/10 im-ple-mented as Non-lin-ear Model Pre-dic-tive Con-trols
  []
 
 
 LaTeX Warning: Reference `fig:trackProfile' on page 13 undefined on input line 
-1705.
+1703.
 
 PGFPlots: reading {dataMatlab/trackProfile/curvature.txt}
 PGFPlots: reading {dataMatlab/trackProfile/grad.txt}
 
-Underfull \hbox (badness 1424) in paragraph at lines 1765--1766
+Underfull \hbox (badness 1424) in paragraph at lines 1762--1763
 \OT1/ptm/m/n/10 suc-cess-fully closes the gap and es-tab-lishes the vir-tual
  []
 
 [13]
-Underfull \hbox (badness 2103) in paragraph at lines 1767--1768
+Underfull \hbox (badness 2103) in paragraph at lines 1764--1765
 \OT1/ptm/m/n/10 the leader and fol-lower starts to de-grade, lead-ing to
  []
 
 
-Underfull \hbox (badness 1783) in paragraph at lines 1767--1768
+Underfull \hbox (badness 1783) in paragraph at lines 1764--1765
 \OT1/ptm/m/n/10 op-er-a-tions de-spite the com-mu-ni-ca-tion break-down. This
  []
 
 
-Underfull \hbox (badness 1515) in paragraph at lines 1767--1768
+Underfull \hbox (badness 1515) in paragraph at lines 1764--1765
 \OT1/ptm/m/n/10 block, as de-scribed in Sub-sec-tion []VI-C[], and the role
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 1767--1768
+Underfull \hbox (badness 1365) in paragraph at lines 1764--1765
 \OT1/ptm/m/n/10 sta-bil-ity un-der un-ex-pected com-mu-ni-ca-tion fail-ures. Th
 e
  []
 
 
-Underfull \hbox (badness 2582) in paragraph at lines 1770--1771
+Underfull \hbox (badness 2582) in paragraph at lines 1767--1768
 \OT1/ptm/m/n/10 the core sit-u-a-tions en-coun-tered in rail-way op-er-a-tions,
 
  []
 
 
-Underfull \hbox (badness 3209) in paragraph at lines 1770--1771
+Underfull \hbox (badness 3209) in paragraph at lines 1767--1768
 \OT1/ptm/m/n/10 safety and ef-fi-ciency. These sce-nar-ios un-der-score the
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 1770--1771
+Underfull \hbox (badness 1603) in paragraph at lines 1767--1768
 \OT1/ptm/m/n/10 sys-tem's abil-ity to man-age the most fun-da-men-tal and
  []
 
 
-Underfull \vbox (badness 1048) has occurred while \output is active []
-
- [14]
-Underfull \hbox (badness 6859) in paragraph at lines 1830--1831
-\OT1/ptm/m/n/10 con-trol sys-tem pro-cesses data faster than in OS1,
- []
+LaTeX Warning: Reference `fig:os2_a' on page 14 undefined on input line 1772.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1830--1831
-\OT1/ptm/m/n/10 time and high-light-ing ro-bust-ness un-der chal-leng-ing
- []
+LaTeX Warning: Reference `fig:os2_h' on page 14 undefined on input line 1772.
+
+[14]
+
+LaTeX Warning: Reference `fig:os2_c' on page 15 undefined on input line 1778.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1839--1840
+LaTeX Warning: Reference `fig:os2_b' on page 15 undefined on input line 1778.
+
+
+LaTeX Warning: Reference `fig:os2_d' on page 15 undefined on input line 1778.
+
+
+LaTeX Warning: Reference `fig:os2_h' on page 15 undefined on input line 1778.
+
+
+LaTeX Warning: Reference `fig:os2_g' on page 15 undefined on input line 1778.
+
+
+LaTeX Warning: Reference `fig:os2_e' on page 15 undefined on input line 1780.
+
+
+LaTeX Warning: Reference `fig:os2_f' on page 15 undefined on input line 1780.
+
+
+LaTeX Warning: Reference `fig:os2_d' on page 15 undefined on input line 1780.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1835--1836
 \OT1/ptm/m/n/10 of a ro-bust con-trol frame-work that ac-com-mo-dates
  []
 
 
-Underfull \hbox (badness 3612) in paragraph at lines 1839--1840
+Underfull \hbox (badness 3612) in paragraph at lines 1835--1836
 \OT1/ptm/m/n/10 through-put. By in-cor-po-rat-ing a safety con-trol bar-rier
  []
 
 
-Underfull \hbox (badness 2142) in paragraph at lines 1841--1842
+Underfull \hbox (badness 2142) in paragraph at lines 1837--1838
 []\OT1/ptm/m/n/10 The sim-u-la-tion re-sults con-firm the con-trol sys-tem's
  []
 
 
-Underfull \hbox (badness 1472) in paragraph at lines 1841--1842
+Underfull \hbox (badness 1472) in paragraph at lines 1837--1838
 \OT1/ptm/m/n/10 Over-all, the con-trol strat-egy proved adept at han-dling
  []
 
 [15]
-Underfull \hbox (badness 1661) in paragraph at lines 1910--1912
+Underfull \hbox (badness 1661) in paragraph at lines 1906--1908
 \OT1/ptm/m/n/10 while the fol-lower's RUP stops at time $\OML/ztmcm/m/it/10 t[]
 \OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 t[]\OMS/ztmcm/m/n/10 j[]\OT1/ztmcm/m/n/10
  ) =
  []
 
 
-Underfull \hbox (badness 3568) in paragraph at lines 1939--1939
+Underfull \hbox (badness 3568) in paragraph at lines 1935--1935
 [][][][]\OT1/ptm/m/n/8 To ease the no-ta-tion we will write $\OML/ztmcm/m/it/8 
 b[]\OT1/ztmcm/m/n/8 ([][](\OML/ztmcm/m/it/8 t\OT1/ztmcm/m/n/8 )\OML/ztmcm/m/it/
 8 ; [][]\OT1/ztmcm/m/n/8 (\OML/ztmcm/m/it/8 t\OT1/ztmcm/m/n/8 ))$ \OT1/ptm/m/n/
@@ -2435,7 +2462,7 @@ b[]\OT1/ztmcm/m/n/8 ([][](\OML/ztmcm/m/it/8 t\OT1/ztmcm/m/n/8 )\OML/ztmcm/m/it/
  []
 
 
-Underfull \hbox (badness 2269) in paragraph at lines 1938--1940
+Underfull \hbox (badness 2269) in paragraph at lines 1934--1936
 \OT1/ptm/m/n/10 at $\OML/ztmcm/m/it/10 x \OT1/ztmcm/m/n/10 = [[][](\OML/ztmcm/m
 /it/10 t[]\OT1/ztmcm/m/n/10 )\OML/ztmcm/m/it/10 ; [][]\OT1/ztmcm/m/n/10 (\OML/z
 tmcm/m/it/10 t[]\OT1/ztmcm/m/n/10 )][]$\OT1/ptm/m/n/10 , $\OML/ztmcm/m/it/10 b[
@@ -2443,8 +2470,15 @@ tmcm/m/it/10 t[]\OT1/ztmcm/m/n/10 )][]$\OT1/ptm/m/n/10 , $\OML/ztmcm/m/it/10 b[
 n be in-ter-preted as
  []
 
+
+Underfull \hbox (badness 1902) in paragraph at lines 1962--1963
+[]\OT1/ptm/m/n/10 Let $\OML/ztmcm/m/it/10 t[]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it
+/10 t[]\OMS/ztmcm/m/n/10 j[]\OT1/ztmcm/m/n/10 ) = [] []$ \OT1/ptm/m/n/10 rep-re
+-sent the
+ []
+
 [16]
-Overfull \hbox (10.19724pt too wide) detected at line 2027
+Overfull \hbox (10.19724pt too wide) detected at line 2023
 \OML/ztmcm/m/it/10 b\OT1/ztmcm/m/n/10 ([\OML/ztmcm/m/it/10 x[]\OT1/ztmcm/m/n/10
  (\OML/ztmcm/m/it/10 t\OMS/ztmcm/m/n/10 j\OML/ztmcm/m/it/10 K[]\OT1/ztmcm/m/n/1
 0 )\OML/ztmcm/m/it/10 ; x[]\OT1/ztmcm/m/n/10 (\OML/ztmcm/m/it/10 t\OMS/ztmcm/m/
@@ -2456,7 +2490,7 @@ L/ztmcm/m/it/10 t\OMS/ztmcm/m/n/10 j[]\OT1/ztmcm/m/n/10 )\OML/ztmcm/m/it/10 ; x
  []
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 2079--2080
+Underfull \hbox (badness 1688) in paragraph at lines 2083--2084
 \OT1/ptm/m/n/10 the con-troller pa-ram-e-ters, and those char-ac-ter-iz-ing the
 
  []
@@ -2473,9 +2507,10 @@ Underfull \hbox (badness 2221) in paragraph at lines 64--68
  Pro-ceed-ings of the
  []
 
+[17]
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
 11.
-(C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
+ (C:\Users\user\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 Underfull \hbox (badness 10000) in paragraph at lines 110--113
@@ -2483,7 +2518,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 110--113
 OT1/ptm/m/n/8 ,'' aug
  []
 
-[17]) [18
+) [18
 
 ]
 PGFPlots: reading {dataMatlab/OS1/B.txt}
@@ -2491,45 +2526,25 @@ PGFPlots: reading {dataMatlab/OS1/event_B.txt}
 PGFPlots: reading {dataMatlab/OS1/b_0.txt}
 PGFPlots: reading {dataMatlab/OS1/interDistance.txt}
 PGFPlots: reading {dataMatlab/OS1/d.txt}
+PGFPlots: reading {dataMatlab/OS1/interDistance_800.txt}
 PGFPlots: reading {dataMatlab/OS1/velocityLeader.txt}
 PGFPlots: reading {dataMatlab/OS1/velocityFollower.txt}
-PGFPlots: reading {dataMatlab/OS1/Z_tau_transformed.txt}
-PGFPlots: reading {dataMatlab/OS1/event_z_region_transformed.txt}
+PGFPlots: reading {dataMatlab/OS1/Z_tau.txt}
+PGFPlots: reading {dataMatlab/OS1/event_z_region.txt}
 PGFPlots: reading {dataMatlab/OS1/zoom_B.txt}
 PGFPlots: reading {dataMatlab/OS1/zoom_event_B.txt}
 PGFPlots: reading {dataMatlab/OS1/zoom_b_0.txt}
 PGFPlots: reading {dataMatlab/OS1/forceLeader.txt}
 PGFPlots: reading {dataMatlab/OS1/forceFollower.txt}
-PGFPlots: reading {dataMatlab/OS1/zoom_Z_tau_transformed.txt}
-PGFPlots: reading {dataMatlab/OS1/zoom_event_z_region_transformed.txt}
+PGFPlots: reading {dataMatlab/OS1/zoom_Z_tau.txt}
+PGFPlots: reading {dataMatlab/OS1/zoom_event_z_region.txt}
 PGFPlots: reading {dataMatlab/OS1/zoom_z_tau_1.txt}
 PGFPlots: reading {dataMatlab/OS1/zoom_z_tau_2.txt}
 PGFPlots: reading {dataMatlab/OS1/zoom_z_tau_3.txt}
 PGFPlots: reading {dataMatlab/OS1/zoom_distanceFollower.txt}
 
 
-LaTeX Warning: Float too large for page by 52.77777pt on input line 2381.
-
-PGFPlots: reading {dataMatlab/OS2/B.txt}
-PGFPlots: reading {dataMatlab/OS2/event_B.txt}
-PGFPlots: reading {dataMatlab/OS2/b_0.txt}
-PGFPlots: reading {dataMatlab/OS2/interDistance.txt}
-PGFPlots: reading {dataMatlab/OS2_no_delay_estimator/interDistance.txt}
-PGFPlots: reading {dataMatlab/OS2/d.txt}
-PGFPlots: reading {dataMatlab/OS2/velocityLeader.txt}
-PGFPlots: reading {dataMatlab/OS2/velocityFollower.txt}
-PGFPlots: reading {dataMatlab/OS2/Z_tau_transformed.txt}
-PGFPlots: reading {dataMatlab/OS2/event_z_region_transformed.txt}
-PGFPlots: reading {dataMatlab/OS2/zoom_B.txt}
-PGFPlots: reading {dataMatlab/OS2/zoom_event_B.txt}
-PGFPlots: reading {dataMatlab/OS2/zoom_b_0.txt}
-PGFPlots: reading {dataMatlab/OS2/forceLeader.txt}
-PGFPlots: reading {dataMatlab/OS2/forceFollower.txt}
-PGFPlots: reading {dataMatlab/OS2/zoom_interDistance.txt}
-PGFPlots: reading {dataMatlab/OS2_no_delay_estimator/zoom_interDistance.txt}
-PGFPlots: reading {dataMatlab/OS2/tauEstimated.txt}
-
-LaTeX Warning: Float too large for page by 54.35933pt on input line 2653.
+LaTeX Warning: Float too large for page by 43.75996pt on input line 2387.
 
 
 ** Conference Paper **
@@ -2543,10 +2558,10 @@ Before submitting the final camera ready copy, remember to:
  process uses the US letter (8.5in X 11in) paper size.
 
 
-Package caption Warning: Unused \captionsetup[figure] on input line 2103.
+Package caption Warning: Unused \captionsetup[figure] on input line 2107.
 See the caption package documentation for explanation.
 
-[19] [20] (VC_paper.aux)
+[19] (VC_paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -2559,13 +2574,13 @@ Package rerunfilecheck Info: File `VC_paper.out' has not changed.
 (rerunfilecheck)             Checksum: DAB61DEED6D7272FEEEBAF32C7F28644;4091.
  ) 
 Here is how much of TeX's memory you used:
- 57347 strings out of 474542
- 1333008 string characters out of 5744918
- 5534006 words of memory out of 12000000
- 78384 multiletter control sequences out of 15000+600000
+ 57248 strings out of 474542
+ 1331135 string characters out of 5744918
+ 4302474 words of memory out of 12000000
+ 78290 multiletter control sequences out of 15000+600000
  622760 words of font info for 163 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 109i,22n,107p,2390b,2566s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,22n,107p,2390b,2916s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mex10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/cm/cmmi10.pfb><C:/Users/user/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -2580,9 +2595,9 @@ ms/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/user/AppData/Local/Program
 s/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/user/AppData/Local/Program
 s/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/user/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on VC_paper.pdf (20 pages, 1168649 bytes).
+Output written on VC_paper.pdf (19 pages, 920365 bytes).
 PDF statistics:
- 672 PDF objects out of 1000 (max. 8388607)
- 189 named destinations out of 1000 (max. 500000)
+ 664 PDF objects out of 1000 (max. 8388607)
+ 187 named destinations out of 1000 (max. 500000)
  322 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -190,7 +190,7 @@ class ATO:
     
     def emergency_controller(self):
         # TODO modificare costante
-        u_e = self.emergency_braking - 5000
+        u_e = self.emergency_braking - 30000
         #u_e = -370000
         
         if u_e < -370000:

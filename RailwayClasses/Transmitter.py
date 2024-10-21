@@ -21,7 +21,7 @@ class Transmitter:
         message = None
         # every packet48 time a message is sent, it is a trigger to trasmit data
         # if abs(timestamp % self.packet48) < self.ts or abs(timestamp % self.packet48 - self.packet48) < self.ts:
-        is_triggered = math.isclose(round(timestamp % self.packet48,2), 0, abs_tol=1e-2) or math.isclose(round(timestamp % self.packet48,2), self.packet48, abs_tol=1e-2)
+        is_triggered = math.isclose(round(timestamp % self.packet48,2), 0, abs_tol=1e-4) or math.isclose(round(timestamp % self.packet48,2), self.packet48, abs_tol=1e-4)
         if is_triggered:
             
             s_prediction, v_prediction, t_prediction = self.train.rlp_prediction(self.train.ato.u_guess, timestamp)

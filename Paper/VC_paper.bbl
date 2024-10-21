@@ -14,8 +14,8 @@ E.~T.~S. Institute, ``Future rail mobile communication system (frmcs); study on
   Shift2Rail, 2020.
 
 \bibitem{ertmsl3}
-I.~of~railway~signal engineers, ``Ertms level 3: the game-changer,'' tech.
-  rep., IRSE, 2017.
+N.~Furness, H.~Van~Houten, L.~Arenas, and M.~Bartholomeus, ``{ERTMS level 3:
+  the game-changer},'' {\em IRSE news}, vol.~232, pp.~2--9, 2017.
 
 \bibitem{flamini2018}
 F.~Flammini, S.~Marrone, R.~Nardone, A.~Petrillo, S.~Santini, and V.~Vittorini,
@@ -31,8 +31,8 @@ C.~Di~Meo, M.~Di~Vaio, F.~Flammini, R.~Nardone, S.~Santini, and V.~Vittorini,
   no.~6, pp.~2545--2556, 2020.
 
 \bibitem{ertmsl4}
-I.~of~railway~signal engineers, ``Ertms level 4, train convoys or virtual
-  coupling,'' tech. rep., IRSE, 2016.
+I.~Mitchell, ``{ERTMS Level 4, Train Convoys or Virtual Coupling},'' {\em IRSE
+  news}, 2016.
 
 \bibitem{wu2023railway}
 Q.~Wu, X.~Ge, Q.-L. Han, and Y.~Liu, ``Railway virtual coupling: A survey of
@@ -72,9 +72,9 @@ G.~Basile, E.~Napoletano, A.~Petrillo, and S.~Santini, ``Roadmap and challenges
   Discover Artificial Intelligence}, vol.~2, no.~1, p.~27, 2022.
 
 \bibitem{wang2021}
-H.~Wang, Q.~Zhao, S.~Lin, D.~Cui, C.~Luo, L.~Zhu, X.~Wang, and T.~Tang, ``A
-  reinforcement learning empowered cooperative control approach for iiot-based
-  virtually coupled train sets,'' {\em IEEE Transactions on Industrial
+H.~Wang, Q.~Zhao, S.~Lin, D.~Cui, C.~Luo, L.~Zhu, X.~Wang, and T.~Tang, ``{A
+  Reinforcement Learning Empowered Cooperative Control Approach for IIoT-Based
+  Virtually Coupled Train Sets},'' {\em IEEE Transactions on Industrial
   Informatics}, vol.~17, no.~7, pp.~4935--4945, 2021.
 
 \bibitem{BASILE2024108120}

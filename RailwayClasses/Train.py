@@ -7,7 +7,7 @@ import math
 
 class Train:
     def __init__(self, position=0.0, velocity=0.0, acceleration=0.0, ts=0.0, 
-                 packet48 = 1.02, ato = None, transmitter= None, receiver = None):
+                 packet48 = 1.02, ato = None, transmitter= None, receiver = None, delay_estimator_block = None):
         """
         Inizializza un'istanza della classe Train.
 
@@ -22,6 +22,8 @@ class Train:
         self.acceleration = acceleration
         self.ts = ts
         self.packet48 = packet48
+        self.delay_estimator_block = delay_estimator_block
+
         
         # ATO MODULE
         self.ato = ato
@@ -52,7 +54,7 @@ class Train:
         self.flag_emergency = False
         # window stack to estimate the lambda factor for the exponential distribution
         self.stack_window_channel = list()
-        self.len_stack = 20
+        self.len_stack = 100
         self.p_channel = None
         self.min_T = None
         
@@ -127,19 +129,22 @@ class Train:
     def step_follower(self, timestamp, message_l_channel):
         
         # update the leader message stored in the receiver
-        delay_channel = self.receiver.step(message_l_channel)
+        delay_channel, tl_KB = self.receiver.step(timestamp,message_l_channel)
         tau_estimated = None
         
         if delay_channel is not None:
             tau_bar = self.mle_estimator(delay_channel)
+            #print(tau_bar)
             self.tau_bar = tau_bar
             tau_estimated = self.tau_bar
-            # z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*self.tau_bar)
-            # z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*self.tau_bar)
-            # z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*self.tau_bar)
-            z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*2.5)
-            z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*2.5)
-            z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*2.5)
+            if self.delay_estimator_block:
+                z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*self.tau_bar)
+                z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*self.tau_bar)
+                z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*self.tau_bar)
+            else:
+                z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*1.8)
+                z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*1.8)
+                z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*1.8)
             
             self.ato.set_z_tau_ref(z_F_1, time_ref_1, z_F_2, time_ref_2, z_F_3, time_ref_3 )
             
@@ -177,18 +182,19 @@ class Train:
             self.ato.set_u_past(u_0/self.ato.U_FACTOR_VC)
             z_region = 0
             
-        if self.velocity <= 0.1:
-            u_0 = 0
-            self.velocity = 0
-            self.acceleration = 0
-            z_region = 3
+        # if self.velocity <= 0.1:
+        #     if u_0<0:
+        #         u_0 = 0
+        #     self.velocity = 0
+        #     self.acceleration = 0
+        #     z_region = 3
         
         
         
         # run the model dynamic
         s_f, v_f, a_f, j_f = self.dynamic(u_0)
         
-        return s_f, v_f, a_f, j_f, u_0, result_f, tau_estimated, z_tau_3, z_tau_2, z_tau_1, z_region, ref_tau
+        return s_f, v_f, a_f, j_f, u_0, result_f, tau_estimated, z_tau_3, z_tau_2, z_tau_1, z_region, ref_tau, tl_KB
     
     def step_leader(self, timestamp, v_l_target):
         # calculate the control input using the NMPC
@@ -231,11 +237,13 @@ class Train:
         else:
             self.push(delay)
             
-        average_delay = sum(self.stack_window_channel)/len(self.stack_window_channel)
+        average_delay = sum(self.stack_window_channel)/len(self.stack_window_channel)- self.min_T
         
-        lambda_estimated = 1/average_delay
+        lambda_estimated = 1/(average_delay)
         
-        tau_bar = 0.8 - (math.log(1-self.p_channel)/lambda_estimated)
+        #print(str(average_delay))
+        
+        tau_bar = self.min_T - (math.log(1-self.p_channel)/lambda_estimated)
             
         return tau_bar
         
@@ -310,7 +318,7 @@ class Train:
         
         # TODO import as parameters
         a_b_l = 0.7
-        a_b_f = 0.7
+        a_b_f = 0.68
         max_time_delay = 5
         
         # condition on time
@@ -347,12 +355,14 @@ class Train:
         
         values = np.where((tkBL + timestamp[0]) < (timestamp + tau))[0]
 
-        vL_tau = vl - abs(0.7)*tau
+        
         
         if len(values)>0:
             idx_start = np.where(timestamp == values[0])
             idx_end = np.where(timestamp == values[-1])
             vL_tau[idx_start:idx_end]=0
+            
+        vL_tau = vl - abs(0.7)*tau
 
         return vL_tau
 
@@ -363,6 +373,7 @@ class Train:
     def vFollower_tau(self, delta):
         
         return self.velocity+delta
+
  
         
     def sLeader_tau(self, sl, timestamp, vl, tkBL, tau):
@@ -371,13 +382,15 @@ class Train:
         
         values = np.where((tkBL + timestamp[0]) < (timestamp + tau))[0]
 
-        sL_tau = sl+vl*tau-(1/2)*(abs(0.7)*tau**2)
+        
         
         if len(values)>0:
             idx_start = np.where(timestamp == values[0])
             idx_end = np.where(timestamp == values[-1])
             sL_tau[idx_start:idx_end]= sl[idx_start:idx_end]+vl[idx_start:idx_end]*tau-(1/2)*(abs(0.7)*((tkBL[idx_start:idx_end] + timestamp[0])-timestamp)**2)
 
+        sL_tau = sl+vl*tau-(1/2)*(abs(0.7)*tau**2)
+        
         return sL_tau
 
     def ZF_second(self, sl_tau, v_l, tau):
@@ -403,7 +416,7 @@ class Train:
         tkBL = self.stoppingTime(v_l, t)
         
         vl_tau = self.vLeader_tau(v_l, tau, tkBL, t)
-        vf_tau = self.vFollower_tau(1)
+        vf_tau = self.vFollower_tau(1.5)
 
         sl_tau = self.sLeader_tau(s_l, t, v_l, tkBL, tau)
         

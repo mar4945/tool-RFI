@@ -147,6 +147,7 @@
 
 
 
+
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
@@ -259,7 +260,7 @@ postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
 \newabbreviation{vc}{VC}{Virtual Coupling} 
 \newabbreviation{vcts}{VCTS}{Virtually Coupled Train Sets}
 \newabbreviation{rl}{RL}{Reinforcement Learning} 
-\newabbreviation{ddpg}{DDPG}{Deep Deterministic Gradient Policy}
+\newabbreviation{ddpg}{DDPG}{Deep Deterministic Policy Gradient}
 \newabbreviation{v2i}{V2I}{Vehicle-to-Infrastructure}
 \newabbreviation{v2v}{V2V}{Vehicle-to-Vehicle}
 
@@ -373,7 +374,7 @@ The second important element of the railway network is the \gls{rbc} which serve
 \end{comment}
 
 
-The current communication technology present on the railway infrastructure is \gls{v2i}, namely, the communication between the \gls{rbc} and trains. The existing standard \gls{v2i} is an integral component of the railway communication infrastructure, relying on the GSM-R network. Nowadays, the emergence of the 5G network-based railway communication technology, known as Future Railway Communication and Management System\cite{frmcs}, it is a viable \gls{v2v} technology which is gradually gaining prominence due to its advanced capabilities in data transfer, reliability and  low-latency characteristics, ensuring swift and real-time data exchange among trains within the network.
+The current communication technology present on the railway infrastructure is \gls{v2i}, namely, the communication between the \gls{rbc} and trains. The existing standard \gls{v2i} is an integral component of the railway communication infrastructure, relying on the GSM-R network. Nowadays, the emergence of the 5G network-based railway communication technology, known as Future Railway Communication and Management System\cite{frmcs}, is a viable \gls{v2v} technology. It is, indeed,  gradually gaining prominence due to its advanced capabilities in data transfer, reliability and  low-latency characteristics, ensuring swift and real-time data exchange among trains within the network.
 
 
 The growing popularity of trains as a mode of transportation presents a challenge of overburdening the railway system's capacity. As a result, enhancing infrastructure utilization and increasing capacity are two crucial objectives that railways are currently striving to achieve. These goals are being tackled by Shift2Rail~\cite{shift2rail}, an initiative focused on developing innovative technologies and solutions to enhance the efficiency, safety, and sustainability of the railway system.
@@ -396,7 +397,7 @@ In the following, we will introduce two \gls{ertms} technology standards, upon w
 Nowadays, the technology for \gls{vc} is still in the conception stage, and research is underway to determine the best way to implement it~\cite{flamini2018}. The control field is particularly interested in finding a solution that can provide the necessary velocity, reliability, and safety to support real-time communication between trains. In addition to these technical considerations, research in the control field is also underway to determine the best way to implement \gls{vc} from an operational perspective~\cite{dimeo2020}. This involves studying the impact of the new technology on train operations and identifying the best practices for integrating the technology into the existing railway network~\cite{ertmsl4}.
 
 
- In conclusion, \gls{vc} presents a notable advantage in reducing railway delays, particularly in departure times. This innovative system holds the potential to decrease departure delays by optimizing train coordination and spacing. Promoting a more synchronized and efficient operation, \gls{vc} emerges as a valuable solution to increase the capacity and enhances punctuality across the railway network.
+ In conclusion, \gls{vc} presents a notable advantage in reducing railway delays, particularly in departure times. This innovative system holds the potential to decrease departure delays by optimizing train coordination and spacing. Promoting a more synchronized and efficient operation, \gls{vc} emerges as a valuable solution to increase the capacity and enhance punctuality across the railway network.
 %
 \subsection{Related Works}
 \label{subsec:relatedWorks}
@@ -405,7 +406,7 @@ Nowadays, the technology for \gls{vc} is still in the conception stage, and rese
 
 The integration of \gls{ml} into control algorithms has gained significant attention in the context of railway systems, particularly concerning virtual coupling~\cite{basile2022roadmap}. In~\cite{wang2021}, the use of \gls{rl} is proposed to obtain an optimal policy for IoT-based \gls{vcts}. The proposed approach combines \gls{rl} and artificial potential field to achieve global optimal policy and increase efficiency. Simulation results demonstrate the effectiveness of the proposed \gls{rl}-based cooperative control approach for IoT-based \gls{vcts}. The control strategy presented in~\cite{BASILE2024108120} shows a decentralized \gls{vc} using a \gls{rl} approach based on the \gls{ddpg} algorithm, with a focus on robustness and safety. The robustness is evaluated solely through Monte Carlo simulations, considering parameter uncertainties of the dynamical system. However, the approach does not provide formal analytical guarantees of robustness or safety. Additionally, the strategy does not account for communication impairments from communication channel, including time-varying delays in \gls{v2v} communication, packet losses, or switching topologies. While Monte Carlo simulations provide empirical insights, formal guarantees remain absent for these challenging scenarios.
 %
-The bottleneck of this innovative \gls{ml}-based control type lies in the foundations of its theory. Currently, in the railway domain, it is not yet possible to certify an \gls{ml}-based controller according to railway safety standards.
+The bottleneck of this \gls{ml}-based control type lies in the foundations of its theory. Currently, in the railway domain, it is not yet possible to certify an \gls{ml}-based controller according to railway safety standards, therefore making such approaches not realisic.
 
 The approaches most closely related to our solution are the works in~\cite{felez2019model} and~\cite{wu2021virtually}. In~\cite{felez2019model}, a novel train control system utilizing virtual coupling is introduced. This system employs a decentralized model predictive control framework to optimize the control of both leading and following trains in a convoy. Comparative analyses, particularly against the moving block system, reveal improved performance, demonstrating the virtual coupling's efficacy in reducing headway and ensuring safe train separation. A linear \gls{mpc} optimizing goals like track spacing, velocity, and comfort is implemented in~\cite{wu2021virtually}. Constraints, including line velocity, collision avoidance, and traction/braking, are considered. In this work, although  safety constraints are considered inside the controller, no certification of safety is demonstrated. Compared with these two contributions, our control scheme takes into account the intrinsic characteristics of the communication channel and assumes a heterogeneous platoon with parameters uncertainty. In both~\cite{felez2019model} and~\cite{wu2021virtually}, the authors propose decentralized linear \glspl{mpc} to realize the \gls{vc} and assume the two trains can communicate in a reliable sampled framework.
 In our framework we also consider (nonlinear) \glspl{mpc} but we do not focus on this aspect in details. 
@@ -471,17 +472,17 @@ This will be achieved through several control blocks simultaneously working. All
 
 Specifically:
 \begin{itemize}
-\item The {\em leader robust lower proxy (RLP) predictor block} is responsible of predicting the evolution of a system (namely the RLP) that provides a lower bound of the true leader trajectory subjected to an hypothetical emergency braking (that is, the maximum allowed deceleration). 
+\item The {\em Leader robust lower proxy (RLP) predictor block} is responsible of predicting the evolution of a system (namely the RLP) that provides a lower bound of the true leader trajectory subjected to an hypothetical emergency braking (that is, the maximum allowed deceleration). 
 This block will be reset at follower packets receptions with the updated state of the leader. 
-\item The {\em safety control block} is fed with the output of the leader RLP predictor and the actual state of the follower. It continuously monitor for the overall system safety via a suitable control barrier function. Such monitoring runs on predicted information even if no updates are received from the leader. If conditions are detected such that safety might be a risk, an emergency braking is imposed to the follower, overlapping any other possible control. The emergency braking is kept until safety conditions are restored (including new leader updates). The safety control block guarantees safety in a certified manner and robustly with respect to follower and leader parameters uncertainties.
-\item The {\em cruise virtual coupling control block} manages the follower during the normal cruise (i.e., when no safety issues are raised). It implements a predictive controller over a receding horizon while keeping the position of the follower at a certain (time-varying) distance from the leader. This distance is such that, if no updates are received, the follower can still move with its planned velocity for a given tunable amount of time before possibly trigger an emergency braking. 
+\item The {\em Safety control block} is fed with the output of the leader RLP predictor and the actual state of the follower. It continuously monitor for the overall system safety via a suitable control barrier function. Such monitoring runs on predicted information even if no updates are received from the leader. If conditions are detected such that safety might be a risk, an emergency braking is imposed to the follower, overlapping any other possible control. The emergency braking is kept until safety conditions are restored (including new leader updates). The safety control block guarantees safety in a certified manner and robustly with respect to follower and leader parameters uncertainties and communication network unreliability. 
+\item The {\em Cruise virtual coupling control block} manages the follower during the normal cruise (i.e., when no safety issues are raised). It implements a predictive controller over a receding horizon while keeping the position of the follower at a certain (time-varying) distance from the leader. This distance is such that, if no updates are received, the follower can still move with its planned velocity for a given tunable amount of time before possibly trigger an emergency braking. 
 This feature allows to implicitly regulate the inter-train distance according to the characteristics of the communication channel, enlarging or squeezing this dwell time in presence of less or more reliable communication (respectively). 
 
-\item The {\em  delay estimator block} continuously calculates the communication delay between the leader and follower by analyzing packet arrival times. This real-time estimation allows the control system to adjust reference trajectories based on current delay conditions, ensuring smooth coordination despite channel variability. The block interacts with the cruise virtual coupling block to maintain system safety and minimize the impact of communication delays on overall performance.
+\item The {\em  Delay estimator block} continuously calculates the communication delay between the leader and follower by analyzing packet arrival times. This real-time estimation allows the control system to adjust reference trajectories based on current delay conditions, ensuring smooth coordination despite channel variability. The block interacts with the Cruise virtual coupling block to maintain system safety and minimize the impact of communication delays on overall performance.
 \end{itemize} 
 It is worth mentioning that the proposed architecture does not prescribe a specific controller. Rather, it provides an environment enabling several possible controller choices, leaving the specific design to the developer. 
 Therefore, while in this paper we propose a switching controller over three possible operational modes (with more or less aggressive maneuvers according to the inter-train distance), several other choices are possible. 
-Also, our framework seamless allows the implementation of any additional safety criteria or the integration of other modules/features, such as an online estimation of the channel quality and characteristic delay, so as to adjust in real-time the dwell time in the cruise virtual coupling control block. 
+Also, our framework seamless allows the implementation of any additional safety criteria or the integration of other modules/features, such as the online estimation of the channel quality and characteristic delay, so as to adjust in real-time the dwell time in the Cruise virtual coupling control block. Such block is presented in this paper but not strictly necessary for safety and stability. 
 
 
 
@@ -501,10 +502,10 @@ Also, our framework seamless allows the implementation of any additional safety 
 \subsection{Dynamical system and Barrier Function}
 \label{subsec:barrier}
 
-Here we introduce the concept of safe set and barrier function. We keep our illustration rather informal and we only provide those concepts which will be useful in the rest of the paper. For this reason we do not always follow a "standard" notation and cast this background for the specific problem in hand.  Further details can be found in several papers and books in the literature, see for example \cite{belta} and references therein. 
+Here we introduce the concept of safe set and barrier function. We keep our illustration rather informal and we only provide those concepts which will be useful in the rest of the paper. For this reason we do not always follow a ``standard" notation and cast this background for the specific problem in hand.  Further details can be found in several papers and books in the literature, see for example \cite{belta} and references therein. 
 
 
-Le us consider a dynamical system described by 
+Let us consider a dynamical system described by 
 \begin{subequations}\label{eq:dynamical_system}
 \begin{align}
 	& \dot{x}(t) = f(x(t), u(t)), \label{eq:dynamics}\\
@@ -645,7 +646,7 @@ Suppose that the controller is robustly safety compliant and the trajectory
 $x(t)=\phi(t,t_0,x_0,K(\cdot),p)$ is bounded for any $p\in\mathcal{P}$ and any valid initial condition $x_0\in\Bbb{R}^n$. Then, the limit set $\omega(x_0,p)\subseteq \mathcal{S}$ for all $x_0$.
 
 \begin{proof}
-The proof is a direct consequence of Theorem \ref{thm:safety-compliant} applied at any dynamical system model and any parameter value $p$.
+The proof is a direct consequence of Theorem \ref{thm:safety-compliant} applied at any dynamical system model for any parameter value $p$.
 \end{proof}
 \end{theorem}
 
@@ -753,7 +754,7 @@ The model employed in this manuscript relies on the principles of longitudinal t
 %
 
 We utilize the symbols ${x}_1^i(t)$ and ${x}_2^i(t)$ to represent the $i$-th train's position and velocity, respectively, with $i\in\{L, F\}$. By convention, we consider a reference frame at the head of each train (therefore the position is referred to as the train head). 
-Also, we consider positive positions, with the origin at the beginning of the railway. Implicitly, both position and velocity will only be nonnegative (the trains cannot move backward during normal operations). The constraints ${x}_1^i(t)\leq 0$ and ${x}_2^i(t)\leq 0$ will be therefore implicitly included in compact term \eqref{eq:dynamical_system_param_i_constraints}.
+Also, we consider positive positions, with the origin at the beginning of the railway. Implicitly, both position and velocity will only be nonnegative (the trains cannot move backward during normal operations). The constraints ${x}_1^i(t)\geq 0$ and ${x}_2^i(t)\geq 0$ will be therefore implicitly included in compact term \eqref{eq:dynamical_system_param_i_constraints}.
  
 The state vector is compactly written as {$x^i(t)=(x_1^i(t),x_2^i(t))^T$}.
 The variable $u^i(t)$ is the control driving or braking force; $\mathrm{F}_e^i$ denotes the external force originating from the track; $M^i$ denotes the mass parameter, while $A^i$ encompasses both rolling resistance and bearing resistance; $B^i$ is a coefficient related to the flange friction, and $C^i$ represents the aerodynamic coefficient.
@@ -936,12 +937,12 @@ where $L^\mathrm{L}$ is the leader's length.
 In order to ensure that the system solution always stays in $\mathcal{S}^\prime(x)$, we consider for this paper another safe set $\mathcal{S}$ such that $\mathcal{S}\subseteq \mathcal{S}^\prime$ and a protecting CBF for $\mathcal{S}^\prime(x)$, as for Definition \ref{def:protecting_barrier}. 
 
 
-To do so, let us first define $\underline{\alpha}^i \left( x_2^i\right)=\min \left\{\underline{a}^i_\mathrm{br},\frac{\underline{P}^i_\mathrm{br}}{M^i x_2^i} \right\}$. Also, considering an $\varepsilon<1$ (the latter is a tuning parameter that can be chosen slightly less than one to reduce conservatism) let us compute a "large" deceleration of the follower
+To do so, let us first define $\underline{\alpha}^i \left( x_2^i\right)=\min \left\{\underline{a}^i_\mathrm{br},\frac{\underline{P}^i_\mathrm{br}}{\bar{M}^i x_2^i} \right\}$. Also, considering an $\varepsilon<1$ (the latter is a tuning parameter that can be chosen slightly less than one to reduce conservatism), let us compute a ``large" deceleration of the follower
 \begin{equation*}
 \underline{e}^\mathrm{L}\left(x_2^\mathrm{L}\right)=-\frac{1}{\underline{M}^\mathrm{L}}  \left(-\overline{A}^\mathrm{L}-\overline{B}^\mathrm{L} (x_2^\mathrm{L})- \overline{C}^\mathrm{L}\left(x_2^\mathrm{L}\right)^2\right)+ \overline{F}_e^\mathrm{L}(x_2^\mathrm{L})+\overline{a}^\mathrm{L}_\mathrm{br}, 
 \end{equation*}
 
-and a "small" deceleration of the follower
+and a ``small" deceleration of the follower
 \begin{equation*}
 \overline{e}^\mathrm{F} (x^\mathrm{F}) = \frac{\underline{A}^\mathrm{F}}{\overline{M}^\mathrm{F}}  + \underline{F}_e^\mathrm{F}(x_1^\mathrm{F})  +\varepsilon \underline{\alpha}^\mathrm{F} (x_2^\mathrm{F}).
 \end{equation*}
@@ -971,7 +972,7 @@ We define the functions
 
 
 
-The safe set $S$ corresponds to those states resulting in $ b(x)\leq 0$, that is $S=\{x: b(x)\leq 0\}$ as defined in\tildeAdd\eqref{eq:barrier_function}. The following lemma holds.
+The safe set $\mathcal{S}$ corresponds to those states resulting in $ b(x)\leq 0$, that is $\mathcal{S}=\{x: b(x)\leq 0\}$ as defined in\tildeAdd\eqref{eq:barrier_function}. The following lemma holds.
 
 \begin{lemma}\label{lem:b_trains}
 Function $b(x)$ in \eqref{eq:b_trains} is a CBF protecting the set $\mathcal{S}^\prime$ in \eqref{eq:distance}.
@@ -1005,9 +1006,9 @@ We define a {\em braking  controller} $u^i= K^i_\mathrm{B}(x^i)$ any feedback fu
 \end{definitionNoPoint}
 
 
-Roughly speaking, a braking controller is any controller providing a nonpositive control input whenever the velocity is greater than zero and a null control input in case of null velocity\footnote{The case of null control input for null velocity could, in principle, be omitted since it is implicitly deducible by the positive constraint $x_2^i\geq 0$ of the system. Nevertheless, we prefer to keep it for the sake of clarity.}
+Roughly speaking, a braking controller is any controller providing a nonpositive control input whenever the velocity is greater than zero and a null control input in case of null velocity.\footnote{The case of null control input for null velocity could, in principle, be omitted since it is implicitly deducible by the positive constraint $x_2^i\geq 0$ of the system. Nevertheless, we prefer to keep it for the sake of clarity.}
 
-Among the braking  controller, the emergency controllers is a peculiar case, where the controller attains the highest allowed braking  action.
+Among the braking  controllers, the emergency controller is a peculiar case, where the controller attains the highest allowed braking  action.
 
 \begin{definitionNoPoint}[Emergency Controller]\label{def:emergency_controller}
 We define  {\em the emergency controller} $u^i(t)= K^i_\mathrm{E}(x^i)$ a braking  controller with
@@ -1222,7 +1223,7 @@ Then, the controller $K=[{K^\mathrm{L}}^T, {K^\mathrm{F}_E}^T]^T$ is robustly sa
 \end{comment}
 
 
-In this section, we introduce the three blocks of the proposed control architecture which are depicted in \ref{fig:controlSystem}: the leader RLP predictor, the safety control, the cruise virtual coupling and the delay estimator.
+In this section, we introduce the four blocks of the proposed control architecture which are depicted in \ref{fig:controlSystem}: the Leader RLP predictor, the Safety control, the Cruise virtual coupling and the Delay estimator.
  
  
  \begin{figure}[H]
@@ -1231,7 +1232,7 @@ In this section, we introduce the three blocks of the proposed control architect
  	\label{fig:controlSystem}
  \end{figure}
  
-The Leader RLP predictor block is crucial for the follower train, as it processes data packets from the leader, received at irregular intervals. It continuously updates the follower's predictions of the leader's state, starting from the last received packet and projecting forward using the leader’s dynamical model, supposing (for unknown future control inputs) the activation of an emergency brake. The overall safety is managed by the safety control block which continuously monitors the state of the follower and the predicted leader state. The block uses specific safety conditions to determine when to enforce the emergency controller on the follower train. When safety conditions are not met the emergency controller is activated to ensure the follower train maintains a safe distance from the leader. The Cruise virtual coupling block synchronizes the follower train with the leader, maintaining a safe distance using the predicted trajectory data. This block adjusts the follower's control strategy to match the leader's state, avoids unnecessary braking by keeping an appropriate gap based on communication delays, and employs a switched controller architecture to manage performances under varying conditions. This ensures efficient and safe operation of the follower train in response to the leader's movements. The last block, the delay estimator, is responsible for estimating the communication delay, which is expected to vary along the route. This estimator continuously monitors and analyzes the communication signals to accurately predict the latency, allowing the control system to adjust accordingly.We wish to emphasize that this block is not necessary, and a fixed delay estimation could be assumed. The architecture we are going to develop is indeed very general and can be particularized for several design control choices including different possible delay estimators, different follower controllers, different safety rules. As it will be clearer later, the control system architecture we propose guarantees safety, robustness and some important performances on the emergency braking, leaving degrees of freedom to such control choices.
+The Leader RLP predictor block is crucial for the follower train, as it processes data packets from the leader, received at irregular intervals. It continuously updates the follower's predictions of the leader's state, starting from the last received packet and projecting forward using the leader’s dynamical model, supposing (for unknown future control inputs) the activation of an emergency brake. The overall safety is managed by the Safety control block which continuously monitors the state of the follower and the predicted leader \gls{rlp} state. The block uses specific safety conditions to determine when to enforce the emergency controller on the follower train. When safety conditions are not met the emergency controller is activated to ensure the follower train maintains a safe distance from the leader. The Cruise virtual coupling block synchronizes the follower train with the leader, maintaining a safe distance using the predicted trajectory data. This block adjusts the follower's control strategy to match the leader's state, avoids unnecessary braking by keeping an appropriate gap based on communication delays, and employs a switched controller architecture to manage performances under varying conditions. This ensures efficient and safe operation of the follower train in response to the leader's movements. The last block, the Delay estimator, is responsible for estimating the communication delay, which is expected to vary along the route. This estimator continuously monitors and analyzes the communication signals to accurately predict the latency, allowing the control system to adjust accordingly. We wish to emphasize that this block is not necessary, and a fixed delay estimation could be assumed(at the expense, in general, of a more conservative inter-trains gap).. The architecture we are going to develop is indeed very general and can be particularized for several design control choices including different possible delay estimators, different follower controllers, different safety rules. As it will be clearer later, the control system architecture we propose guarantees safety, robustness and some important performances on the emergency braking, leaving degrees of freedom to such control choices.
  
 The following subsections will introduce the aforementioned control system blocks in detail. 
 
@@ -1246,9 +1247,9 @@ As  already reported in Section \ref{subsec:transmissionEvent}, the follower rec
 the asynchronous data from the leader (transmission time, state at the transmission time and a robust prediction of the state trajectory). 
 
 
-Since the follower is not aware of what  actual control input  the leader is adopting in the time between consecutive message receptions, the follower does not know of the real leader state. It is worth mentioning that among the control input options available to the leader, the emergency control is the most important to be considered. Indeed, right after a communication at time $\ell_{\kappa^\mathrm{L}}(t)$, the leader might start an emergency breaking which could lead, if not adequately addressed, to safety hazards. 
+Since the follower is not aware of what  actual control input  the leader is adopting in the time between consecutive message receptions, the follower does not know of the real leader state. It is worth mentioning that among the control input options available to the leader, the emergency control is the most important to be considered. Indeed, right after a communication at time $\ell_{\kappa^\mathrm{L}}(t)$, the leader might start an emergency braking which could lead, if not adequately addressed, to safety hazards. 
 
-To avoid this,  Algorithm \ref{alg:leaderRLPpredictor} is run by the follower and executes a leader RLP predictor in presence of possible emergency breaking. Such prediction block will then be used in the next section for the safety control.
+To avoid this,  Algorithm \ref{alg:leaderRLPpredictor} is run by the follower and executes a Leader RLP predictor in presence of possible emergency braking. Such prediction block will then be used in the next section for the safety control.
 
 For consistency, we assume Algorithm \ref{alg:leaderRLPpredictor} to be started the first time a follower receives its first packet, with initial conditions $t_{\mathrm{last}}=-\infty$, $\underline{x}^\mathrm{L}(t_{\mathrm{last}})=+\infty$.
 
@@ -1285,16 +1286,16 @@ The outputs of the algorithm are the predicted leader RLP state subjected to the
 
 
 Notice that Algorithm \ref{alg:leaderRLPpredictor} does not use the robust leader predicted trajectory estimation $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$.
-Notice also that so far we did not describe yet how $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$ is computed. This will be done later since $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$ will be exploited in the cruise virtual coupling control block. 
+Notice also that so far we did not describe yet how $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$ is computed. This will be done later since $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$ will be exploited in the Cruise virtual coupling control block. 
 
  
 \subsection{Safety control block}
  \label{subsec:safetycontrolblock} 
 
-This block allows to constantly keep the system safe by monitoring the follower state $x^\mathrm{F}(t)$ and the leader RLP prediction from the corresponding block outputs described in Section \ref{subsec:leaderRLPpredictor}. This block receives in input, together with $x^\mathrm{F} (t)$, the $t_\mathrm{last}$ and $\underline{x}^\mathrm{L}(t| K_\mathrm{E}^\mathrm{L})$ from the RLP predictor block. To ease the notation, we denote in this subsection $\underline{x}^\mathrm{L}(t| K_\mathrm{E}^\mathrm{L})$ as $ \underline{x}^\mathrm{L}(t)$.
+This block allows to constantly keep the system safe by monitoring the follower state $x^\mathrm{F}(t)$ and the leader RLP prediction from the corresponding block outputs described in Section \ref{subsec:leaderRLPpredictor}. This block receives in input, together with $x^\mathrm{F} (t)$, the $t_\mathrm{last}$ and $\underline{x}^\mathrm{L}(t| K_\mathrm{E}^\mathrm{L})$ from the RLP predictor block. To ease the notation, we denote in this subsection $\underline{x}^\mathrm{L}(t| K_\mathrm{E}^\mathrm{L})$ as $ \underline{x}^\mathrm{L}(t)$, omitting the fact that the trjectory of the RLP in Algorithm\tildeAdd\ref{alg:leaderRLPpredictor} is generated supposing an emergency braking.
 
 
-Specifically, considering $c(x^\mathrm{F}(t),\underline{x}^\mathrm{L}(t),t_{\mathrm{last}},\underline{x}^\mathrm{L}(t_{\mathrm{last}}))$ any possible safety rule (further details on this will be provided later), the safety control block is implemented by Algorithm \ref{alg:safetycontrol} which continuously runs in background.
+Specifically, considering $c(x^\mathrm{F}(t),\underline{x}^\mathrm{L}(t),t_{\mathrm{last}},\underline{x}^\mathrm{L}(t_{\mathrm{last}}))$ any possible safety rule (further details on this will be provided later), the Safety control block is implemented by Algorithm \ref{alg:safetycontrol} which continuously runs in background.
 
 \begin{algorithm}
 \caption{Safety control}\label{alg:safetycontrol}
@@ -1327,9 +1328,9 @@ This is formally stated in the next result.
 
 \begin{theorem}\label{thm:safetycontrol} 
 Consider the trains system of form \eqref{eq:dynamical_system_param_i} with $i\in\{\mathrm{L},\mathrm{F}\}$ and the safe set $\mathcal{S}(x)=\{x: b(x)\leq 0\}$. 
-If the system starts in a safe state, that is $[{x^\mathrm{L}}^T(t_0),{x^\mathrm{F}}^T(t_0)]^T\in\mathcal{S}$, then the safety control block of Algorithm \ref{alg:safetycontrol} keeps the system safe forward in time, that is $[{x^\mathrm{L}}^T(t),{x^\mathrm{F}}^T(t)]^T\in\mathcal{S}$ for any $t\geq t_0$.
+If the system starts in a safe state, that is $[{x^\mathrm{L}}^T(t_0),{x^\mathrm{F}}^T(t_0)]^T\in\mathcal{S}$, then the Safety control block of Algorithm \ref{alg:safetycontrol} keeps the system safe forward in time, that is $[{x^\mathrm{L}}^T(t),{x^\mathrm{F}}^T(t)]^T\in\mathcal{S}$ for any $t\geq t_0$.
 \begin{proof}
-By hypothesis the system starts in the safe set. Being $\underline{x}^\mathrm{L}(t)$ and ${x^\mathrm{F}}(t)$ continuous time curves,  safety is preserved until $b({\underline{x}^\mathrm{L}}(t),{x^\mathrm{F}}(t))=0$ since $x^\mathrm{L}(t)\geq  \underline{x}^\mathrm{L}(t)$ and, therefore,  $b({x^\mathrm{L}}(t),{x^\mathrm{F}}(t)^T)\leq b({\underline{x}^\mathrm{L}}(t),{x^\mathrm{F}}(t))$. Since when $b({\underline{x}^\mathrm{L}}(t),{x^\mathrm{F}}(t))=0$ controller $K_\mathrm{E}^\mathrm{F}$ is activated, by Theorem\tildeAdd\ref{thm:trains_barrier} safety is kept. 
+By hypothesis the system starts in the safe set. Being $\underline{x}^\mathrm{L}(t)$ and ${x^\mathrm{F}}(t)$ continuous time curves and taking into account that $x^\mathrm{L}(t)\geq  \underline{x}^\mathrm{L}(t)$, safety is preserved until $b({\underline{x}^\mathrm{L}}(t),{x^\mathrm{F}}(t))=0$ and, therefore,  $b({x^\mathrm{L}}(t),{x^\mathrm{F}}(t)^T)\leq b({\underline{x}^\mathrm{L}}(t),{x^\mathrm{F}}(t))$. Since when $b({\underline{x}^\mathrm{L}}(t),{x^\mathrm{F}}(t))=0$ controller $K_\mathrm{E}^\mathrm{F}$ is activated, by Theorem\tildeAdd\ref{thm:trains_barrier} safety is kept. 
 \end{proof}
 \end{theorem}
 
@@ -1342,7 +1343,7 @@ Specifically, being this paper developed under the collaboration with personnel 
 \begin{equation}\label{eq:max_waiting_time}
 c(x^\mathrm{F}(t),\underline{x}^\mathrm{L}(t),t_{\mathrm{last}},\underline{x}^\mathrm{L}(t_{\mathrm{last}}))= t-t_{\mathrm{last}}-T^{\max},
 \end{equation}
-is adopted, where $T^{\max}$ is a maximum allowed time to wait for a new transmission update. 
+is adopted, where $T^{\max}$ is a prescribed maximum allowed time to wait for a new transmission update. 
 As said, despite not necessary for keeping the system safe, the railway operator prefers to stop the follower train if no updates on the leader position are received after $T^{\max}$. Therefore, in this paper we will consider \eqref{eq:max_waiting_time}.
 \end{remark}
 
@@ -1394,10 +1395,10 @@ The estimated delay is computed in \ref{alg:delayEstimator}, where $N_{\hat{\tau
 \end{algorithm}
 
 
-This estimation is calculated each time a new packet from the leader arrives. Subsequently, the cruise virtual coupling block, as described in\tildeAdd\ref{subsec:switchedvitrualcouplingblock}, sets $\bar{\tau}=\hat{\tau}(t_{\kappa^\mathrm{L}})$. This process allows for the generation of delay-dependent reference trajectories\tildeAdd\eqref{eq:reference_z_F_tau_1}-\eqref{eq:reference_z_F_tau_3}.
+This estimation is calculated each time a new packet from the leader arrives. Subsequently, the Cruise virtual coupling block, as described in\tildeAdd\ref{subsec:switchedvitrualcouplingblock}, sets $\bar{\tau}=\hat{\tau}(t_{\kappa^\mathrm{L}})$. This process allows for the generation of delay-dependent reference trajectories\tildeAdd\eqref{eq:reference_z_F_tau_1}-\eqref{eq:reference_z_F_tau_3}.
 
-As already said, this block might be omitted since the proposed architecture guarantee safety and a minimum time before an emergency braking is triggered. However, the presence of a delay estimator allows to better chose such minimum time so as to reduce unnecessary braking. 
-We also emphasize that, thanks to the generality of the proposed framework, several other possible choices can be adopted for the delay estimator, such as weighted mobile average or mean and variance estimation (ad higher order statistical moments). 
+As already said, this block might be omitted since the proposed architecture guarantee safety and a minimum time before an emergency braking is triggered. However, the presence of a Delay estimator allows to better chose such minimum time so as to reduce unnecessary braking. 
+We also emphasize that, thanks to the generality of the proposed framework, several other possible choices can be adopted for the Delay estimator, such as weighted mobile average or mean and variance estimation (ad higher order statistical moments). 
 
 In Section\tildeAdd\ref{sec:Simulations}, we will demonstrate the benefits of incorporating this block within the control architecture through simulations.
 
@@ -1407,15 +1408,15 @@ In Section\tildeAdd\ref{sec:Simulations}, we will demonstrate the benefits of in
 \subsection{Cruise virtual coupling block: fixed controller}
  \label{subsec:vitrualcouplingblock} 
  
-It is worth to observe that the safety condition in line\tildeAdd$3$ of  Algorithm \ref{alg:safetycontrol} might be restored either because the follower, while braking, is increasing its distance from $\underline{x}^\mathrm{L}(t)$ and/or because a new update of the leader position is received, thus resulting in new initialization update of the leader RLP predictor (line $7$ of Algorithm \ref{alg:leaderRLPpredictor}.)
+It is worth to observe that the safety condition in line\tildeAdd$3$ of  Algorithm \ref{alg:safetycontrol} might be restored either because the follower, while braking, is increasing its distance from $\underline{x}^\mathrm{L}(t)$ and/or because a new update of the leader position is received, thus resulting in new initialization update of the Leader RLP predictor (line $7$ of Algorithm \ref{alg:leaderRLPpredictor}.)
 This latter case is probably the most interesting in practice, since in normal (desirable) conditions, the leader train proceeds at constant or smoothly variable velocity without incurring in aggressive braking. Similarly, the desired virtual coupling condition is that the follower proceeds at nearly the same velocity of the leader at a certain (obviously safe) distance from it. 
 
 
-The safety control block is designed to always preserve safety via enforcing the follower to brake in the worst possible condition, that is supposing that from the last transmission the leader starts a maximum braking. Since, as said, this condition in practice will be rare, a good choice for the follower distance from the leader during \gls{vc} cruise is such that it could proceed at the same velocity the leader has planned for a given amount of time $\bar{\tau}$ before the condition of line  $3$ of  Algorithm \ref{alg:safetycontrol} is met. In this way, at least a time $\bar{\tau}$ is wait before a follower emergency braking occurs. 
+The Safety control block is designed to always preserve safety via enforcing the follower to brake in the worst possible condition, that is supposing that from the last transmission the leader starts a maximum braking. Since, as said, this condition in practice will be rare, a good choice for the follower distance from the leader during \gls{vc} cruise is such that it could proceed at the same velocity the leader has planned for a given amount of time $\bar{\tau}$ before the condition of line  $3$ of  Algorithm \ref{alg:safetycontrol} is met. In this way, at least a time $\bar{\tau}$ is wait before a follower emergency braking occurs. 
 With the realistic hypothesis of having a statistical description of the communication delay process $ \left\{ \tau(t_{\kappa^\mathrm{L}})\right\}_{\kappa^\mathrm{L}=0}^{+\infty}$, 
 choosing a $\bar{\tau}$ so as that  $P( \tau(t_{\kappa^\mathrm{L}})\leq \bar{\tau})=\bar{p}$ with a $\bar{p}\in [0,1]$, ensures that $100 \bar{p}$ percent of the times a leader state update is received before triggering any follower braking (which will proceed roughly maintaining the leader velocity).
  
-In this section we formally describe a control block able to guarantee the behaviour described before and implement the \gls{vc} between the two trains.  
+In this section we formally describe a control block able to guarantee the behaviour described before and implement \gls{vc} between the two trains.  
 To do so, let us first recall that the follower receives asynchronous packets $\left ( t_{\kappa^\mathrm{L}}, x^\mathrm{L}(t_{\kappa^\mathrm{L}}),\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})\right)$ with $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$, as said, robust leader' state trajectory estimation up to horizon $H$. Specifically, the latter is computed via any valid MPC embedded on the leader over its nominal model. The computed control $\mathbf{u}^\mathrm{L}(t)$ for the time interval  $[t_{\kappa^\mathrm{L}},t_{\kappa^\mathrm{L}}+H)$ is then applied open loop to the leader RLP (initialized at state $x^\mathrm{L}(t_{\kappa^\mathrm{L}})$) to compute $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$, which results in a robust estimated leader trajectory. 
 In the framework we are going to propose, we consider the choice
 \begin{equation}\label{eq:tau_H_inequality}
@@ -1446,14 +1447,14 @@ Quantities \eqref{eq:v_tau_L} and \eqref{eq:s_tau_L} represent the velocity and 
 We also define  $V_{\bar{\tau}}^{\mathrm{line},*}(t,x_1^\mathrm{F},\underline{x}^\mathrm{L})=\min_{s\in \left[x_1^\mathrm{F} ,s_{\bar{\tau}}^\mathrm{L}\left(t,\underline{x}^\mathrm{L}\right)\right]} V^{\mathrm{line}}(s)$
 and 
 \begin{equation}\label{eq:v_tau_F_max}
-v_{\bar{\tau}}^{\max, \mathrm{F}}\left( t,x_1^\mathrm{F},\underline{x}^\mathrm{L} \right)=\max\left\{V^{\mathrm{max},\mathrm{F}},V_{\bar{\tau}}^{\mathrm{line},*}(t,x_1^\mathrm{F},\underline{x}^\mathrm{L})\right\}.
+v_{\bar{\tau}}^{\max, \mathrm{F}}\left( t,x^\mathrm{F},\underline{x}^\mathrm{L} \right)=\min\left\{x_2^\mathrm{F}+\overline{a}_{\mathrm{dr}}^\mathrm{F}\Delta T,V^{\mathrm{max},\mathrm{F}},V_{\bar{\tau}}^{\mathrm{line},*}(t,x_1^\mathrm{F},\underline{x}^\mathrm{L})\right\},
 \end{equation}
-\red{need a modification, check with Davide and Glielmo}
+where $\Delta T =  t_{\mathrm{last}}+H-\bar{\tau}$, where we remember $t_{\mathrm{last}}$ being an output of Algoritm \ref{alg:leaderRLPpredictor}.
 
 
 The term \eqref{eq:v_tau_F_max} is an upper bound on the maximum velocity the follower can assume along the railway interval $\left[x_1^\mathrm{F} ,s_{\bar{\tau}}^\mathrm{L}\left(t,\underline{x}^\mathrm{L}\right)\right]$.
 
-Furthermore, since the state trajectory of the leader RLP is available up to time $l_{\kappa^\mathrm{L}}(t)+H$, the follower can compute the leader's average velocity
+Furthermore, since the state trajectory of the leader RLP is available up to time $t_{\mathrm{last}}+H$, the follower can compute the leader's average velocity
 \begin{equation}\label{eq:average_velocity}
 v_{\mathrm{ave}}^\mathrm{L}(t)=\int_{t}^{t+\bar{\tau}} \underline{x}_2^\mathrm{L}(r)\, dr.
 \end{equation} 
@@ -1462,33 +1463,30 @@ v_{\mathrm{ave}}^\mathrm{L}(t)=\int_{t}^{t+\bar{\tau}} \underline{x}_2^\mathrm{L
 In view of the \eqref{eq:v_tau_L}\--\eqref{eq:average_velocity} we can define 
 \begin{equation*}\label{eq:z_tilde_prime}
 \begin{aligned}
-\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))=& -\left[L^d +d -\left(s_{\bar{\tau}}^\mathrm{L}(t,\underline{x}^\mathrm{L}(t))-v_{\mathrm{ave}}^\mathrm{L}(t)\bar{\tau}\right)\right. \\
-& \left. -\frac{1}{2}\left(\frac{{v_{\bar{\tau}}^\mathrm{L}}^2(t,\underline{x}^\mathrm{L}(t))}{\underline{e}^\mathrm{L}(\underline{x}_2^\mathrm{L}(t))}-\frac{{v_{\bar{\tau}}^{\max, F}}^2\left( t,x_1^\mathrm{F},\underline{x}^\mathrm{L} \right)}{\overline{e}^\mathrm{F}(x^\mathrm{F}(t))}\right)\right],
+\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))=& -\left[L^d +d -\left(s_{\bar{\tau}}^\mathrm{L}(t,\underline{x}^\mathrm{L}(t))-v_{\mathrm{ave}}^\mathrm{L}(t)\bar{\tau}\right)\right. \\
+& \left. -\frac{1}{2}\left(\frac{{v_{\bar{\tau}}^\mathrm{L}}^2(t,\underline{x}^\mathrm{L}(t))}{\underline{e}^\mathrm{L}(\underline{x}_2^\mathrm{L}(t))}-\frac{{v_{\bar{\tau}}^{\max, \mathrm{F}}}^2\left( t,x^\mathrm{F},\underline{x}^\mathrm{L} \right)}{\overline{e}^\mathrm{F}(x^\mathrm{F}(t))}\right)\right],
 \end{aligned}
 \end{equation*}
 \begin{equation*}\label{eq:z_tilde_second}
 \begin{aligned}
-\tilde{z}^{\mathrm{F},2}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))=& -\left[L^d +d -\left(s_{\bar{\tau}}^\mathrm{L}(t,\underline{x}^\mathrm{L}(t))-v_{\mathrm{ave}}^\mathrm{L}(t)\bar{\tau}\right)\right],
+\tilde{z}^{\mathrm{F},2}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t))=& -\left[L^d +d -\left(s_{\bar{\tau}}^\mathrm{L}(t,\underline{x}^\mathrm{L}(t))-v_{\mathrm{ave}}^\mathrm{L}(t)\bar{\tau}\right)\right],
 \end{aligned}
 \end{equation*}
 \begin{equation}\label{eq:z_tilde}
-\begin{aligned}
-\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))=\min & \left\{ \tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t)),\right. \\
-& \left. \tilde{z}^{\mathrm{F},2}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t)) \right\},
-\end{aligned}
+	\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t)) = \min \left\{ \tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t)), \tilde{z}^{\mathrm{F},2}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t)) \right\}
 \end{equation}
 and
 \begin{equation}\label{eq:z_tilde_LF_tau}
-\tilde{z}^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))=\underline{x}^\mathrm{L}-\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t)). 
+\tilde{z}^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))=\underline{x}^\mathrm{L}-\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t)). 
 \end{equation} 
  
 The above \eqref{eq:z_tilde_LF_tau} is therefore exploited in  what follow to define
 \begin{equation}\label{eq:z_LF_tau}
 \begin{aligned}
-& z^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_0)= \\
+& z^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_0)= \\
 & \begin{cases}
-\max_{t' \in [t_0,\, t]} \tilde{z}^{\mathrm{FL}}_{\bar{\tau}} (t',\underline{x}^\mathrm{L}(t'),x_1^\mathrm{F}(t'))\quad \mathit{if }\; t-t_0\leq \bar{\tau}, \\
-\max_{t' \in [t-\bar{\tau},\, t]} \tilde{z}^{\mathrm{FL}}_\tau (t',\underline{x}^\mathrm{L}(t'),x_1^\mathrm{F}(t'))\quad \mathit{if }\; t-t_0> \bar{\tau},
+\max_{t' \in [t_0,\, t]} \tilde{z}^{\mathrm{FL}}_{\bar{\tau}} (t',\underline{x}^\mathrm{L}(t'),x^\mathrm{F}(t'))\quad \; \; \; \mathrm{if }\; t-t_0\leq \bar{\tau}, \\
+\max_{t' \in [t-\bar{\tau},\, t]} \tilde{z}^{\mathrm{FL}}_\tau (t',\underline{x}^\mathrm{L}(t'),x^\mathrm{F}(t'))\quad \mathrm{if }\; t-t_0> \bar{\tau},
 \end{cases}
 \end{aligned}
 \end{equation}
@@ -1496,7 +1494,7 @@ where $t_0$ is a generic time that will be assigned later.
 
 Finally, we define 
 \begin{equation}\label{eq:z_F_tau}
-z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_0)=\underline{x}_1^\mathrm{L}(t)-z^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_0).
+z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_0)=\underline{x}_1^\mathrm{L}(t)-z^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_0).
 \end{equation}
 
  
@@ -1505,7 +1503,7 @@ The above formulas allow to run Algorithm \ref{alg:reference_z_F_tau} which prov
  
 
 \begin{algorithm}
-\caption{$\bar{t}$ far reference generator. Output: $\mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})$. }\label{alg:reference_z_F_tau}
+\caption{Position reference generator. Output: $\mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})$. }\label{alg:reference_z_F_tau}
 \begin{algorithmic}[1]
 \Loop
 
@@ -1517,9 +1515,9 @@ The above formulas allow to run Algorithm \ref{alg:reference_z_F_tau} which prov
 
 \State Compute
 \begin{equation}\label{eq:reference_z_F_tau}
- \mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})={z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})}_{t\in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\bar{\tau} )},
+ \mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})={z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})}_{t\in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\bar{\tau} )},
 \end{equation}
-with $z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})$ computed according to \eqref{eq:z_F_tau} with the help of \eqref{eq:v_tau_L}\--\eqref{eq:z_LF_tau}.
+with $z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})$ computed according to \eqref{eq:z_F_tau} with the help of \eqref{eq:v_tau_L}\--\eqref{eq:z_LF_tau}.
 
 
 \EndIf
@@ -1535,8 +1533,8 @@ Let us denote with  $\mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})[t]$ t
 The following theorem formalizes the role of reference $\mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})$. 
 
 \begin{theorem}\label{thm:tau_far_control}
-Consider the trains system of form \eqref{eq:dynamical_system_param_i} with $i\in\{L,F\}$ and the safe set $\mathcal{S}(x)=\{x: b(x)\leq 0\}$, with $b(x)$ defined in \eqref{eq:b_trains}. 
-Suppose the system starts in a safe state, that is $[{x^\mathrm{L}}^T(t_0),{x^\mathrm{F}}^T(t_0)]^T\in\mathcal{S}$. Consider the control architecture encompassing  the safety control block (Algorithm \ref{alg:safetycontrol}) and the $\bar{\tau}$ far reference generator (Algorithm \ref{alg:reference_z_F_tau}), with $\bar{\tau}$ satisfying \eqref{eq:tau_H_inequality}. Then, any valid predictive controller $K^\mathrm{F}(x^\mathrm{F})$ able to enforce
+Consider the trains system of form \eqref{eq:dynamical_system_param_i} with $i\in\{\mathrm{L},\mathrm{F}\}$ and the safe set $\mathcal{S}(x)=\{x: b(x)\leq 0\}$, with $b(x)$ defined in \eqref{eq:b_trains}. 
+Suppose the system starts in a safe state, that is $[{x^\mathrm{L}}^T(t_0),{x^\mathrm{F}}^T(t_0)]^T\in\mathcal{S}$. Consider the control architecture encompassing  the Safety control block (Algorithm \ref{alg:safetycontrol}) and the Position reference generator (Algorithm \ref{alg:reference_z_F_tau}), with $\bar{\tau}$ satisfying \eqref{eq:tau_H_inequality}. Then, any valid predictive controller $K^\mathrm{F}(x^\mathrm{F})$ able to enforce
 \begin{equation}\label{eq:tau_far_constraint}
 x_1^\mathrm{F}(t)\leq  \mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})[t], \forall t \in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\bar{\tau})
 \end{equation} 
@@ -1546,29 +1544,29 @@ $ t_{\kappa^\mathrm{E} +1} -t_{\kappa^\mathrm{E}}\geq \bar{\tau}$ for any  $\kap
 \end{theorem}
  
 \begin{proof}
-To prove the result let us assume that the follower's controller plans a path forward such that, at any time $t$ and for the time interval $[t, t+\bar{\tau}]$ it keeps an average velocity $v_{\mathrm{ave}}^\mathrm{L}(t)$ as in  \eqref{eq:average_velocity}.
-We are therefore supposing that, roughly speaking, the follower controller is able to track the RLP leader average velocity  computed over a $\bar{\tau}$ ahead interval. This hypothesis will not necessarily be met and, in general, it is not satisfied. Nevertheless, let us keep it as working hypothesis for now (we will then address later the case in which such hypothesis is not met).
+To prove the result let us assume that the follower's controller plans a path forward such that, at any time $t$ and for the time interval $[t, t+\bar{\tau}]$ it keeps an average velocity as $v_{\mathrm{ave}}^\mathrm{L}(t)$ as in  \eqref{eq:average_velocity}.
+We are therefore supposing that, roughly speaking, the follower controller is able to track the RLP leader average velocity  computed over a $\bar{\tau}$ ahead time interval. This hypothesis will not necessarily be met and, in general, it is not satisfied. Nevertheless, let us keep it as working hypothesis for now (we will then address later the case in which such hypothesis is not met).
 Saying this, even if the follower keeps $v_{\mathrm{ave}}^\mathrm{L}(t)$ as average velocity in $[t, t+\bar{\tau}]$ the instant velocity could vary. In particular, we can consider the worst case were the follower assumes, at time $t+\bar{\tau}$ , the instant velocity of $v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}}(t, x_1^\mathrm{F}, \underline{x}^\mathrm{L})$ (that is, an upper bound computed at time $t$ on the maximum velocity achievable by the follower).
-In view of this, $\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))$ represents the position that the follower should have, at time $t$, such that when proceeding at the planned RLP leader average velocity and supposing the leader is instead activating an emergency braking, at time $t+\bar{\tau}$ and with the (worst) case of a follower velocity (we omit the dependency for the sake of brevity) $v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}}$ the barrier $b'(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F},1}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})=0$. In the latter formula, we slight abuse the notation and explicitly point out (not in a stack vector form) the variables upon which $b'(\cdot)$ in \eqref{eq:b_prime} depends. Specifically,  $s_{\bar{\tau}}^\mathrm{L}\left( t,\underline{x}^\mathrm{L} \right)$ in \eqref{eq:s_tau_L} (for brevity, we omit the dependencies) is, as said, the position of the leader RLP at time $t+\bar{\tau}$ after a braking with controller $\hat{K}^\mathrm{L}$. Such a position is a lower bound for that achieved by the true leader after an emergency braking (notice that $\hat{K}^\mathrm{L}$ is  more aggressive than $K^\mathrm{L}_E$). Analogously, $v_{\bar{\tau}}^\mathrm{L}\left( t,\underline{x}^\mathrm{L} \right)$  in \eqref{eq:v_tau_L} is the achieved RLP velocity. 
+In view of this, $\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$ represents the position that the follower should have, at time $t$, such that when proceeding at the planned RLP leader average velocity and supposing the leader is instead activating an emergency braking, at time $t+\bar{\tau}$ and with the (worst) case of a follower velocity (we omit the dependency for the sake of brevity) $v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}}$ the barrier $b'(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F},1}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})=0$. In the latter formula, we slight abuse the notation and explicitly point out (not in a stack vector form) the variables upon which $b'(\cdot)$ in \eqref{eq:b_prime} depends. Specifically,  $s_{\bar{\tau}}^\mathrm{L}\left( t,\underline{x}^\mathrm{L} \right)$ in \eqref{eq:s_tau_L} (for brevity, we omit the dependencies) is, as said, the position of the leader RLP at time $t+\bar{\tau}$ after a braking with controller $\hat{K}^\mathrm{L}$. Such a position is a lower bound for that achieved by the true leader after an emergency braking (notice that $\hat{K}^\mathrm{L}$ is  more aggressive than $K^\mathrm{L}_E$). Analogously, $v_{\bar{\tau}}^\mathrm{L}\left( t,\underline{x}^\mathrm{L} \right)$  in \eqref{eq:v_tau_L} is the achieved RLP velocity. 
 
-As for $\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))$, the term $\tilde{z}^{\mathrm{F},2}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))$ is the follower position such that $b''(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F},2}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})=0$ at time $t+\bar{\tau}$, with $b''(\cdot)$ defined in \eqref{eq:barriere_function_trains}.
+As for $\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$, the term $\tilde{z}^{\mathrm{F},2}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))$ is the follower position such that $b''(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F},2}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})=0$ at time $t+\bar{\tau}$, with $b''(\cdot)$ defined in \eqref{eq:barriere_function_trains}.
 
-The term $\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))$ represents, in view of what stated above, the position the follower should have such that, proceeding at an average velocity $v_{\mathrm{ave}}^\mathrm{L}(t)$ for the time interval $[t, t+\bar{\tau}]$ and considering instead a leader emergency braking, the barrier $b(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F}}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})$ will assume null value a time $t+\bar{\tau}$, with $b(\cdot)$ given in \eqref{eq:b_trains}.
+The term $\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$ represents, in view of what stated above, the position the follower should have such that, proceeding at an average velocity $v_{\mathrm{ave}}^\mathrm{L}(t)$ for the time interval $[t, t+\bar{\tau}]$ and considering instead a leader emergency braking, the barrier $b(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F}}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})$ will assume null value a time $t+\bar{\tau}$, with $b(\cdot)$ given in \eqref{eq:b_trains}.
 
 Therefore, any controller of the follower able to guarantee
 \begin{equation}\label{eq:partial_contidion_dwell_time}
-x_1^\mathrm{F}(t)\leq \tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t)), 
+x_1^\mathrm{F}(t)\leq \tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t)), 
 \end{equation}
-and an average velocity $v_{\mathrm{ave}}^\mathrm{L}(t)$ guarantees that the CBF is not intercepted before a time $t+\bar{\tau}$. Since this is valid for any time $t$, keeping the constraint \eqref{eq:partial_contidion_dwell_time} guarantees that, at any $t_{\mathrm{last}}$ upon which the RLP predictor of Algorithm \ref{alg:leaderRLPpredictor} is reset, an emergency braking event does not happen before time $t+\bar{\tau}$. 
+and an average velocity $v_{\mathrm{ave}}^\mathrm{L}(t)$ guarantees that the CBF is not intercepted before a time $t+\bar{\tau}$. Since this is valid for any time $t$, keeping the constraint \eqref{eq:partial_contidion_dwell_time} guarantees that, at any $t_{\mathrm{last}}$ upon which the Leader RLP predictor of Algorithm \ref{alg:leaderRLPpredictor} is reset, an emergency braking event does not happen before time $t+\bar{\tau}$. 
 
 The reasoning conducted so far is based on the hypothesis that the follower controller is able not only to satisfy \eqref{eq:partial_contidion_dwell_time}, but also to keep an average velocity $v_{\mathrm{ave}}^\mathrm{L}(t)$ for the time interval $[t, t+\bar{\tau}]$. This, in general, cannot be assumed. Nevertheless, it is immediate to notice that if the follower has an average velocity $\tilde{v}$ lower than $v_{\mathrm{ave}}^\mathrm{L}(t)$  the whole reasoning still holds. Indeed, the follower would reach, at time $t+\bar{\tau}$, a position $\tilde{x}^\mathrm{F}(t+\bar{\tau})=x^{\mathrm{F}}(t)+\tilde{v}\bar{\tau}$ with $\tilde{x}^\mathrm{F}(t+\bar{\tau})\leq x^{\mathrm{F}}(t)+v_{\mathrm{ave}}^\mathrm{L}(t)\bar{\tau} $ therefore attaining a more conservative barrier value
 $b(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{x}^\mathrm{F}(t+\bar{\tau}),v_{\bar{\tau}}^{\mathrm{max}, F})\leq b(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F}}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau} ,v_{\bar{\tau}}^{\mathrm{max}, F})$.
 
-To cope instead with an average velocity greater than $v_{\mathrm{ave}}^\mathrm{L}(t)$, we first need to observe that this might happen when the leader-follower inter distance $\tilde{z}^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))$ in \eqref{eq:z_tilde_LF_tau} is decreasing. It might therefore happen then, when tracking $x_1^\mathrm{F}(t)\leq \tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))$, the follower average velocity might grow bigger than $v_{\mathrm{ave}}^\mathrm{L}(t)$, violating the hypothesis on which the theorem is valid. This aspect can be easily fixed by replacing constraint \eqref{eq:partial_contidion_dwell_time} with
+To cope instead with an average velocity greater than $v_{\mathrm{ave}}^\mathrm{L}(t)$, we first need to observe that this might happen when the leader-follower inter distance $\tilde{z}^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$ in \eqref{eq:z_tilde_LF_tau} is decreasing. It might therefore happen then, when tracking $x_1^\mathrm{F}(t)\leq \tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$, the follower average velocity might grow bigger than $v_{\mathrm{ave}}^\mathrm{L}(t)$, violating the hypothesis on which the theorem is valid. This aspect can be easily fixed by replacing constraint \eqref{eq:partial_contidion_dwell_time} with the more conservative
 \begin{equation}\label{eq:dwell_time}
-x_1^\mathrm{F}(t)\leq z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}}),
+x_1^\mathrm{F}(t)\leq z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}}),
 \end{equation}
-with $z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})$ defined in \eqref{eq:z_F_tau}.
+with $z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})$ defined in \eqref{eq:z_F_tau}.
 %With such a constraint, even in the case the follower tracks perfectly $z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})$ (that is, \eqref{eq:dwell_time} holds with the equality sign) if the leader starts an emergency braking at time $t$, the CBF will not be touched before time $t+\bar{\tau}$.
 \end{proof}
 
@@ -1583,15 +1581,15 @@ Section \ref{subsec:vitrualcouplingblock} does not explicitly state the expressi
 
 Since $\bar{\tau}$ is a design value, whose choice might follow a criterion as that depicted at the beginning of Section \ref{subsec:vitrualcouplingblock}, it is in principle possible to consider several values of $\bar{\tau}$ so as to have several $\bar{\tau}$-distances levels and develop switched controllers. 
 
-In this section we propose a three-level predictive switched controller considering three $\tau_i=\omega_i \bar{\tau}$ values, with $i=\in \{1,2,3\}$, with $1<\omega_1 < \omega_2< \omega_3$ scaling parameters. 
+In this section we propose a three-level predictive switched controller considering three $\tau_i=\omega_i \bar{\tau}$ values, with $i\in \{1,2,3\}$, with $1<\omega_1 < \omega_2< \omega_3$ scaling parameters. 
 
 The whole reasoning conducted in Section \ref{subsec:vitrualcouplingblock} can therefore be repeated substituting in the formulas $\bar{\tau}$ with $\tau_i$. 
 
-The switched controller is therefore implemented in Algorithm \ref{alg:switched_controller}, where synthetically we call $K^{\mathrm{F}}_i(x^{\mathrm{F}})$, with $i\in \{1,2,3\}$ the three controller modes.
+The switched controller is therefore implemented in Algorithm \ref{alg:switched_controller}, where synthetically we call $K^{\mathrm{F}}_i(x^{\mathrm{F}})$, with $i\in \{1,2,3\}$ the three controller modes. Notice that the trajectories \eqref{eq:reference_z_F_tau_1}–\eqref{eq:reference_z_F_tau_3} are used to switch among the different control modes and used by the controller not as hard constraint, but in a soft way (included in the optimization function). Indeed, since the minimum time before an emergency brake is possibly triggered is a desired performance index which does not affect safety, we prefer to include it in the optimization function together with other control effort costs. Simulations later provided confirm the validity of our choice. Notice also that other choice, such as considering the position reference trajectories \eqref{eq:reference_z_F_tau_1} \textemdash{} \eqref{eq:reference_z_F_tau_3} as hard constraints is also possible and can be seamlessly included in our control framework.
 
 
 \begin{algorithm}
-\caption{$\bar{t}$ far reference generator. Output: $\mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})$. }\label{alg:switched_controller}
+\caption{Switched controller. Output:  $K^{\mathrm{F}}_i(x^{\mathrm{F}}(t))$. }\label{alg:switched_controller}
 \begin{algorithmic}[1]
 \Loop
 
@@ -1603,17 +1601,17 @@ The switched controller is therefore implemented in Algorithm \ref{alg:switched_
 
 \State Compute
 \begin{equation}\label{eq:reference_z_F_tau_1}
- \mathbf{z}_{\tau_1}^\mathrm{F}(t_{\mathrm{last}})={z_{\tau_1}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})}_{t\in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\tau_1 )},
+ \mathbf{z}_{\tau_1}^\mathrm{F}(t_{\mathrm{last}})={z_{\tau_1}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})}_{t\in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\tau_1 )},
 \end{equation}
 \begin{equation}\label{eq:reference_z_F_tau_2}
- \mathbf{z}_{\tau_2}^\mathrm{F}(t_{\mathrm{last}})={z_{\tau_2}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})}_{t\in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\tau_2 )},
+ \mathbf{z}_{\tau_2}^\mathrm{F}(t_{\mathrm{last}})={z_{\tau_2}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})}_{t\in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\tau_2 )},
 \end{equation}
 \begin{equation}\label{eq:reference_z_F_tau_3}
- \mathbf{z}_{\tau_3}^\mathrm{F}(t_{\mathrm{last}})={z_{\tau_3}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})}_{t\in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\tau_3 )}.
+ \mathbf{z}_{\tau_3}^\mathrm{F}(t_{\mathrm{last}})={z_{\tau_3}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})}_{t\in [t_{\mathrm{last}}, \, t_{\mathrm{last}}+H-\tau_3 )}.
 \end{equation}
 
 
-\If{ $x_1^{\mathrm{F}}(t)\leq z_{\tau_3}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})$ }
+\If{ $x_1^{\mathrm{F}}(t)\leq z_{\tau_3}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})$ }
 
 \State Select controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$;
 
@@ -1621,7 +1619,7 @@ The switched controller is therefore implemented in Algorithm \ref{alg:switched_
 
 
 
-\ElsIf{ $z_{\tau_3}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})< x_1^{\mathrm{F}}(t) \leq z_{\tau_1}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t),t_{\mathrm{last}})$ }
+\ElsIf{ $z_{\tau_3}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})< x_1^{\mathrm{F}}(t) \leq z_{\tau_1}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_{\mathrm{last}})$ }
 
 \State Select controller $K^{\mathrm{F}}_2(x^{\mathrm{F}}(t))$;
 
@@ -1657,7 +1655,7 @@ The controller $K^{\mathrm{F}}_1(x^{\mathrm{F}}(t))$  is deployed in scenarios w
 \begin{equation}
 	\label{eq:K_1_controller}
 	\begin{aligned}
-		K^{\mathrm{F}}_1(x^\mathrm{F}(t)) = \arg \min_{u^\mathrm{F}(t)} \int_{t}^{t+H} &  \Theta^u_1\left(u^\mathrm{F}(r)\right)^2  \\  
+		K^{\mathrm{F}}_1(x^\mathrm{F}(t)) = \arg \min_{x^{\mathrm{F}}(t), u^{\mathrm{F}}(t)} \int_{t}^{t+H} &  \Theta^u_1\left(u^\mathrm{F}(r)\right)^2  \\  
 		& + \Theta^s_1\left(x_1^{\mathrm{F}}(r) - \mathbf{z}_{\tau_2}^\mathrm{F}(t_{\mathrm{last}})[r]\right)^2 \, dr, \\
 		&\hspace{-1.9cm} \text{subject to} \quad \text{Eqs.}~\eqref{eq:modelConstraints}, \quad \mathrm{with} \; i = \mathrm{F}.
 	\end{aligned}
@@ -1670,8 +1668,8 @@ The controller $K^{\mathrm{F}}_2(x^{\mathrm{F}}(t))$ is tasked with supporting t
 \begin{equation}
 	\label{eq:K_2_controller}
 	\begin{aligned}
-		K^{\mathrm{F}}_2(x^\mathrm{F}(t)) = \arg  \min_{u_(t)} &\int_{t}^{t+H} \Theta^s_2(x_1^{\mathrm{F}}(r)-\mathbf{z}_{\tau_2}^\mathrm{F}(t_{\mathrm{last}})[r])^2 \\ &+\Theta^v_2(x_2^{\mathrm{F}}(r)-\underline{\mathbf{x}}_2^\mathrm{L}(r))^2  +  \Theta^u_2(u^{\mathrm{F}}(r))^2 dr, \\
-		&	\hspace{-1.9cm} \text{subject to} \qquad \hspace{-1cm}  \qquad Eqs.\eqref{eq:modelConstraints}, \quad \mathrm{with} \; i = \mathrm{F}.
+		K^{\mathrm{F}}_2(x^\mathrm{F}(t)) = \arg  \min_{x^{\mathrm{F}}(t), u^{\mathrm{F}}(t)} &\int_{t}^{t+H} \Theta^s_2(x_1^{\mathrm{F}}(r)-\mathbf{z}_{\tau_2}^\mathrm{F}(t_{\mathrm{last}})[r])^2 \\ &+\Theta^v_2(x_2^{\mathrm{F}}(r)-\underline{\mathbf{x}}_2^\mathrm{L}(r))^2  +  \Theta^u_2(u^{\mathrm{F}}(r))^2 dr, \\
+		&	\hspace{-1.9cm} \text{subject to} \qquad \hspace{-1cm}  \qquad \mathrm{Eqs.}\eqref{eq:modelConstraints}, \quad \mathrm{with} \; i = \mathrm{F}.
 		\end{aligned}
 \end{equation}
 
@@ -1681,8 +1679,8 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
 \begin{equation}
 	\label{eq:K_3_controller}
 	\begin{aligned}
-		K^{\mathrm{F}}_3(x^\mathrm{F}(t)) = \arg  \min_{u_(t)} \int_{t}^{t+H}& \Theta^s_3(x_1^{\mathrm{F}}(r)-\mathbf{z}_{\tau_2}^\mathrm{F}(t_{\mathrm{last}})[r])^2, \\
-		&	\hspace{-1.8cm} \text{subject to} \qquad \hspace{-1cm}  \qquad Eqs.\eqref{eq:modelConstraints}, \quad \mathrm{with} \; i = \mathrm{F}.
+		K^{\mathrm{F}}_3(x^\mathrm{F}(t)) = \arg  \min_{x^{\mathrm{F}}(t), u^{\mathrm{F}}(t)} \int_{t}^{t+H}& \Theta^s_3(x_1^{\mathrm{F}}(r)-\mathbf{z}_{\tau_2}^\mathrm{F}(t_{\mathrm{last}})[r])^2, \\
+		&	\hspace{-1.8cm} \text{subject to} \qquad \hspace{-1cm}  \qquad \mathrm{Eqs.}\eqref{eq:modelConstraints}, \quad \mathrm{with} \; i = \mathrm{F}.
 	\end{aligned}
 \end{equation}
 
@@ -1700,14 +1698,13 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
   To verify the efficacy of our control system, we will utilize a specialized simulation tool named \textit{RV4565}, a video of its functionalities is reported in\tildeAdd\cite{youtubeVideo}. This tool, developed with MATLAB enables detailed observation of train variables, including those influencing platoon systems, such as inter-train distance and velocity. All simulations were conducted on a laptop equipped with an Intel i7-10710U processor (6 cores at 4.7GHz) and 16GB of RAM, running the Windows operating system.
   
   
-  For the sake of readability, all parameters used in the simulations are listed in Appendix \tildeAdd\ref{appendix:parameters}.   The controllers\tildeAdd\eqref{eq:K_1_controller}-\eqref{eq:K_3_controller} presented in \ref{subsec:switchedvitrualcouplingblock} have been implemented as \glspl{nmpc} using the OpEn framework and the PANOC solver\tildeAdd\cite{open2020} with $\Delta T^{\mathrm{mpc}}$ as discretization time. 
+  For the sake of readability, all parameters used in the simulations are listed in Appendix \tildeAdd\ref{appendix:parameters}.   The controllers\tildeAdd\eqref{eq:K_1_controller}–\eqref{eq:K_3_controller} presented in \ref{subsec:switchedvitrualcouplingblock} have been implemented as \glspl{nmpc} using the OpEn framework and the PANOC solver\tildeAdd\cite{open2020} with $\Delta T^{\mathrm{mpc}}$ as discretization time. 
   
   The dynamic parameters of the trains were modeled after those of two Frecciarossa ETR1000 trains\tildeAdd\cite{frecciarossa}. For the simulations, it was specifically assumed that the follower train is fully loaded, while the leader train is not. Figure\tildeAdd\ref{fig:trackProfile} reports the data profile of the railway line used to conduct the simulation is the Italian Firenze-Bologna railway line. The maximum velocity of the railway line is assumed to be constant and is set to $V^{\mathrm{line}}(s) = 83\unit{\frac{\unit{\meter}}{\unit{\second}}}$ which is the maximum permitted by the infrastructure along the entire route.
   
   	\begin{figure}[ht]
   			\begin{tikzpicture}
   				\begin{axis}[
-%  					height=3cm,
   					xlabel={distance (\unit{\kilo\meter})},
   					ylabel={Curvature(${\unit{\meter}}$)},
   					title={\textbf{Railway line curvature profile}},
@@ -1760,11 +1757,11 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
  \subsection{Operational scenarios}
   \label{sec:OperationalScenarios}
   
-  Two different operational scenarios (\gls{os}) were considered to evaluate the safety and benefits of the control system proposed in this study.
+  Two different operational scenarios \gls{os} were considered to evaluate the safety and benefits of the control system proposed in this study.
   
   In the first scenario, referred to as \gls{os}1, the leader and follower initiate a virtual coupling (\gls{vc}) operation, starting from a Level 3 (\gls{l3}) separation distance of $6000\unit{\meter}$. Throughout the simulation, the leader adjusts its velocity dynamically, introducing velocity variations along the route. At one stage, the leader stabilizes its velocity and maintains a constant velocity. Despite these fluctuations, the follower successfully closes the gap and establishes the virtual coupling. As the scenario advances, the leader unexpectedly begins a braking maneuver, gradually decelerating until coming to a complete stop. This scenario is designed to assess the control system’s ability to handle dynamic velocity variations while ensuring precise coordination between the leader and follower. It particularly evaluates the follower’s capacity to react effectively and safely to sudden changes in the leader’s behavior, such as abrupt braking.
   
-  The second scenario, designated as \gls{os}2, begins with the leader and follower engaged in a \gls{vc} operation where the leader maintains a steady, constant velocity, and the follower ensures a safe following distance. In this scenario, the focus shifts to a situation where communication between the leader and follower starts to degrade, leading to increased delays in the transmission of control data. As the scenario unfolds, the communication further deteriorates until updates from the leader fail to arrive on time. This delay poses a critical challenge, testing the robustness of the follower’s control system. Without real-time data, the follower must rely on the last received information to ensure safety, maintain proper spacing, and continue operations despite the communication breakdown. This scenario emphasizes the importance of the delay estimator block, as described in Subsection \ref{subsec:delayEstimator}, and the role of adaptive control strategies in maintaining operational stability under unexpected communication failures. The control system’s ability to handle these disruptions without compromising safety is a key focus of this evaluation.
+  The second scenario, designated as \gls{os}2, begins with the leader and follower engaged in a \gls{vc} operation where the leader maintains a steady, constant velocity, and the follower ensures a safe following distance. In this scenario, the focus shifts to a situation where communication between the leader and follower starts to degrade, leading to increased delays in the transmission of control data. As the scenario unfolds, the communication further deteriorates until updates from the leader fail to arrive on time. This delay poses a critical challenge, testing the robustness of the follower’s control system. Without real-time data, the follower must rely on the last received information to ensure safety, maintain proper spacing, and continue operations despite the communication breakdown. This scenario emphasizes the importance of the Delay estimator block, as described in Subsection \ref{subsec:delayEstimator}, and the role of adaptive control strategies in maintaining operational stability under unexpected communication failures. The control system’s ability to handle these disruptions without compromising safety is a key focus of this evaluation.
   
  
  The two operational scenarios, \gls{os}1 and \gls{os}2, represent the core situations encountered in railway operations, highlighting the control system's critical role in ensuring safety and efficiency. These scenarios underscore the system’s ability to manage the most fundamental and challenging aspects of railway operations, ensuring reliability in both routine and disrupted conditions.
@@ -1772,15 +1769,15 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
 		 \subsection{Results}
 		\label{sec:results}
 		
-		The simulation results for scenarios \gls{os}1 and \gls{os}2 are shown in Figures \ref{fig:os1_a}-\ref{fig:os1_h} and Figures \ref{fig:os2_a}-\ref{fig:os2_h}, respectively. For clarity, time dependencies of the variables in the legends have been removed, and the x-axis unit, expressed in seconds, is defined here.
+		The simulation results for scenarios \gls{os}1 and \gls{os}2 are shown in Figures \ref{fig:os1_a}–\ref{fig:os1_h} and Figures \ref{fig:os2_a}–\ref{fig:os2_h}, respectively. For clarity, time dependencies of the variables in the legends have been removed, and the x-axis unit, expressed in seconds, is defined here.
 		
-		In the first scenario (Figure \ref{fig:os1_c}), the follower initially starts far from the leader. As a result, the control system selects the controller $K_1^\mathrm{F}$, which applies a force (shown in Figure \ref{fig:os1_f}) to accelerate the follower to approximately $80 \frac{\unit{\meter}}{\unit{\second}}$, as illustrated in Figure \ref{fig:os1_c}. By $120\unit{\second}$ (Figure \ref{fig:os1_h}), the follower’s position reaches the region beyond $z_{\tau_1}^\mathrm{F}$ due to the high velocity, triggering controller $K_3^\mathrm{F}$ (Figure \ref{fig:os1_d}). This controller decelerates the follower to match the leader's velocity. Around time $600\unit{\second}$, the control system stabilizes the follower at a distance of approximately $1300 \unit{\meter}$ from the leader, as seen in Figure \ref{fig:os1_b}, achieving virtual coupling between the two trains. During the simulation, the leader alters its velocity at $800\unit{\second}$ and $1600\unit{\second}$ to $60 \frac{\unit{\meter}}{\unit{\second}}$ and $40 \frac{\unit{\meter}}{\unit{\second}}$, respectively. In both cases, the control system maintains the virtual coupling between the two trains. It is important to note that, up to this point, the safety barrier in Figure \ref{fig:os1_a} remains negative.
+		In the first scenario (Figure \ref{fig:os1_c}), the follower initially starts far from the leader. As a result, the control system selects the controller $K_3^\mathrm{F}$, which applies a force (shown in Figure \ref{fig:os1_f}) to accelerate the follower to approximately $80 \frac{\unit{\meter}}{\unit{\second}}$, as illustrated in Figure \ref{fig:os1_c}. By $126\unit{\second}$ (Figure \ref{fig:os1_h}), the follower’s position reaches the region beyond $z_{\tau_1}^\mathrm{F}$ due to the high velocity, triggering controller $K_1^\mathrm{F}$ (Figure \ref{fig:os1_d}). This controller decelerates the follower to match the leader's velocity. Around time $600\unit{\second}$, the control system stabilizes the follower at a distance of approximately $1300 \unit{\meter}$ from the leader, as seen in Figure \ref{fig:os1_b}, achieving virtual coupling between the two trains. The latter Figure presents two scenarios: one with a communication delay of $3 \unit{\second}$ and the other with  $800 \unit{\milli\second}$. It demonstrates that as the communication delay decreases, the distance between the leader and follower also reduces. During the simulation, the leader alters its velocity at $800\unit{\second}$ and $1600\unit{\second}$ to $60 \frac{\unit{\meter}}{\unit{\second}}$ and $40 \frac{\unit{\meter}}{\unit{\second}}$, respectively. In both cases, the control system maintains the virtual coupling between the two trains. It is important to note that, up to this point, the safety barrier in Figure \ref{fig:os1_a} remains negative.
 		
-		To test the control system under emergency conditions, the leader initiates a braking maneuver at $2300\unit{\second}$, decelerating to a full stop. As shown in Figures \ref{fig:os1_e} and \ref{fig:os1_g}, the control system activates the emergency controller since the safety barrier becomes positive. Notably, in Figure \ref{fig:os1_e}, the safety barrier is negative when the packet arrives from the leader, but the \gls{rlp} predictor, described in Section \ref{subsec:leaderRLPpredictor}, updates the leader's state during the subsequent period without communication, triggering the first condition in Algorithm \ref{alg:safetycontrol}. In this emergency situation, the control system ensures safety by stopping both trains at a distance greater than the safety threshold, as confirmed in Figures \ref{fig:os1_a} and \ref{fig:os1_b}.
+		To test the control system under emergency conditions, the leader initiates a braking maneuver at $2250\unit{\second}$, decelerating to a full stop. As shown in Figures \ref{fig:os1_e} and \ref{fig:os1_g}, the control system activates the emergency controller since the predicted safety barrier value becomes positive. Notably, in Figure \ref{fig:os1_e}, the safety barrier is negative when the packet arrives from the leader, but the Leader \gls{rlp} predictor, described in Section \ref{subsec:leaderRLPpredictor}, updates the leader's state during the subsequent period without communication, triggering the first condition in Algorithm \ref{alg:safetycontrol}. In this emergency situation, the control system ensures safety by stopping both trains at a distance greater than the safety threshold, as confirmed in Figures \ref{fig:os1_a} and \ref{fig:os1_b}.
 		
-		The second operational scenario \gls{os}2 starts with the two trains already in a \gls{vc} operation, traveling at the same velocity of $50 \frac{\unit{\meter}}{\unit{\second}}$ (Figure \ref{fig:os2_c}) and maintaining a separation of approximately $1260 \unit{\meter}$ (Figure \ref{fig:os2_b}). During this phase, the control system uses controller $K_2^\mathrm{F}$ to maintain the virtual coupling, as shown in Figure \ref{fig:os2_d}. At $1000\unit{\second}$, the communication channel degrades (Figure \ref{fig:os2_h}), with the minimum packet arrival time increasing to $\overline{T}^{\mathrm{min}}$ (reported in Appendix \ref{appendix:parameters}). The system’s behavior is evaluated both with and without the delay estimator block, as described in Section \ref{subsec:delayEstimator}. Figure \ref{fig:os2_g} shows that when the delay estimator is active, the separation increases due to the calculation of reference trajectories $z_{\tau_1}^\mathrm{F}$, $z_{\tau_2}^\mathrm{F}$, and $z_{\tau_3}^\mathrm{F}$ based on the estimated delay $\hat{\tau}$. Without the delay estimator, the control system does not detect any communication degradation and behaves non-adaptively.
+		The second operational scenario \gls{os}2 starts with the two trains already in a \gls{vc} operation, traveling at the same velocity of $50 \frac{\unit{\meter}}{\unit{\second}}$ (Figure \ref{fig:os2_c}) and maintaining a separation of approximately $1260 \unit{\meter}$ (Figure \ref{fig:os2_b}). During this phase, the control system uses controller $K_2^\mathrm{F}$ to maintain the virtual coupling, as shown in Figure \ref{fig:os2_d}. At $1000\unit{\second}$, the communication channel degrades (Figure \ref{fig:os2_h}), with the minimum packet arrival time increasing to $\overline{T}^{\mathrm{min}}$ (reported in Appendix \ref{appendix:parameters}). The system’s behavior is evaluated both with and without the Delay estimator block, as described in Section \ref{subsec:delayEstimator}. Figure \ref{fig:os2_g} shows that when the Delay estimator is active, the separation increases due to the calculation of reference trajectories $z_{\tau_1}^\mathrm{F}$, $z_{\tau_2}^\mathrm{F}$, and $z_{\tau_3}^\mathrm{F}$ based on the estimated delay $\hat{\tau}$. Without the Delay estimator, the control system does not detect any communication degradation and behaves non-adaptively.
 		
-		Finally, at $1700\unit{\second}$, communication between the two trains is lost, as seen in Figure \ref{fig:os2_e}, where packet receptions occur at extended intervals, causing the safety barrier to become positive. As in the previous scenario, the \gls{rlp} predictor triggers the emergency controller. This emergency braking is evident in Figure \ref{fig:os2_f}, where a large negative force is applied by controller $K_{\mathrm{E}^\mathrm{F}}$, which is activated, as shown in Figure \ref{fig:os2_d}.
+		Finally, at $1700\unit{\second}$, communication between the two trains is lost, as seen in Figure \ref{fig:os2_e}, where packet receptions occur at extended intervals, causing the safety barrier to become positive. As in the previous scenario, the Leader \gls{rlp} predictor triggers the emergency controller. This emergency braking is evident in Figure \ref{fig:os2_f}, where a large negative force is applied by controller $K_{\mathrm{E}}^\mathrm{F}$, which is activated, as shown in Figure \ref{fig:os2_d}.
 		
 		Once communication with the leader is restored, the control system recalculates the safety barrier and verifies that the trains are safe. Controller $K_3^\mathrm{F}$ is reactivated to gradually recover the lost space during the emergency braking.
 		
@@ -1826,8 +1823,7 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
 				\end{tabular}
 			\end{center}
 		\end{table}
-		
-		In \gls{os}2, despite degraded communication, the follower's control system processes data faster than in \gls{os}1, demonstrating efficiency with a lower mean computation time and highlighting robustness under challenging conditions.
+	
 		
 %%% END SECTION ============================================================
 %%% START SECTION ==========================================================
@@ -1876,7 +1872,7 @@ We sincerely thank Rete Ferroviaria Italiana for their support through knowledge
 	
 	Also, let us suppose for the moment that at the considered initial time $t_0$ the leader is not standing, i.e. $x_2^\mathrm{L}(t_0)>0$ (this hypothesis will be removed later).
 	
-	Notice that the assumption $x_2^\mathrm{F}(t_0)>0$ in the theorem statement  and the technical one $x_2^\mathrm{L}(t_0)>0$ we just added temporarily are only meant to allow these two controllers to provide non zero input, since, in case a train is still, \red{the set $\mathcal{U}^i(x^i)=\{0\}$ is the only available controller satisfying \eqref{eq:stateDynamic}, forse questa va messa al posto della (6)}.
+	Notice that the assumption $x_2^\mathrm{F}(t_0)>0$ in the theorem statement  and the technical one $x_2^\mathrm{L}(t_0)>0$ we just added temporarily are only meant to allow these two controllers to provide non zero input, since, in case a train is still, the set $\mathcal{U}^i (x^i) = \{0\}$ is the only available controller satisfying dynamics  \eqref{eq:stateDynamic}–\eqref{eq:train_intervals}.
 	
 	With such a choice, it is immediate to verify that the  
 	leader RLP dynamics are
@@ -1963,11 +1959,11 @@ We sincerely thank Rete Ferroviaria Italiana for their support through knowledge
 		b^\prime(x^\mathrm{L}(t | \hat{K}^\mathrm{L}),x^\mathrm{F}(t |\hat{K}^\mathrm{F})])\leq  b^\prime(\underline{x}^\mathrm{L}(t | \hat{K}^\mathrm{L}),\overline{x}^\mathrm{F}(t | \hat{K}^\mathrm{F})), \qquad \forall t>t_0. 
 	\end{equation}
 	
-	Furthermore, noticing that $t_{\mathrm{st}}^{F}\leq t_{\mathrm{st}}^{\mathrm{F},p}$, for the above formula it holds
+Let $t_{\mathrm{st}}^{F}(t_0 | \hat{K}^\mathrm{F}) = \min{t \in [t_0, +\infty) : x_2^\mathrm{F} = 0}$ represent the stopping time of the follower under the control $\hat{K}^\mathrm{F}$ applied from time $t_0$. Additionally, noting that $t_{\mathrm{st}}^{F} \leq t_{\mathrm{st}}^{\mathrm{F},p}$, the following inequality holds for the above formula
 	\begin{equation*}
 		b^\prime(x^\mathrm{L}(t | \hat{K}^\mathrm{L}),x^\mathrm{F}(t |\hat{K}^\mathrm{F}))<  b^\prime(\underline{x}^\mathrm{L}(t | \hat{K}^\mathrm{L}),\overline{x}^\mathrm{F}(t | \hat{K}^\mathrm{F})), \,\, \forall t_0\geq t\geq t_{\mathrm{st}}^{F} \\ . 
 	\end{equation*}
-	
+
 	
 	Combining \eqref{eq:decrease_b_prime_proxies}  with \eqref{eq:constantb_prime}, we obtain 
 	\begin{equation}\label{eq:decrease_b_prime_hat_K}
@@ -1976,7 +1972,7 @@ We sincerely thank Rete Ferroviaria Italiana for their support through knowledge
 	
 	Being $t$ and $t_0$ two generic instants, inequality \eqref{eq:decrease_b_prime_hat_K} shows that $b'(x)$ is monotonically decreasing on the trains system under the control provided by $\hat{K}^\mathrm{L}$ and  $\hat{K}^\mathrm{F}$.
 	
-	To show that the special controller $\hat{K}^\mathrm{L}$ $\hat{K}^\mathrm{F}$ is robustly safety compliant
+	To show that the special controller $K=[{K^\mathrm{L}}^T, {K^\mathrm{F}_E}^T]^T$ is robustly safety compliant
 	we need to analyze the evolution of $b(x)$ along the system trajectory also when $b(x)$ attains its maximum on $b''(x)$. 
 	To do so, let us consider the case that $b(\underline{x}^\mathrm{L}(t_0),\overline{x}^\mathrm{F}(t_0))=b''(\underline{x}^\mathrm{L}(t_0),\overline{x}^\mathrm{F}(t_0))$ which, equivalently, reads as
 	\begin{equation}\label{eq:comparison_b_prime_b_second}
@@ -2033,7 +2029,28 @@ We sincerely thank Rete Ferroviaria Italiana for their support through knowledge
 \begin{center}
 	\begin{tabular}[t!]{ |c|c|c|c| } 
 		\hline
-		\multicolumn{4}{|c|}{\textbf{Simulation parameters}} \\ 
+		\multicolumn{4}{|c|}{\textbf{Controller parameters}} \\ 
+		\hline
+		\textbf{Parameter} & \textbf{Value} & \textbf{Parameter} & \textbf{Value}  \\
+		\hline
+		$H$(\unit{\second})	& $12$ & $\Delta T^{\mathrm{mpc}}$(\unit{\second}) & $0.06$  \\ 
+		$\omega_1$	& $1$ & $\omega_2$ & $3$ \\ 
+		$\omega_3$	& $6$ & $T^{\max}$(\unit{\second}) & $8$ \\ 
+		$\Theta^s_1$	& $2$ & $\Theta^v_1$ & $0.225$ \\
+		$\Theta^u_1$	& $1 \cdot\ {10}^{-2}$ & $\Theta^s_2$ & $2 \cdot\ {10}^{-2}$ \\
+		$\Theta^v_2$	& $10$ & $\Theta^u_2$ & $5 \cdot\ {10}^{-2}$ \\
+		$\Theta^s_3$	& $1$ & $\Theta^u_3$ & $ 4 \cdot\ {10}^{-3}$ \\
+		$d$(\unit{\meter})	& $1000$ & $p_\mathrm{loss}$
+		&  $0.01$\\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\begin{center}
+	\begin{tabular}[t!]{ |c|c|c|c| } 
+		\hline
+		\multicolumn{4}{|c|}{\textbf{Trains parameters}} \\ 
 		\hline
 		\textbf{Parameter} & \textbf{Value} & \textbf{Parameter} & \textbf{Value}  \\
 		\hline
@@ -2054,19 +2071,6 @@ We sincerely thank Rete Ferroviaria Italiana for their support through knowledge
 		$\underline{a}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}})	& $0.92$ & $\overline{a}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}}) & $1.08$ \\ 
 		$\underline{P}_{\mathrm{br}}$(\unit{\watt})	&  $-33.28 \cdot 10^4$ & $\overline{P}_{\mathrm{br}}$(\unit{\watt}) &  $-30 \cdot 10^4$ \\ 
 		$\underline{P}_{\mathrm{dr}}$(\unit{\watt})	& $30 \cdot 10^4$ & $\overline{P}_{\mathrm{dr}}$(\unit{\watt}) &  $33.28 \cdot 10^4$ \\ 
-		$H$(\unit{\second})	& $12$ & $\Delta T^{\mathrm{mpc}}$(\unit{\second}) & $0.06$  \\ 
-		$\omega_1$	& $1$ & $\omega_2$ & $3$ \\ 
-		$\omega_3$	& $6$ & $T^{\max}$(\unit{\second}) & $8$ \\ 
-		$\Theta^s_1$	& $2$ & $\Theta^v_1$ & $0.225$ \\
-		$\Theta^u_1$	& $1 \cdot\ {10}^{-2}$ & $\Theta^s_2$ & $2 \cdot\ {10}^{-2}$ \\
-		$\Theta^v_2$	& $10$ & $\Theta^u_2$ & $5 \cdot\ {10}^{-2}$ \\
-		$\Theta^s_3$	& $1$ & $\Theta^u_3$ & $ 4 \cdot\ {10}^{-3}$ \\
-		$d$(\unit{\meter})	& $1000$ & &\\
-		$\lambda$	& $0.3$ & $T^{\mathrm{min}}$(\unit{\second}) & $0.7$ \\ 
-		$p$	& $0.98$ & $\overline{T}^{\mathrm{min}}$(\unit{\second})
-		&  $2$\\  
-		$\Delta T^\mathrm{ch} (s)$	& $1.02$ & $p_\mathrm{loss}$
-		&  $0.01$ \\  
 		\hline
 	\end{tabular}
 \end{center}
@@ -2098,164 +2102,168 @@ The data used during the simulation for the train models, the controller paramet
 \twocolumn
 
 
-
-\begin{figure*}[t!]
-\captionsetup[figure]{font=small,skip=0pt}
-	% First subfigure
-	\begin{subfigure}{\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=17cm,
-				height=3.8cm,
-				enlargelimits=false,
-				ymax=200,
-				ymin=-2000,
-				legend pos=south east,
-				grid = both,
-				ylabel={Distance($\unit{\meter})$},
-				%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600}
-				xticklabel=\empty
-				%xlabel={Time($\unit{\second})$},
-				]
-				\addplot [name path=greenCurve, color=lime, solid, line width=1pt] 
-				file{dataMatlab/OS1/B.txt};
-				
-				\addplot+[
-				mark=+,
-				only marks, color=blue,
-				mark size=0.5pt
-				]file{dataMatlab/OS1/event_B.txt};
-				
-				% Adding a line from (0,0) to (0,800)
-				\addplot [name path=b0, color=red, solid, line width=1.5pt] 
-				file{dataMatlab/OS1/b_0.txt};
-				\addlegendentry{$b(x)$}
-
-			
-			
-			\end{axis}
-			
-
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os1_a}
-	\end{subfigure}%
 	
-	% Second subfigure
-	\begin{subfigure}{\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left, spy using outlines=
-			{circle, magnification=5, connect spies}]
-			\begin{axis}[
-				width=17cm,
-				height=4cm,
-				enlargelimits=false,
-				ymin=700,
-				%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
-				xticklabel=\empty,
-				legend pos=north east,
-				grid = both,
-				ylabel={Distance($\unit{\meter})$},
-				legend columns=2
-				]
-				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
-				file{dataMatlab/OS1/interDistance.txt};
-				\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$}
+	\begin{figure*}[t!]
+		\captionsetup[figure]{font=small,skip=0pt}
+		% First subfigure
+		\begin{subfigure}{\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=17cm,
+					height=3.8cm,
+					enlargelimits=false,
+					ymax=200,
+					ymin=-2000,
+					legend pos=south east,
+					grid = both,
+					%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600}
+					xticklabel=\empty
+					%xlabel={Time($\unit{\second})$},
+					]
+					\addplot [name path=greenCurve, color=lime, solid, line width=1pt] 
+					file{dataMatlab/OS1/B.txt};
+					
+					\addplot+[
+					mark=+,
+					only marks, color=blue,
+					mark size=0.5pt
+					]file{dataMatlab/OS1/event_B.txt};
+					
+					% Adding a line from (0,0) to (0,800)
+					\addplot [name path=b0, color=red, solid, line width=1.5pt] 
+					file{dataMatlab/OS1/b_0.txt};
+					\addlegendentry{$b(x)$}
+					
+					
+					
+				\end{axis}
 				
-				\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
-				file{dataMatlab/OS1/d.txt};
+				
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os1_a}
+		\end{subfigure}%
+		
+		% Second subfigure
+		\begin{subfigure}{\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left, spy using outlines=
+				{circle, magnification=5, connect spies}]
+				\begin{axis}[
+					width=17cm,
+					height=4cm,
+					enlargelimits=false,
+					ymin=700,
+					%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
+					xticklabel=\empty,
+					legend pos=north east,
+					grid = both,
+					ylabel={Distance($\unit{\meter})$},
+					legend columns=2
+					]
+					\addplot [name path=greenCurve, color=black, solid, line width=0.5pt] 
+					file{dataMatlab/OS1/interDistance.txt};
+					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}} ( 3\unit{\second} )$}
+					
+					\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
+					file{dataMatlab/OS1/d.txt};
+					
+					
+					\addlegendentry{$d$}
+					
+					\addplot [name path=greenCurve, color=magenta, solid, line width=0.5pt] 
+					file{dataMatlab/OS1/interDistance_800.txt};
+					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}( 800\unit{\milli\second} )$}
+					
+					
+					
+					\coordinate (spypoint) at (axis cs:2280,1115);
+					\coordinate (magnifyglass) at (axis cs:1800,4000);
+				\end{axis}
+				
+				\spy [black, size=1.5cm] on (spypoint)
+				in node[fill=white] at (magnifyglass);
 				
 				
-				\addlegendentry{$d$}
-				
-				\coordinate (spypoint) at (axis cs:2370,1115);
-				\coordinate (magnifyglass) at (axis cs:1800,4000);
-			\end{axis}
-			
-			\spy [black, size=1.5cm] on (spypoint)
-			in node[fill=white] at (magnifyglass);
-			
-			
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os1_b}
-	\end{subfigure}%
-	
-	
-	% Third subfigure
-	\begin{subfigure}{\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=17cm,
-				height=4cm,
-				enlargelimits=false,
-				legend pos=south west,
-				grid = both,
-				xticklabel=\empty,
-				ymin=-2,
-				ymax=80,
-				legend columns=2,
-				ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
-				]
-				\addplot [name path=leader, color=teal, solid, line width=1pt] 
-				file{dataMatlab/OS1/velocityLeader.txt};
-				\addlegendentry{$x_2^{\mathrm{L}}$}
-				
-				\addplot [name path=leader, color=violet, solid, line width=1pt] 
-				file{dataMatlab/OS1/velocityFollower.txt};
-				\addlegendentry{$x_2^{\mathrm{F}}$}
-			\end{axis}
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os1_c}
-	\end{subfigure}%
-	
-	% Fifth subfigure
-	\begin{subfigure}{\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=17cm,
-				height=4cm,
-				enlargelimits=false,
-				xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
-				legend pos=south west,
-				grid = both,
-				ymin=-1,
-				ymax= 4,
-				ylabel={Controllers},
-				ytick={0, 1, 2, 3},
-				yticklabels={ $K^{\mathrm{F}}_{\mathrm{E}}$,  $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$}
-				]
-				\addplot [name path=leader, color=gray, solid, line width=1pt] 
-				file{dataMatlab/OS1/Z_tau_transformed.txt};
-				
-				\addplot+[
-				mark=+,
-				only marks, color=blue,
-				mark size=0.5pt
-				]file{dataMatlab/OS1/event_z_region_transformed.txt};
-			\end{axis}
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os1_d}
-	\end{subfigure}%
-	
-	
-	% Sixth subfigure
-	\begin{subfigure}{0.5\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-		\begin{axis}[
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os1_b}
+		\end{subfigure}%
+		
+		
+		% Third subfigure
+		\begin{subfigure}{\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=17cm,
+					height=4cm,
+					enlargelimits=false,
+					legend pos=south west,
+					grid = both,
+					xticklabel=\empty,
+					ymin=-2,
+					ymax=80,
+					legend columns=2,
+					ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
+					]
+					\addplot [name path=leader, color=teal, solid, line width=1pt] 
+					file{dataMatlab/OS1/velocityLeader.txt};
+					\addlegendentry{$x_2^{\mathrm{L}}$}
+					
+					\addplot [name path=leader, color=violet, solid, line width=1pt] 
+					file{dataMatlab/OS1/velocityFollower.txt};
+					\addlegendentry{$x_2^{\mathrm{F}}$}
+				\end{axis}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os1_c}
+		\end{subfigure}%
+		
+		% Fifth subfigure
+		\begin{subfigure}{\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=17cm,
+					height=4cm,
+					enlargelimits=false,
+					xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200},
+					legend pos=south west,
+					grid = both,
+					ymin=-1,
+					ymax= 4,
+					ylabel={Controllers},
+					ytick={0, 1, 2, 3},
+					yticklabels={ $K^{\mathrm{F}}_{\mathrm{E}}$,  $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$}
+					]
+					\addplot [name path=leader, color=gray, solid, line width=1pt] 
+					file{dataMatlab/OS1/Z_tau.txt};
+					
+					\addplot+[
+					mark=+,
+					only marks, color=blue,
+					mark size=0.5pt
+					]file{dataMatlab/OS1/event_z_region.txt};
+				\end{axis}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os1_d}
+		\end{subfigure}%
+		
+		
+		% Sixth subfigure
+		\begin{subfigure}{0.5\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
 					width=8cm,
 					height=4cm,
 					enlargelimits=false,
 					ymax=50,
 					legend pos=north east,
 					grid = both,
-					ylabel={Distance($\unit{\meter})$}
 					]
 					\addplot [name path=greenCurve, color=lime, solid, line width=1pt] 
 					file{dataMatlab/OS1/zoom_B.txt};
@@ -2274,45 +2282,45 @@ The data used during the simulation for the train models, the controller paramet
 					
 					
 				\end{axis}
-		\end{tikzpicture}
-		
-		\caption{}
-		\label{fig:os1_e}
-	\end{subfigure}\hfil%
-	\medskip
-		% Seventh subfigure
-	\begin{subfigure}{0.5\linewidth}
-	\centering
-	\begin{tikzpicture}[trim axis left]
-		\begin{axis}[
-			width=8cm,
-			height=4cm,
-			ymax=250000,
-			enlargelimits=false,
-			legend pos=north east,
-			grid = both,
-			ylabel={Force($\unit{\newton})$},
-			legend columns=2
-			]
-			\addplot [name path=leader, color=violet, solid, line width=1pt] 
-			file{dataMatlab/OS1/forceLeader.txt};
-			\addlegendentry{$u^{\mathrm{L}}$}
+			\end{tikzpicture}
 			
-			\addplot [name path=leader, color=brown, teal, line width=1pt] 
-			file{dataMatlab/OS1/forceFollower.txt};
-			\addlegendentry{$u^{\mathrm{F}}$}
-		\end{axis}
-	\end{tikzpicture}
-	\caption{}
-	\label{fig:os1_f}
-\end{subfigure}
-	
-
-	% Sixth subfigure
-\begin{subfigure}{0.5\linewidth}
-	\centering
-	\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
+			\caption{}
+			\label{fig:os1_e}
+		\end{subfigure}\hfil%
+		\medskip
+		% Seventh subfigure
+		\begin{subfigure}{0.5\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=8cm,
+					height=4cm,
+					ymax=250000,
+					enlargelimits=false,
+					legend pos=north east,
+					grid = both,
+					ylabel={Force($\unit{\newton})$},
+					legend columns=2
+					]
+					\addplot [name path=leader, color=violet, solid, line width=1pt] 
+					file{dataMatlab/OS1/forceLeader.txt};
+					\addlegendentry{$u^{\mathrm{L}}$}
+					
+					\addplot [name path=leader, color=brown, teal, line width=1pt] 
+					file{dataMatlab/OS1/forceFollower.txt};
+					\addlegendentry{$u^{\mathrm{F}}$}
+				\end{axis}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os1_f}
+		\end{subfigure}
+		
+		
+		% Sixth subfigure
+		\begin{subfigure}{0.5\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
 					width=8cm,
 					height=4cm,
 					enlargelimits=false,
@@ -2325,332 +2333,330 @@ The data used during the simulation for the train models, the controller paramet
 					yticklabels={ $K^{\mathrm{F}}_{\mathrm{E}}$, $K^{\mathrm{F}}_1$}
 					]
 					\addplot [name path=leader, color=gray, solid, line width=1pt] 
-					file{dataMatlab/OS1/zoom_Z_tau_transformed.txt};
+					file{dataMatlab/OS1/zoom_Z_tau.txt};
 					
 					\addplot+[
 					mark=+,
 					only marks, color=blue,
 					mark size=4pt
-					]file{dataMatlab/OS1/zoom_event_z_region_transformed.txt};
+					]file{dataMatlab/OS1/zoom_event_z_region.txt};
 				\end{axis}
-	\end{tikzpicture}
-	
-	\caption{}
-	\label{fig:os1_g}
-\end{subfigure}\hfil%
-\medskip
-% Seventh subfigure
-\begin{subfigure}{0.5\linewidth}
-	\centering
-	\begin{tikzpicture}[trim axis left]
-\begin{axis}[
-	width=8cm,
-	height=4cm,
-	enlargelimits=false,
-	legend pos=north west,
-	xmin= 117,
-	xmax=200,
-	grid = both,
-	ylabel={Distance($\unit{\meter})$},
-	legend columns=2
-	]
-	\addplot [name path=leader, color=red, solid, line width=0.5pt] 
-	file{dataMatlab/OS1/zoom_z_tau_1.txt};
-	\addlegendentry{$ \mathbf{z}_{\tau_1}^\mathrm{F}$}
-	
-	\addplot [name path=leader, color=orange, solid, line width=0.5pt] 
-	file{dataMatlab/OS1/zoom_z_tau_2.txt};
-	\addlegendentry{$ \mathbf{z}_{\tau_2}^\mathrm{F}$}
-	
-	\addplot [name path=leader, color=green, solid, line width=0.5pt] 
-	file{dataMatlab/OS1/zoom_z_tau_3.txt};
-	\addlegendentry{$ \mathbf{z}_{\tau_3}^\mathrm{F}$}
-	
-	\addplot [name path=leader, color=violet, solid, line width=0.5pt] 
-	file{dataMatlab/OS1/zoom_distanceFollower.txt};
-	\addlegendentry{$x_1^{\mathrm{F}}$}
-\end{axis}
-	\end{tikzpicture}
-	\caption{}
-	\label{fig:os1_h}
-\end{subfigure}
-	\label{fig:os1}
-	\caption{Simulation results for operational scenario OS1: (a) shows the safety barrier (lime) and reception events marked by crosses (blue). (b) illustrates the interdistance between the leader and follower (black) alongside the safety distance (red). (c) presents the velocities of the leader (teal) and follower (violet). (d) depicts the switching controllers (gray) with reception events again indicated by crosses (blue). (e) and (g) provide zoomed views of subplots (a) and (d), respectively. (f) displays the control inputs for the leader (teal) and follower (violet), while (h) shows the reference trajectories (green, orange, and red) along with the follower's position (violet).
-	}
-	
-\end{figure*}
-
-\newpage
-
-
-\begin{figure*}[t!]
-	\captionsetup[figure]{font=small,skip=0pt}
-	% First subfigure
-	\begin{subfigure}{\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=17cm,
-				height=3.8cm,
-				enlargelimits=false,
-				ymax=200,
-				legend pos=south west,
-				grid = both,
-				ylabel={Distance($\unit{\meter})$},
-				%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600}
-				xticklabel=\empty
-				%xlabel={Time($\unit{\second})$},
-				]
-				\addplot [name path=greenCurve, color=lime, solid, line width=1pt] 
-				file{dataMatlab/OS2/B.txt};
-				
-				\addplot+[
-				mark=+,
-				only marks, color=blue,
-				mark size=0.5pt
-				]file{dataMatlab/OS2/event_B.txt};
-				
-				% Adding a line from (0,0) to (0,800)
-				\addplot [name path=b0, color=red, solid, line width=1.5pt] 
-				file{dataMatlab/OS2/b_0.txt};
-				\addlegendentry{$b(x)$}
-				
-				
-				
-			\end{axis}
+			\end{tikzpicture}
 			
-			
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os2_a}
-	\end{subfigure}%
-	
-	% Second subfigure
-	\begin{subfigure}{\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=17cm,
-				height=4cm,
-				enlargelimits=false,
-				ymin=700,
-				%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
-				xticklabel=\empty,
-				legend pos=north west,
-				grid = both,
-				ylabel={Distance($\unit{\meter})$},
-				legend columns=2
-				]
-				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
-				file{dataMatlab/OS2/interDistance.txt};
-				\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$}
-				
-				\addplot [name path=greenCurve, color=black, dashed, line width=1.5pt] 
-				file{dataMatlab/OS2_no_delay_estimator/interDistance.txt};
-				\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$(Without delay estimator block)}
-				
-				\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
-				file{dataMatlab/OS2/d.txt};
-				\addlegendentry{$d$}
-				
-				
-				
-				
-				
-			\end{axis}
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os2_b}
-	\end{subfigure}%
-	
-	
-	% Third subfigure
-	\begin{subfigure}{\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=17cm,
-				height=4cm,
-				enlargelimits=false,
-				legend pos=south west,
-				grid = both,
-				xticklabel=\empty,
-				ymin=-2,
-				ymax=80,
-				legend columns=2,
-				ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
-				]
-				\addplot [name path=leader, color=teal, solid, line width=1pt] 
-				file{dataMatlab/OS2/velocityLeader.txt};
-				\addlegendentry{$x_2^{\mathrm{L}}$}
-				
-				\addplot [name path=leader, color=violet, solid, line width=1pt] 
-				file{dataMatlab/OS2/velocityFollower.txt};
-				\addlegendentry{$x_2^{\mathrm{F}}$}
-			\end{axis}
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os2_c}
-	\end{subfigure}%
-	
-	% Fifth subfigure
-	\begin{subfigure}{\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=17cm,
-				height=4cm,
-				enlargelimits=false,
-				xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
-				legend pos=south west,
-				grid = both,
-				ymin=-1,
-				ymax= 4,
-				ylabel={Controllers},
-				ytick={0, 1, 2, 3},
-				yticklabels={ $K^{\mathrm{F}}_{\mathrm{E}}$,  $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$}
-				]
-				\addplot [name path=leader, color=gray, solid, line width=1pt] 
-				file{dataMatlab/OS2/Z_tau_transformed.txt};
-				
-				\addplot+[
-				mark=+,
-				only marks, color=blue,
-				mark size=0.5pt
-				]file{dataMatlab/OS2/event_z_region_transformed.txt};
-				
-			\end{axis}
-			
-
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os2_d}
-	\end{subfigure}%
-	
-	
-	% Sixth subfigure
-	\begin{subfigure}{0.5\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=8cm,
-				height=4cm,
-				enlargelimits=false,
-				ymin = -250,
-				ymax=200,
-				legend pos=north east,
-				grid = both,
-				ylabel={Distance($\unit{\meter})$}
-				]
-				\addplot [name path=greenCurve, color=lime, solid, line width=1pt] 
-				file{dataMatlab/OS2/zoom_B.txt};
-				
-				\addplot+[
-				mark=+,color=blue,
-				only marks,
-				mark size=4pt
-				]file{dataMatlab/OS2/zoom_event_B.txt};
-				
-				% Adding a line from (0,0) to (0,800)
-				\addplot [name path=b0, color=red, solid, line width=1pt] 
-				file{dataMatlab/OS2/zoom_b_0.txt};
-				%\addlegendentry{$b(x)$}
-				
-				
-				
-			\end{axis}
-		\end{tikzpicture}
+			\caption{}
+			\label{fig:os1_g}
+		\end{subfigure}\hfil%
+		\medskip
+		% Seventh subfigure
+		\begin{subfigure}{0.5\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=8cm,
+					height=4cm,
+					enlargelimits=false,
+					legend pos=south east,
+					grid = both,
+					ylabel={Distance($\unit{\meter})$},
+					legend columns=2
+					]
+					\addplot [name path=leader, color=red, solid, line width=0.5pt] 
+					file{dataMatlab/OS1/zoom_z_tau_1.txt};
+					\addlegendentry{$ \mathbf{z}_{\tau_1}^\mathrm{F}$}
+					
+					\addplot [name path=leader, color=orange, solid, line width=0.5pt] 
+					file{dataMatlab/OS1/zoom_z_tau_2.txt};
+					\addlegendentry{$ \mathbf{z}_{\tau_2}^\mathrm{F}$}
+					
+					\addplot [name path=leader, color=green, solid, line width=0.5pt] 
+					file{dataMatlab/OS1/zoom_z_tau_3.txt};
+					\addlegendentry{$ \mathbf{z}_{\tau_3}^\mathrm{F}$}
+					
+					\addplot [name path=leader, color=violet, solid, line width=0.5pt] 
+					file{dataMatlab/OS1/zoom_distanceFollower.txt};
+					\addlegendentry{$x_1^{\mathrm{F}}$}
+				\end{axis}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os1_h}
+		\end{subfigure}
+		\label{fig:os1}
+		\caption{Simulation results for operational scenario OS1: (a) shows the safety barrier (lime) and reception events marked by crosses (blue). (b) illustrates the interdistance between the leader and follower with a communication delay of $3 \unit{\second}$  (black) and  $800 \unit{\milli\second}$  (magenta)  alongside the safety distance (red). (c) presents the velocities of the leader (teal) and follower (violet). (d) depicts the switching controllers (gray) with reception events again indicated by crosses (blue). (e) and (g) provide zoomed views of subplots (a) and (d), respectively. (f) displays the control inputs for the leader (teal) and follower (violet), while (h) shows the reference trajectories (green, orange, and red) along with the follower's position (violet).
+		}
 		
-		\caption{}
-		\label{fig:os2_e}
-	\end{subfigure}\hfil%
-	\medskip
-	% Seventh subfigure
-	\begin{subfigure}{0.5\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=8cm,
-				height=4cm,
-				ymax=100000,
-				enlargelimits=false,
-				legend pos=south west,
-				grid = both,
-				ylabel={Force($\unit{\newton})$},
-				legend columns=2
-				]
-				\addplot [name path=leader, color=teal, solid, line width=1pt] 
-				file{dataMatlab/OS2/forceLeader.txt};
-				\addlegendentry{$u^{\mathrm{L}}$}
-				
-				\addplot [name path=leader, color=violet, solid, line width=1pt] 
-				file{dataMatlab/OS2/forceFollower.txt};
-				\addlegendentry{$u^{\mathrm{F}}$}
-			\end{axis}
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os2_f}
-	\end{subfigure}
+	\end{figure*}
 	
+	\newpage
 	
-	% Sixth subfigure
-	\begin{subfigure}{0.5\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=8cm,
-				height=4cm,
-				enlargelimits=false,
-				legend pos=north west,
-				ymin=1230,
-				ymax=1350,
-				grid = both,
-				ylabel={Distance($\unit{\meter})$},
-				legend columns=2
-				]
-				\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
-				file{dataMatlab/OS2/zoom_interDistance.txt};
-				\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$}
+	\begin{comment}
+	\begin{figure*}[t!]
+		\captionsetup[figure]{font=small,skip=0pt}
+		% First subfigure
+		\begin{subfigure}{\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=17cm,
+					height=3.8cm,
+					enlargelimits=false,
+					ymax=200,
+					legend pos=south west,
+					grid = both,
+					%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600}
+					xticklabel=\empty
+					%xlabel={Time($\unit{\second})$},
+					]
+					\addplot [name path=greenCurve, color=lime, solid, line width=1pt] 
+					file{dataMatlab/OS2/B.txt};
+					
+					\addplot+[
+					mark=+,
+					only marks, color=blue,
+					mark size=0.5pt
+					]file{dataMatlab/OS2/event_B.txt};
+					
+					% Adding a line from (0,0) to (0,800)
+					\addplot [name path=b0, color=red, solid, line width=1.5pt] 
+					file{dataMatlab/OS2/b_0.txt};
+					\addlegendentry{$b(x)$}
+					
+					
+					
+				\end{axis}
 				
 				
-				
-				\addplot [name path=greenCurve, color=black, dashed, line width=1.5pt] 
-				file{dataMatlab/OS2_no_delay_estimator/zoom_interDistance.txt};
-				\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$see (b)}
-			\end{axis}
-		\end{tikzpicture}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os2_a}
+		\end{subfigure}%
 		
-		\caption{}
-		\label{fig:os2_g}
-	\end{subfigure}\hfil%
-	\medskip
-	% Seventh subfigure
-	\begin{subfigure}{0.5\linewidth}
-		\centering
-		\begin{tikzpicture}[trim axis left]
-			\begin{axis}[
-				width=8cm,
-				height=4cm,
-				enlargelimits=false,
-				legend pos=south east,
-				grid = both,
-				ylabel={Distance($\unit{\meter})$},
-				legend columns=2
-				]
-				\addplot [name path=leader, color=cyan, solid, line width=1pt] 
-				file{dataMatlab/OS2/tauEstimated.txt};
-				\addlegendentry{$ \hat{\tau}$}
+		% Second subfigure
+		\begin{subfigure}{\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=17cm,
+					height=4cm,
+					enlargelimits=false,
+					ymin=700,
+					%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
+					xticklabel=\empty,
+					legend pos=north west,
+					grid = both,
+					ylabel={Distance($\unit{\meter})$},
+					legend columns=2
+					]
+					\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
+					file{dataMatlab/OS2/interDistance.txt};
+					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$}
+					
+					\addplot [name path=greenCurve, color=black, dashed, line width=1.5pt] 
+					file{dataMatlab/OS2_no_delay_estimator/interDistance.txt};
+					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$(Without delay estimator block)}
+					
+					\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
+					file{dataMatlab/OS2/d.txt};
+					\addlegendentry{$d$}
+					
+					
+					
+					
+					
+				\end{axis}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os2_b}
+		\end{subfigure}%
+		
+		
+		% Third subfigure
+		\begin{subfigure}{\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=17cm,
+					height=4cm,
+					enlargelimits=false,
+					legend pos=south west,
+					grid = both,
+					xticklabel=\empty,
+					ymin=-2,
+					ymax=80,
+					legend columns=2,
+					ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
+					]
+					\addplot [name path=leader, color=teal, solid, line width=1pt] 
+					file{dataMatlab/OS2/velocityLeader.txt};
+					\addlegendentry{$x_2^{\mathrm{L}}$}
+					
+					\addplot [name path=leader, color=violet, solid, line width=1pt] 
+					file{dataMatlab/OS2/velocityFollower.txt};
+					\addlegendentry{$x_2^{\mathrm{F}}$}
+				\end{axis}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os2_c}
+		\end{subfigure}%
+		
+		% Fifth subfigure
+		\begin{subfigure}{\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=17cm,
+					height=4cm,
+					enlargelimits=false,
+					xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
+					legend pos=south west,
+					grid = both,
+					ymin=-1,
+					ymax= 4,
+					ylabel={Controllers},
+					ytick={0, 1, 2, 3},
+					yticklabels={ $K^{\mathrm{F}}_{\mathrm{E}}$,  $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$}
+					]
+					\addplot [name path=leader, color=gray, solid, line width=1pt] 
+					file{dataMatlab/OS2/Z_tau_transformed.txt};
+					
+					\addplot+[
+					mark=+,
+					only marks, color=blue,
+					mark size=0.5pt
+					]file{dataMatlab/OS2/event_z_region_transformed.txt};
+					
+				\end{axis}
 				
-			\end{axis}
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:os2_h}
-	\end{subfigure}
-	\label{fig:os2}
-	\caption{Simulation results for operational scenario OS2: (a) shows the safety barrier (lime) and reception events marked by crosses (blue). (b) illustrates the interdistance between the leader and follower, with the continuous black line representing the scenario without the delay estimator block, and the dashed black line representing the scenario with the delay estimator, alongside the safety distance (red). (c) presents the velocities of the leader (teal) and follower (violet). (d) depicts the switching controllers (gray) with reception events again indicated by crosses (blue). (e) and (g) provide zoomed views of subplots (a) and (b), respectively. (f) displays the control inputs for the leader (teal) and follower (violet), while (h) shows the estimated communication delay (cyan).
-	}
-	
-\end{figure*}
+				
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os2_d}
+		\end{subfigure}%
+		
+		
+		% Sixth subfigure
+		\begin{subfigure}{0.5\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=8cm,
+					height=4cm,
+					enlargelimits=false,
+					ymin = -250,
+					ymax=200,
+					legend pos=north east,
+					grid = both,
+					]
+					\addplot [name path=greenCurve, color=lime, solid, line width=1pt] 
+					file{dataMatlab/OS2/zoom_B.txt};
+					
+					\addplot+[
+					mark=+,color=blue,
+					only marks,
+					mark size=4pt
+					]file{dataMatlab/OS2/zoom_event_B.txt};
+					
+					% Adding a line from (0,0) to (0,800)
+					\addplot [name path=b0, color=red, solid, line width=1pt] 
+					file{dataMatlab/OS2/zoom_b_0.txt};
+					%\addlegendentry{$b(x)$}
+					
+					
+					
+				\end{axis}
+			\end{tikzpicture}
+			
+			\caption{}
+			\label{fig:os2_e}
+		\end{subfigure}\hfil%
+		\medskip
+		% Seventh subfigure
+		\begin{subfigure}{0.5\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=8cm,
+					height=4cm,
+					ymax=100000,
+					enlargelimits=false,
+					legend pos=south west,
+					grid = both,
+					ylabel={Force($\unit{\newton})$},
+					legend columns=2
+					]
+					\addplot [name path=leader, color=teal, solid, line width=1pt] 
+					file{dataMatlab/OS2/forceLeader.txt};
+					\addlegendentry{$u^{\mathrm{L}}$}
+					
+					\addplot [name path=leader, color=violet, solid, line width=1pt] 
+					file{dataMatlab/OS2/forceFollower.txt};
+					\addlegendentry{$u^{\mathrm{F}}$}
+				\end{axis}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os2_f}
+		\end{subfigure}
+		
+		
+		% Sixth subfigure
+		\begin{subfigure}{0.5\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=8cm,
+					height=4cm,
+					enlargelimits=false,
+					legend pos=north west,
+					ymin=1230,
+					ymax=1350,
+					grid = both,
+					ylabel={Distance($\unit{\meter})$},
+					legend columns=2
+					]
+					\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
+					file{dataMatlab/OS2/zoom_interDistance.txt};
+					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$}
+					
+					
+					
+					\addplot [name path=greenCurve, color=black, dashed, line width=1.5pt] 
+					file{dataMatlab/OS2_no_delay_estimator/zoom_interDistance.txt};
+					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$see (b)}
+				\end{axis}
+			\end{tikzpicture}
+			
+			\caption{}
+			\label{fig:os2_g}
+		\end{subfigure}\hfil%
+		\medskip
+		% Seventh subfigure
+		\begin{subfigure}{0.5\linewidth}
+			\centering
+			\begin{tikzpicture}[trim axis left]
+				\begin{axis}[
+					width=8cm,
+					height=4cm,
+					enlargelimits=false,
+					legend pos=south east,
+					grid = both,
+					ylabel={Time($\unit{\second})$},
+					legend columns=2
+					]
+					\addplot [name path=leader, color=cyan, solid, line width=1pt] 
+					file{dataMatlab/OS2/tauEstimated.txt};
+					\addlegendentry{$ \hat{\tau}$}
+					
+				\end{axis}
+			\end{tikzpicture}
+			\caption{}
+			\label{fig:os2_h}
+		\end{subfigure}
+		\label{fig:os2}
+		\caption{Simulation results for operational scenario OS2: (a) shows the safety barrier (lime) and reception events marked by crosses (blue). (b) illustrates the interdistance between the leader and follower, with the continuous black line representing the scenario without the delay estimator block, and the dashed black line representing the scenario with the delay estimator, alongside the safety distance (red). (c) presents the velocities of the leader (teal) and follower (violet). (d) depicts the switching controllers (gray) with reception events again indicated by crosses (blue). (e) and (g) provide zoomed views of subplots (a) and (b), respectively. (f) displays the control inputs for the leader (teal) and follower (violet), while (h) shows the estimated communication delay (cyan).
+		}
+		
+	\end{figure*}
+\end{comment}
+
 
 
 

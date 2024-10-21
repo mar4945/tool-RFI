@@ -45,7 +45,7 @@ def load_data(json_config):
     global p_channel, M, A, B, C, Tf, delta_param, pos_leader, vel_leader, acc_leader
     global pos_follower, vel_follower, acc_follower, v_l_target, packet48
     global emergency_braking, d_vc, time_simulation, ref_tau_1, ref_tau_2, ref_tau_3
-    global os1, os2, save_txt, plot
+    global os1, os2, save_txt, plot, delay_estimator_block
     global time_loss, duration_loss, flag_loss
 
     # Assign variables
@@ -95,6 +95,7 @@ def load_data(json_config):
     
     os1 = data['os1']
     os2 = data['os2']
+    delay_estimator_block = data['delay_estimator_block']
     
     save_txt = data['simulation_parameters']['save_txt']
     plot =  data['simulation_parameters']['plot']
@@ -104,7 +105,7 @@ def create_list():
     global j_f_list, cost_f_list, cost_l_list, ref_f_list, ref_l_list, exeTime_f_list, exeTime_l_list
     global error_f_list, time_list, rlp_s_list, rlp_v_list, b_list, c_list, flag_eme_list, d_list,b_0_list
     global time_delay_list, delay_channel_list, z_tau_1_list, z_tau_2_list, z_tau_3_list, z_region_list, err_z_tau
-    global event_b, event_z_region
+    global event_b, event_z_region, tl_KB_list
     
     # Inizializzo tutte le liste come vuote
     s_f_list = list()
@@ -141,6 +142,7 @@ def create_list():
     interdistance = list()
     event_b = list()
     event_z_region = list()
+    tl_KB_list = list()
 
 def init_simulation():
     
@@ -151,11 +153,11 @@ def init_simulation():
     ato_follower = ATO(N_f, ts,ref_tau_1, ref_tau_2, ref_tau_3)
     ato_leader = ATO(N_l, ato_leader_ts, s_1=None, s_2=None, s_3= None)
     tx_leader = Transmitter(None, ts, packet48)
-    rx_follower = Receiver()
+    rx_follower = Receiver(time_loss, duration_loss, flag_loss and not os1)
 
     # Setto condiizoni iniziali e parametri ai due treni
-    leader = Train(pos_leader, vel_leader, acc_leader, ts, packet48, ato_leader, tx_leader, None)
-    follower = Train(pos_follower, vel_follower, acc_follower, ts, None, ato_follower, None, rx_follower)
+    leader = Train(pos_leader, vel_leader, acc_leader, ts, packet48, ato_leader, tx_leader, None, False)
+    follower = Train(pos_follower, vel_follower, acc_follower, ts, None, ato_follower, None, rx_follower, delay_estimator_block)
     commNetwork = CommNetwork(lambda_exp,min_delay_time, time_loss, duration_loss, flag_loss and not os1)
     follower.set_parameters(M, A, B, C, delta_param, emergency_braking, 
                             d_vc, leader.position,leader.velocity, min_delay_time, p_channel)
@@ -213,7 +215,9 @@ def plot_simulation():
     axs[0, 3].set_title('b')
     axs[0, 3].grid()
 
+    axs[1, 3].plot(time_delay_list, tl_KB_list, 'tab:green')
     axs[1, 3].plot(time_delay_list, delay_channel_list, 'tab:red')
+    
     axs[1, 3].set_title('delay communication channel')
     axs[1, 3].grid()
 
@@ -237,7 +241,7 @@ def run_simulation():
         # Step for railway system
         s_l, v_l, a_l, u_l_control, result_l, message_l = leader.step_leader(timestamp, v_l_target)
         message_l_channel = commNetwork.step(timestamp, message_l)
-        s_f, v_f, a_f, j_f, u_f_control, result_f, delay_channel, z_tau_3, z_tau_2, z_tau_1, z_region, ref_tau = follower.step_follower( timestamp, message_l_channel)
+        s_f, v_f, a_f, j_f, u_f_control, result_f, delay_channel, z_tau_3, z_tau_2, z_tau_1, z_region, ref_tau, tl_KB = follower.step_follower( timestamp, message_l_channel)
         rlp_s, rlp_v, b, c, flag_eme = follower.get_vc_variables()
         
         err_z_tau.append(ref_tau-s_f)
@@ -254,6 +258,8 @@ def run_simulation():
             event_b.append(b)
             delay_channel_list.append(delay_channel)
             time_delay_list.append(timestamp)
+            tl_KB_list.append(tl_KB)
+            
         
         rlp_s_list.append(rlp_s)
         rlp_v_list.append(rlp_v)
@@ -286,11 +292,11 @@ def run_simulation():
                 v_l_target = 60
 
             if t*ts>1600:
-                v_l_target = 40
-            if t*ts>2300:
+                v_l_target = 50
+            if t*ts>2250:
                 v_l_target = 0
         if os2 and  t*ts>1000 :
-            commNetwork.set_param_channel(1.5)
+            commNetwork.set_param_channel(0.8)
         
             
 
@@ -350,28 +356,30 @@ def save_txt_files():
     
     #subsampling the vector
     N = 10
-    N_event = 3
+    N_event = 4
+    
+    
     
     create_txt_from_lists(time_list,a_f_list,N,"accelerationFollower.txt")
     create_txt_from_lists(time_list,a_l_list,N,"accelerationLeader.txt")
-    create_txt_from_lists(time_list,b_list,N_event,"B.txt", range_min=1700, range_max=1710)
-    create_txt_from_lists(time_list,s_f_list,N,"distanceFollower.txt", range_min=975, range_max=1050)
+    create_txt_from_lists(time_list,b_list,N_event,"B.txt", range_min=2260, range_max=2280)
+    create_txt_from_lists(time_list,s_f_list,N,"distanceFollower.txt", range_min=115, range_max=130)
     create_txt_from_lists(time_list,s_l_list,N,"distanceLeader.txt")
     create_txt_from_lists(time_list,v_f_list,N,"velocityFollower.txt")
     create_txt_from_lists(time_list,v_l_list,N,"velocityLeader.txt")
     create_txt_from_lists(time_list,exeTime_f_list,N,"exeController.txt")
     create_txt_from_lists(time_list,u_f_list,N,"forceFollower.txt")
     create_txt_from_lists(time_list,u_l_list,N,"forceLeader.txt")
-    create_txt_from_lists(time_list,z_tau_1_list,N,"z_tau_1.txt", range_min=975, range_max=1050)
-    create_txt_from_lists(time_list,z_tau_2_list,N,"z_tau_2.txt", range_min=975, range_max=1050)
-    create_txt_from_lists(time_list,z_tau_3_list,N,"z_tau_3.txt", range_min=975, range_max=1050)
-    create_txt_from_lists(time_list,z_region_list,N,"Z_tau.txt", range_min=975, range_max=1050)
+    create_txt_from_lists(time_list,z_tau_1_list,N,"z_tau_1.txt", range_min=115, range_max=130)
+    create_txt_from_lists(time_list,z_tau_2_list,N,"z_tau_2.txt", range_min=115, range_max=130)
+    create_txt_from_lists(time_list,z_tau_3_list,N,"z_tau_3.txt", range_min=115, range_max=130)
+    create_txt_from_lists(time_list,z_region_list,N,"Z_tau.txt", range_min=2260, range_max=2280)
     create_txt_from_lists(time_list,interdistance,N,"interDistance.txt", range_min=950, range_max=1500)
     create_txt_from_lists(time_delay_list,delay_channel_list,N,"tauEstimated.txt")
     create_txt_from_lists(time_list,d_list,N,"d.txt")
-    create_txt_from_lists(time_list,b_0_list,N,"b_0.txt", range_min=1700, range_max=1710)
-    create_txt_from_lists(time_delay_list,event_b,N_event,"event_B.txt", range_min=1700, range_max=1710)
-    create_txt_from_lists(time_delay_list,event_z_region,N_event,"event_z_region.txt", range_min=1700, range_max=1710)
+    create_txt_from_lists(time_list,b_0_list,N,"b_0.txt", range_min=2260, range_max=2280)
+    create_txt_from_lists(time_delay_list,event_b,N_event,"event_B.txt", range_min=2260, range_max=2280)
+    create_txt_from_lists(time_delay_list,event_z_region,N_event,"event_z_region.txt", range_min=2260, range_max=2280)
     
     
 def save_lists_to_json(x_values, y_values, N, output_filename):

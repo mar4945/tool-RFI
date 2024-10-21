@@ -18,17 +18,14 @@ class CommNetwork:
         
     def add_delay(self):
         
-        # Generate a number from an exponential distribution using the inverse CDF method
-        generated_number = -math.log(random.random()) / self.exp_lamda + self.min_delay
-        
         # Generate exponential distribution sample
-        generated_number = np.random.exponential(self.exp_lamda, 1) + self.min_delay
+        generated_number = np.random.exponential(1/self.exp_lamda, 1) + self.min_delay
         
         return np.round(generated_number.item(),2)
     
     def set_param_channel(self, param):
         
-        self.min_delay = param
+        self.exp_lamda = param
         
     def communication_loss(self, timestamp):
         
