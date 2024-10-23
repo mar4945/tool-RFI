@@ -9,7 +9,7 @@ Warning--entry type for "youtubeVideo" isn't style-file defined
 --line 40 of file bib.bib
 You've used 24 entries,
             1876 wiz_defined-function locations,
-            619 strings with 8078 characters,
+            619 strings with 8080 characters,
 and the built_in function-call counts, 6898 in all, are:
 = -- 674
 > -- 303

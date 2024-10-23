@@ -343,7 +343,7 @@ Rome, Italy.}
 \pagestyle{empty}
 %%% START SECTION ==========================================================
 \begin{abstract}
-The continuous increase in demand for railway transportation is pressing for finding new solutions to increase capacity accordingly. Nowadays, the capacity of high-speed railway lines is saturated, and solutions that allow for an increase are being studied. In this context, the implementation of technology such as \gls{vc} is emerging as a promising prospect to address these challenges and improve the overall operational efficiency of the railway system. In this article, we introduce a control system architecture enabling the transition from European Railway Traffic Management System Level 3 to \gls{vc} and managing \gls{vc} operation. The proposed architecture addresses parameter uncertainty within train models and the variability in data communication, which is often unreliable and affected by delays and packet drops. We establish a robust control framework for safety and reliability despite these challenges. We incorporate a safety control barrier function to certify safety guarantees and prioritize operational safety. The architecture is designed with the possibility of implementing various control laws, safety rules and estimators block still guaranteeing performances. To validate our work, a railway simulation tool for VC scenarios is developed, demonstrating its effectiveness and foundational role in advancing railway safety.
+The continuous increase in demand for railway transportation is pressing for finding new solutions to increase capacity accordingly. Nowadays, the capacity of high-speed railway lines is saturated, and solutions that allow for an increase are being studied. In this context, the implementation of technology such as \gls{vc} is emerging as a promising prospect to address these challenges and improve the overall operational efficiency of the railway system. In this article, we introduce a control system architecture enabling the transition from European Railway Traffic Management System Level 3 to \gls{vc} and managing \gls{vc} operation. The proposed architecture addresses parameter uncertainty within train models and the variability in data communication, which is often unreliable and affected by delays and packet drops. We establish a robust control framework for safety and reliability despite these challenges. We incorporate a safety control barrier function to certify safety guarantees and prioritize operational safety. The architecture is designed with the possibility of implementing various control laws, safety rules and estimators block still guaranteeing performances. To validate our work, a railway simulation tool for VC scenarios is developed, in collaboration with RFI S.p.A, the Italian railway company, demonstrating its effectiveness and foundational role in advancing railway safety.
 \end{abstract}
 %% END SECTION ============================================================
 %%% START SECTION ==========================================================
@@ -1232,7 +1232,7 @@ In this section, we introduce the four blocks of the proposed control architectu
  	\label{fig:controlSystem}
  \end{figure}
  
-The Leader RLP predictor block is crucial for the follower train, as it processes data packets from the leader, received at irregular intervals. It continuously updates the follower's predictions of the leader's state, starting from the last received packet and projecting forward using the leader’s dynamical model, supposing (for unknown future control inputs) the activation of an emergency brake. The overall safety is managed by the Safety control block which continuously monitors the state of the follower and the predicted leader \gls{rlp} state. The block uses specific safety conditions to determine when to enforce the emergency controller on the follower train. When safety conditions are not met the emergency controller is activated to ensure the follower train maintains a safe distance from the leader. The Cruise virtual coupling block synchronizes the follower train with the leader, maintaining a safe distance using the predicted trajectory data. This block adjusts the follower's control strategy to match the leader's state, avoids unnecessary braking by keeping an appropriate gap based on communication delays, and employs a switched controller architecture to manage performances under varying conditions. This ensures efficient and safe operation of the follower train in response to the leader's movements. The last block, the Delay estimator, is responsible for estimating the communication delay, which is expected to vary along the route. This estimator continuously monitors and analyzes the communication signals to accurately predict the latency, allowing the control system to adjust accordingly. We wish to emphasize that this block is not necessary, and a fixed delay estimation could be assumed(at the expense, in general, of a more conservative inter-trains gap).. The architecture we are going to develop is indeed very general and can be particularized for several design control choices including different possible delay estimators, different follower controllers, different safety rules. As it will be clearer later, the control system architecture we propose guarantees safety, robustness and some important performances on the emergency braking, leaving degrees of freedom to such control choices.
+The Leader RLP predictor block is crucial for the follower train, as it processes data packets from the leader, received at irregular intervals. It continuously updates the follower's predictions of the leader's state, starting from the last received packet and projecting forward using the leader’s dynamical model, supposing (for unknown future control inputs) the activation of an emergency brake. The overall safety is managed by the Safety control block which continuously monitors the state of the follower and the predicted leader \gls{rlp} state. The block uses specific safety conditions to determine when to enforce the emergency controller on the follower train. When safety conditions are not met the emergency controller is activated to ensure the follower train maintains a safe distance from the leader. The Cruise virtual coupling block synchronizes the follower train with the leader, maintaining a safe distance using the predicted trajectory data. This block adjusts the follower's control strategy to match the leader's state, avoids unnecessary braking by keeping an appropriate gap based on communication delays, and employs a switched controller architecture to manage performances under varying conditions. This ensures efficient and safe operation of the follower train in response to the leader's movements. The last block, the Delay estimator, is responsible for estimating the communication delay, which is expected to vary along the route. This estimator continuously monitors and analyzes the communication signals to accurately predict the latency, allowing the control system to adjust accordingly. We wish to emphasize that this block is not necessary, and a fixed delay estimation could be assumed (at the expense, in general, of a more conservative inter-trains gap). The architecture we are going to develop is indeed very general and can be particularized for several design control choices including different possible delay estimators, different follower controllers, different safety rules. As it will be clearer later, the control system architecture we propose guarantees safety, robustness and some important performances on the emergency braking, leaving degrees of freedom to such control choices.
  
 The following subsections will introduce the aforementioned control system blocks in detail. 
 
@@ -1397,7 +1397,7 @@ The estimated delay is computed in \ref{alg:delayEstimator}, where $N_{\hat{\tau
 
 This estimation is calculated each time a new packet from the leader arrives. Subsequently, the Cruise virtual coupling block, as described in\tildeAdd\ref{subsec:switchedvitrualcouplingblock}, sets $\bar{\tau}=\hat{\tau}(t_{\kappa^\mathrm{L}})$. This process allows for the generation of delay-dependent reference trajectories\tildeAdd\eqref{eq:reference_z_F_tau_1}-\eqref{eq:reference_z_F_tau_3}.
 
-As already said, this block might be omitted since the proposed architecture guarantee safety and a minimum time before an emergency braking is triggered. However, the presence of a Delay estimator allows to better chose such minimum time so as to reduce unnecessary braking. 
+As already said, this block might be omitted since the proposed architecture guarantees safety and a minimum time before an emergency braking is triggered. However, the presence of a Delay estimator allows to better chose such minimum time so as to reduce unnecessary braking. 
 We also emphasize that, thanks to the generality of the proposed framework, several other possible choices can be adopted for the Delay estimator, such as weighted mobile average or mean and variance estimation (ad higher order statistical moments). 
 
 In Section\tildeAdd\ref{sec:Simulations}, we will demonstrate the benefits of incorporating this block within the control architecture through simulations.
@@ -1477,7 +1477,7 @@ In view of the \eqref{eq:v_tau_L}\--\eqref{eq:average_velocity} we can define
 \end{equation}
 and
 \begin{equation}\label{eq:z_tilde_LF_tau}
-\tilde{z}^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))=\underline{x}^\mathrm{L}-\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t)). 
+\tilde{z}^{\mathrm{FL}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))=\underline{x}^\mathrm{L}-\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t)). 
 \end{equation} 
  
 The above \eqref{eq:z_tilde_LF_tau} is therefore exploited in  what follow to define
@@ -1544,12 +1544,12 @@ $ t_{\kappa^\mathrm{E} +1} -t_{\kappa^\mathrm{E}}\geq \bar{\tau}$ for any  $\kap
 \end{theorem}
  
 \begin{proof}
-To prove the result let us assume that the follower's controller plans a path forward such that, at any time $t$ and for the time interval $[t, t+\bar{\tau}]$ it keeps an average velocity as $v_{\mathrm{ave}}^\mathrm{L}(t)$ as in  \eqref{eq:average_velocity}.
+To prove the result let us assume that the follower's controller plans a path forward such that, at any time $t$ and for the time interval $[t, t+\bar{\tau}]$ it keeps an average velocity as $v_{\mathrm{ave}}^\mathrm{L}(t)$ in  \eqref{eq:average_velocity}.
 We are therefore supposing that, roughly speaking, the follower controller is able to track the RLP leader average velocity  computed over a $\bar{\tau}$ ahead time interval. This hypothesis will not necessarily be met and, in general, it is not satisfied. Nevertheless, let us keep it as working hypothesis for now (we will then address later the case in which such hypothesis is not met).
-Saying this, even if the follower keeps $v_{\mathrm{ave}}^\mathrm{L}(t)$ as average velocity in $[t, t+\bar{\tau}]$ the instant velocity could vary. In particular, we can consider the worst case were the follower assumes, at time $t+\bar{\tau}$ , the instant velocity of $v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}}(t, x_1^\mathrm{F}, \underline{x}^\mathrm{L})$ (that is, an upper bound computed at time $t$ on the maximum velocity achievable by the follower).
+Saying this, even if the follower keeps $v_{\mathrm{ave}}^\mathrm{L}(t)$ as average velocity in $[t, t+\bar{\tau}]$ the instant velocity could vary. In particular, we can consider the worst case were the follower assumes, at time $t+\bar{\tau}$ , the instant velocity of $v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}}(t, x^\mathrm{F}, \underline{x}^\mathrm{L})$ (that is, an upper bound computed at time $t$ on the maximum velocity achievable by the follower).
 In view of this, $\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$ represents the position that the follower should have, at time $t$, such that when proceeding at the planned RLP leader average velocity and supposing the leader is instead activating an emergency braking, at time $t+\bar{\tau}$ and with the (worst) case of a follower velocity (we omit the dependency for the sake of brevity) $v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}}$ the barrier $b'(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F},1}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})=0$. In the latter formula, we slight abuse the notation and explicitly point out (not in a stack vector form) the variables upon which $b'(\cdot)$ in \eqref{eq:b_prime} depends. Specifically,  $s_{\bar{\tau}}^\mathrm{L}\left( t,\underline{x}^\mathrm{L} \right)$ in \eqref{eq:s_tau_L} (for brevity, we omit the dependencies) is, as said, the position of the leader RLP at time $t+\bar{\tau}$ after a braking with controller $\hat{K}^\mathrm{L}$. Such a position is a lower bound for that achieved by the true leader after an emergency braking (notice that $\hat{K}^\mathrm{L}$ is  more aggressive than $K^\mathrm{L}_E$). Analogously, $v_{\bar{\tau}}^\mathrm{L}\left( t,\underline{x}^\mathrm{L} \right)$  in \eqref{eq:v_tau_L} is the achieved RLP velocity. 
 
-As for $\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$, the term $\tilde{z}^{\mathrm{F},2}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x_1^\mathrm{F}(t))$ is the follower position such that $b''(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F},2}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})=0$ at time $t+\bar{\tau}$, with $b''(\cdot)$ defined in \eqref{eq:barriere_function_trains}.
+As for $\tilde{z}^{\mathrm{F},1}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$, the term $\tilde{z}^{\mathrm{F},2}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t))$ is the follower position such that $b''(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F},2}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})=0$ at time $t+\bar{\tau}$, with $b''(\cdot)$ defined in \eqref{eq:barriere_function_trains}.
 
 The term $\tilde{z}^{\mathrm{F}}_{\bar{\tau}} (t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t))$ represents, in view of what stated above, the position the follower should have such that, proceeding at an average velocity $v_{\mathrm{ave}}^\mathrm{L}(t)$ for the time interval $[t, t+\bar{\tau}]$ and considering instead a leader emergency braking, the barrier $b(s_{\bar{\tau}}^\mathrm{L},v_{\bar{\tau}}^\mathrm{L},\tilde{z}^{\mathrm{F}}_{\bar{\tau}}+v_{\mathrm{ave}}^\mathrm{L}\bar{\tau},v_{\bar{\tau}}^{\mathrm{max}, \mathrm{F}})$ will assume null value a time $t+\bar{\tau}$, with $b(\cdot)$ given in \eqref{eq:b_trains}.
 
@@ -1577,7 +1577,7 @@ with $z_{\bar{\tau}}^\mathrm{F}(t,\underline{x}^\mathrm{L}(t),x^\mathrm{F}(t),t_
 \subsection{Cruise virtual coupling block: switched controller}
  \label{subsec:switchedvitrualcouplingblock}  
 
-Section \ref{subsec:vitrualcouplingblock} does not explicitly state the expression of the predictive controller to be applied for the follower. Rather, it provides, through  Algorithm \ref{alg:reference_z_F_tau} the trajectory constraint $\mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})$ generated at any updates event $t_{\mathrm{last}}$ which, if enforced by the predictive controller on the follower position, allows no to have any transmission before a $\bar{\tau}$ time interval is passed. 
+Section \ref{subsec:vitrualcouplingblock} does not explicitly state the expression of the predictive controller to be applied for the follower. Rather, it provides, through  Algorithm \ref{alg:reference_z_F_tau} the trajectory constraint $\mathbf{z}_{\bar{\tau}}^\mathrm{F}(t_{\mathrm{last}})$ generated at any update event $t_{\mathrm{last}}$ which, if enforced by the predictive controller on the follower position, allows no to have any transmission before a $\bar{\tau}$ time interval is passed. 
 
 Since $\bar{\tau}$ is a design value, whose choice might follow a criterion as that depicted at the beginning of Section \ref{subsec:vitrualcouplingblock}, it is in principle possible to consider several values of $\bar{\tau}$ so as to have several $\bar{\tau}$-distances levels and develop switched controllers. 
 
@@ -1707,6 +1707,8 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
   				\begin{axis}[
   					xlabel={distance (\unit{\kilo\meter})},
   					ylabel={Curvature(${\unit{\meter}}$)},
+  					width=8cm,
+  					height=5cm,
   					title={\textbf{Railway line curvature profile}},
   					grid=both
   					]
@@ -1714,13 +1716,7 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
   					file{dataMatlab/trackProfile/curvature.txt};
   					
   				\end{axis}
-  				
-  				
- 
-  						
 
-  				
-  					
   				\end{tikzpicture}
   			\caption{Curvature profile of the Firenze-Bologna railway line, showing the variation of curvature over the track distance.}
   			 \label{fig:trackcurvature}	
@@ -1733,6 +1729,8 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
   					xlabel={Distance (\unit{\kilo\meter})},
   					ylabel={Slope ($\frac{\unit{\milli\meter}}{\unit{\meter}}$)},
   					title={\textbf{Railway line gradient profile}},
+  					width=8cm,
+  					height=5cm,
   					grid=both
   					]
   					\addplot [const plot, name path=greenCurve, color=blue, solid, line width=1pt] 
@@ -1773,11 +1771,11 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
 		
 		In the first scenario (Figure \ref{fig:os1_c}), the follower initially starts far from the leader. As a result, the control system selects the controller $K_3^\mathrm{F}$, which applies a force (shown in Figure \ref{fig:os1_f}) to accelerate the follower to approximately $80 \frac{\unit{\meter}}{\unit{\second}}$, as illustrated in Figure \ref{fig:os1_c}. By $126\unit{\second}$ (Figure \ref{fig:os1_h}), the follower’s position reaches the region beyond $z_{\tau_1}^\mathrm{F}$ due to the high velocity, triggering controller $K_1^\mathrm{F}$ (Figure \ref{fig:os1_d}). This controller decelerates the follower to match the leader's velocity. Around time $600\unit{\second}$, the control system stabilizes the follower at a distance of approximately $1300 \unit{\meter}$ from the leader, as seen in Figure \ref{fig:os1_b}, achieving virtual coupling between the two trains. The latter Figure presents two scenarios: one with a communication delay of $3 \unit{\second}$ and the other with  $800 \unit{\milli\second}$. It demonstrates that as the communication delay decreases, the distance between the leader and follower also reduces. During the simulation, the leader alters its velocity at $800\unit{\second}$ and $1600\unit{\second}$ to $60 \frac{\unit{\meter}}{\unit{\second}}$ and $40 \frac{\unit{\meter}}{\unit{\second}}$, respectively. In both cases, the control system maintains the virtual coupling between the two trains. It is important to note that, up to this point, the safety barrier in Figure \ref{fig:os1_a} remains negative.
 		
-		To test the control system under emergency conditions, the leader initiates a braking maneuver at $2250\unit{\second}$, decelerating to a full stop. As shown in Figures \ref{fig:os1_e} and \ref{fig:os1_g}, the control system activates the emergency controller since the predicted safety barrier value becomes positive. Notably, in Figure \ref{fig:os1_e}, the safety barrier is negative when the packet arrives from the leader, but the Leader \gls{rlp} predictor, described in Section \ref{subsec:leaderRLPpredictor}, updates the leader's state during the subsequent period without communication, triggering the first condition in Algorithm \ref{alg:safetycontrol}. In this emergency situation, the control system ensures safety by stopping both trains at a distance greater than the safety threshold, as confirmed in Figures \ref{fig:os1_a} and \ref{fig:os1_b}.
+		To test the control system under emergency conditions, the leader initiates a braking maneuver at $2250\unit{\second}$, decelerating to a full stop. As shown in Figures \ref{fig:os1_e} and \ref{fig:os1_g}, the control system activates the emergency controller since the predicted safety barrier value becomes positive. Notably, in Figure \ref{fig:os1_e}, the safety barrier is negative when the packet arrives from the leader, but the Leader \gls{rlp} predictor, described in Section \ref{subsec:leaderRLPpredictor}, updates the leader's state during the subsequent period without communication, triggering the first condition in Algorithm \ref{alg:safetycontrol}. In this emergency situation, the control system ensures safety by stopping both trains at a distance greater than the safety threshold, as confirmed in Figures \ref{fig:os1_a} and \ref{fig:os1_b}. Moreover, the latter figure presents two cases: one with a delay of $3 \unit{\second}$ and another with $800  \unit{\milli\second}$, from which it can be observed that the interdistance between the two trains decreases as the communication delay decreases.
 		
 		The second operational scenario \gls{os}2 starts with the two trains already in a \gls{vc} operation, traveling at the same velocity of $50 \frac{\unit{\meter}}{\unit{\second}}$ (Figure \ref{fig:os2_c}) and maintaining a separation of approximately $1260 \unit{\meter}$ (Figure \ref{fig:os2_b}). During this phase, the control system uses controller $K_2^\mathrm{F}$ to maintain the virtual coupling, as shown in Figure \ref{fig:os2_d}. At $1000\unit{\second}$, the communication channel degrades (Figure \ref{fig:os2_h}), with the minimum packet arrival time increasing to $\overline{T}^{\mathrm{min}}$ (reported in Appendix \ref{appendix:parameters}). The system’s behavior is evaluated both with and without the Delay estimator block, as described in Section \ref{subsec:delayEstimator}. Figure \ref{fig:os2_g} shows that when the Delay estimator is active, the separation increases due to the calculation of reference trajectories $z_{\tau_1}^\mathrm{F}$, $z_{\tau_2}^\mathrm{F}$, and $z_{\tau_3}^\mathrm{F}$ based on the estimated delay $\hat{\tau}$. Without the Delay estimator, the control system does not detect any communication degradation and behaves non-adaptively.
 		
-		Finally, at $1700\unit{\second}$, communication between the two trains is lost, as seen in Figure \ref{fig:os2_e}, where packet receptions occur at extended intervals, causing the safety barrier to become positive. As in the previous scenario, the Leader \gls{rlp} predictor triggers the emergency controller. This emergency braking is evident in Figure \ref{fig:os2_f}, where a large negative force is applied by controller $K_{\mathrm{E}}^\mathrm{F}$, which is activated, as shown in Figure \ref{fig:os2_d}.
+		Finally, at $1700\unit{\second}$, communication between the two trains is lost, as seen in Figure \ref{fig:os2_e}, where packet receptions occur at extended intervals, causing the estimated value of the safety barrier to become positive. As in the previous scenario, the Leader \gls{rlp} predictor triggers the emergency controller. This emergency braking is evident in Figure \ref{fig:os2_f}, where a large negative force is applied by controller $K_{\mathrm{E}}^\mathrm{F}$, which is activated, as shown in Figure \ref{fig:os2_d}.
 		
 		Once communication with the leader is restored, the control system recalculates the safety barrier and verifies that the trains are safe. Controller $K_3^\mathrm{F}$ is reactivated to gradually recover the lost space during the emergency braking.
 		
@@ -1830,11 +1828,11 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
 
-In this study, we have presented a comprehensive control system architecture to facilitate the transition from \gls{ertms} Level 3 to \gls{vc} operations in railway systems. 
+In this study, we have presented a comprehensive control system architecture for the transition from \gls{ertms} Level 3 to \gls{vc} operations in railway systems. 
 
 The key contributions of our work include the development of a robust control framework that accommodates variabilities in train system parameters and communication throughput. By incorporating a safety control barrier function, we ensure operational safety while minimizing unnecessary emergency braking. Our simulations, conducted using a specialized railway simulation tool, validate the efficacy of our control system on the test case of an Italian railway line and underscore its foundational role in advancing railway safety.
 
-The simulation results confirm the control system's robust capability to maintain virtual coupling between trains under diverse conditions. In both operational scenarios, the system effectively managed acceleration and deceleration, adapting to the leader's velocity changes and ensuring safe distances. It demonstrated resilience by activating appropriate controllers in response to high velocities, communication delays, and emergency braking situations. The system's ability to estimate delays and adjust reference trajectories ensured safety even during communication degradations. Overall, the control strategy proved adept at handling dynamic environments, highlighting its potential to enhance safety and efficiency in rail operations through adaptive and responsive control mechanisms.
+The simulation results confirm the control system's robust capability to maintain virtual coupling between trains under diverse conditions. In both operational scenarios, the system effectively managed acceleration and deceleration, adapting to the leader's velocity changes and ensuring safe distances. It demonstrated resilience by activating appropriate controllers in response to high velocities, communication delays, and emergency braking situations. The system ensures safety even during communication degradations. Overall, the control strategy proved adept at handling dynamic environments, highlighting its potential to enhance safety and efficiency in rail operations through adaptive and responsive control mechanisms.
 
 Since our control architecture is flexible to allow different controllers (still keeping the robustness and the safety features as well as a adjustable time before triggering emergency brake), future work will focus on extending the architecture to handle multiple trains in a platoon and exploring other possible controllers, such as those  integrating AI-based solutions to further enhance system performance. Our ongoing research aims to refine the control algorithms and validate the system through field trials, paving the way for the widespread adoption of Virtual Coupling in modern railway networks.
 
@@ -1959,7 +1957,7 @@ We sincerely thank Rete Ferroviaria Italiana for their support through knowledge
 		b^\prime(x^\mathrm{L}(t | \hat{K}^\mathrm{L}),x^\mathrm{F}(t |\hat{K}^\mathrm{F})])\leq  b^\prime(\underline{x}^\mathrm{L}(t | \hat{K}^\mathrm{L}),\overline{x}^\mathrm{F}(t | \hat{K}^\mathrm{F})), \qquad \forall t>t_0. 
 	\end{equation}
 	
-Let $t_{\mathrm{st}}^{F}(t_0 | \hat{K}^\mathrm{F}) = \min{t \in [t_0, +\infty) : x_2^\mathrm{F} = 0}$ represent the stopping time of the follower under the control $\hat{K}^\mathrm{F}$ applied from time $t_0$. Additionally, noting that $t_{\mathrm{st}}^{F} \leq t_{\mathrm{st}}^{\mathrm{F},p}$, the following inequality holds for the above formula
+Let $t_{\mathrm{st}}^{F}(t_0 | \hat{K}^\mathrm{F}) = \min\{t \in [t_0, +\infty) : x_2^\mathrm{F} = 0\}$ represent the stopping time of the follower under the control $\hat{K}^\mathrm{F}$ applied from time $t_0$. Additionally, noting that $t_{\mathrm{st}}^{F} \leq t_{\mathrm{st}}^{\mathrm{F},p}$, the following inequality holds for the above formula
 	\begin{equation*}
 		b^\prime(x^\mathrm{L}(t | \hat{K}^\mathrm{L}),x^\mathrm{F}(t |\hat{K}^\mathrm{F}))<  b^\prime(\underline{x}^\mathrm{L}(t | \hat{K}^\mathrm{L}),\overline{x}^\mathrm{F}(t | \hat{K}^\mathrm{F})), \,\, \forall t_0\geq t\geq t_{\mathrm{st}}^{F} \\ . 
 	\end{equation*}
@@ -2026,64 +2024,70 @@ Let $t_{\mathrm{st}}^{F}(t_0 | \hat{K}^\mathrm{F}) = \min{t \in [t_0, +\infty) :
 \end{proof}
 
 
-\begin{center}
-	\begin{tabular}[t!]{ |c|c|c|c| } 
-		\hline
-		\multicolumn{4}{|c|}{\textbf{Controller parameters}} \\ 
-		\hline
-		\textbf{Parameter} & \textbf{Value} & \textbf{Parameter} & \textbf{Value}  \\
-		\hline
-		$H$(\unit{\second})	& $12$ & $\Delta T^{\mathrm{mpc}}$(\unit{\second}) & $0.06$  \\ 
-		$\omega_1$	& $1$ & $\omega_2$ & $3$ \\ 
-		$\omega_3$	& $6$ & $T^{\max}$(\unit{\second}) & $8$ \\ 
-		$\Theta^s_1$	& $2$ & $\Theta^v_1$ & $0.225$ \\
-		$\Theta^u_1$	& $1 \cdot\ {10}^{-2}$ & $\Theta^s_2$ & $2 \cdot\ {10}^{-2}$ \\
-		$\Theta^v_2$	& $10$ & $\Theta^u_2$ & $5 \cdot\ {10}^{-2}$ \\
-		$\Theta^s_3$	& $1$ & $\Theta^u_3$ & $ 4 \cdot\ {10}^{-3}$ \\
-		$d$(\unit{\meter})	& $1000$ & $p_\mathrm{loss}$
-		&  $0.01$\\
-		\hline
-	\end{tabular}
-\end{center}
 
-
-\begin{center}
-	\begin{tabular}[t!]{ |c|c|c|c| } 
-		\hline
-		\multicolumn{4}{|c|}{\textbf{Trains parameters}} \\ 
-		\hline
-		\textbf{Parameter} & \textbf{Value} & \textbf{Parameter} & \textbf{Value}  \\
-		\hline
-		$M^\mathrm{L}$(\unit{\kilogram})	& $4.9 \cdot 10^5$ & $M^\mathrm{F}$(\unit{\kilogram}) & $5.1 \cdot 10^5$  \\ 
-		$\gamma$	& $10^6$ & $L^\mathrm{L}$(\unit{\meter}) & $202$ \\ 
-		$A^\mathrm{L}$(\unit{\newton})	& $27.30$ & $A^\mathrm{F}$(\unit{\newton}) & $26.15$ \\ 
-		$B^\mathrm{L}$(\unit{ \frac{\newton\meter}{\second}}) 	& $9.5$ & $B^\mathrm{F}$(\unit{ \frac{\newton\meter}{\second}})  & $8.36$ \\   
-		$C^\mathrm{L}$(\unit{ \frac{\newton\meter^2}{\second^2}}) 	& $2.05$ & $C^\mathrm{F}$(\unit{ \frac{\newton\meter^2}{\second^2}})  & $1.92$ \\ 
-		$a^\mathrm{L}_{\mathrm{br}}$(\unit{\frac{\meter}{\second^2}})	& $-0.65$ & $a^\mathrm{F}_{\mathrm{br}}$(\unit{\frac{\meter}{\second^2}}) & $-0.65$ \\ 
-		$a^\mathrm{L}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}})	& $1$ & $a^\mathrm{F}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}}) & $1$ \\ 
-		$P^\mathrm{L}_{\mathrm{br}}$(\unit{\watt})	&  $-30.82 \cdot 10^4$ & $P^\mathrm{F}_{\mathrm{br}}$(\unit{\watt}) &  $-30.82 \cdot 10^4$ \\ 
-		$P^\mathrm{L}_{\mathrm{dr}}$(\unit{\watt})	& $30.82 \cdot 10^4$ & $P^\mathrm{F}_{\mathrm{dr}}$(\unit{\watt}) &  $30.82 \cdot 10^4$ \\ 
-		$\underline{M}$(\unit{\kilogram})	& $4.5 \cdot 10^5$ & $\overline{M}$(\unit{\kilogram}) & $5.5 \cdot 10^5$  \\ 
-		$\underline{A}$(\unit{\newton})	& $25.11$ & $\overline{A}$(\unit{\newton}) & $28.24$ \\ 
-		$\underline{B}$(\unit{ \frac{\newton\meter}{\second}}) 	& $8.02$ & $\overline{B}$(\unit{ \frac{\newton\meter}{\second}})  & $10.12$ \\   
-		$\underline{C}$(\unit{ \frac{\newton\meter^2}{\second^2}}) 	& $1.88$ & $\overline{C}$(\unit{ \frac{\newton\meter^2}{\second^2}})  & $2.11$ \\ 
-		$\underline{a}_{\mathrm{br}}$(\unit{\frac{\meter}{\second^2}})	& $-0.70$ & $\overline{a}_{\mathrm{br}}$(\unit{\frac{\meter}{\second^2}}) & $-0.59$ \\ 
-		$\underline{a}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}})	& $0.92$ & $\overline{a}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}}) & $1.08$ \\ 
-		$\underline{P}_{\mathrm{br}}$(\unit{\watt})	&  $-33.28 \cdot 10^4$ & $\overline{P}_{\mathrm{br}}$(\unit{\watt}) &  $-30 \cdot 10^4$ \\ 
-		$\underline{P}_{\mathrm{dr}}$(\unit{\watt})	& $30 \cdot 10^4$ & $\overline{P}_{\mathrm{dr}}$(\unit{\watt}) &  $33.28 \cdot 10^4$ \\ 
-		\hline
-	\end{tabular}
-\end{center}
 
 
 \subsection{Simulation parameters}
 \label{appendix:parameters}
 
 
-The data used during the simulation for the train models, the controller parameters, and those characterizing the communication channel are:
+The data used during the simulation for the controller and train models parameters are reported in Table\tildeAdd\ref{table:controllerParameters} and Table\tildeAdd\ref{table:trainsParameters}, respectively.
 
 
+\begin{center}
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}[t!]{ |c|c|c|c| } 
+			\hline
+			\textbf{Parameter} & \textbf{Value} & \textbf{Parameter} & \textbf{Value}  \\
+			\hline
+			$H$(\unit{\second})	& $12$ & $\Delta T^{\mathrm{mpc}}$(\unit{\second}) & $0.06$  \\ 
+			$\omega_1$	& $1$ & $\omega_2$ & $3$ \\ 
+			$\omega_3$	& $6$ & $T^{\max}$(\unit{\second}) & $8$ \\ 
+			$\Theta^s_1$	& $2$ & $\Theta^v_1$ & $0.225$ \\
+			$\Theta^u_1$	& $1 \cdot\ {10}^{-2}$ & $\Theta^s_2$ & $2 \cdot\ {10}^{-2}$ \\
+			$\Theta^v_2$	& $10$ & $\Theta^u_2$ & $5 \cdot\ {10}^{-2}$ \\
+			$\Theta^s_3$	& $1$ & $\Theta^u_3$ & $ 4 \cdot\ {10}^{-3}$ \\
+			$d$(\unit{\meter})	& $1000$ & $p_\mathrm{loss}$
+			&  $0.01$\\
+			\hline
+		\end{tabular}
+		\caption{Controller parameters.}
+		\label{table:controllerParameters}
+	\end{table}
+\end{center}
 
+
+\begin{center}
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}[t!]{ |c|c|c|c| } 
+			\hline
+			\textbf{Parameter} & \textbf{Value} & \textbf{Parameter} & \textbf{Value}  \\
+			\hline
+			$M^\mathrm{L}$(\unit{\kilogram})	& $4.9 \cdot 10^5$ & $M^\mathrm{F}$(\unit{\kilogram}) & $5.1 \cdot 10^5$  \\ 
+			$\gamma$	& $10^6$ & $L^\mathrm{L}$(\unit{\meter}) & $202$ \\ 
+			$A^\mathrm{L}$(\unit{\newton})	& $27.30$ & $A^\mathrm{F}$(\unit{\newton}) & $26.15$ \\ 
+			$B^\mathrm{L}$(\unit{ \frac{\newton\meter}{\second}}) 	& $9.5$ & $B^\mathrm{F}$(\unit{ \frac{\newton\meter}{\second}})  & $8.36$ \\   
+			$C^\mathrm{L}$(\unit{ \frac{\newton\meter^2}{\second^2}}) 	& $2.05$ & $C^\mathrm{F}$(\unit{ \frac{\newton\meter^2}{\second^2}})  & $1.92$ \\ 
+			$a^\mathrm{L}_{\mathrm{br}}$(\unit{\frac{\meter}{\second^2}})	& $-0.65$ & $a^\mathrm{F}_{\mathrm{br}}$(\unit{\frac{\meter}{\second^2}}) & $-0.65$ \\ 
+			$a^\mathrm{L}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}})	& $1$ & $a^\mathrm{F}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}}) & $1$ \\ 
+			$P^\mathrm{L}_{\mathrm{br}}$(\unit{\watt})	&  $-30.82 \cdot 10^4$ & $P^\mathrm{F}_{\mathrm{br}}$(\unit{\watt}) &  $-30.82 \cdot 10^4$ \\ 
+			$P^\mathrm{L}_{\mathrm{dr}}$(\unit{\watt})	& $30.82 \cdot 10^4$ & $P^\mathrm{F}_{\mathrm{dr}}$(\unit{\watt}) &  $30.82 \cdot 10^4$ \\ 
+			$\underline{M}$(\unit{\kilogram})	& $4.5 \cdot 10^5$ & $\overline{M}$(\unit{\kilogram}) & $5.5 \cdot 10^5$  \\ 
+			$\underline{A}$(\unit{\newton})	& $25.11$ & $\overline{A}$(\unit{\newton}) & $28.24$ \\ 
+			$\underline{B}$(\unit{ \frac{\newton\meter}{\second}}) 	& $8.02$ & $\overline{B}$(\unit{ \frac{\newton\meter}{\second}})  & $10.12$ \\   
+			$\underline{C}$(\unit{ \frac{\newton\meter^2}{\second^2}}) 	& $1.88$ & $\overline{C}$(\unit{ \frac{\newton\meter^2}{\second^2}})  & $2.11$ \\ 
+			$\underline{a}_{\mathrm{br}}$(\unit{\frac{\meter}{\second^2}})	& $-0.70$ & $\overline{a}_{\mathrm{br}}$(\unit{\frac{\meter}{\second^2}}) & $-0.59$ \\ 
+			$\underline{a}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}})	& $0.92$ & $\overline{a}_{\mathrm{dr}}$(\unit{\frac{\meter}{\second^2}}) & $1.08$ \\ 
+			$\underline{P}_{\mathrm{br}}$(\unit{\watt})	&  $-33.28 \cdot 10^4$ & $\overline{P}_{\mathrm{br}}$(\unit{\watt}) &  $-30 \cdot 10^4$ \\ 
+			$\underline{P}_{\mathrm{dr}}$(\unit{\watt})	& $30 \cdot 10^4$ & $\overline{P}_{\mathrm{dr}}$(\unit{\watt}) &  $33.28 \cdot 10^4$ \\ 
+			\hline
+		\end{tabular}
+		\caption{Trains parameters.}
+		\label{table:trainsParameters}
+	\end{table}
+\end{center}
 
 
 
@@ -2102,7 +2106,8 @@ The data used during the simulation for the train models, the controller paramet
 \twocolumn
 
 
-	
+
+
 	\begin{figure*}[t!]
 		\captionsetup[figure]{font=small,skip=0pt}
 		% First subfigure
@@ -2113,6 +2118,7 @@ The data used during the simulation for the train models, the controller paramet
 					width=17cm,
 					height=3.8cm,
 					enlargelimits=false,
+					xmax=2900,
 					ymax=200,
 					ymin=-2000,
 					legend pos=south east,
@@ -2155,6 +2161,7 @@ The data used during the simulation for the train models, the controller paramet
 					height=4cm,
 					enlargelimits=false,
 					ymin=700,
+					xmax=2900,
 					%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
 					xticklabel=\empty,
 					legend pos=north east,
@@ -2204,6 +2211,7 @@ The data used during the simulation for the train models, the controller paramet
 					grid = both,
 					xticklabel=\empty,
 					ymin=-2,
+					xmax=2900,
 					ymax=80,
 					legend columns=2,
 					ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
@@ -2232,6 +2240,7 @@ The data used during the simulation for the train models, the controller paramet
 					xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200},
 					legend pos=south west,
 					grid = both,
+					xmax=2900,
 					ymin=-1,
 					ymax= 4,
 					ylabel={Controllers},
@@ -2386,9 +2395,12 @@ The data used during the simulation for the train models, the controller paramet
 		
 	\end{figure*}
 	
+
+	
 	\newpage
 	
-	\begin{comment}
+	
+	
 	\begin{figure*}[t!]
 		\captionsetup[figure]{font=small,skip=0pt}
 		% First subfigure
@@ -2441,7 +2453,7 @@ The data used during the simulation for the train models, the controller paramet
 					ymin=700,
 					%xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
 					xticklabel=\empty,
-					legend pos=north west,
+					legend pos=north east,
 					grid = both,
 					ylabel={Distance($\unit{\meter})$},
 					legend columns=2
@@ -2452,7 +2464,7 @@ The data used during the simulation for the train models, the controller paramet
 					
 					\addplot [name path=greenCurve, color=black, dashed, line width=1.5pt] 
 					file{dataMatlab/OS2_no_delay_estimator/interDistance.txt};
-					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$(Without delay estimator block)}
+					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$(No block.\ref{subsec:delayEstimator})}
 					
 					\addplot [name path=greenCurve, color=red, solid, line width=1.5pt] 
 					file{dataMatlab/OS2/d.txt};
@@ -2477,11 +2489,11 @@ The data used during the simulation for the train models, the controller paramet
 					width=17cm,
 					height=4cm,
 					enlargelimits=false,
-					legend pos=south west,
+					legend pos=south east,
 					grid = both,
 					xticklabel=\empty,
-					ymin=-2,
-					ymax=80,
+					ymin=35,
+					ymax=60,
 					legend columns=2,
 					ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
 					]
@@ -2489,9 +2501,17 @@ The data used during the simulation for the train models, the controller paramet
 					file{dataMatlab/OS2/velocityLeader.txt};
 					\addlegendentry{$x_2^{\mathrm{L}}$}
 					
+					\addplot [name path=leader, color=violet, dashed, line width=1pt] 
+					file{dataMatlab/OS2_no_delay_estimator/velocityFollower.txt};
+					\addlegendentry{$x_2^{\mathrm{F}}$No block.\ref{subsec:delayEstimator}}
+					
 					\addplot [name path=leader, color=violet, solid, line width=1pt] 
 					file{dataMatlab/OS2/velocityFollower.txt};
 					\addlegendentry{$x_2^{\mathrm{F}}$}
+					
+					
+					
+					
 				\end{axis}
 			\end{tikzpicture}
 			\caption{}
@@ -2506,8 +2526,8 @@ The data used during the simulation for the train models, the controller paramet
 					width=17cm,
 					height=4cm,
 					enlargelimits=false,
-					xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600},
-					legend pos=south west,
+					xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600, 2800},
+					legend pos=south east,
 					grid = both,
 					ymin=-1,
 					ymax= 4,
@@ -2516,13 +2536,24 @@ The data used during the simulation for the train models, the controller paramet
 					yticklabels={ $K^{\mathrm{F}}_{\mathrm{E}}$,  $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$}
 					]
 					\addplot [name path=leader, color=gray, solid, line width=1pt] 
-					file{dataMatlab/OS2/Z_tau_transformed.txt};
+					file{dataMatlab/OS2/Z_tau.txt};
+					\addlegendentry{With block.\ref{subsec:delayEstimator}}
+					
+					\addplot [name path=leader, color=gray, dashed, line width=1pt] 
+					file{dataMatlab/OS2_no_delay_estimator/Z_tau.txt};
+					\addlegendentry{No block.\ref{subsec:delayEstimator}}
 					
 					\addplot+[
 					mark=+,
 					only marks, color=blue,
-					mark size=0.5pt
-					]file{dataMatlab/OS2/event_z_region_transformed.txt};
+					mark size=0.5pt					]file{dataMatlab/OS2/event_z_region.txt};
+					
+					
+					
+					\addplot+[
+					mark=+,
+					only marks, color=black,
+					mark size=0.5pt					]file{dataMatlab/OS2_no_delay_estimator/event_z_region.txt};
 					
 				\end{axis}
 				
@@ -2541,8 +2572,6 @@ The data used during the simulation for the train models, the controller paramet
 					width=8cm,
 					height=4cm,
 					enlargelimits=false,
-					ymin = -250,
-					ymax=200,
 					legend pos=north east,
 					grid = both,
 					]
@@ -2576,9 +2605,9 @@ The data used during the simulation for the train models, the controller paramet
 				\begin{axis}[
 					width=8cm,
 					height=4cm,
-					ymax=100000,
+					ymax=150000,
 					enlargelimits=false,
-					legend pos=south west,
+					legend pos=south east,
 					grid = both,
 					ylabel={Force($\unit{\newton})$},
 					legend columns=2
@@ -2607,10 +2636,10 @@ The data used during the simulation for the train models, the controller paramet
 					enlargelimits=false,
 					legend pos=north west,
 					ymin=1230,
-					ymax=1350,
+					ymax=1500,
 					grid = both,
 					ylabel={Distance($\unit{\meter})$},
-					legend columns=2
+					legend columns=1
 					]
 					\addplot [name path=greenCurve, color=black, solid, line width=1pt] 
 					file{dataMatlab/OS2/zoom_interDistance.txt};
@@ -2620,7 +2649,7 @@ The data used during the simulation for the train models, the controller paramet
 					
 					\addplot [name path=greenCurve, color=black, dashed, line width=1.5pt] 
 					file{dataMatlab/OS2_no_delay_estimator/zoom_interDistance.txt};
-					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$see (b)}
+					\addlegendentry{$x_1^{\mathrm{L}}-x_1^{\mathrm{F}}$No block.\ref{subsec:delayEstimator}}
 				\end{axis}
 			\end{tikzpicture}
 			
@@ -2636,14 +2665,15 @@ The data used during the simulation for the train models, the controller paramet
 					width=8cm,
 					height=4cm,
 					enlargelimits=false,
-					legend pos=south east,
+					legend pos=north east,
+					ymin=0,
 					grid = both,
 					ylabel={Time($\unit{\second})$},
 					legend columns=2
 					]
 					\addplot [name path=leader, color=cyan, solid, line width=1pt] 
 					file{dataMatlab/OS2/tauEstimated.txt};
-					\addlegendentry{$ \hat{\tau}$}
+					\addlegendentry{$ \tau(t_{\kappa^\mathrm{L}})$}
 					
 				\end{axis}
 			\end{tikzpicture}
@@ -2655,7 +2685,7 @@ The data used during the simulation for the train models, the controller paramet
 		}
 		
 	\end{figure*}
-\end{comment}
+
 
 
 

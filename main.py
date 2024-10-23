@@ -295,7 +295,7 @@ def run_simulation():
                 v_l_target = 50
             if t*ts>2250:
                 v_l_target = 0
-        if os2 and  t*ts>1000 :
+        if os2 and  t*ts>500 :
             commNetwork.set_param_channel(0.8)
         
             
@@ -362,7 +362,7 @@ def save_txt_files():
     
     create_txt_from_lists(time_list,a_f_list,N,"accelerationFollower.txt")
     create_txt_from_lists(time_list,a_l_list,N,"accelerationLeader.txt")
-    create_txt_from_lists(time_list,b_list,N_event,"B.txt", range_min=2260, range_max=2280)
+    create_txt_from_lists(time_list,b_list,N_event,"B.txt",  range_min=1190, range_max=1220)
     create_txt_from_lists(time_list,s_f_list,N,"distanceFollower.txt", range_min=115, range_max=130)
     create_txt_from_lists(time_list,s_l_list,N,"distanceLeader.txt")
     create_txt_from_lists(time_list,v_f_list,N,"velocityFollower.txt")
@@ -374,11 +374,11 @@ def save_txt_files():
     create_txt_from_lists(time_list,z_tau_2_list,N,"z_tau_2.txt", range_min=115, range_max=130)
     create_txt_from_lists(time_list,z_tau_3_list,N,"z_tau_3.txt", range_min=115, range_max=130)
     create_txt_from_lists(time_list,z_region_list,N,"Z_tau.txt", range_min=2260, range_max=2280)
-    create_txt_from_lists(time_list,interdistance,N,"interDistance.txt", range_min=950, range_max=1500)
-    create_txt_from_lists(time_delay_list,delay_channel_list,N,"tauEstimated.txt")
+    create_txt_from_lists(time_list,interdistance,N,"interDistance.txt", range_min=480, range_max=900)
+    create_txt_from_lists(time_delay_list,tl_KB_list,N,"tauEstimated.txt")
     create_txt_from_lists(time_list,d_list,N,"d.txt")
-    create_txt_from_lists(time_list,b_0_list,N,"b_0.txt", range_min=2260, range_max=2280)
-    create_txt_from_lists(time_delay_list,event_b,N_event,"event_B.txt", range_min=2260, range_max=2280)
+    create_txt_from_lists(time_list,b_0_list,N,"b_0.txt", range_min=1190, range_max=1220)
+    create_txt_from_lists(time_delay_list,event_b,N_event,"event_B.txt", range_min=1190, range_max=1220)
     create_txt_from_lists(time_delay_list,event_z_region,N_event,"event_z_region.txt", range_min=2260, range_max=2280)
     
     
