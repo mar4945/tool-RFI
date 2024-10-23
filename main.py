@@ -157,7 +157,7 @@ def init_simulation():
 
     # Setto condiizoni iniziali e parametri ai due treni
     leader = Train(pos_leader, vel_leader, acc_leader, ts, packet48, ato_leader, tx_leader, None, False)
-    follower = Train(pos_follower, vel_follower, acc_follower, ts, None, ato_follower, None, rx_follower, delay_estimator_block)
+    follower = Train(pos_follower, vel_follower, acc_follower, ts, packet48, ato_follower, None, rx_follower, delay_estimator_block)
     commNetwork = CommNetwork(lambda_exp,min_delay_time, time_loss, duration_loss, flag_loss and not os1)
     follower.set_parameters(M, A, B, C, delta_param, emergency_braking, 
                             d_vc, leader.position,leader.velocity, min_delay_time, p_channel)
@@ -296,7 +296,7 @@ def run_simulation():
             if t*ts>2250:
                 v_l_target = 0
         if os2 and  t*ts>500 :
-            commNetwork.set_param_channel(0.8)
+            commNetwork.set_param_channel(1)
         
             
 

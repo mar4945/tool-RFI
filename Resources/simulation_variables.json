@@ -10,9 +10,9 @@
     "Communication_channel_parameters": {
         "lambda_exp": 15,
         "min_delay_time": 0.4,
-        "p_channel": 0.8,
-        "time_loss": 1200,
-        "duration_loss":5,
+        "p_channel": 0.9,
+        "time_loss": 1000,
+        "duration_loss":6,
         "flag_loss": true
     },
     "train_parameters": {
@@ -22,7 +22,7 @@
         "C": 1.914,
         "Tf": 1,
         "delta_param": 0.1,
-        "pos_leader": 1350,
+        "pos_leader": 1242,
         "vel_leader": 50,
         "acc_leader": 0,
         "pos_follower": 0,
@@ -39,7 +39,7 @@
     },
     "emergency_braking": -370000,
     "d_vc": 1000,
-    "time_simulation": 3100,
+    "time_simulation": 4100,
     "ref_tau_1": 4800.0,
     "ref_tau_2": 4750.0,
     "ref_tau_3": 4700.0,

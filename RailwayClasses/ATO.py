@@ -40,7 +40,7 @@ class ATO:
         self.ts = ts
         self.nu = 1
         self.u_guess = [0]*N
-        self.u_past = 5
+        self.u_past = 0
         
         self.z_tau_1 = np.full(self.N*20, s_1)
         self.time_ref_1 = np.round(np.arange(0, self.N*20*self.ts, self.ts), 2) 
@@ -147,13 +147,9 @@ class ATO:
             P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref
             ref_tau = ref[0]
             
-            # controller added to improve the performance of the control system
-            if  timestamp< 1500:
-                [uMPC,result] = self.k_tau_3(P)
-                z_region = 3
-            else:
-                [uMPC,result] = self.k_tau_3bis(P)
-                z_region = 3
+            # controller added to improve the performance of the control system, the 3Bis is the controller near , instead 3 is for controller far away
+            [uMPC,result] = self.k_tau_3bis(P)
+            z_region = 3
             
            
         elif s_f > z_tau_1_ref:
@@ -177,6 +173,11 @@ class ATO:
             [uMPC,result] = self.k_tau_2(P)
         
         # collect the past solution used as guess for the next optimization problem and store the last input computed
+        
+        # initialize the controller K2, this is an initial condition in this scenario
+        if timestamp<3:
+            [uMPC,result] = self.k_tau_2(P)
+            z_region = 2
         
         self.u_past = uMPC[0]
         self.u_guess = [u*self.U_FACTOR_VC for u in uMPC]

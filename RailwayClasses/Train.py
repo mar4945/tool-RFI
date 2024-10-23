@@ -54,7 +54,7 @@ class Train:
         self.flag_emergency = False
         # window stack to estimate the lambda factor for the exponential distribution
         self.stack_window_channel = list()
-        self.len_stack = 100
+        self.len_stack = 25
         self.p_channel = None
         self.min_T = None
         
@@ -142,9 +142,9 @@ class Train:
                 z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*self.tau_bar)
                 z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*self.tau_bar)
             else:
-                z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*1.8)
-                z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*1.8)
-                z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*1.8)
+                z_F_1, time_ref_1 =self.compute_Z_F(timestamp,1*1.5)
+                z_F_2, time_ref_2 =self.compute_Z_F(timestamp,2*1.5)
+                z_F_3, time_ref_3 =self.compute_Z_F(timestamp,3*1.5)
             
             self.ato.set_z_tau_ref(z_F_1, time_ref_1, z_F_2, time_ref_2, z_F_3, time_ref_3 )
             
@@ -237,13 +237,13 @@ class Train:
         else:
             self.push(delay)
             
-        average_delay = sum(self.stack_window_channel)/len(self.stack_window_channel)- self.min_T
+        average_delay = sum(self.stack_window_channel)/len(self.stack_window_channel)- self.min_T - self.packet48
         
         lambda_estimated = 1/(average_delay)
         
         #print(str(average_delay))
         
-        tau_bar = self.min_T - (math.log(1-self.p_channel)/lambda_estimated)
+        tau_bar = self.min_T + self.packet48 - (math.log(1-self.p_channel)/lambda_estimated)
             
         return tau_bar
         
@@ -318,8 +318,8 @@ class Train:
         
         # TODO import as parameters
         a_b_l = 0.7
-        a_b_f = 0.665
-        max_time_delay = 5
+        a_b_f = 0.6475
+        max_time_delay = 6
         
         # condition on time
         if self.receiver.last_message is not None:
