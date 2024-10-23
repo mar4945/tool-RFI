@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.22)  23 OCT 2024 13:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.22)  23 OCT 2024 15:16
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2554,10 +2554,10 @@ Package rerunfilecheck Info: File `VC_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 6B6015513DB65885C127C43E872550A6;4092.
  ) 
 Here is how much of TeX's memory you used:
- 57365 strings out of 474542
- 1333269 string characters out of 5744918
- 5321735 words of memory out of 12000000
- 78396 multiletter control sequences out of 15000+600000
+ 57366 strings out of 474542
+ 1333989 string characters out of 5744918
+ 5323735 words of memory out of 12000000
+ 78397 multiletter control sequences out of 15000+600000
  624468 words of font info for 166 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,22n,107p,2390b,2914s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2575,7 +2575,7 @@ ms/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/user/AppData/Local/Program
 s/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/user/AppData/Local/Program
 s/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/user/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on VC_paper.pdf (20 pages, 1263966 bytes).
+Output written on VC_paper.pdf (20 pages, 1271340 bytes).
 PDF statistics:
  688 PDF objects out of 1000 (max. 8388607)
  191 named destinations out of 1000 (max. 500000)

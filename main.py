@@ -290,13 +290,12 @@ def run_simulation():
         if os1:
             if t*ts>800:
                 v_l_target = 60
-
             if t*ts>1600:
                 v_l_target = 50
             if t*ts>2250:
                 v_l_target = 0
         if os2 and  t*ts>500 :
-            commNetwork.set_param_channel(1)
+            commNetwork.set_param_channel(1.3)
         
             
 

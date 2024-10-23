@@ -318,7 +318,7 @@ class Train:
         
         # TODO import as parameters
         a_b_l = 0.7
-        a_b_f = 0.6475
+        a_b_f = 0.64
         max_time_delay = 6
         
         # condition on time

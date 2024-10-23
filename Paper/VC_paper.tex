@@ -2671,7 +2671,7 @@ The data used during the simulation for the controller and train models paramete
 					ylabel={Time($\unit{\second})$},
 					legend columns=2
 					]
-					\addplot [name path=leader, color=cyan, solid, line width=1pt] 
+					 \addplot [ycomb, blue, thick, mark=+]
 					file{dataMatlab/OS2/tauEstimated.txt};
 					\addlegendentry{$ \tau(t_{\kappa^\mathrm{L}})$}
 					
