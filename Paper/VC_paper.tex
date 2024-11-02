@@ -477,8 +477,7 @@ This block will be reset at follower packets receptions with the updated state o
 \item The {\em Safety control block} is fed with the output of the leader RLP predictor and the actual state of the follower. It continuously monitor for the overall system safety via a suitable control barrier function. Such monitoring runs on predicted information even if no updates are received from the leader. If conditions are detected such that safety might be a risk, an emergency braking is imposed to the follower, overlapping any other possible control. The emergency braking is kept until safety conditions are restored (including new leader updates). The safety control block guarantees safety in a certified manner and robustly with respect to follower and leader parameters uncertainties and communication network unreliability. 
 \item The {\em Cruise virtual coupling control block} manages the follower during the normal cruise (i.e., when no safety issues are raised). It implements a predictive controller over a receding horizon while keeping the position of the follower at a certain (time-varying) distance from the leader. This distance is such that, if no updates are received, the follower can still move with its planned velocity for a given tunable amount of time before possibly trigger an emergency braking. 
 This feature allows to implicitly regulate the inter-train distance according to the characteristics of the communication channel, enlarging or squeezing this dwell time in presence of less or more reliable communication (respectively). 
-
-\item The {\em  Delay estimator block} continuously calculates the communication delay between the leader and follower by analyzing packet arrival times. This real-time estimation allows the control system to adjust reference trajectories based on current delay conditions, ensuring smooth coordination despite channel variability. The block interacts with the Cruise virtual coupling block to maintain system safety and minimize the impact of communication delays on overall performance.
+\item The {\em  Delay estimator block} continuously calculates the communication delay between the leader and follower by analyzing packet arrival times. This real-time estimation allows the control system to adjust reference trajectories based on current delay conditions, ensuring smooth coordination despite channel variability. The block interacts with the Cruise virtual coupling block to maintain safety and minimize the impact of communication delays on overall performance.
 \end{itemize} 
 It is worth mentioning that the proposed architecture does not prescribe a specific controller. Rather, it provides an environment enabling several possible controller choices, leaving the specific design to the developer. 
 Therefore, while in this paper we propose a switching controller over three possible operational modes (with more or less aggressive maneuvers according to the inter-train distance), several other choices are possible. 
@@ -730,7 +729,7 @@ The following functions are defined to represent the last trigger time for the l
 Suppose the leader transmits a packet at time $t_{\kappa^\mathrm{L}}$, and let $\tau(t_{\kappa^\mathrm{L}})\in \Bbb{R}^+ \cup \{+\infty\}$ denote the elapsed time of follower reception of such packet, that is the follower receives the packet at $t_{\kappa^\mathrm{L}} + \tau(t_{\kappa^\mathrm{L}})$. 
 
 
-The sequence of $ \left\{ \tau(t_{\kappa^\mathrm{L}})\right\}_{\kappa^\mathrm{L}=0}^{+\infty}$ can be modeled as a random process as will be proposed in Section \ref{sec:Simulations}. Nevertheless, as it will be clearer later in the manuscript, our framework does not need a specific transmission packets delay model.
+The sequence of $ \left\{ \tau(t_{\kappa^\mathrm{L}})\right\}_{\kappa^\mathrm{L}=0}^{+\infty}$ can be modeled as a random process as will be proposed in Section \ref{subsec:delayEstimator}. Nevertheless, as it will be clearer later in the manuscript, our framework does not need a specific transmission packets delay model.
 
 
 
@@ -1361,19 +1360,22 @@ $\{ t_{\kappa^\mathrm{E}} \}_{\kappa^\mathrm{E} =0}^{+\infty}$ the sequence of t
 \label{subsec:delayEstimator}  
 
 
-Given the variability in channel communication along railway lines, it is advantageous to introduce a block that estimates the communication delay between the leader and follower. The leader transmits at synchronous sampling interval of $\Delta T^\mathrm{ch}$ but, due to the unreliable network the follower receives data asynchronously. The sequence of delays $ \left\{ \tau(t_{\kappa^\mathrm{L}})\right\}_{\kappa^\mathrm{L}=0}^{+\infty}$ is influenced by various factors, e.g. stochastic properties of channel communication and hardware processing time. To this end, it has been treated as a random variable,  is  approximated with the following exponential probability distribution 
+Given the variability in channel communication along railway lines, it is advantageous to introduce a block that estimates the communication delay probability distribution between the leader and follower. As said, the follower receives data asynchronously. The sequence of delays $ \left\{ \tau(t_{\kappa^\mathrm{L}})\right\}_{\kappa^\mathrm{L}=0}^{+\infty}$ (see Section \ref{subsec:transmissionEvent}) is influenced by various factors, e.g. stochastic properties of channel communication and hardware processing time. To this end, it has been treated as a random variable,  is  approximated with the following cumulative distribution function 
 %
-\begin{equation} \label{eq:pdfDelay}
-	\tau \sim f_{\mathrm{d}} (t;\lambda, T^\mathrm{min}) = \begin{cases}\lambda e^{-\lambda (t-T^{\min})} & t \geq T^{\min}, \\ 0 & \text{otherwise},\end{cases}
+\begin{equation} \label{eq:cdfDelay}
+	\tau \sim F_d(t; \lambda, T_{\text{min}}) =
+	\begin{cases} 
+		0, & t < T_{\text{min}}, \\
+		1 - e^{-\lambda (t - T_{\text{min}})}, & t \geq T_{\text{min}},
+	\end{cases}
 \end{equation}
-where $T^\mathrm{min}$ is the minimum time of arrival and $\lambda$ is the distribution's parameter.
-Moreover, the communication channel is modeled to be subject to packet loss, which follows a Bernoulli distribution \( f_{\mathrm{l}} \sim \textrm{Bernoulli}(p_\mathrm{loss}) \). As a result, there is a possibility that the follower train may fail to receive the transmitted packets from the leader.
+where $T^\mathrm{min}$ represents the minimum time of arrival and $\lambda$ is the distribution's parameter; as $\lambda$ increases, the likelihood that the follower train fails to receive the transmitted packets from the leader also increases, since the follower always considers the packet with the most recent timestamp.
 
 
-The estimated delay is computed in \ref{alg:delayEstimator}, where $N_{\hat{\tau}}$ represents the samples of past arrival times stored in a buffer.
+Considering the probability distribution in Eq.\eqref{eq:cdfDelay}, an estimate of the parameter $\lambda$, which is assumed to be the only one varying along the line, is made using a maximum likelihood estimator. Algorithm\tildeAdd\ref{alg:delayEstimator} outlines the steps involved in this estimation process.
 
 \begin{algorithm}
-	\caption{Delay estimator. Output: $\hat{\tau}(t_{\kappa^\mathrm{L}})$. }\label{alg:delayEstimator}
+	\caption{Delay estimator. Output: $F_d(t; \hat{\lambda}, T_{\text{min}})$. }\label{alg:delayEstimator}
 	\begin{algorithmic}[1]
 		\Loop
 		
@@ -1381,9 +1383,9 @@ The estimated delay is computed in \ref{alg:delayEstimator}, where $N_{\hat{\tau
 		
 		\If{ A packet $\left ( t_{\kappa^\mathrm{L}}, x^\mathrm{L}(t_{\kappa^\mathrm{L}}),\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})\right)$ is received with $t_{\kappa^\mathrm{L}}> t_{\mathrm{last}}$}
 		
-		\State Estimate $\hat{\lambda}$ and $\hat{T}^\mathrm{min}$
 		
-		\State Compute $\hat{\tau}(t_{\kappa^\mathrm{L}}) = F_{\mathrm{d}} (\bar{p}; \hat{\lambda}, \hat{T}^\mathrm{min})$
+		\State Compute $\hat{\lambda}= N_\tau \mathlarger{\mathlarger{\sum}_{j=t_{\kappa^\mathrm{L}-N_\tau}}^{t_{\kappa^\mathrm{L}}}} \mathlarger{\frac{1}{\tau(j)}}$
+		
 		
 		\EndIf
 		
@@ -1395,10 +1397,11 @@ The estimated delay is computed in \ref{alg:delayEstimator}, where $N_{\hat{\tau
 \end{algorithm}
 
 
-This estimation is calculated each time a new packet from the leader arrives. Subsequently, the Cruise virtual coupling block, as described in\tildeAdd\ref{subsec:switchedvitrualcouplingblock}, sets $\bar{\tau}=\hat{\tau}(t_{\kappa^\mathrm{L}})$. This process allows for the generation of delay-dependent reference trajectories\tildeAdd\eqref{eq:reference_z_F_tau_1}-\eqref{eq:reference_z_F_tau_3}.
+The estimation is updated each time a new packet arrives from the leader. In this case, the estimator is simply the reciprocal of the sample mean of the communication delay, denoted as $\tau$, observed over the interval $t \in [t_{\kappa^\mathrm{L}-N_\tau}, t_{\kappa^\mathrm{L}}]$. Here, $N_\tau$ represents the size of the buffer used to store all the recorded delay values during this time period.
 
-As already said, this block might be omitted since the proposed architecture guarantees safety and a minimum time before an emergency braking is triggered. However, the presence of a Delay estimator allows to better chose such minimum time so as to reduce unnecessary braking. 
-We also emphasize that, thanks to the generality of the proposed framework, several other possible choices can be adopted for the Delay estimator, such as weighted mobile average or mean and variance estimation (ad higher order statistical moments). 
+
+As mentioned previously, this block may be omitted since the proposed architecture ensures both safety and a minimum response time before emergency braking is triggered. However, the inclusion of a delay estimator enables dynamic estimation of the probability distribution of communication delays, reducing the occurrence of unnecessary braking events.
+Additionally, we highlight that the flexibility of the proposed framework allows for various alternative approaches to the delay estimator.
 
 In Section\tildeAdd\ref{sec:Simulations}, we will demonstrate the benefits of incorporating this block within the control architecture through simulations.
 
@@ -1413,8 +1416,12 @@ This latter case is probably the most interesting in practice, since in normal (
 
 
 The Safety control block is designed to always preserve safety via enforcing the follower to brake in the worst possible condition, that is supposing that from the last transmission the leader starts a maximum braking. Since, as said, this condition in practice will be rare, a good choice for the follower distance from the leader during \gls{vc} cruise is such that it could proceed at the same velocity the leader has planned for a given amount of time $\bar{\tau}$ before the condition of line  $3$ of  Algorithm \ref{alg:safetycontrol} is met. In this way, at least a time $\bar{\tau}$ is wait before a follower emergency braking occurs. 
-With the realistic hypothesis of having a statistical description of the communication delay process $ \left\{ \tau(t_{\kappa^\mathrm{L}})\right\}_{\kappa^\mathrm{L}=0}^{+\infty}$, 
-choosing a $\bar{\tau}$ so as that  $P( \tau(t_{\kappa^\mathrm{L}})\leq \bar{\tau})=\bar{p}$ with a $\bar{p}\in [0,1]$, ensures that $100 \bar{p}$ percent of the times a leader state update is received before triggering any follower braking (which will proceed roughly maintaining the leader velocity).
+With the hypothesis of having the statistical description of the communication delay process $ \left\{ \tau(t_{\kappa^\mathrm{L}})\right\}_{\kappa^\mathrm{L}=0}^{+\infty}$ reported in Section\tildeAdd\ref{subsec:delayEstimator}, 
+choosing a $\bar{\tau}$ so as that $F_d(\bar{\tau}; \lambda, T_{\text{min}}) \leq \bar{p}$ obtaining
+\begin{equation}\label{eq:tau_lambda}
+	 \bar{\tau}= T_{\mathrm{min}} + \frac{-\ln(1 - \bar{p})}{\lambda},
+\end{equation}
+ with a $\bar{p}\in [0,1]$, ensures that $100 \bar{p}$ percent of the times a leader state update is received before triggering any follower braking (which will proceed roughly maintaining the leader velocity).
  
 In this section we formally describe a control block able to guarantee the behaviour described before and implement \gls{vc} between the two trains.  
 To do so, let us first recall that the follower receives asynchronous packets $\left ( t_{\kappa^\mathrm{L}}, x^\mathrm{L}(t_{\kappa^\mathrm{L}}),\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})\right)$ with $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$, as said, robust leader' state trajectory estimation up to horizon $H$. Specifically, the latter is computed via any valid MPC embedded on the leader over its nominal model. The computed control $\mathbf{u}^\mathrm{L}(t)$ for the time interval  $[t_{\kappa^\mathrm{L}},t_{\kappa^\mathrm{L}}+H)$ is then applied open loop to the leader RLP (initialized at state $x^\mathrm{L}(t_{\kappa^\mathrm{L}})$) to compute $\underline{\mathbf{x}}^\mathrm{L}(t_{\kappa^\mathrm{L}})$, which results in a robust estimated leader trajectory. 
@@ -1581,7 +1588,14 @@ Section \ref{subsec:vitrualcouplingblock} does not explicitly state the expressi
 
 Since $\bar{\tau}$ is a design value, whose choice might follow a criterion as that depicted at the beginning of Section \ref{subsec:vitrualcouplingblock}, it is in principle possible to consider several values of $\bar{\tau}$ so as to have several $\bar{\tau}$-distances levels and develop switched controllers. 
 
-In this section we propose a three-level predictive switched controller considering three $\tau_i=\omega_i \bar{\tau}$ values, with $i\in \{1,2,3\}$, with $1<\omega_1 < \omega_2< \omega_3$ scaling parameters. 
+In this section we propose a three-level predictive switched controller considering three $\tau_i=\omega_i \bar{\tau}$ values, with $i\in \{1,2,3\}$, with $1<\omega_1 < \omega_2< \omega_3$ scaling parameters.
+
+The parameter $\bar{\tau}$ can be calculated as shown in Eq.\tildeAdd\eqref{eq:tau_lambda_hat} without the need for the Delay estimator block, by treating the parameter $\lambda$ as constant. However, by using the output $F_d(t; \hat{\lambda}, T_{\text{min}})$ from the previous block, which estimates $\hat{\lambda}$ each time a packet is received, the following expression is derived
+\begin{equation}\label{eq:tau_lambda_hat}
+	\bar{\tau}= T_{\mathrm{min}} + \frac{-\ln(1 - \bar{p})}{\hat{\lambda}}.
+\end{equation}
+
+ 
 
 The whole reasoning conducted in Section \ref{subsec:vitrualcouplingblock} can therefore be repeated substituting in the formulas $\bar{\tau}$ with $\tau_i$. 
 
@@ -1698,9 +1712,13 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
   To verify the efficacy of our control system, we will utilize a specialized simulation tool named \textit{RV4565}, a video of its functionalities is reported in\tildeAdd\cite{youtubeVideo}. This tool, developed with MATLAB enables detailed observation of train variables, including those influencing platoon systems, such as inter-train distance and velocity. All simulations were conducted on a laptop equipped with an Intel i7-10710U processor (6 cores at 4.7GHz) and 16GB of RAM, running the Windows operating system.
   
   
-  For the sake of readability, all parameters used in the simulations are listed in Appendix \tildeAdd\ref{appendix:parameters}.   The controllers\tildeAdd\eqref{eq:K_1_controller}–\eqref{eq:K_3_controller} presented in \ref{subsec:switchedvitrualcouplingblock} have been implemented as \glspl{nmpc} using the OpEn framework and the PANOC solver\tildeAdd\cite{open2020} with $\Delta T^{\mathrm{mpc}}$ as discretization time. 
+  The controllers\tildeAdd\eqref{eq:K_1_controller}–\eqref{eq:K_3_controller} presented in \ref{subsec:switchedvitrualcouplingblock} have been implemented as \glspl{nmpc} using the OpEn framework and the PANOC solver\tildeAdd\cite{open2020}, the parameters used to configure the controller are listed in Table\tildeAdd\ref{table:controllerParameters}. 
   
-  The dynamic parameters of the trains were modeled after those of two Frecciarossa ETR1000 trains\tildeAdd\cite{frecciarossa}. For the simulations, it was specifically assumed that the follower train is fully loaded, while the leader train is not. Figure\tildeAdd\ref{fig:trackProfile} reports the data profile of the railway line used to conduct the simulation is the Italian Firenze-Bologna railway line. The maximum velocity of the railway line is assumed to be constant and is set to $V^{\mathrm{line}}(s) = 83\unit{\frac{\unit{\meter}}{\unit{\second}}}$ which is the maximum permitted by the infrastructure along the entire route.
+  The dynamic parameters of the trains were modeled after those of two Frecciarossa ETR1000 trains\tildeAdd\cite{frecciarossa}. Furthermore, it is assumed that the leader transmits messages at a synchronous sampling interval of $1\unit{\second}$. For the simulations the model parameters are reported in Table\tildeAdd\ref{table:trainsParameters}, it was specifically assumed that the follower train is fully loaded, while the leader train is not.
+  
+   For the sake of readability, the two aforementioned tables are provided in Appendix \tildeAdd\ref{appendix:parameters}.  
+  
+   Figure\tildeAdd\ref{fig:trackcurvature} and \ref{fig:trackgrad} reports the data profile of the railway line used to conduct the simulation is the Italian Firenze-Bologna railway line. The maximum velocity of the railway line is assumed to be constant and is set to $V^{\mathrm{line}}(s) = 83\unit{\frac{\unit{\meter}}{\unit{\second}}}$ which is the maximum permitted by the infrastructure along the entire route.
   
   	\begin{figure}[ht]
   			\begin{tikzpicture}
@@ -1755,7 +1773,7 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
  \subsection{Operational scenarios}
   \label{sec:OperationalScenarios}
   
-  Two different operational scenarios \gls{os} were considered to evaluate the safety and benefits of the control system proposed in this study.
+  Two different operational scenarios \gls{os} were considered to evaluate the safety and benefits of the control system proposed in this study. 
   
   In the first scenario, referred to as \gls{os}1, the leader and follower initiate a virtual coupling (\gls{vc}) operation, starting from a Level 3 (\gls{l3}) separation distance of $6000\unit{\meter}$. Throughout the simulation, the leader adjusts its velocity dynamically, introducing velocity variations along the route. At one stage, the leader stabilizes its velocity and maintains a constant velocity. Despite these fluctuations, the follower successfully closes the gap and establishes the virtual coupling. As the scenario advances, the leader unexpectedly begins a braking maneuver, gradually decelerating until coming to a complete stop. This scenario is designed to assess the control system’s ability to handle dynamic velocity variations while ensuring precise coordination between the leader and follower. It particularly evaluates the follower’s capacity to react effectively and safely to sudden changes in the leader’s behavior, such as abrupt braking.
   
@@ -1773,9 +1791,9 @@ The controller $K^{\mathrm{F}}_3(x^{\mathrm{F}}(t))$, designated as the \gls{l3}
 		
 		To test the control system under emergency conditions, the leader initiates a braking maneuver at $2250\unit{\second}$, decelerating to a full stop. As shown in Figures \ref{fig:os1_e} and \ref{fig:os1_g}, the control system activates the emergency controller since the predicted safety barrier value becomes positive. Notably, in Figure \ref{fig:os1_e}, the safety barrier is negative when the packet arrives from the leader, but the Leader \gls{rlp} predictor, described in Section \ref{subsec:leaderRLPpredictor}, updates the leader's state during the subsequent period without communication, triggering the first condition in Algorithm \ref{alg:safetycontrol}. In this emergency situation, the control system ensures safety by stopping both trains at a distance greater than the safety threshold, as confirmed in Figures \ref{fig:os1_a} and \ref{fig:os1_b}. Moreover, the latter figure presents two cases: one with a delay of $3 \unit{\second}$ and another with $800  \unit{\milli\second}$, from which it can be observed that the interdistance between the two trains decreases as the communication delay decreases.
 		
-		The second operational scenario \gls{os}2 starts with the two trains already in a \gls{vc} operation, traveling at the same velocity of $50 \frac{\unit{\meter}}{\unit{\second}}$ (Figure \ref{fig:os2_c}) and maintaining a separation of approximately $1260 \unit{\meter}$ (Figure \ref{fig:os2_b}). During this phase, the control system uses controller $K_2^\mathrm{F}$ to maintain the virtual coupling, as shown in Figure \ref{fig:os2_d}. At $1000\unit{\second}$, the communication channel degrades (Figure \ref{fig:os2_h}), with the minimum packet arrival time increasing to $\overline{T}^{\mathrm{min}}$ (reported in Appendix \ref{appendix:parameters}). The system’s behavior is evaluated both with and without the Delay estimator block, as described in Section \ref{subsec:delayEstimator}. Figure \ref{fig:os2_g} shows that when the Delay estimator is active, the separation increases due to the calculation of reference trajectories $z_{\tau_1}^\mathrm{F}$, $z_{\tau_2}^\mathrm{F}$, and $z_{\tau_3}^\mathrm{F}$ based on the estimated delay $\hat{\tau}$. Without the Delay estimator, the control system does not detect any communication degradation and behaves non-adaptively.
+		The second operational scenario \gls{os}2 starts with the two trains already in a \gls{vc} operation, traveling at the same velocity of $50 \frac{\unit{\meter}}{\unit{\second}}$ (Figure \ref{fig:os2_c}) and maintaining a separation of approximately $1260 \unit{\meter}$ (Figure \ref{fig:os2_b}). During this phase, the control system uses controller $K_2^\mathrm{F}$ to maintain the virtual coupling, as shown in Figure\tildeAdd\ref{fig:os2_d}. At $500\unit{\second}$, the communication channel degrades as reported in Figure \ref{fig:os2_h}. The system’s behavior is evaluated both with and without the Delay estimator block, as described in Section \ref{subsec:delayEstimator}. Figure \ref{fig:os2_g} shows that when the Delay estimator is active, the separation increases due to the calculation of reference trajectories $z_{\tau_1}^\mathrm{F}$, $z_{\tau_2}^\mathrm{F}$, and $z_{\tau_3}^\mathrm{F}$ based on the estimated delay $\hat{\tau}$. Without the Delay estimator, the control system does not detect any communication degradation and behaves non-adaptively. Moreover, it is possible to note that when the Delay estimator block is not used the frequency of emergency braking activations are increase (Figure\tildeAdd\ref{fig:os2_d}).
 		
-		Finally, at $1700\unit{\second}$, communication between the two trains is lost, as seen in Figure \ref{fig:os2_e}, where packet receptions occur at extended intervals, causing the estimated value of the safety barrier to become positive. As in the previous scenario, the Leader \gls{rlp} predictor triggers the emergency controller. This emergency braking is evident in Figure \ref{fig:os2_f}, where a large negative force is applied by controller $K_{\mathrm{E}}^\mathrm{F}$, which is activated, as shown in Figure \ref{fig:os2_d}.
+		Finally, at $1200\unit{\second}$, communication between the two trains is lost, as seen in Figure \ref{fig:os2_e}, where packet receptions occur at extended intervals, causing the estimated value of the safety barrier to become positive. As in the previous scenario, the Leader \gls{rlp} predictor triggers the emergency controller. This emergency braking is evident in Figure \ref{fig:os2_f}, where a large negative force is applied by controller $K_{\mathrm{E}}^\mathrm{F}$, which is activated, as shown in Figure \ref{fig:os2_d}.
 		
 		Once communication with the leader is restored, the control system recalculates the safety barrier and verifies that the trains are safe. Controller $K_3^\mathrm{F}$ is reactivated to gradually recover the lost space during the emergency braking.
 		
@@ -2286,6 +2304,7 @@ The data used during the simulation for the controller and train models paramete
 					% Adding a line from (0,0) to (0,800)
 					\addplot [name path=b0, color=red, solid, line width=1pt] 
 					file{dataMatlab/OS1/zoom_b_0.txt};
+					\addlegendentry{$b(x)$}
 					%\addlegendentry{$b(x)$}
 					
 					
@@ -2492,8 +2511,6 @@ The data used during the simulation for the controller and train models paramete
 					legend pos=south east,
 					grid = both,
 					xticklabel=\empty,
-					ymin=35,
-					ymax=60,
 					legend columns=2,
 					ylabel={$\mathrm{Velocity}(\frac{\unit{\meter}}{\unit{\second}})$}
 					]
@@ -2527,33 +2544,22 @@ The data used during the simulation for the controller and train models paramete
 					height=4cm,
 					enlargelimits=false,
 					xtick={0,200,400,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600, 2800},
-					legend pos=south east,
+					legend pos=north west,
 					grid = both,
 					ymin=-1,
-					ymax= 4,
+					ymax= 5,
 					ylabel={Controllers},
 					ytick={0, 1, 2, 3},
 					yticklabels={ $K^{\mathrm{F}}_{\mathrm{E}}$,  $K^{\mathrm{F}}_1$, $K^{\mathrm{F}}_2$, $K^{\mathrm{F}}_3$}
 					]
-					\addplot [name path=leader, color=gray, solid, line width=1pt] 
+					\addplot [name path=leader, color=orange, solid, line width=1pt] 
 					file{dataMatlab/OS2/Z_tau.txt};
 					\addlegendentry{With block.\ref{subsec:delayEstimator}}
 					
-					\addplot [name path=leader, color=gray, dashed, line width=1pt] 
+					\addplot [name path=leader, color=black, dashed, line width=1pt] 
 					file{dataMatlab/OS2_no_delay_estimator/Z_tau.txt};
 					\addlegendentry{No block.\ref{subsec:delayEstimator}}
 					
-					\addplot+[
-					mark=+,
-					only marks, color=blue,
-					mark size=0.5pt					]file{dataMatlab/OS2/event_z_region.txt};
-					
-					
-					
-					\addplot+[
-					mark=+,
-					only marks, color=black,
-					mark size=0.5pt					]file{dataMatlab/OS2_no_delay_estimator/event_z_region.txt};
 					
 				\end{axis}
 				
@@ -2587,6 +2593,7 @@ The data used during the simulation for the controller and train models paramete
 					% Adding a line from (0,0) to (0,800)
 					\addplot [name path=b0, color=red, solid, line width=1pt] 
 					file{dataMatlab/OS2/zoom_b_0.txt};
+					\addlegendentry{$b(x)$}
 					%\addlegendentry{$b(x)$}
 					
 					
@@ -2605,7 +2612,6 @@ The data used during the simulation for the controller and train models paramete
 				\begin{axis}[
 					width=8cm,
 					height=4cm,
-					ymax=150000,
 					enlargelimits=false,
 					legend pos=south east,
 					grid = both,
@@ -2671,9 +2677,13 @@ The data used during the simulation for the controller and train models paramete
 					ylabel={Time($\unit{\second})$},
 					legend columns=2
 					]
-					 \addplot [ycomb, blue, thick, mark=+]
+					 \addplot [name path=greenCurve, color=blue, solid, line width=1pt] 
 					file{dataMatlab/OS2/tauEstimated.txt};
 					\addlegendentry{$ \tau(t_{\kappa^\mathrm{L}})$}
+					
+					\addplot [name path=greenCurve, color=red, solid, line width=1pt] 
+					file{dataMatlab/OS2/delay_channel_list.txt};
+					\addlegendentry{$ \bar{\tau}$}
 					
 				\end{axis}
 			\end{tikzpicture}

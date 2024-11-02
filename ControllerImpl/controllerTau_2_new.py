@@ -7,7 +7,7 @@ import numpy as np
 # ------------------------------------
 (nu, nx, N, ts) = (1, 4, 17, 0.12)
 
-(qv, qs, r, r_past) = (1, 0.3, 0.4, 14)
+(qv, qs, r, r_past) = (1, 0.3, 0.4, 20)
 (M,A,B,C,Tf) = (490000, 26.152, 8.365, 1.914, 0.5)
 
 u = cs.SX.sym('u', nu*N)
@@ -39,7 +39,7 @@ for t in range(0, nu*N-1, nu):
     cost += (qs*(s-z0[t+4]))**2 +  (qv*(v-v_target))**2 + (r*u_t)**2 + ((r_past*(u_t-u_t_past))**2)
     
     if t==0:
-        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u_t_past) - 0.003))
+        fu_J = cs.vertcat(fu_J,cs.fmax(0.0, cs.fabs(u[t] - u_t_past) - 0.08))
     
     u_t_past = u_t
     fv = cs.vertcat(fv, v)

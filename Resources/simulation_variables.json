@@ -10,7 +10,7 @@
     "Communication_channel_parameters": {
         "lambda_exp": 15,
         "min_delay_time": 0.4,
-        "p_channel": 0.9,
+        "p_channel": 0.95,
         "time_loss": 1200,
         "duration_loss":6,
         "flag_loss": true
@@ -21,12 +21,16 @@
         "B": 8.365,
         "C": 1.914,
         "Tf": 1,
-        "delta_param": 0.1,
-        "pos_leader": 1242,
-        "vel_leader": 50,
+        "delta_param": 0.05,
+        "pos_leader_1": 6000,
+        "vel_leader_1": 50,
+        "pos_leader_2": 1350,
+        "vel_leader_2": 50,
         "acc_leader": 0,
-        "pos_follower": 0,
-        "vel_follower": 50,
+        "pos_follower_1": 0,
+        "vel_follower_1": 50,
+        "pos_follower_2": 0,
+        "vel_follower_2": 50,
         "acc_follower": 0
     },
     "velocity_target": {
@@ -39,11 +43,11 @@
     },
     "emergency_braking": -370000,
     "d_vc": 1000,
-    "time_simulation": 3100,
+    "time_simulation": 3000,
     "ref_tau_1": 4800.0,
     "ref_tau_2": 4750.0,
     "ref_tau_3": 4700.0,
-    "os1": false,
-    "os2": true,
+    "os1": true,
+    "os2": false,
     "delay_estimator_block": true
 }

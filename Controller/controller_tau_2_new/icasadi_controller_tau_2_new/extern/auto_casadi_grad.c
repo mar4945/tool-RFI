@@ -88,7 +88,7 @@ static int casadi_f0(const casadi_real** arg, casadi_real** res, casadi_int* iw,
   a3=casadi_sign(a2);
   a4=0.;
   a2=casadi_fabs(a2);
-  a5=3.0000000000000001e-03;
+  a5=8.0000000000000002e-02;
   a2=(a2-a5);
   a5=(a4<=a2);
   a6=(a2<=a4);
@@ -105,7 +105,7 @@ static int casadi_f0(const casadi_real** arg, casadi_real** res, casadi_int* iw,
   a6=(a6*a2);
   a5=(a5*a6);
   a3=(a3*a5);
-  a5=14.;
+  a5=20.;
   a6=arg[0]? arg[0][1] : 0;
   a2=(a6-a0);
   a2=(a5*a2);

@@ -34,13 +34,14 @@ class ATO:
     U_FACTOR_VC = 10000
     U_FACTOR_VELOCITY = 1000
     
-    def __init__(self, N = None, ts=None, s_1 = None, s_2=None, s_3=None):
+    def __init__(self, N = None, ts=None, s_1 = None, s_2=None, s_3=None, os1=None):
              
         self.N = N
         self.ts = ts
         self.nu = 1
         self.u_guess = [0]*N
         self.u_past = 0
+        self.os1 = os1
         
         self.z_tau_1 = np.full(self.N*20, s_1)
         self.time_ref_1 = np.round(np.arange(0, self.N*20*self.ts, self.ts), 2) 
@@ -78,6 +79,9 @@ class ATO:
         solver = controller_tau_1bis_new.solver()
         result = solver.run(p=P,
                             initial_guess=self.u_guess)
+        
+        if result is None:
+            return self.k_tau_3(P)
         
         u_star = result.solution
         return u_star[0:self.nu*self.N:self.nu], result
@@ -147,9 +151,13 @@ class ATO:
             P = [s_f]+[v_f] + [v_l] + [self.u_past] + ref
             ref_tau = ref[0]
             
-            # controller added to improve the performance of the control system, the 3Bis is the controller near , instead 3 is for controller far away
-            [uMPC,result] = self.k_tau_3bis(P)
-            z_region = 3
+            # controller added to improve the performance of the control system
+            if  timestamp< 1500 and self.os1:
+                [uMPC,result] = self.k_tau_3(P)
+                z_region = 3
+            else:
+                [uMPC,result] = self.k_tau_3bis(P)
+                z_region = 3
             
            
         elif s_f > z_tau_1_ref:
@@ -191,7 +199,7 @@ class ATO:
     
     def emergency_controller(self):
         # TODO modificare costante
-        u_e = self.emergency_braking - 7500
+        u_e = self.emergency_braking - 10000
         #u_e = -370000
         
         if u_e < -370000:

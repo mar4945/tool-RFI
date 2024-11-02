@@ -82,7 +82,7 @@ static int casadi_f0(const casadi_real** arg, casadi_real** res, casadi_int* iw,
   a3=arg[1]? arg[1][3] : 0;
   a2=(a2-a3);
   a2=casadi_fabs(a2);
-  a3=3.0000000000000001e-03;
+  a3=8.0000000000000002e-02;
   a2=(a2-a3);
   a1=casadi_fmax(a1,a2);
   a0=(a0*a1);

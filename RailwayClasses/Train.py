@@ -54,7 +54,7 @@ class Train:
         self.flag_emergency = False
         # window stack to estimate the lambda factor for the exponential distribution
         self.stack_window_channel = list()
-        self.len_stack = 25
+        self.len_stack = 40
         self.p_channel = None
         self.min_T = None
         
@@ -189,7 +189,8 @@ class Train:
         #     self.acceleration = 0
         #     z_region = 3
         
-        
+        # store the last control input
+        self.control = u_0
         
         # run the model dynamic
         s_f, v_f, a_f, j_f = self.dynamic(u_0)
@@ -260,8 +261,23 @@ class Train:
         
         return e_lp
     
-    def rlp(self, s0, v0, u_0_mpc):
-        v = v0 + self.e_lp_computation(v0,u_0_mpc)*self.ts
+    def e_up_computation(self, v0, u):
+         
+        if u >=0 :
+            e_lp = (1/self.M_max)*(-self.A_min-self.B_min*v0
+                               -(self.C_min*v0**2)-(self.g*self.sigma+(6*10**6)/self.rho))+(u/self.M_max)
+        else:
+            e_lp = (1/self.M_max)*(-self.A_min-(self.g*self.sigma+(6*10**6)/self.rho))+(u/self.M_max)
+        
+        return e_lp
+    
+    def rlp(self, s0, v0, u):
+        v = v0 + self.e_lp_computation(v0,u)*self.ts
+        s = s0 + v*self.ts
+        return s,v
+    
+    def rup(self, s0, v0, u):
+        v = v0 + self.e_up_computation(v0,u)*self.ts
         s = s0 + v*self.ts
         return s,v
     
@@ -299,8 +315,7 @@ class Train:
             # s_prediction.append(round(s,2))
             # v_prediction.append(round(v,2))
             # t_prediction.append(round(timestamp+(4*i_time+3)*self.ts,2))
-
-            
+         
         return s_prediction, v_prediction, t_prediction
     
     def leader_rlp_predictor_block(self, message):
@@ -318,7 +333,11 @@ class Train:
         
         # TODO import as parameters
         a_b_l = 0.7
-        a_b_f = 0.64
+        a_b_f = 0.7
+        
+        # cosi va fatto, però bisogna aggiustare bene i parametri purtroppo
+        a_b_f_up = abs(self.e_up_computation(self.velocity,-315000))
+        a_b_l_lp = abs(self.e_lp_computation(self.rlp_v,-330000))
         max_time_delay = 6
         
         # condition on time
@@ -330,7 +349,7 @@ class Train:
         self.c = c_time
         
         # condition on position
-        b_prime = self.d_vc - (self.rlp_s-self.position) - 0.5*((self.rlp_v**2/(2*a_b_l))-(self.velocity**2/(2*a_b_f)))
+        b_prime = self.d_vc - (self.rlp_s-self.position) - 0.5*((self.rlp_v**2/(2*a_b_l_lp))-(self.velocity**2/(2*a_b_f_up)))
         b_second = self.d_vc - (self.rlp_s-self.position)
         b_max = max(b_prime, b_second)
         

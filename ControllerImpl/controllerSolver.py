@@ -7,7 +7,7 @@ import numpy as np
 # ------------------------------------
 (nu, nx, np, N, ts) = (1, 3, 200, 65, 0.24)
 
-(qv, qs, r, r_past,qN) = (0.65, 0.1, 0.01, 0.5, 1)
+(qv, qs, r, r_past,qN) = (0.65, 0.1, 0.01, 10, 1)
 (M,A,B,C,Tf) = (490000, 26.152, 8.365, 1.914, 1)
 
 u = cs.SX.sym('u', nu*N)
@@ -51,7 +51,7 @@ for t in range(0, nu*(N-3), nu):
 
 cost += (qv*(v-z0[t+3]))**2 + (r*u_t)**2 + (r_past*(u[t]-u[t-1]))**2
 
-umin = [-300.0] * (nu*N)
+umin = [-270.0] * (nu*N)
 umax = [370.0] * (nu*N)
 bounds = og.constraints.Rectangle(umin, umax)
 
@@ -60,7 +60,7 @@ ftot = cs.vertcat(ftot, fu_P)
 ftot = cs.vertcat(ftot, fu_J)
 ftot = cs.vertcat(ftot, fv)
 
-fmin = [-30710]*(fu_P.size1()) + [0]*(fv.size1()) #+ [-3]*(fu_J.size1()) 
+fmin = [-27000]*(fu_P.size1()) + [0]*(fv.size1()) #+ [-3]*(fu_J.size1()) 
 fmax = [37000]*(fu_P.size1()) + [83.3]*(fv.size1())#+ [3]*(fu_J.size1()) 
 
 # fmin = [0]*(fu_P.size1()) + [0]*(fv.size1()) 
