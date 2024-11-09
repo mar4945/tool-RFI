@@ -1,0 +1,163 @@
+\section{Train Modeling}
+\label{sec:TrainModeling}
+
+The model employed in this manuscript relies on the principles of longitudinal train dynamics. It treats the train as a singular point mass with one degree of freedom. Additionally, it incorporates aspects such as the propulsion and braking system, the effects of rolling and bearing resistances, air input, the influence of aerodynamic drag, as well as the consideration of grade and curving resistances~\cite{ltdModel}:
+%
+\begin{align}  \label{eq:stateDynamic}
+	\dot{x}_1^i &= x_2^i  \nonumber \\
+	\dot{x}_2^i &= \frac{1}{M^i}(-A^i-B^i x_2^i - T_\mathrm{F}^i C^i (x_2^i)^2)-\mathrm{F}_e^i + \frac{u^i}{M^i}.
+\end{align}
+%
+
+We utilize the symbols ${x}_1^i$ and ${x}_2^i$ to represent the $i$-th train's velocity $v^i$ and position $s^i$, respectively; the state vector is reported with $x^i=\binom{x^i_1}{x^i_2}$  along the present work. The variable $u^i$ is the control driving or braking force; $\mathrm{F}_e^i$ denotes the external force originating from the track; $M^i$ denotes the mass parameter, while $A^i$ encompasses both rolling resistance and bearing resistance; $B^i$ is a coefficient related to the flange friction, and $C^i$ represents the aerodynamic coefficient. Additionally, $T_\mathrm{F}$ denotes the tunnel factor.
+%
+In this model, $\mathrm{F}^i_e$ depends on $i$-th external force
+%
+\begin{equation*}
+	\mathrm{F}_e^i = g \sigma(x_1^i) + \frac{\gamma}{\rho(x_1^i)}, 
+\end{equation*}
+%
+where $\gamma=6\cdot10^6$ is a constant parameter. It encompasses two distinct constituents. The first term denotes the component attributed to gravity force resulting from the track's slope $\sigma(x_1^i)$  at point $x_1^i$, with $g$ representing the gravitational acceleration. The second term designates the curving resistance, with ${\rho(x_1^i)}$ representing the curve's radius.
+
+Regarding the constraints on the state and input of the model, they are presented as follows
+%
+\begin{subequations} \label{eq:modelConstraints}
+	\begin{align}
+		u^i &\in \left[M^i a_{\mathrm{br}}^i, \;M^i a_{\mathrm{dr}}^i \right], \label{eq:lim1} \\
+		u^i \cdot x_2^i&\in \left[P^i_{\mathrm{br}}, \;P^i_{\mathrm{dr}}\right], \label{eq:lim2} \\
+		x_2^i &\in \left[0, \;\min\{V^i_{\mathrm{max}},V_{\mathrm{line}}\}\right], \label{eq:lim5} \\
+		x_1^i &\in \mathbb{R}_{\geq0}, \label{eq:lim4}  \\ 
+		\frac{\dot{u}^i }{M^i}&\in \left[-J^i_{\mathrm{max}}, \;J^i_{\mathrm{max}}\right]. \label{eq:lim3}
+	\end{align}
+\end{subequations}
+%
+Specifically, all of these parameters mentioned are contingent upon the constructional characteristics unique to each individual train. It is important to note that $a_{\mathrm{br}}^i \leq 0$ and $a_{\mathrm{dr}}^i \geq 0$ correspond to the maximum braking and acceleration admitted, $P^i_{\mathrm{br}}$ and $P^i_{\mathrm{dr}}$ represent the minimum and maximum mechanical power, $J^i_{\min}$ and $J^i_{\max}$  input rate of change, and finally, $V^i_{\max}$ and $V_{\mathrm{line}}$ denotes the maximum attainable velocity for the train and railway line, respectively.
+
+\subsection{Robust Modeling}
+\label{subsec:robustModeling}
+%
+In the context of railway control, and in particular, in this new technology the safety is of utmost importance, the integration of system model~\eqref{eq:stateDynamic} with parametric uncertainties is an essential step. 
+
+For this purpose, the following model parameters are supposed uncertain in a given range
+%
+\begin{subequations}
+	\begin{align*}
+		&a_{\mathrm{br}}^i \in [\underline{a}_{\mathrm{br}}^i , \overline{a}_{\mathrm{br}}^i], \;
+		a_{\mathrm{dr}}^i \in [\underline{a}_{\mathrm{dr}}^i , \overline{a}_{\mathrm{dr}}^i],  \;
+		P^i_{\mathrm{br}} \in [\underline{P}_{\mathrm{br}}^i , \overline{P}_{\mathrm{br}}^i]  , \\
+		&P^i_{\mathrm{dr}} \in [\underline{P}_{\mathrm{dr}}^i , \overline{P}_{\mathrm{dr}}^i],   \;
+		T_\mathrm{F}^i \in [\underline{T}_\mathrm{F}^i , \overline{T}_\mathrm{F}^i] ,  \;
+		J_\mathrm{max}^i \in [\underline{J}_\mathrm{max}^i , \overline{J}_\mathrm{max}^i] , \\
+		&M^i \in [\underline{M}^i , \overline{M}^i], \;
+		A^i \in [\underline{A}^i , \overline{A}^i] ,  \;
+		B^i \in [\underline{B}^i , \overline{B}^i] , \;
+		C^i \in [\underline{C}^i , \overline{C}^i].
+	\end{align*}
+\end{subequations}
+%
+The train model explicitly pointing out its dependency on the parameters listed above, appears as follows
+%
+\begin{equation}   \label{eq:robustModel}  
+	\begin{cases}
+		\dot{x}^i = f^i(x^i,u^i,p^i),  \\ 
+		\text{subject to} \; \eqref{eq:modelConstraints} ,
+	\end{cases}
+\end{equation}
+where $p^i \in P^i$, and
+\begin{equation*}
+	P^i = \{a_{\mathrm{br}}^i,\;  a_{\mathrm{dr}}^i,\;P^i_{\mathrm{br}},\;P^i_{\mathrm{dr}},\;T_\mathrm{F}^i,\;  J_\mathrm{max}^i,\;a_{\mathrm{dr}}^i,\;M^i,\;A^i ,\; B^i, \; C^i \}.
+\end{equation*}
+
+\begin{definition}[Braking Controller] \label{def:brakingController}
+	Given the model present in \eqref{eq:robustModel} we define  $u^i= K_\mathrm{B}(x^i)$ the braking controller as follows
+	\begin{equation*}
+		K_B(x^i)=
+		\begin{cases}
+			\tilde{u}^i(x^i) \leq 0,& x_2^i \geq 0\\
+			0 ,& x_2^i = 0.
+		\end{cases}     
+	\end{equation*}
+\end{definition}
+
+
+
+Defining $\phi^i(t,t_0,x_0^i,u^i,p^i)= \left [\begin{array}{c}
+	\phi^i_1\left(\cdot \right) \\
+	\phi^i_2\left(\cdot \right)
+\end{array}\right ]$ as the dynamical flow for the parameterized model \eqref{eq:robustModel} and using the Definition reported in \ref{def:brakingController}, we introduce the following:
+
+\begin{definition}[Stopping time] \label{def:stoppingTime}
+	Given model present in \eqref{eq:robustModel}, we define the stopping time $t_{K_\mathrm{B}}$ for the braking controller  $u^i= K_\mathrm{B}(x^i)$ as
+	\begin{equation*}
+		t_{K_\mathrm{B}}: \underset{t \geq t_0}{\min}\{ t: \phi_2^i(t \;,t_0 \;,x_0^i, \;u^i(x^i), \;p^i)\}.
+	\end{equation*}
+\end{definition}
+
+
+
+
+\subsection{Robust Proxies}
+\label{subsec:robustProxies}
+
+To address the dynamic nature of the system, considering a broad spectrum of parameters within fixed ranges, the notion of \gls{rlp} and \gls{rup} are introduced as robustification technique. By employing the latter, on the dynamical model~\eqref{eq:robustModel}, we aim to robustify the model's resilience against uncertainties, variations, and potential disturbances, ensuring across a diverse range of operating conditions. Ultimately, the utilization of robust and lower proxies has the goal of developing models that are robust and capable of accommodating the complexity and variability of real-world system.
+
+\begin{definition}[\gls{rlp}]
+	In consideration of the system expressed by Eq.~\eqref{eq:robustModel}, we formally introduce the \gls{rlp} as follows
+	
+	\begin{equation} \label{eq:rlp}
+		\underline{\dot{x}}^i = \underline{f}^i(\underline{x}^i,u^i).
+	\end{equation}
+\end{definition}
+
+\begin{definition}[\gls{rup}]
+	Similarly, we define the \gls{rup} for the model in~\eqref{eq:robustModel} as 
+	\begin{equation} \label{eq:rup}
+		\overline{\dot{x}}^i = \overline{f}^i(\overline{x}^i,u^i).
+	\end{equation}
+\end{definition}
+As evident from the two definitions, there exist infinite proxy functions for Eq. \eqref{eq:robustModel}; in this work, we will consider piece-wise smooth discontinuous functions.
+
+As for the \gls{rlp}, the following proxy has been chosen
+\begin{equation}
+	\begin{cases}
+		\underline{\dot{x}}_1^i =   \underline{x}_2^i, \qquad  \qquad \qquad \qquad \qquad \qquad  \qquad  \text{if} \; u^i < 0,  \\
+		\underline{\dot{x}}_2^i =  \frac{1}{\underline{M}^i} \left(-\overline{A}^i - \overline{B}^i \underline{x}^i_2 - \overline{T}^i_\mathrm{F} \overline{C}^i \left(\underline{x}^i_2\right)^2 \right)-\overline{F}_e^i + u^i, \\ \noalign{\vskip3pt}
+		\textrm{with } \overline{F}_e^i =  g \sigma_{\sup}\left(\underline{x}^i_1\right)+ \frac{\gamma}{\rho_{\inf}\left(\underline{x}^i_1\right)} \\
+		\noalign{\vskip9pt}
+		\underline{\dot{x}}_1^i =   \underline{x}_2^i, \qquad \qquad \qquad  \qquad \qquad \qquad \qquad \text{if} \; u^i \geq 0,  \\
+		\underline{\dot{x}}_2^i =  \frac{1}{\underline{M}^i} \left(-\overline{A}^i - \overline{B}^i \underline{x}^i_2 - \overline{T}^i_\mathrm{F} \overline{C}^i \left(\underline{x}^i_2\right)^2 \right)-\mathrm{F}_e^i  + u^i, \\
+		\noalign{\vskip6pt}
+		\textrm{subject to } \eqref{eq:modelConstraints} \textrm{, and where} \\
+		\sigma_{\sup}\left(\underline{x}^i_1\right) = \underset{s \in [\underline{x}_1^i,s^H]}{\sup} \sigma(s), \\
+		\rho_{\inf}\left(\underline{x}^i_1\right) = \underset{s \in [\underline{x}_1^i,s^H]}{\inf} \rho(s),
+	\end{cases}
+\end{equation}
+here $s^H$ represent the position at the horizon control $H$.
+
+Likewise to what was demonstrated above, we define here the proxy related to the \gls{rup}
+\begin{equation}
+	\begin{cases}
+		\overline{\dot{x}}_1^i =   \overline{x}_2^i, \qquad  \qquad \qquad \qquad \qquad \qquad  \qquad  \text{if} \; u^i < 0,  \\
+		\overline{\dot{x}}_2^i =  \frac{\underline{A}^i}{\overline{M}^i}-\underline{F}_e^i + u^i, \\
+		\textrm{with } \underline{F}_e^i =  g \sigma_{\inf}\left(\overline{x}^i_1\right)+ \frac{\gamma}{\rho_{sup}\left(\overline{x}^i_1\right)} \\
+		\noalign{\vskip9pt}
+		\overline{\dot{x}}_1^i =   \overline{x}_2^i, \qquad \qquad \qquad  \qquad \qquad \qquad \qquad \text{if} \; u^i \geq 0,  \\
+		\overline{\dot{x}}_2^i =  \frac{1}{\overline{M}^i} \left(-\underline{A}^i - \underline{B}^i \overline{x}^i_2 - \underline{T}^i_\mathrm{F} \underline{C}^i \left(\overline{x}^i_2\right)^2 \right) -\mathrm{F}_e^i  + u^i, \\
+		\noalign{\vskip5pt}
+		\textrm{subject to } \eqref{eq:modelConstraints} \textrm{, and where} \\
+		\sigma_{\sup}\left(\overline{x}^i_1\right) = \underset{s \in [\overline{x}_1^i,s^H]}{\inf} \sigma(s), \\
+		\rho_{\inf}\left(\overline{x}^i_1\right) = \underset{s \in [\overline{x}_1^i,s^H]}{\sup} \rho(s).
+	\end{cases}
+\end{equation}
+
+Hereinafter, we will use \gls{rlp} and \gls{rup} to refer to the two proxies, respectively.
+
+  \begin{lemma} \label{lemma:Proxies}
+	Let ${\phi}^i(\cdot)$ the dynamical flow corresponding to \eqref{eq:robustModel}, $\underline{\phi}^i\left(\cdot \right)$ and   $\overline{\phi}^i\left(\cdot \right)$ represent the dynamical flow related to \eqref{eq:rlp} and \eqref{eq:rup}  then
+	\begin{subequations}
+		\begin{align} 
+			&\underline{\phi}^i\left(t,t_0,x_0^i,u^i\right) \leq \phi^i\left(t,t_0,x_0^i,u^i,p^i\right), \label{lemma:rlpProxy}\\
+			&\overline{\phi}^i\left(t,t_0,x_0^i,u^i\right) \geq \phi^i\left(t,t_0,x_0^i,u^i,p^i\right), \label{lemma:rupProxy}\\
+			&\forall p^i \in P^i, \; \forall x_0^i \in X^i,\; \forall u^i \in U^i\left(x^i\right), \forall t \geq t_0, \nonumber
+		\end{align}
+	\end{subequations}

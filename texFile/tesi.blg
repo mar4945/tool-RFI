@@ -1,0 +1,69 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: tesi.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: IEEEtran.bst
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+Reallocating 'name_of_file' (item size: 1) to 4 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'wiz_functions' (item size: 4) to 6000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: IEEEabrv.bib
+Database file #2: bib.bib
+Repeated entry---line 38 of file bib.bib
+ : @inproceedings{terlizzi2021CyberSecurity
+ :                                         ,
+I'm skipping whatever remains of this entry
+Warning--entry type for "15_Mathworks_url" isn't style-file defined
+--line 373 of file bib.bib
+Warning--entry type for "16_Mathworks_url" isn't style-file defined
+--line 398 of file bib.bib
+-- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
+-- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+You've used 102 entries,
+            3975 wiz_defined-function locations,
+            1891 strings with 37840 characters,
+and the built_in function-call counts, 81857 in all, are:
+= -- 6502
+> -- 2075
+< -- 733
++ -- 1162
+- -- 379
+* -- 3915
+:= -- 11967
+add.period$ -- 224
+call.type$ -- 102
+change.case$ -- 101
+chr.to.int$ -- 1716
+cite$ -- 102
+duplicate$ -- 5829
+empty$ -- 6588
+format.name$ -- 438
+if$ -- 18967
+int.to.chr$ -- 0
+int.to.str$ -- 102
+missing$ -- 1021
+newline$ -- 342
+num.names$ -- 104
+pop$ -- 2388
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 6360
+stack$ -- 0
+substring$ -- 4200
+swap$ -- 4870
+text.length$ -- 161
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 0
+warning$ -- 0
+while$ -- 386
+width$ -- 105
+write$ -- 1010
+(There was 1 error message)

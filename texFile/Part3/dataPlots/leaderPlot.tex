@@ -1,0 +1,35 @@
+\pgfplotsset{width=8cm,compat=1.18}
+\begin{figure}[!h]
+\begin{center}
+\begin{tabular}{rl}
+%position
+ \begin{tikzpicture}
+\begin{axis}[
+legend pos=south east,
+xlabel={Time [$s$]},
+ylabel={$s$[$m$]},
+]
+\addplot [blue] table {dataPlots/positionLeader.dat};
+\addlegendentry{$s_L$}
+\addplot [orange,const plot] table {dataPlots/positionLeaderRBC.dat};
+\addlegendentry{$\bar{s_L}$}
+\end{axis}
+\end{tikzpicture}
+
+%velocity
+ \begin{tikzpicture}
+\begin{axis}[
+xlabel={Time [$s$]},
+ylabel={$v$[$\frac{m}{s}$]},
+]
+\addplot [blue] table {dataPlots/velocityLeader.dat};
+\addlegendentry{$v_L$}
+\addplot [orange,const plot] table {dataPlots/velocityLeaderRBC.dat};
+\addlegendentry{$\bar{v_L}$}
+\end{axis}
+\end{tikzpicture}
+\end{tabular}
+\end{center}
+\caption{Leader position and velocity. }
+\label{fig:leaderPlot}
+\end{figure}

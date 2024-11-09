@@ -1,0 +1,83 @@
+\contentsline {chapter}{Abstract}{iv}{}%
+\contentsline {chapter}{Acknowledgments}{vi}{}%
+\contentsline {chapter}{Introduction}{vii}{}%
+\contentsline {section}{\numberline {1}Contributions}{ix}{}%
+\contentsline {section}{\numberline {2}Structure of thesis }{xii}{}%
+\contentsline {section}{\numberline {3}Author's Publications}{xv}{}%
+\contentsline {chapter}{\numberline {1}Background}{1}{}%
+\contentsline {section}{\numberline {1.1}Autonomous Systems}{2}{}%
+\contentsline {subsection}{\numberline {1.1.1}History}{3}{}%
+\contentsline {subsection}{\numberline {1.1.2}Architecture}{5}{}%
+\contentsline {subsection}{\numberline {1.1.3}Future Trends}{9}{}%
+\contentsline {part}{I\hspace {1em}PERCEPTION}{10}{}%
+\contentsline {chapter}{\numberline {2}Enhanced Vision-Based UAV Path Following Strategy}{14}{}%
+\contentsline {section}{\numberline {2.1}Problem Description}{16}{}%
+\contentsline {section}{\numberline {2.2}Vision-Based Path Following Algorithm}{16}{}%
+\contentsline {subsection}{\numberline {2.2.1}Image processing system}{18}{}%
+\contentsline {subsection}{\numberline {2.2.2}Path planner}{22}{}%
+\contentsline {section}{\numberline {2.3}Numerical Results}{23}{}%
+\contentsline {subsection}{\numberline {2.3.1}UAV Velocity Control}{24}{}%
+\contentsline {section}{\numberline {2.4}Chapter Summary}{26}{}%
+\contentsline {chapter}{\numberline {3}An Iterative Approach for Real-Time Lane Detection}{27}{}%
+\contentsline {section}{\numberline {3.1}Proposed Method}{29}{}%
+\contentsline {subsection}{\numberline {3.1.1}Frame acquisition}{29}{}%
+\contentsline {subsection}{\numberline {3.1.2}Image Preprocessing}{30}{}%
+\contentsline {subsection}{\numberline {3.1.3}ITS}{31}{}%
+\contentsline {section}{\numberline {3.2}Experimental Setup}{34}{}%
+\contentsline {subsection}{\numberline {3.2.1}Results}{35}{}%
+\contentsline {section}{\numberline {3.3}Chapter Summary}{37}{}%
+\contentsline {part}{II\hspace {1em}LEARNING}{38}{}%
+\contentsline {chapter}{\numberline {4}Reinforcement Learning for Collision Avoidance}{42}{}%
+\contentsline {section}{\numberline {4.1}The proposed RL system for the pedestrian collision avoidance problem}{43}{}%
+\contentsline {subsection}{\numberline {4.1.1}The vehicle dynamics model}{45}{}%
+\contentsline {subsection}{\numberline {4.1.2}The pedestrian position and the trajectory planner}{46}{}%
+\contentsline {subsection}{\numberline {4.1.3}The proposed DDPG based agent architecture}{47}{}%
+\contentsline {subsection}{\numberline {4.1.4}Reward function shaping}{48}{}%
+\contentsline {section}{\numberline {4.2}Numerical simulations and results}{51}{}%
+\contentsline {section}{\numberline {4.3}Chapter Summary}{55}{}%
+\contentsline {chapter}{\numberline {5}A Machine Learning-Control Approach for Cybersecurity}{56}{}%
+\contentsline {section}{\numberline {5.1}Control Strategy Architecture and Problem Formulation}{57}{}%
+\contentsline {subsection}{\numberline {5.1.1}Vehicle Model}{57}{}%
+\contentsline {subsection}{\numberline {5.1.2}Sensory System}{58}{}%
+\contentsline {subsection}{\numberline {5.1.3}Hacker Model}{58}{}%
+\contentsline {paragraph}{\numberline {5.1.3.0.1}Replay Attacks}{58}{}%
+\contentsline {paragraph}{\numberline {5.1.3.0.2}Denial of Service Attacks}{59}{}%
+\contentsline {subsection}{\numberline {5.1.4}\gls {ekf}}{59}{}%
+\contentsline {section}{\numberline {5.2}I-MPS}{59}{}%
+\contentsline {subsection}{\numberline {5.2.1}NMPC for Trajectory Tracking}{60}{}%
+\contentsline {subsection}{\numberline {5.2.2}Mitigator}{61}{}%
+\contentsline {subsection}{\numberline {5.2.3}Detector}{62}{}%
+\contentsline {subsubsection}{\numberline {5.2.3.1}Classifier Training}{63}{}%
+\contentsline {section}{\numberline {5.3}Simulations and results}{65}{}%
+\contentsline {section}{\numberline {5.4}Chapter Summary}{71}{}%
+\contentsline {part}{III\hspace {1em}COOPERATION}{72}{}%
+\contentsline {chapter}{\numberline {6}A Safe and Robust Control System Architecture for Virtual Coupling}{75}{}%
+\contentsline {section}{\numberline {6.1}Introduction}{76}{}%
+\contentsline {subsection}{\numberline {6.1.1}Contribution}{78}{}%
+\contentsline {section}{\numberline {6.2}Addressed problem and proposed control architecture}{79}{}%
+\contentsline {section}{\numberline {6.3}Background}{81}{}%
+\contentsline {subsection}{\numberline {6.3.1}Dynamical system and Barrier Function}{81}{}%
+\contentsline {subsection}{\numberline {6.3.2}Setting}{85}{}%
+\contentsline {subsection}{\numberline {6.3.3}Channel Communication}{85}{}%
+\contentsline {section}{\numberline {6.4}Train Modeling}{87}{}%
+\contentsline {subsection}{\numberline {6.4.1}Robust Modeling}{88}{}%
+\contentsline {subsection}{\numberline {6.4.2}Robust Proxies}{88}{}%
+\contentsline {section}{\numberline {6.5}Safety Guarantee}{91}{}%
+\contentsline {section}{\numberline {6.6}Control system}{97}{}%
+\contentsline {subsection}{\numberline {6.6.1}Leader RLP predictor}{99}{}%
+\contentsline {subsection}{\numberline {6.6.2}Safety control block}{100}{}%
+\contentsline {subsection}{\numberline {6.6.3}Delay estimator block}{102}{}%
+\contentsline {subsection}{\numberline {6.6.4}Cruise virtual coupling block: fixed controller}{103}{}%
+\contentsline {subsection}{\numberline {6.6.5}Cruise virtual coupling block: switched controller}{107}{}%
+\contentsline {section}{\numberline {6.7}Simulations}{109}{}%
+\contentsline {subsection}{\numberline {6.7.1}Operational scenarios}{111}{}%
+\contentsline {subsection}{\numberline {6.7.2}Results}{113}{}%
+\contentsline {section}{\numberline {6.8}Chapter Summary}{120}{}%
+\contentsline {chapter}{Conclusions}{121}{}%
+\contentsline {section}{\numberline {6.9}Broader Implications and Future Directions}{122}{}%
+\contentsline {part}{IV\hspace {1em}Appendix}{124}{}%
+\contentsline {chapter}{\numberline {A}Optimization and Optimal Control}{125}{}%
+\contentsline {section}{\numberline {A.1}Model Predictive Control}{125}{}%
+\contentsline {chapter}{\numberline {B}Learning Algorithms}{130}{}%
+\contentsline {section}{\numberline {B.1}Support Vector Machines}{130}{}%
+\contentsline {section}{\numberline {B.2}Learning Alghoritms}{132}{}%

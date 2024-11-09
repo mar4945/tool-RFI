@@ -1,0 +1,18 @@
+\pgfplotsset{width=10cm,compat=1.18}
+\begin{figure}[!h]
+%velocity
+\centering
+ \begin{tikzpicture}
+\begin{axis}[
+xlabel={Time $[s]$},
+ylabel={$v [\frac{m}{s}]$},
+]
+\addplot [orange] table {dataPlots/gammaLeader.dat};
+\addlegendentry{$\gamma^L_{L4}$}
+\addplot [blue] table {dataPlots/gammaFollower.dat};
+\addlegendentry{$\gamma^F_{L4}$}
+\end{axis}
+\end{tikzpicture}
+\label{fig:gammaPlot}
+\caption{Leader and follower velocity profiles.}
+\end{figure}

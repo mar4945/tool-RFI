@@ -1,0 +1,35 @@
+\pgfplotsset{width=8cm,compat=1.18}
+\begin{figure}[!h]
+\begin{center}
+\begin{tabular}{rl}
+%position
+ \begin{tikzpicture}
+\begin{axis}[
+legend pos=south east,
+xlabel={Time [$s$]},
+ylabel={$s$[$m$]},
+]
+\addplot [blue] table {dataPlots/positionFollower.dat};
+\addlegendentry{$s_F$}
+\addplot [orange,const plot] table {dataPlots/positionFollowerRBC.dat};
+\addlegendentry{$\bar{s_L}$}
+\end{axis}
+\end{tikzpicture}
+
+%velocity
+ \begin{tikzpicture}
+\begin{axis}[
+xlabel={Time [$s$]},
+ylabel={$v$[$\frac{m}{s}$]},
+]
+\addplot [blue] table {dataPlots/velocityFollower.dat};
+\addlegendentry{$v_F$}
+\addplot [orange,const plot] table {dataPlots/velocityFollowerRBC.dat};
+\addlegendentry{$\bar{v_F}$}
+\end{axis}
+\end{tikzpicture}
+\end{tabular}
+\end{center}
+\caption{Follower position and velocity. }
+\label{fig:followerPlot}
+\end{figure}
