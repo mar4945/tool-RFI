@@ -93,7 +93,7 @@ def load_data(json_config):
     # Other parameters
     emergency_braking = data['emergency_braking']
     d_vc = data['d_vc']
-    time_simulation = data['time_simulation']
+    
     ref_tau_1 = data['ref_tau_1']
     ref_tau_2 = data['ref_tau_2']
     ref_tau_3 = data['ref_tau_3']
@@ -113,12 +113,14 @@ def load_data(json_config):
         vel_leader = vel_leader_1
         pos_follower = pos_follower_1
         vel_follower = vel_follower_1
+        time_simulation = data['time_simulation_1']
         
     elif os2:
         pos_leader = pos_leader_2
         vel_leader = vel_leader_2
         pos_follower = pos_follower_2
         vel_follower = vel_follower_2
+        time_simulation = data['time_simulation_2']
     
     delay_estimator_block = data['delay_estimator_block']
     
@@ -261,7 +263,7 @@ def run_simulation():
 
     for t in range(0, int(time_simulation/ts), 1):
         timestamp = round(t*ts,2)
-        #print("time: "+str(round(timestamp,2)))
+        print("time: "+str(round(timestamp,2)))
         
         # Step for railway system
         s_l, v_l, a_l, u_l_control, result_l, message_l = leader.step_leader(timestamp, v_l_target)

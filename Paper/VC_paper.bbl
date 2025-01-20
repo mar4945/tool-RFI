@@ -1,8 +1,8 @@
 \begin{thebibliography}{10}
 
 \bibitem{ertms}
-W.~Y.~O. Peri~Smith, Arnab~Majumdar, ``An overview of lessons learnt from ertms
-  implementation in european railways,'' {\em Journal of Rail Transport
+W.~Y.~O. Peri~Smith, Arnab~Majumdar, ``An overview of lessons learnt from
+  {ERTMS} implementation in european railways,'' {\em Journal of Rail Transport
   Planning \& Management}, vol.~2, no.~4, pp.~79--87, 2012.
 
 \bibitem{frmcs}
@@ -10,8 +10,8 @@ E.~T.~S. Institute, ``Future rail mobile communication system (frmcs); study on
   system architecture,'' tech. rep., ETSI, 2020.
 
 \bibitem{shift2rail}
-.~Shift2Rail Joint~Undertaking, ``Multi-annual action plan,'' tech. rep.,
-  Shift2Rail, 2020.
+``Shift2rail joint undertaking 2020 multi-annual action plan,'' tech. rep.,
+  Shift2Rail.
 
 \bibitem{ertmsl3}
 N.~Furness, H.~Van~Houten, L.~Arenas, and M.~Bartholomeus, ``{ERTMS level 3:
@@ -97,10 +97,6 @@ Z.~Wu, C.~Gao, and T.~Tang, ``A virtually coupled metro train platoon control
 W.~Xiao, C.~G. Cassandras, and C.~Belta, {\em Safe Autonomy with Control
   Barrier Functions: Theory and Applications}.
 \newblock Springer, 2023.
-
-\bibitem{khalil}
-H.~K. Khalil, {\em Control of nonlinear systems}.
-\newblock Prentice Hall, New York, NY, 2002.
 
 \bibitem{ltdModel}
 Q.~Wu, M.~Spiryagin, and C.~Cole, ``Longitudinal train dynamics: an overview,''

@@ -7,45 +7,47 @@ Reallocating 'name_of_file' (item size: 1) to 4 items.
 Database file #1: bib.bib
 Warning--entry type for "youtubeVideo" isn't style-file defined
 --line 79 of file bib.bib
-You've used 24 entries,
+Warning--empty author in shift2rail
+Warning--empty year in shift2rail
+You've used 23 entries,
             1876 wiz_defined-function locations,
-            619 strings with 8080 characters,
-and the built_in function-call counts, 6898 in all, are:
-= -- 674
-> -- 303
+            613 strings with 8001 characters,
+and the built_in function-call counts, 6738 in all, are:
+= -- 658
+> -- 296
 < -- 0
-+ -- 111
-- -- 87
-* -- 509
-:= -- 993
-add.period$ -- 27
-call.type$ -- 24
++ -- 108
+- -- 85
+* -- 508
+:= -- 963
+add.period$ -- 25
+call.type$ -- 23
 change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 24
-duplicate$ -- 344
-empty$ -- 617
-format.name$ -- 87
-if$ -- 1677
+cite$ -- 25
+duplicate$ -- 335
+empty$ -- 597
+format.name$ -- 85
+if$ -- 1636
 int.to.chr$ -- 0
-int.to.str$ -- 24
-missing$ -- 23
-newline$ -- 78
-num.names$ -- 24
-pop$ -- 65
+int.to.str$ -- 23
+missing$ -- 21
+newline$ -- 74
+num.names$ -- 22
+pop$ -- 61
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 240
+skip$ -- 239
 stack$ -- 0
 substring$ -- 459
-swap$ -- 153
+swap$ -- 152
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 62
-width$ -- 26
-write$ -- 242
-(There was 1 warning)
+warning$ -- 2
+while$ -- 60
+width$ -- 25
+write$ -- 231
+(There were 3 warnings)
