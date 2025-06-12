@@ -88,17 +88,22 @@ This simulation tool is intended for advanced experimentation and scientific val
 - 📡 **Validation of delay-tolerant controllers** under communication uncertainty
 - 🧮 **Safety enforcement via Control Barrier Functions (CBFs)**
 
+## 📝 License
+
+This project is licensed under the terms of the **GNU General Public License v3.0**.
+
+You are free to use, modify, and distribute this software, provided that:
+
+- Source code remains open and freely available.
+- Any derivative work is also distributed under the GPL-3.0 license.
+- Proper attribution to the original authors is maintained.
+
+📄 See the [LICENSE](./LICENSE) file for full details, or visit  
+🔗 [https://www.gnu.org/licenses/gpl-3.0.en.html](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
 ---
 
-## 📖 Citation
+© 2025 Mario Terlizzi, Luigi Glielmo, and Davide Liuzza  
+Developed in collaboration with **Rete Ferroviaria Italiana (RFI S.p.A.)**
 
-If you use this repository in your research or publications, please cite the original work:
 
-```bibtex
-@inproceedings{terlizzi2025safe,
-  title={A Safe and Robust Control System Architecture for Virtual Coupling},
-  author={Terlizzi, Mario and Glielmo, Luigi and Liuzza, Davide},
-  booktitle={Proceedings of the World Congress on High-Speed Rail},
-  year={2025},
-  note={Presented in collaboration with RFI S.p.A.}
-}
