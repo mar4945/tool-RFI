@@ -186,7 +186,7 @@ def init_simulation():
     leader = Train(pos_leader, vel_leader, acc_leader, ts, packet48, ato_leader, tx_leader, None, False)
     follower = Train(pos_follower, vel_follower, acc_follower, ts, packet48, ato_follower, None, rx_follower, delay_estimator_block)
     commNetwork = CommNetwork(lambda_exp,min_delay_time, time_loss, duration_loss, flag_loss and not os1)
-    follower.set_parameters(M, A, B, C, delta_param, emergency_braking, 
+    follower.set_parameters(540000, A, B, C, delta_param, emergency_braking, 
                             d_vc, leader.position,leader.velocity, min_delay_time, p_channel)
     leader.set_parameters(M, A, B, C, delta_param, None, None,None, None, min_delay=None, p_channel=None)
 

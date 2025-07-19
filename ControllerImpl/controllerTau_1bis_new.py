@@ -8,7 +8,7 @@ import numpy as np
 (nu, nx, N, ts) = (1, 4, 17, 0.12)
 
 (qv, qs, r, r_past) = (2, 0.2, 0.2, 100)
-(M,A,B,C,Tf) = (490000, 26.152, 8.365, 1.914, 0.5)
+(M,A,B,C,Tf) = (540000, 26.152, 8.365, 1.914, 0.5)
 
 u = cs.SX.sym('u', nu*N)
 z0 = cs.SX.sym('z0', nx+N)
