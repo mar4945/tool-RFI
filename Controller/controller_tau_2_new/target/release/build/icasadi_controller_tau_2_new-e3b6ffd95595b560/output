@@ -1,0 +1,458 @@
+OUT_DIR = Some(C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\target\release\build\icasadi_controller_tau_2_new-e3b6ffd95595b560\out)
+TARGET = Some(x86_64-pc-windows-msvc)
+OPT_LEVEL = Some(3)
+HOST = Some(x86_64-pc-windows-msvc)
+cargo:rerun-if-env-changed=VCINSTALLDIR
+VCINSTALLDIR = None
+cargo:rerun-if-env-changed=VisualStudioDir
+VisualStudioDir = None
+cargo:rerun-if-env-changed=VSCMD_ARG_VCVARS_SPECTRE
+VSCMD_ARG_VCVARS_SPECTRE = None
+cargo:rerun-if-env-changed=WindowsSdkDir
+WindowsSdkDir = None
+cargo:rerun-if-env-changed=WindowsSDKVersion
+WindowsSDKVersion = None
+cargo:rerun-if-env-changed=LIB
+LIB = None
+cargo:rerun-if-env-changed=PATH
+PATH = Some(C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\target\release\deps;C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\target\release;C:\Users\user\.rustup\toolchains\stable-x86_64-pc-windows-msvc\lib\rustlib\x86_64-pc-windows-msvc\lib;C:\Program Files (x86)\PowerShell\7;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MATLAB\R2022b\runtime\win64;C:\Program Files\MATLAB\R2022b\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\PowerShell\7\;C:\Program Files\Git\cmd;C:\Users\user\AppData\Local\Programs\Julia-1.9.4\bin;C:\Program Files\dotnet\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;%SYSTEMROOT%\System32\OpenSSH\;C:\Users\user\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\user\AppData\Local\Programs\Python\Python38\;C:\Users\user\.cargo\bin;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\PyCharm 2023.2.5\bin;;C:\Users\user\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\cygwin64\bin;C:\MinGW\bin;C:\Program Files\JetBrains\PyCharm Edu 2022.2.2\bin;;C:\Users\user\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\user\AppData\Local\GitHubDesktop\bin;C:\Users\user\AppData\Local\Programs\Ollama;;c:\Users\user\.vscode\extensions\ms-python.debugpy-2025.8.0-win32-x64\bundled\scripts\noConfigScripts)
+cargo:rerun-if-env-changed=INCLUDE
+INCLUDE = None
+cargo:rerun-if-env-changed=CC_x86_64-pc-windows-msvc
+CC_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CC_x86_64_pc_windows_msvc
+CC_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CC
+HOST_CC = None
+cargo:rerun-if-env-changed=CC
+CC = None
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some(cmpxchg16b,fxsr,sse,sse2,sse3)
+DEBUG = Some(false)
+cargo:rerun-if-env-changed=CFLAGS_x86_64-pc-windows-msvc
+CFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_pc_windows_msvc
+CFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+OUT_DIR = Some(C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\target\release\build\icasadi_controller_tau_2_new-e3b6ffd95595b560\out)
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some(cmpxchg16b,fxsr,sse,sse2,sse3)
+cargo:rerun-if-env-changed=CFLAGS_x86_64-pc-windows-msvc
+CFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_pc_windows_msvc
+CFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+OUT_DIR = Some(C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\target\release\build\icasadi_controller_tau_2_new-e3b6ffd95595b560\out)
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some(cmpxchg16b,fxsr,sse,sse2,sse3)
+cargo:rerun-if-env-changed=CFLAGS_x86_64-pc-windows-msvc
+CFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_pc_windows_msvc
+CFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+OUT_DIR = Some(C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\target\release\build\icasadi_controller_tau_2_new-e3b6ffd95595b560\out)
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some(cmpxchg16b,fxsr,sse,sse2,sse3)
+cargo:rerun-if-env-changed=CFLAGS_x86_64-pc-windows-msvc
+CFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_pc_windows_msvc
+CFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+OUT_DIR = Some(C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\target\release\build\icasadi_controller_tau_2_new-e3b6ffd95595b560\out)
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some(cmpxchg16b,fxsr,sse,sse2,sse3)
+cargo:rerun-if-env-changed=CFLAGS_x86_64-pc-windows-msvc
+CFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=CFLAGS_x86_64_pc_windows_msvc
+CFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+cargo:rerun-if-env-changed=CC_ENABLE_DEBUG_OUTPUT
+auto_casadi_cost.c
+extern/auto_casadi_cost.c(59): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_casadi_cost.c(68): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_casadi_cost.c(80): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_cost.c(80): warning C4100: 'w': parametro formale senza riferimenti
+extern/auto_casadi_cost.c(80): warning C4100: 'iw': parametro formale senza riferimenti
+extern/auto_casadi_cost.c(597): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_cost.c(601): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_cost.c(608): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_cost.c(624): warning C4065: l'istruzione switch contiene l'etichetta 'default' ma nessuna etichetta 'case'
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(93) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(110) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(113) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(117) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(123) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(127) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(142) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(144) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(147) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(151) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(156) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(171) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(173) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(176) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(180) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(185) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(200) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(202) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(205) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(209) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(214) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(229) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(231) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(234) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(238) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(243) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(258) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(260) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(263) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(267) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(272) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(287) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(289) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(292) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(296) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(301) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(316) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(318) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(321) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(325) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(330) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(345) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(347) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(350) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(354) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(359) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(374) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(376) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(379) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(383) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(388) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(403) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(405) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(408) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(412) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(417) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(432) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(434) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(437) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(441) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(446) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(461) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(463) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(466) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(470) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(475) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(490) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(492) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(495) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(499) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(504) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(519) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(521) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(524) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(528) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(533) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(548) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(550) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(553) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(557) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(562) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(564) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(567) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(575) : warning C4711: funzione 'open_phi_controller_tau_2_new_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(578) : warning C4711: funzione 'open_phi_controller_tau_2_new_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_cost.c(580) : warning C4711: funzione 'open_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+auto_casadi_grad.c
+extern/auto_casadi_grad.c(60): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_casadi_grad.c(69): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_casadi_grad.c(83): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_grad.c(83): warning C4100: 'w': parametro formale senza riferimenti
+extern/auto_casadi_grad.c(83): warning C4100: 'iw': parametro formale senza riferimenti
+extern/auto_casadi_grad.c(939): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_grad.c(943): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_grad.c(950): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_grad.c(966): warning C4065: l'istruzione switch contiene l'etichetta 'default' ma nessuna etichetta 'case'
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(88) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sign' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(90) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(98) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(138) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(150) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(161) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(173) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(185) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(197) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(209) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(221) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(233) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(245) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(257) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(269) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(281) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(293) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(305) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_grad.c(317) : warning C4711: funzione 'open_grad_phi_controller_tau_2_new_sq' selezionata per l'espansione inline automatica
+auto_casadi_mapping_f2.c
+extern/auto_casadi_mapping_f2.c(56): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_casadi_mapping_f2.c(65): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_casadi_mapping_f2.c(77): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f2.c(77): warning C4100: 'w': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f2.c(77): warning C4100: 'iw': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f2.c(101): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f2.c(105): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f2.c(112): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f2.c(128): warning C4065: l'istruzione switch contiene l'etichetta 'default' ma nessuna etichetta 'case'
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_mapping_f2.c(84) : warning C4711: funzione 'open_mapping_f2_controller_tau_2_new_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_mapping_f2.c(87) : warning C4711: funzione 'open_mapping_f2_controller_tau_2_new_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_mapping_f2.c(84) : warning C4711: funzione 'open_mapping_f2_controller_tau_2_new_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_mapping_f2.c(87) : warning C4711: funzione 'open_mapping_f2_controller_tau_2_new_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_mapping_f2.c(94) : warning C4711: funzione 'open_mapping_f2_controller_tau_2_new_f0' selezionata per l'espansione inline automatica
+auto_casadi_mapping_f1.c
+extern/auto_casadi_mapping_f1.c(57): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f1.c(57): warning C4100: 'w': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f1.c(57): warning C4100: 'iw': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f1.c(57): warning C4100: 'arg': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f1.c(72): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f1.c(76): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f1.c(83): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_casadi_mapping_f1.c(99): warning C4065: l'istruzione switch contiene l'etichetta 'default' ma nessuna etichetta 'case'
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_casadi_mapping_f1.c(65) : warning C4711: funzione 'open_mapping_f1_controller_tau_2_new_f0' selezionata per l'espansione inline automatica
+auto_preconditioning_functions.c
+extern/auto_preconditioning_functions.c(65): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_preconditioning_functions.c(74): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_preconditioning_functions.c(85): warning C4668: '__STDC_VERSION__' non Š definita come macro del preprocessore. Sostituzione con '0' per '#if/#elif'.
+extern/auto_preconditioning_functions.c(98): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(98): warning C4100: 'w': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(98): warning C4100: 'iw': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(884): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(888): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(895): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(911): warning C4065: l'istruzione switch contiene l'etichetta 'default' ma nessuna etichetta 'case'
+extern/auto_preconditioning_functions.c(953): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(953): warning C4100: 'w': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(953): warning C4100: 'iw': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(953): warning C4100: 'arg': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(968): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(972): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(979): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(995): warning C4065: l'istruzione switch contiene l'etichetta 'default' ma nessuna etichetta 'case'
+extern/auto_preconditioning_functions.c(1037): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1037): warning C4100: 'w': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1037): warning C4100: 'iw': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1069): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1073): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1080): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1096): warning C4065: l'istruzione switch contiene l'etichetta 'default' ma nessuna etichetta 'case'
+extern/auto_preconditioning_functions.c(1138): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1138): warning C4100: 'w': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1138): warning C4100: 'iw': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1665): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1669): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1676): warning C4100: 'mem': parametro formale senza riferimenti
+extern/auto_preconditioning_functions.c(1692): warning C4065: l'istruzione switch contiene l'etichetta 'default' ma nessuna etichetta 'case'
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(961) : warning C4711: funzione 'auto_preconditioning_functions_f1' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1044) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1051) : warning C4711: funzione 'auto_preconditioning_functions_sign' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1053) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1054) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1055) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1044) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1051) : warning C4711: funzione 'auto_preconditioning_functions_sign' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(129) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1154) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1171) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1174) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1178) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1184) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1188) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(141) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(152) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1203) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1205) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(164) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1053) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1054) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(176) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1208) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1055) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(188) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1212) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1062) : warning C4711: funzione 'auto_preconditioning_functions_f2' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(200) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1217) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(212) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1232) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(224) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1234) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(236) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1237) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(248) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1241) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(260) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1246) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(272) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1261) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(284) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1263) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(296) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1266) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(308) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1270) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(659) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1275) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(660) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1290) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(673) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1292) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(674) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1295) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(687) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1299) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(688) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1304) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(701) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1319) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(702) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1321) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(715) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1324) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(716) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1328) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(729) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1333) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(730) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1348) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(743) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1350) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(744) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1353) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(757) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1357) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(758) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1362) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(771) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1377) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(772) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1379) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(785) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1382) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(786) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1386) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(799) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1391) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(800) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1406) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(813) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1408) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(814) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1411) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(827) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1415) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(828) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1420) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(841) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1435) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(842) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1437) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(855) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1440) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(856) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1444) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(868) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1449) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(869) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1464) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(870) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1466) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1469) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1473) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1478) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1493) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1495) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1498) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1502) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1507) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1522) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1524) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1527) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1531) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1536) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1551) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1553) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1556) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1560) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1565) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1580) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1582) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1585) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1589) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1594) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1609) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1611) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1614) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1618) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1623) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1625) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1628) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1632) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1633) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1636) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1639) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1642) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1643) : warning C4711: funzione 'auto_preconditioning_functions_sq' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1646) : warning C4711: funzione 'auto_preconditioning_functions_fabs' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1647) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1651) : warning C4711: funzione 'auto_preconditioning_functions_fmin' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\auto_preconditioning_functions.c(1652) : warning C4711: funzione 'auto_preconditioning_functions_fmax' selezionata per l'espansione inline automatica
+interface.c
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\interface.c(656) : warning C4711: funzione 'preconditioning_w1_function_controller_tau_2_new' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\interface.c(657) : warning C4711: funzione 'preconditioning_w2_function_controller_tau_2_new' selezionata per l'espansione inline automatica
+C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\icasadi_controller_tau_2_new\extern\interface.c(658) : warning C4711: funzione 'preconditioning_w_cost_function_controller_tau_2_new' selezionata per l'espansione inline automatica
+cargo:rerun-if-env-changed=AR_x86_64-pc-windows-msvc
+AR_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=AR_x86_64_pc_windows_msvc
+AR_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_AR
+HOST_AR = None
+cargo:rerun-if-env-changed=AR
+AR = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64-pc-windows-msvc
+ARFLAGS_x86_64-pc-windows-msvc = None
+cargo:rerun-if-env-changed=ARFLAGS_x86_64_pc_windows_msvc
+ARFLAGS_x86_64_pc_windows_msvc = None
+cargo:rerun-if-env-changed=HOST_ARFLAGS
+HOST_ARFLAGS = None
+cargo:rerun-if-env-changed=ARFLAGS
+ARFLAGS = None
+cargo:rustc-link-lib=static=icasadi
+cargo:rustc-link-search=native=C:\Users\user\Desktop\toolRFI\tool-RFI\Controller\controller_tau_2_new\target\release\build\icasadi_controller_tau_2_new-e3b6ffd95595b560\out
+cargo:rerun-if-changed=extern/auto_casadi_cost.c
+cargo:rerun-if-changed=extern/auto_casadi_grad.c
+cargo:rerun-if-changed=extern/auto_casadi_mapping_f2.c
+cargo:rerun-if-changed=extern/auto_casadi_mapping_f1.c
+cargo:rerun-if-changed=extern/auto_preconditioning_functions.c
+cargo:rerun-if-changed=extern/interface.c
