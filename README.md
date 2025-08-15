@@ -16,7 +16,7 @@ This repository provides the official simulation framework and validation enviro
 > 🏆 *Awarded in collaboration with* [**Rete Ferroviaria Italiana (RFI)**] 
 > 🎤 *Presented at the* [**World Congress on High-Speed Rail 2025**]((https://app1.uichighspeed.org/calendar)), July 2025  . Session 5.1 - Signalling & control systems  - 8 July 
 
-The tool supports the development, testing, and safety validation of a next-generation control architecture that facilitates the transition from ETCS Level 3 to Virtual Coupling (VC) operations — a key concept for ETCS Level 4.
+The tool supports the development, testing, and safety validation of a next-generation control architecture that facilitates the transition from ETCS Level 3 to Virtual Coupling (VC) operations — a key concept for ETCS Level 4. The parameters used for the simulation for the aforementioned paper are reported in "Table I - Simulation parameters.png".
 
 ---
 
